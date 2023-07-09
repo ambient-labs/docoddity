@@ -1,0 +1,160 @@
+const path = require('path');
+const syntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight");
+const util = require('util');
+
+const eleventyNavigationPlugin = require("@11ty/eleventy-navigation");
+const markdownIt = require('markdown-it');
+const markdownItAnchor = require('markdown-it-anchor');
+const pluginTOC = require('eleventy-plugin-nesting-toc');
+const slugify = require("slugify");
+
+const sortByOrder = (values) => {
+  if (values === undefined) {
+    return undefined;
+  }
+  return values.sort(({
+    data: {
+      displayOrder: a,
+    },
+  }, {
+    data: {
+      displayOrder: b,
+    },
+  }) => {
+    if (a === undefined && b !== undefined) { return 1; }
+    if (b === undefined && a !== undefined) { return -1; }
+    return a - b;
+  });
+};
+
+function hasTemplateFormat(templateFormats = ["*"], format = false) {
+  if (!Array.isArray(templateFormats)) {
+    templateFormats = [templateFormats];
+  }
+
+  if (Array.isArray(templateFormats)) {
+    if (templateFormats.indexOf("*") > -1 || templateFormats.indexOf(format) > -1) {
+      return true;
+    }
+  }
+
+  return false;
+};
+
+const codeEditor = {
+  configFunction: function (eleventyConfig, options = {}) {
+
+    if (hasTemplateFormat(options.templateFormats, "md")) {
+      eleventyConfig.addTransform("code-editor", function (content, outputPath) {
+        return content.replace(new RegExp('<pre class="language-javascript"><code class="language-javascript">(.*?)</code></pre>', 'gs'), (match, contents, code) => {
+          return `<code-editor language="javascript">${contents}</code-editor>`;
+        })
+      });
+    }
+
+  },
+};
+
+const sanitizeItem = (item) => {
+  return Object.entries(item).slice(0, 1).reduce((obj, [key, val]) => {
+    console.log('key', key);
+    return {
+      ...obj,
+      [key]: val,
+    };
+  }, {})
+}
+
+module.exports = function (eleventyConfig) {
+  eleventyConfig.addPlugin(eleventyNavigationPlugin);
+
+  eleventyConfig.addCollection("all", function (collection) {
+    return collection.getAll()
+  });
+
+  const linkAfterHeader = markdownItAnchor.permalink.linkAfterHeader({
+    class: "anchor",
+    symbol: "<span hidden>#</span>",
+    style: "aria-labelledby",
+  });
+  const markdownItAnchorOptions = {
+    level: [1, 2, 3],
+    slugify: (str) =>
+      slugify(str, {
+        lower: true,
+        strict: true,
+        remove: /["]/g,
+      }),
+    tabIndex: false,
+    permalink(slug, opts, state, idx) {
+      state.tokens.splice(
+        idx,
+        0,
+        Object.assign(new state.Token("div_open", "div", 1), {
+          attrs: [["class", `heading-wrapper ${state.tokens[idx].tag}`]],
+          block: true,
+        })
+      );
+
+      state.tokens.splice(
+        idx + 4,
+        0,
+        Object.assign(new state.Token("div_close", "div", -1), {
+          block: true,
+        })
+      );
+
+      linkAfterHeader(slug, opts, state, idx + 1);
+    },
+  };
+  let markdownLibrary = markdownIt({
+    html: true,
+  }).use(markdownItAnchor, markdownItAnchorOptions);
+  eleventyConfig.setLibrary(
+    'md',
+    markdownLibrary,
+  );
+  eleventyConfig.addPlugin(pluginTOC, {
+    tags: ['h2', 'h3', 'h4'],
+    wrapper: 'div'
+  });
+
+  eleventyConfig.addFilter('join', function (arr) {
+    return arr.filter(Boolean).join(' | ')
+  });
+
+  eleventyConfig.addFilter('console', function (value) {
+    return util.inspect(value);
+  });
+
+  const devMode = '{{{ DEV_MODE }}}';
+  if (devMode === '1') {
+    eleventyConfig.setServerPassthroughCopyBehavior("passthrough");
+  }
+
+  eleventyConfig.addFilter('sortByOrder', sortByOrder);
+  eleventyConfig.addPlugin(syntaxHighlight);
+  eleventyConfig.addPlugin(codeEditor);
+
+  eleventyConfig.addPassthroughCopy('{{{JS_FOLDER}}}');
+  eleventyConfig.addPassthroughCopy('{{{STYLES_FOLDER}}}');
+  // eleventyConfig.addPassthroughCopy('scripts');
+  // eleventyConfig.addPassthroughCopy('styles');
+  // eleventyConfig.addPassthroughCopy('{{{USER_JS_FOLDER}}}');
+  // eleventyConfig.addPassthroughCopy('{{{USER_STYLES_FOLDER}}}');
+  // eleventyConfig.addPassthroughCopy('{{{INTERNAL_JS_FOLDER}}}');
+
+  eleventyConfig.setUseGitIgnore(false);
+  eleventyConfig.addFilter("bust", (url) => {
+    const [urlPart, paramPart] = url.split("?");
+    const params = new URLSearchParams(paramPart || "");
+    params.set("v", new Date().getTime());
+    return `${urlPart}?${params}`;
+  });
+
+  return {
+    markdownTemplateEngine: 'njk',
+    dataTemplateEngine: 'njk',
+    htmlTemplateEngine: 'njk',
+  };
+};

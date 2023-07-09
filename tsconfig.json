@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "module": "esnext",
+    "moduleResolution": "nodenext",
+    "esModuleInterop": true,
+    "types": [
+      "vitest/globals", 
+    "./vitest.d.ts"
+  ]
+  },
+}
+

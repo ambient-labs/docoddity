@@ -1,0 +1,29 @@
+{
+  "compilerOptions": {
+    "strict": true,
+    "noImplicitAny": true,
+    "removeComments": true,
+    "preserveConstEnums": true,
+    "module": "nodenext",
+    "target": "esnext",
+    "useDefineForClassFields": false,
+    "experimentalDecorators": true,
+    "moduleResolution": "NodeNext",
+    "sourceMap": true,
+    "skipLibCheck": true,
+    "declaration": true,
+    "rootDir": "./src",
+    "outDir": "./dist"
+  },
+  "include": [
+    "./src/**/*.ts",
+  ],
+  "exclude": [
+    "node_modules",
+    ".vscode-test",
+    "dist",
+    ".wireit",
+    "env",
+    "./src/**/*.test.ts"
+  ]
+}

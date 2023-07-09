@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>{{ [title, docoddity.title] | join }}</title>
+    <style type="text/css">
+      code-editor:not(:defined) { visibility: hidden; }
+    </style>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3"/></pre></li>
+    <!-- <link rel="expect" blocking="render" href="main"> -->
+
+    <!-- theme.headTags -->
+    {% for headTag in theme.headTags %}{% set tag = headTag.tag or 'link' %}<{{tag}}{% for key, value in headTag %}{% if key != 'content' and key != 'tag' %} {{key}}="{{value}}"{% endif %}{% endfor %}>{% if headTag.content %}{{headTag.content | safe}}{% endif %}</{{tag}}>
+    {% endfor %}
+    <!-- docoddity.headTags -->
+    {% for headTag in docoddity.headTags %}{% set tag = headTag.tag or 'link' %}<{{tag}}{% for key, value in headTag %}{% if key != 'content' and key != 'tag' %} {{key}}="{{value}}"{% endif %}{% endfor %}>{% if headTag.content %}{{headTag.content | safe}}{% endif %}</{{tag}}>
+    {% endfor %}
+    <!-- theme.styles -->
+    {% for style in theme.styles %}<link rel="stylesheet" {% for key, value in style%} {{key}}={{ value | safe }}{% endfor %}></link>
+    {% endfor %}
+    <!-- site.styles -->
+    {% for style in site.styles %}<link rel="stylesheet" {% for key, value in style%} {{key}}={{ value | safe }}{% endfor %}></link>
+    {% endfor %}
+  </head>
+  <body>
+    <script type="module">
+      const theme = localStorage.getItem('theme') || 'light';
+      document.documentElement.setAttribute('data-theme', theme);
+      document.body.classList.add(`sl-theme-${theme}`);
+    </script>
+    {% include "partials/body-header.html" %}
+    {% block content %}{% endblock %}
+    <script src="https://cdn.jsdelivr.net/npm/@docsearch/js@3"></script>
+    <!-- theme.scripts -->
+    {% for script in theme.scripts %}<script {% for key, value in script%} {{key}}={{ value | safe }}{% endfor %}></script>
+    {% endfor %}
+    <!-- site.scripts -->
+    {% for script in site.scripts %}<script {% for key, value in script%} {{key}}={{ value | safe }}{% endfor %}></script>
+    {% endfor %}
+  </body>
+</html>

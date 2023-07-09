@@ -1,0 +1,39 @@
+{
+  "name": "@docoddity/root",
+  "type": "module",
+  "private": true,
+  "version": "0.0.1",
+  "scripts": {
+    "test:integration": "wireit",
+    "clean": "wireit"
+  },
+  "wireit": {
+    "test:integration": {
+      "command": "vitest --config ./vitest.config.ts --run",
+      "dependencies": [
+        "./packages/docoddity:build"
+      ]
+    },
+    "clean": {
+      "command": "rimraf ./dist"
+    }
+  },
+  "devDependencies": {
+    "docoddity": "workspace:*",
+    "@types/fs-extra": "^11.0.4",
+    "@types/jest": "^29.5.12",
+    "@types/node": "^20.12.7",
+    "@typescript-eslint/eslint-plugin": "^7.8.0",
+    "esbuild": "^0.20.2",
+    "fs-extra": "^11.2.0",
+    "playwright": "^1.45.1",
+    "reflect-metadata": "^0.2.2",
+    "rimraf": "^5.0.5",
+    "@ambient-labs/the_floor_is_lava": "^0.1.0",
+    "tslib": "^2.6.2",
+    "typescript": "^5.4.5",
+    "vite": "^5.2.10",
+    "vitest": "^2.0.1",
+    "wireit": "^0.14.4"
+  }
+}

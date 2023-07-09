@@ -1,0 +1,35 @@
+{
+  "styles": [
+    "https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace/dist/themes/light.css",
+    "https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace/dist/themes/dark.css",
+    "./styles/reset.css",
+    "./styles/github-markdown.css",
+    "./styles/variables.css",
+    "./styles/style.css"
+  ],
+  "scripts": [
+    {
+      "async": false,
+      "defer": false,
+      "type": "module",
+      "src": "./scripts/index.ts"
+    }
+  ],
+  "headTags": [
+    {
+      "tag": "script",
+      "type": "module",
+      "defer": "true",
+      "content": {
+        "filename": "./shoelace-config.js"
+      }
+    },
+    {
+      "tag": "script",
+      "type": "importmap",
+      "content": {
+        "filename": "./importmap.json"
+      }
+    }
+  ]
+}
