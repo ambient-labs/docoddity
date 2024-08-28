@@ -1,7 +1,7 @@
 {
   "name": "docoddity",
   "version": "0.1.1",
-  "description": "Static site generator using web components for open source libraries",
+  "description": "Static site generator using web components for open source libraries and other tasty goodies",
   "type": "module",
   "main": "./dist/index.js",
   "bin": {
