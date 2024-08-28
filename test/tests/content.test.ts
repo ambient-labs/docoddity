@@ -116,6 +116,7 @@ describe('Content', () => {
       expect(container.split(siteTitle).join('').trim()).toEqual(content);
     });
 
+
     test('it should render a root HTML page', async () => {
       const siteTitle = 'Basic Site';
       const content = 'foobar';
