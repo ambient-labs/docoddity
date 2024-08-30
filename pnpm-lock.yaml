@@ -59,9 +59,15 @@ importers:
 
   packages/docoddity:
     dependencies:
+      '@11ty/eleventy':
+        specifier: 3.0.0-beta.1
+        version: 3.0.0-beta.1
       '@11ty/eleventy-dev-server':
         specifier: ^2.0.0
         version: 2.0.2
+      '@11ty/eleventy-navigation':
+        specifier: ^0.3.5
+        version: 0.3.5
       '@11ty/eleventy-plugin-syntaxhighlight':
         specifier: ^5.0.0
         version: 5.0.0
@@ -102,12 +108,6 @@ importers:
         specifier: ^1.6.6
         version: 1.6.6
     devDependencies:
-      '@11ty/eleventy':
-        specifier: 3.0.0-beta.1
-        version: 3.0.0-beta.1
-      '@11ty/eleventy-navigation':
-        specifier: ^0.3.5
-        version: 0.3.5
       '@rollup/plugin-commonjs':
         specifier: ^25.0.7
         version: 25.0.8(rollup@4.19.2)
