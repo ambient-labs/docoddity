@@ -1,18 +1,23 @@
-import { setup } from '../includes/setup.js';
+import { setupBuild } from '../includes/setup-build.js';
 import { TagDefinition } from '../setup/matchers/toContainTags.js';
 
-const toSelector = (obj: Record<string, unknown>, tagName = '*', mapping: Record<string, string> = { src: 'orig-src', href: 'orig-src' }) => {
+const toSelector = ({ tag = '*', ...obj }: Record<string, unknown>, mapping: Record<string, string> = {}) => {
   const selectorAttbs = Object.entries(obj).map(([key, value]) => {
     if (key in mapping) {
       return `[${mapping[key]}="${value}"]`;
     }
     return `[${key}="${value}"]`;
   }).join('');
-  return `${tagName}${selectorAttbs}`;
+  return `${tag}${selectorAttbs}`;
 }
 
 describe('Assets', () => {
-  const configureDocodditySite = setup();
+  const configureDocodditySite = setupBuild({
+    std: {
+      // stdout: console.log,
+      // stderr: console.error,
+    }
+  });
 
   const content =
   {
@@ -21,10 +26,11 @@ describe('Assets', () => {
               <p>foobar</p>
     `,
   };
+
   describe('Javascript Assets', () => {
     test('it should render a single local javascript asset', async () => {
       const fnResponse = 'foobarbaz1';
-      const { runner } = await configureDocodditySite([
+      const { runner, printURL } = await configureDocodditySite([
         content,
         {
           filepath: './scripts/foo.js',
@@ -33,21 +39,21 @@ describe('Assets', () => {
         {
           filepath: 'docoddity.json',
           content: {
-            scripts: [
+            head: [
               './scripts/foo.js',
             ],
           },
         },
       ]);
-      // await printURL();
+      // await printURL(1000);
       expect(await runner.page.evaluate(() => { return window['foo'](); })).toEqual(fnResponse);
     });
 
     test('it should render a javascript asset with properties', async () => {
       const fnResponse = 'foobarbaz2';
       const script = {
+        tag: 'script',
         src: './scripts/foo.js',
-        async: false,
         type: 'module',
         defer: true,
         'data-domain': 'foo.bar',
@@ -61,15 +67,13 @@ describe('Assets', () => {
         {
           filepath: 'docoddity.json',
           content: {
-            scripts: [
+            head: [
               script,
             ],
           },
         },
       ]);
-      await expect(runner.page).toContainTags([
-        toSelector(script, 'script'),
-      ]);
+      expect(await runner.page.evaluate(() => { return window['foo'](); })).toEqual(fnResponse);
     });
 
     test('it should render multiple local javascript assets', async () => {
@@ -80,7 +84,7 @@ describe('Assets', () => {
         content,
         {
           filepath: './scripts/foo.js',
-          content: `window.foo = () => "${fooResponse}";`,
+          content: `console.log('foo'); window.foo = () => "${fooResponse}";`,
         },
         {
           filepath: './scripts/bar.js',
@@ -93,7 +97,7 @@ describe('Assets', () => {
         {
           filepath: 'docoddity.json',
           content: {
-            scripts: [
+            body: [
               './scripts/foo.js',
               './scripts/bar.js',
               './scripts/baz.js',
@@ -111,14 +115,21 @@ describe('Assets', () => {
         {
           filepath: 'docoddity.json',
           content: {
-            scripts: [
-              script,
+            head: [
+              {
+                src: script,
+                tag: 'script',
+              },
             ],
           },
         },
       ]);
-      // await printURL();
-      expect(await runner.page.evaluate((script) => { return !!window.document.querySelector(`script[src="${script}"]`); }, script)).toEqual(true);
+      await expect(runner.page).toContainTags([
+        toSelector({
+          tag: 'script',
+          src: script,
+        }),
+      ]);
     });
 
     test('it should render both local and external JS assets', async () => {
@@ -133,8 +144,11 @@ describe('Assets', () => {
         {
           filepath: 'docoddity.json',
           content: {
-            scripts: [
-              script,
+            body: [
+              {
+                src: script,
+                tag: 'script',
+              },
               './scripts/foo.js',
             ],
           },
@@ -142,7 +156,12 @@ describe('Assets', () => {
       ]);
       // await printURL();
       expect(await runner.page.evaluate(() => { return window['foo'](); })).toEqual(fnResponse);
-      expect(await runner.page.evaluate((script) => { return !!window.document.querySelector(`script[src="${script}"]`); }, script)).toEqual(true);
+      // expect(await runner.page.evaluate((script) => { return !!window.document.querySelector(`script[src="${script}"]`); }, script)).toEqual(true);
+      await expect(runner.page).toContainTags([
+        toSelector({
+          src: script,
+        }),
+      ]);
     });
   });
 
@@ -158,7 +177,7 @@ describe('Assets', () => {
         {
           filepath: 'docoddity.json',
           content: {
-            scripts: [
+            head: [
               './scripts/foo.ts',
             ],
           },
@@ -171,6 +190,8 @@ describe('Assets', () => {
     test('it should render a single local typescript asset with a tsconfig.json present', async () => {
       const filepath = './scripts/with-tsconfig.ts';
       const tsContent = `
+import "reflect-metadata";
+const formatMetadataKey = Symbol("format");
 class Greeter {
   @format("Hello, %s")
   greeting: string;
@@ -182,8 +203,6 @@ class Greeter {
     return formatString.replace("%s", this.greeting);
   }
 }
-import "reflect-metadata";
-const formatMetadataKey = Symbol("format");
 function format(formatString: string) {
   return Reflect.metadata(formatMetadataKey, formatString);
 }
@@ -209,13 +228,13 @@ function getFormat(target: any, propertyKey: string) {
         {
           filepath: 'docoddity.json',
           content: {
-            scripts: [
+            head: [
               filepath,
             ],
           },
         },
       ]);
-      // await printURL(1);
+      // await printURL(1000);
       expect(await runner.page.evaluate(() => { return window['foo'](); })).toEqual('foobar1');
     });
 
@@ -243,7 +262,7 @@ function getFormat(target: any, propertyKey: string) {
           filepath: 'docoddity.json',
           content: {
 
-            scripts: [
+            body: [
               './scripts/foo.ts',
             ],
           },
@@ -277,7 +296,7 @@ function foo() {
         {
           filepath: 'docoddity.json',
           content: {
-            scripts: [
+            body: [
               './scripts/foo.ts',
             ],
           },
@@ -324,7 +343,7 @@ function foo() {
         {
           filepath: 'docoddity.json',
           content: {
-            scripts: [
+            head: [
               './scripts/foo.ts',
               './scripts/baz.ts',
               './scripts/qux.js',
@@ -342,7 +361,6 @@ function foo() {
       const fnResponse = 'foobarbaz7';
       const script = {
         src: './scripts/foo.ts',
-        async: false,
         type: 'module',
         defer: true,
         'data-domain': 'foo.bar',
@@ -356,15 +374,13 @@ function foo() {
         {
           filepath: 'docoddity.json',
           content: {
-            scripts: [
+            head: [
               script,
             ],
           },
         },
       ]);
-      await expect(runner.page).toContainTags([
-        toSelector(script, 'script'),
-      ]);
+      expect(await runner.page.evaluate(() => window['foo']())).toEqual(fnResponse);
     });
   });
 
@@ -379,13 +395,12 @@ function foo() {
         {
           filepath: 'docoddity.json',
           content: {
-            styles: [
+            head: [
               './styles/style.css',
             ],
           },
         }
       ]);
-      // await printURL();
       const bg = await runner.page.evaluate(() => {
         return window.getComputedStyle(window.document.body).background;
       });
@@ -406,7 +421,7 @@ function foo() {
         {
           filepath: 'docoddity.json',
           content: {
-            styles: [
+            body: [
               './styles/bar.css',
               './styles/foo.css',
             ],
@@ -422,26 +437,40 @@ function foo() {
     test('it should render a CSS asset with properties', async () => {
       const style = {
         href: './styles/style.css',
-        media: "screen and (max-width: 600px)",
+        media: "screen",
+      };
+      const styleMobile = {
+        href: './styles/mobile.css',
+        media: "screen and (max-width: 700px)",
       };
       const { runner, printURL } = await configureDocodditySite([
         content,
         {
           filepath: style.href,
-          content: `body { background: red; } `,
+          content: `html body { background: blue; } `,
+        },
+        {
+          filepath: styleMobile.href,
+          content: `html body { background: red; } `,
         },
         {
           filepath: 'docoddity.json',
           content: {
-            styles: [
+            head: [
               style,
+              styleMobile,
             ],
           },
         },
       ]);
-      await expect(runner.page).toContainTags([
-        toSelector(style, 'link'),
-      ]);
+      // await printURL(1000);
+      expect(await runner.page.evaluate(() => {
+        return window.getComputedStyle(window.document.body).background;
+      })).toEqual('rgb(0, 0, 255) none repeat scroll 0% 0% / auto padding-box border-box');
+      runner.page.setViewportSize({ width: 600, height: 600 });
+      expect(await runner.page.evaluate(() => {
+        return window.getComputedStyle(window.document.body).background;
+      })).toEqual('rgb(255, 0, 0) none repeat scroll 0% 0% / auto padding-box border-box');
     });
 
     test('it should render an external CSS asset', async () => {
@@ -451,42 +480,94 @@ function foo() {
         {
           filepath: 'docoddity.json',
           content: {
-            styles: [
+            body: [
               href,
             ],
           }
         },
       ]);
-      expect(await runner.page.evaluate((href) => { return !!window.document.querySelector(`link[orig-src="${href}"]`); }, href)).toEqual(true);
+      await expect(runner.page).toContainTags([
+        toSelector({
+          tag: 'link',
+          href,
+        }),
+      ]);
     });
 
-    test('it should render both local and external JS assets', async () => {
+    test('it should render both local and external CSS assets', async () => {
       const href = 'https://raw.githubusercontent.com/elad2412/the-new-css-reset/main/css/reset.css';
       const { runner, printURL } = await configureDocodditySite([
         content,
         {
           filepath: './styles/style.css',
-          content: `body { background: red; } `,
+          content: `html body { color: blue; } `,
         },
         {
           filepath: 'docoddity.json',
           content: {
-            styles: [
+            body: [
               href,
               './styles/style.css',
+              {
+                tag: 'link',
+                href: 'data:text/css;base64,Ym9keSB7CiAgYmFja2dyb3VuZDogcmVkOwp9',
+              },
             ],
           },
         },
       ]);
-      expect(await runner.page.evaluate((href) => { return !!window.document.querySelector(`link[orig-src="${href}"]`); }, href)).toEqual(true);
+      // await printURL(1000);
       expect(await runner.page.evaluate(() => {
-        return window.getComputedStyle(window.document.body).background;
-      })).toEqual('rgb(255, 0, 0) none repeat scroll 0% 0% / auto padding-box border-box');
+        return [
+          window.getComputedStyle(window.document.body).background,
+          window.getComputedStyle(window.document.body).color,
+        ];
+      })).toEqual([
+        'rgb(255, 0, 0) none repeat scroll 0% 0% / auto padding-box border-box',
+        'rgb(0, 0, 255)',
+      ]);
     });
   });
 
   describe('Head Tags', () => {
     test('it can populate head tags', async () => {
+      const headTags = [
+        {
+          tag: 'link',
+          rel: 'preconnect',
+          href: 'https://fonts.googleapis.com',
+        },
+        {
+          tag: 'link',
+          rel: 'preconnect',
+          href: 'https://fonts.gstatic.com',
+        },
+        {
+          tag: 'link',
+          rel: "stylesheet",
+          href: "https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=Work+Sans:ital,wght@0,100..900;1,100..900&Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=League+Spartan:wght@100..900&display=swap",
+        },
+      ];
+      const { runner, printURL } = await configureDocodditySite([
+        content,
+        {
+          filepath: 'docoddity.json',
+          content: {
+            head: headTags,
+          },
+        },
+      ]);
+      // await printURL(1000);
+      await expect(runner.page).toContainTags(headTags.map(({ href, rel }) => {
+        return toSelector({
+          tag: 'link',
+          href,
+          rel,
+        });
+      }));
+    });
+
+    test('it can populate head tags with full content', async () => {
       const headTags = [
         {
           rel: 'preconnect',
@@ -506,76 +587,83 @@ function foo() {
         {
           filepath: 'docoddity.json',
           content: {
-            headTags,
+            head: headTags.map(({ rel, href }) => {
+              return `<link rel="${rel}" href="${href}">`;
+            }),
           },
         },
       ]);
-      for (const headTag of headTags) {
-        expect(await runner.page.evaluate(({ href, rel }) => { return !!window.document.querySelector(`link[href="${href}"][rel="${rel}"]`); }, headTag)).toEqual(true);
-      }
+      await expect(runner.page).toContainTags(headTags.map(({ href, rel }) => toSelector({
+        tag: 'link',
+        href,
+        rel,
+      })));
     });
 
-    test('it can populate head tags with a path to a file', async () => {
-      const headTags = [
-        {
-          "tag": "script",
-          "foo": "bar",
-          "content": {
-            "filename": "./script-content.js"
+    describe('Content', () => {
+      test('it can populate head tags with a path to a file', async () => {
+        const headTags = [
+          {
+            "tag": "script",
+            "foo": "bar",
+            "content": {
+              "filename": "./script-content.js"
+            }
           }
-        }
-      ];
-      const scriptContent = 'console.log("hello world");';
-      const { runner, printURL } = await configureDocodditySite([
-        content,
-        {
-          filepath: './script-content.js',
-          content: scriptContent,
-        },
-        {
-          filepath: 'docoddity.json',
-          content: {
-            headTags,
+        ];
+        const scriptContent = 'console.log("hello world");';
+        const { runner, printURL } = await configureDocodditySite([
+          content,
+          {
+            filepath: './script-content.js',
+            content: scriptContent,
           },
-        },
+          {
+            filepath: 'docoddity.json',
+            content: {
+              head: headTags,
+            },
+          },
 
-      ]);
-      expect(await runner.page.evaluate(() => { return window.document.querySelector(`script[foo="bar"]`)?.innerHTML; })).toEqual(scriptContent);
-    });
-
-    test('it can populate head with inline content', async () => {
-      const innerContent = JSON.stringify({
-        "imports": {
-          "@xenova/transformers": "https://cdn.jsdelivr.net/npm/@xenova/transformers/dist/transformers.min.js",
-          "@vanillawc/wc-codemirror": "https://cdn.jsdelivr.net/npm/@vanillawc/wc-codemirror/index.js",
-          "@vanillawc/": "https://cdn.jsdelivr.net/npm/@vanillawc/",
-          "@lit/reactive-element": "https://cdn.jsdelivr.net/npm/@lit/reactive-element/reactive-element.js",
-          "@lit/": "https://cdn.jsdelivr.net/npm/@lit/",
-          "lit-element": "https://cdn.jsdelivr.net/npm/lit-element/index.js",
-          "lit-element/lit-element.js": "https://cdn.jsdelivr.net/npm/lit-element/lit-element.js",
-          "lit-html": "https://cdn.jsdelivr.net/npm/lit-html/lit-html.js",
-          "lit-html/": "https://cdn.jsdelivr.net/npm/lit-html/",
-          "lit": "https://cdn.jsdelivr.net/npm/lit/index.js",
-          "lit/": "https://cdn.jsdelivr.net/npm/lit/",
-          "@shoelace-style/": "https://cdn.jsdelivr.net/npm/@shoelace-style/",
-          "@docsearch/js": "https://cdn.jsdelivr.net/npm/@docsearch/js/dist/esm/index.js",
-          "@alenaksu/json-viewer": "https://cdn.jsdelivr.net/npm/@alenaksu/json-viewer/dist/json-viewer.js"
-        }
+        ]);
+        expect(await runner.page.evaluate(() => { return window.document.querySelector(`script[foo="bar"]`)?.innerHTML; })).toEqual(scriptContent);
       });
-      const { runner, printURL } = await configureDocodditySite([
-        content,
-        {
-          filepath: 'docoddity.json',
-          content: {
-            headTags: [{
-              tag: 'script',
-              type: 'importmap2',
-              content: innerContent,
-            }],
+
+      test('it can populate head with inline content', async () => {
+        const innerContent = JSON.stringify({
+          "imports": {
+            "@xenova/transformers": "https://cdn.jsdelivr.net/npm/@xenova/transformers/dist/transformers.min.js",
+            "@vanillawc/wc-codemirror": "https://cdn.jsdelivr.net/npm/@vanillawc/wc-codemirror/index.js",
+            "@vanillawc/": "https://cdn.jsdelivr.net/npm/@vanillawc/",
+            "@lit/reactive-element": "https://cdn.jsdelivr.net/npm/@lit/reactive-element/reactive-element.js",
+            "@lit/": "https://cdn.jsdelivr.net/npm/@lit/",
+            "lit-element": "https://cdn.jsdelivr.net/npm/lit-element/index.js",
+            "lit-element/lit-element.js": "https://cdn.jsdelivr.net/npm/lit-element/lit-element.js",
+            "lit-html": "https://cdn.jsdelivr.net/npm/lit-html/lit-html.js",
+            "lit-html/": "https://cdn.jsdelivr.net/npm/lit-html/",
+            "lit": "https://cdn.jsdelivr.net/npm/lit/index.js",
+            "lit/": "https://cdn.jsdelivr.net/npm/lit/",
+            "@shoelace-style/": "https://cdn.jsdelivr.net/npm/@shoelace-style/",
+            "@docsearch/js": "https://cdn.jsdelivr.net/npm/@docsearch/js/dist/esm/index.js",
+            "@alenaksu/json-viewer": "https://cdn.jsdelivr.net/npm/@alenaksu/json-viewer/dist/json-viewer.js"
+          }
+        });
+        const { runner, printURL } = await configureDocodditySite([
+          content,
+          {
+            filepath: 'docoddity.json',
+            content: {
+              head: [{
+                tag: 'script',
+                type: 'importmap2',
+                content: innerContent,
+              }],
+            },
           },
-        },
-      ]);
-      expect(await runner.page.evaluate(() => { return window.document.querySelector(`script[type="importmap2"]`)?.innerHTML; })).toEqual(innerContent);
+        ]);
+        expect(await runner.page.evaluate(() => { return window.document.querySelector(`script[type="importmap2"]`)?.innerHTML; })).toEqual(innerContent);
+      });
+
     });
   });
 });

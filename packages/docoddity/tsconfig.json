@@ -13,11 +13,14 @@
     "skipLibCheck": true,
     "declaration": true,
     "rootDir": "./src",
-    "outDir": "./dist"
+    "outDir": "./dist",
+    "types": [
+      "vitest/globals", 
+  ]
   },
   "include": [
-    "./src/**/*.ts",
-  ],
+    "./src/**/*.ts"
+, "src/bin/lib/config.ts.bk", "src/bin/lib/utils/is-content-page.ts.bl", "src/bin/lib/utils/write-asset-file.ts.bk"  ],
   "exclude": [
     "node_modules",
     ".vscode-test",

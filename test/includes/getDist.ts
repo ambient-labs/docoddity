@@ -1,9 +1,8 @@
 import path from 'path';
 import { getCwd } from "./getCwd.js";
-import { DocoddityFile } from "./types.js";
+import { DocoddityTestFile } from "./types.js";
 
-export const getDist = async (files: DocoddityFile[]) => {
+export const getDist = async (files: DocoddityTestFile[], buildDir: string) => {
   const cwd = await getCwd(files);
-  const buildDir = path.resolve(cwd, '.build');
-  return path.resolve(cwd, buildDir);
+  return path.resolve(cwd, path.resolve(cwd, buildDir));
 };

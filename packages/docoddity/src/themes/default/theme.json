@@ -1,28 +1,9 @@
 {
-  "styles": [
-    "https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace/dist/themes/light.css",
-    "https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace/dist/themes/dark.css",
-    "./styles/reset.css",
-    "./styles/github-markdown.css",
-    "./styles/variables.css",
-    "./styles/style.css"
-  ],
-  "scripts": [
+  "head": [
     {
-      "async": false,
-      "defer": false,
-      "type": "module",
-      "src": "./scripts/index.ts"
-    }
-  ],
-  "headTags": [
-    {
-      "tag": "script",
-      "type": "module",
-      "defer": "true",
-      "content": {
-        "filename": "./shoelace-config.js"
-      }
+      "type": "text/css",
+      "tag": "style",
+      "content": "code-editor:not(:defined) { visibility: hidden; }"
     },
     {
       "tag": "script",
@@ -30,6 +11,34 @@
       "content": {
         "filename": "./importmap.json"
       }
+    },
+    "https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace/dist/themes/light.css",
+    "https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace/dist/themes/dark.css",
+    "./styles/reset.css",
+    "./styles/github-markdown.css",
+    "./styles/variables.css",
+    "./styles/style.css",
+    {
+      "tag": "script",
+      "type": "module",
+      "defer": "true",
+      "content": {
+        "filename": "./shoelace-config.js"
+      }
+    }
+  ],
+  "body": [
+    {
+      "tag": "script",
+      "type": "module",
+      "content": {
+        "filename": "./data-theme.js"
+      }
+    },
+    {
+      "defer": true,
+      "type": "module",
+      "src": "./scripts/index.ts"
     }
   ]
 }

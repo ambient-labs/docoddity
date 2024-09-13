@@ -55,16 +55,6 @@ const codeEditor = {
   },
 };
 
-const sanitizeItem = (item) => {
-  return Object.entries(item).slice(0, 1).reduce((obj, [key, val]) => {
-    console.log('key', key);
-    return {
-      ...obj,
-      [key]: val,
-    };
-  }, {})
-}
-
 module.exports = function (eleventyConfig) {
   eleventyConfig.addPlugin(eleventyNavigationPlugin);
 
@@ -130,6 +120,13 @@ module.exports = function (eleventyConfig) {
   const devMode = '{{{ DEV_MODE }}}';
   if (devMode === '1') {
     eleventyConfig.setServerPassthroughCopyBehavior("passthrough");
+    // eleventyConfig.setServerOptions({
+    //   // Whether the live reload snippet is used
+    //   liveReload: true,
+
+    //   // Whether DOM diffing updates are applied where possible instead of page reloads
+    //   domDiff: true,
+    // });
   }
 
   eleventyConfig.addFilter('sortByOrder', sortByOrder);

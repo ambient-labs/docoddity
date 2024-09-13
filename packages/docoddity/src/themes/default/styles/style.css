@@ -377,9 +377,9 @@ aside#toc-mobile {
     margin: 0;
   }
 
-  li {
+  /* li {
     margin-left: calc(var(--padding) * 2);
-  }
+  } */
 
   .inner {
     overflow: hidden;
@@ -430,9 +430,23 @@ aside#toc-mobile {
     }
   }
 
+  --aside-padding: calc(var(--padding) * 2);
+
   li {
     padding: 0 var(--aside-padding);
     line-height: 1.8rem;
+
+    &.indent-3 {
+      padding-left: calc(var(--aside-padding) * 2);
+    }
+
+    &.indent-4 {
+      padding-left: calc(var(--aside-padding) * 4);
+    }
+
+    &.indent-5 {
+      padding-left: calc(var(--aside-padding) * 6);
+    }
   }
 }
 

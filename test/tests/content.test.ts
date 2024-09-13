@@ -1,11 +1,15 @@
 // test/my-library-test.js
 
-import { setup } from '../includes/setup.js';
+import { setupBuild } from '../includes/setup-build.js';
 import { getMarkdownContent } from '../setup/getMarkdownContent.js';
 
-
 describe('Content', () => {
-  const configureDocodditySite = setup();
+  const configureDocodditySite = setupBuild({
+    std: {
+      // stdout: console.log,
+      // stderr: console.error,
+    }
+  });
 
   describe('Markdown page', () => {
     test('it should render a markdown page without a docoddity.json', async () => {
@@ -19,11 +23,33 @@ describe('Content', () => {
         },
       ]);
       await runner.goto(`/${pagePath}`);
-      const title = await runner.page.evaluate(() => window.document.title);
+      const [title, h1, p] = await runner.page.evaluate(() => [
+        window.document.title,
+        window.document.querySelector('#content h1')?.innerText,
+        window.document.querySelector('#content p')?.innerText,
+      ]);
       expect(title).toEqual(pageTitle);
-      const h1 = await runner.page.evaluate(() => { return window.document.querySelector('#content h1')?.innerText; });
       expect(h1).toEqual(pageTitle);
-      const p = await runner.page.evaluate(() => { return window.document.querySelector('#content p')?.innerText; });
+      expect(p).toEqual(content);
+    });
+
+    test('it should default to the page name if no title is provided', async () => {
+      const pagePath = 'markdown-page';
+      const content = 'foobar';
+      const { runner, printURL } = await configureDocodditySite([
+        {
+          filepath: `${pagePath}.md`,
+          content: getMarkdownContent(content),
+        },
+      ]);
+      await runner.goto(`/${pagePath}`);
+      const [title, h1, p] = await runner.page.evaluate(() => [
+        window.document.title,
+        window.document.querySelector('#content h1')?.innerText,
+        window.document.querySelector('#content p')?.innerText,
+      ]);
+      expect(title).toEqual('Markdown Page');
+      expect(h1).toEqual('Markdown Page');
       expect(p).toEqual(content);
     });
 
@@ -46,11 +72,13 @@ describe('Content', () => {
         }
       ]);
       await runner.goto(`/${pagePath}`);
-      const title = await runner.page.evaluate(() => window.document.title);
+      const [title, h1, p] = await runner.page.evaluate(() => [
+        window.document.title,
+        window.document.querySelector('#content h1')?.innerText,
+        window.document.querySelector('#content p')?.innerText,
+      ]);
       expect(title).toEqual([pageTitle, siteTitle].join(' | '));
-      const h1 = await runner.page.evaluate(() => { return window.document.querySelector('#content h1')?.innerText; });
       expect(h1).toEqual(pageTitle);
-      const p = await runner.page.evaluate(() => { return window.document.querySelector('#content p')?.innerText; });
       expect(p).toEqual(content);
     });
 
@@ -63,11 +91,13 @@ describe('Content', () => {
           content: getMarkdownContent(content, { title: pageTitle }),
         },
       ]);
-      const title = await runner.page.evaluate(() => window.document.title);
+      const [title, h1, p] = await runner.page.evaluate(() => [
+        window.document.title,
+        window.document.querySelector('#content h1')?.innerText,
+        window.document.querySelector('#content p')?.innerText,
+      ]);
       expect(title).toEqual(pageTitle);
-      const h1 = await runner.page.evaluate(() => { return window.document.querySelector('#content h1')?.innerText; });
       expect(h1).toEqual(pageTitle);
-      const p = await runner.page.evaluate(() => { return window.document.querySelector('#content p')?.innerText; });
       expect(p).toEqual(content);
     });
   });
@@ -85,9 +115,11 @@ describe('Content', () => {
         },
       ]);
       await runner.goto(`/${pagePath}`);
-      const title = await runner.page.evaluate(() => window.document.title);
+      const [title, container] = await runner.page.evaluate(() => [
+        window.document.title,
+        window.document.querySelector('body p')?.innerText,
+      ]);
       expect(title).toEqual('');
-      const container = await runner.page.evaluate(() => { return window.document.querySelector('body')?.innerText; });
       expect(container).toEqual(content);
     });
 
@@ -110,9 +142,11 @@ describe('Content', () => {
         }
       ]);
       await runner.goto(`/${pagePath}`);
-      const title = await runner.page.evaluate(() => window.document.title);
+      const [title, container] = await runner.page.evaluate(() => [
+        window.document.title,
+        window.document.querySelector('body p')?.innerText,
+      ]);
       expect(title).toEqual(siteTitle);
-      const container = await runner.page.evaluate(() => { return window.document.querySelector('body')?.innerText; });
       expect(container.split(siteTitle).join('').trim()).toEqual(content);
     });
 
@@ -135,9 +169,11 @@ describe('Content', () => {
           },
         }
       ]);
-      const title = await runner.page.evaluate(() => window.document.title);
+      const [title, container] = await runner.page.evaluate(() => [
+        window.document.title,
+        window.document.querySelector('body p')?.innerText,
+      ]);
       expect(title).toEqual(siteTitle);
-      const container = await runner.page.evaluate(() => { return window.document.querySelector('body')?.innerText; });
       expect(container.split(siteTitle).join('').trim()).toEqual(content);
     });
   });

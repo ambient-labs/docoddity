@@ -1,5 +1,4 @@
 import path from 'path';
-import { writeFile } from '../../packages/docoddity/src/bin/lib/utils/write-file.js';
 import {
   mkdirp,
   readFile,
@@ -8,6 +7,7 @@ import {
 import { DOCODDITY_PACKAGE } from './config.js';
 import { symlinkIfNotExists } from './symlinkIfNotExists.js';
 import { ifNotExists } from './ifNotExists.js';
+import { writeFile } from './writeFile.js';
 
 export const pnpmInstall = async (cwd: string) => {
   // console.log('pnpmInstall', cwd);

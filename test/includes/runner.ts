@@ -1,7 +1,8 @@
+import { setupMap } from './setup-map.js';
 import {
   HttpServer,
 } from '@ambient-labs/the_floor_is_lava'
-import { DocoddityFile } from './types.js';
+import { DocoddityTestFile } from './types.js';
 import { chromium, Page, } from 'playwright';
 
 const createNewPage = (browser) => browser.newPage();
@@ -9,8 +10,10 @@ const createNewPage = (browser) => browser.newPage();
 export class Runner {
   _server: HttpServer | undefined;
   _page: Page | undefined;
-  files: DocoddityFile[];
-  constructor(dist: string, files: DocoddityFile[]) {
+  _port: number | undefined;
+  startedServer = false;
+  files: DocoddityTestFile[];
+  constructor(dist: string, files: DocoddityTestFile[]) {
     this.files = files;
     this._server = new HttpServer({
       name: dist,
@@ -40,13 +43,19 @@ export class Runner {
   _close = async () => {
     const closeServer = async () => {
       try {
-        return this.server.close();
+        if (this.startedServer) {
+          return await this.server.close();
+        }
       } catch (err) {
-        console.log('got an error');
+        console.error('Error closing server:', err);
       }
     }
+    const closePage = async () => {
+      const page = await this.page;
+      await page.close();
+    }
     await Promise.all([
-      (await this.page).close(),
+      closePage(),
       closeServer(),
     ]);
   }
@@ -70,6 +79,7 @@ export class Runner {
   startServer = async () => {
     const server = this.server;
     await server.start();
+    this.startedServer = true;
     const serverURL = server.url;
     if (!serverURL) {
       throw new Error('No server url')
@@ -82,5 +92,29 @@ export class Runner {
     return serverURL;
   }
 
-  goto = (url: string) => this.page.goto(`${this.server.url}${url}`);
+  setPort = async (port: number) => {
+    this._port = port;
+    await this.page.goto(this.url);
+  }
+
+  get url() {
+    if (this._port) {
+      return `http://localhost:${this._port}`;
+    }
+    return this.server.url;
+  }
+
+  goto = (url: string) => this.page.goto(`${this.url}${url}`);
 }
+
+const { register, closeAll } = setupMap<Runner>();
+export const setupRunners = () => ({
+  registerRunner: register,
+  closeAllRunners: () => closeAll((runner) => runner._close(), (err, runner) => {
+    if (err instanceof Error) {
+      console.error('error closing runner for files:', runner.files, err.message);
+    } else {
+      throw err;
+    }
+  }),
+});

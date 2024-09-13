@@ -3,7 +3,7 @@
 import { Command, } from 'commander';
 import {
   registerScript as registerScriptStart,
-} from './commands/start.js';
+} from './commands/dev.js';
 import {
   registerScript as registerScriptBuild,
 } from './commands/build.js';

@@ -6,8 +6,8 @@ export default defineConfig({
     sequence: {
       concurrent: true,
     },
-    testTimeout: 30000,
-    hookTimeout: 30000,
+    testTimeout: 5000,
+    hookTimeout: 5000,
     include: [
       'test/tests/**/*.test.ts',
     ],

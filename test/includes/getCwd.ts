@@ -1,17 +1,13 @@
 import path from 'path';
-import { writeFile } from '../../packages/docoddity/src/bin/lib/utils/write-file.js';
-import { getHashedName } from '../../packages/docoddity/src/bin/lib/get-hashed-name.js';
-
-import { DocoddityFile } from "./types.js";
+import crypto from 'crypto';
+import { DocoddityTestFile } from "./types.js";
 import { ROOT } from './config.js';
 
-export const getCwd = async (files: DocoddityFile[]) => {
-  const testName = getHashedName(JSON.stringify(files));
-  // const testName = expect.getState().currentTestName?.split('>').map((s) => s.trim().split(' ').join('-').toLowerCase());
-  // if (!testName) {
-  //   throw new Error('No test name found');
-  // }
-  const cwd = path.resolve(ROOT, 'test/.sites/', testName);
-  await writeFile(path.resolve(cwd, 'files.json'), JSON.stringify(files, null, 2));
-  return cwd;
+const getRandomString = () => `${new Date().getTime()}${Math.random()}`;
+
+const getHashedName = (contents?: string) => crypto.createHash('md5').update(contents || getRandomString()).digest('hex'); //skipcq: JS-D003
+export const getCwd = async (files: DocoddityTestFile[], key: string) => {
+  const testName = getHashedName(JSON.stringify(files) + key);
+  // const testName = getHashedName(getRandomString());
+  return path.resolve(ROOT, 'test/.sites/', testName);
 }

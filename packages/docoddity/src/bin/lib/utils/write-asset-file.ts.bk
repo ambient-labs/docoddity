@@ -1,0 +1,21 @@
+import {
+  readFile,
+  writeFile
+} from "./fs.js";
+// import { rewriteExtToJS } from "./rewrite-ext-to-js.js";
+import {
+  Folders,
+  type DocoddityFilepath
+} from "../types.js";
+// import { transpile } from "./utils/tsc.js";
+
+export const writeAssetFile = async ({ sourceDir: inputDir }: Folders, { sourceFilepath, targetFilepath }: DocoddityFilepath) => {
+  const content = await readFile(sourceFilepath);
+  // if (targetFilepath.endsWith('.ts')) {
+  //   await writeFile(rewriteExtToJS(targetFilepath), transpile(sourceFilepath, inputDir));
+  // } else {
+  //   await writeFile(targetFilepath, content);
+  // }
+  await writeFile(targetFilepath, content);
+  return targetFilepath;
+}

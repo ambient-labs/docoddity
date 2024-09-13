@@ -1,49 +1,50 @@
+import type {
+  Folders,
+} from './types.js';
 import {
-  Eleventy,
-} from "@11ty/eleventy";
-import { Opts, } from './types.js';
-import path from 'path';
-import { main } from "./main.js";
+  mkdirp,
+} from './utils/fs.js';
+import { Docoddity } from './docoddity.js';
+import path from 'node:path';
+import { build as viteBuild } from 'vite';
+import { inlineCSSContent } from './inline-css-content.js';
 
 export const build = async ({
-  input: inputDir,
-  output: buildDir,
-  // contentDir,
-  internalDir,
-}: Opts) => {
-  for (const { name, dir, } of [
-    { name: 'input', dir: inputDir, },
-    { name: 'output', dir: buildDir, },
-    // { name: 'content', dir: contentDir, },
-    { name: 'site', dir: internalDir, },
-  ]) {
-    if (!dir) {
-      throw new Error(`No ${name} specified`);
-    }
-  }
-  await main({
-    buildDir,
-    internalDir,
-    inputDir,
-    // contentDir,
-    eleventyCallback: async () => {
-      const configPath = path.resolve(internalDir, 'eleventy.config.cjs');
-      const elev = new Eleventy(internalDir, buildDir, {
-        source: "cli",
-        runMode: 'serve',
-        quietMode: false,
-        configPath: configPath,
-      });
+  sourceDir: _sourceDir,
+  targetDir: _targetDir,
+}: Folders) => {
+  const sourceDir = path.resolve(_sourceDir);
+  const targetDir = path.resolve(_targetDir);
+  const buildDir = path.resolve('.docoddity/staging');
 
-      await elev.init();
-
-      await elev.write();
-    }
+  await Promise.all([
+    mkdirp(buildDir),
+    mkdirp(targetDir),
+  ]);
+  const docoddity = new Docoddity({
+    sourceDir: sourceDir,
+    targetDir: buildDir,
   });
+  const writtenFiles = await docoddity.writeFiles();
+  const htmlFiles = writtenFiles.filter((file) => file.endsWith('.html'));
 
-
-
-  // TODO: Remove this
-  process.exit(0);
+  await viteBuild({
+    root: buildDir,
+    plugins: [
+      inlineCSSContent(),
+    ],
+    optimizeDeps: {
+      include: [],
+    },
+    build: {
+      outDir: targetDir,
+      emptyOutDir: true,
+      rollupOptions: {
+        input: htmlFiles,
+        external: [
+          // '@shoelace-style/shoelace/dist/utilities/base-path.js',
+        ],
+      },
+    },
+  });
 };
-

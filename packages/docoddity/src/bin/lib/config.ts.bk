@@ -1,0 +1,4 @@
+// export const getIgnoredFiles = (targetDir: string) => ([
+//   'node_modules/**',
+//   `${targetDir}/**`,
+// ]);

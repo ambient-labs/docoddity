@@ -11,9 +11,8 @@ const buildFrontmatter = (frontmatter: FrontmatterOpts, depth = 1) => {
     ].join('\n');
   }).join('\n');
 }
-export const getMarkdownContent = (content: string, opts: FrontmatterOpts = {}) => `
----
-${buildFrontmatter({ layout: 'layouts/page.html', ...opts })}
+export const getMarkdownContent = (content: string, opts: FrontmatterOpts = {}) => `---
+${buildFrontmatter({ ...opts })}
 ---
 
 ${content}

@@ -1,0 +1,4 @@
+import {
+  type DocoddityFilepath,
+} from '../types.js';
+export const isContentPage = ({ targetFilepath: filepath }: DocoddityFilepath) => filepath.endsWith('.md') || filepath.endsWith('.html');

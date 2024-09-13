@@ -1,5 +1,6 @@
 interface CustomMatchers<R = unknown> {
   toContainTags(message: string, type: string): R;
+  toEqualSet(message: string, type: string): R;
 }
 
 declare module 'vitest' {
