@@ -4,7 +4,7 @@ import path from 'path';
 export default defineConfig({
   test: {
     sequence: {
-      concurrent: true,
+      // concurrent: true,
     },
     testTimeout: 5000,
     hookTimeout: 5000,

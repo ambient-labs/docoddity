@@ -7,7 +7,8 @@ const getRandomString = () => `${new Date().getTime()}${Math.random()}`;
 
 const getHashedName = (contents?: string) => crypto.createHash('md5').update(contents || getRandomString()).digest('hex'); //skipcq: JS-D003
 export const getCwd = async (files: DocoddityTestFile[], key: string) => {
-  const testName = getHashedName(JSON.stringify(files) + key);
+  const testName = getHashedName(expect.getState().currentTestName);
+  // const testName = getHashedName(JSON.stringify(files) + key);
   // const testName = getHashedName(getRandomString());
   return path.resolve(ROOT, 'test/.sites/', testName);
 }

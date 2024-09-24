@@ -27,22 +27,22 @@
     }
   },
   "devDependencies": {
-    "@ambient-labs/the_floor_is_lava": "^0.1.0",
+    "@ambient-labs/the_floor_is_lava": "^0.1.1",
     "@types/fs-extra": "^11.0.4",
-    "@types/jest": "^29.5.12",
-    "@types/node": "^20.12.7",
-    "@typescript-eslint/eslint-plugin": "^7.8.0",
+    "@types/jest": "^29.5.13",
+    "@types/node": "^20.16.6",
+    "@typescript-eslint/eslint-plugin": "^7.18.0",
     "docoddity": "workspace:*",
     "esbuild": "^0.20.2",
     "fs-extra": "^11.2.0",
-    "playwright": "^1.45.1",
+    "playwright": "^1.47.2",
     "reflect-metadata": "^0.2.2",
-    "rimraf": "^5.0.5",
+    "rimraf": "^5.0.10",
     "terminate": "^2.8.0",
-    "tslib": "^2.6.2",
-    "typescript": "^5.4.5",
-    "vite": "^5.2.10",
-    "vitest": "^2.0.1",
-    "wireit": "^0.14.4"
+    "tslib": "^2.7.0",
+    "typescript": "^5.6.2",
+    "vite": "^5.4.7",
+    "vitest": "^2.1.1",
+    "wireit": "^0.14.9"
   }
 }

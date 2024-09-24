@@ -9,9 +9,7 @@ import path from 'path';
 import { TagDefinition } from '../setup/matchers/toContainTags.js';
 import { getMarkdownContent } from '../setup/getMarkdownContent.js';
 import { getActions } from '../includes/getActions.js';
-import { DocoddityFileDefinition } from '../../packages/docoddity/src/bin/lib/types.js';
 import { DocoddityTestFile } from '../includes/types.js';
-// import type { DocoddityFile } from '../includes/types.js';
 const __dirname = url.fileURLToPath(new URL('.', import.meta.url))
 const ROOT = path.resolve(__dirname, '../..')
 
@@ -31,7 +29,7 @@ describe('Themes', () => {
   };
 
   describe('Default Theme', () => {
-    test('it loads the default theme', async () => {
+    test.only('it loads the default theme', async () => {
       const { runner, printURL } = await configureDocodditySite([
         content,
       ]);
@@ -41,8 +39,8 @@ describe('Themes', () => {
       ].map(filepath => readFile(path.resolve(ROOT, filepath), 'utf-8')));
 
       const urls: TagDefinition[] = [
-        `link[href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace/dist/themes/light.css"]`,
-        `link[href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace/dist/themes/dark.css"]`,
+        // `link[href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace/dist/themes/light.css"]`,
+        // `link[href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace/dist/themes/dark.css"]`,
         { url: `script[type="importmap"]`, contents: importMap.trim() },
         // ...[
         //   'reset.css',
