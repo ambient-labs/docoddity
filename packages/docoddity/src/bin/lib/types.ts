@@ -3,6 +3,7 @@ import type { Sitemap } from "./sitemap.js";
 export interface Folders {
   sourceDir: string;
   targetDir: string;
+  buildDir?: string;
 }
 export interface DevCLIOpts extends Omit<Folders, 'targetDir'> {
   port: number;

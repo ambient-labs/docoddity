@@ -16,7 +16,7 @@ import { Files } from './files.js';
 import { makeRelative } from './utils/make-relative.js';
 import { inlineCSSContent } from './inline-css-content.js';
 import { THEMES } from './constants.js';
-import { readDocoddityJSON } from './utils/read-docoddity-json.js';
+import { getBuildDir } from './utils/get-build-dir.js';
 
 export const isIncluded = (filepath?: string) => {
   return !!filepath
@@ -29,10 +29,11 @@ export const isIncluded = (filepath?: string) => {
 export const dev = async ({
   port,
   sourceDir: _sourceDir,
+  buildDir: _buildDir,
   open = false,
 }: DevCLIOpts) => {
   const sourceDir = path.resolve(_sourceDir);
-  const targetDir = path.resolve('.docoddity/staging');
+  const targetDir = _buildDir || getBuildDir();
 
   await Promise.all([
     mkdirp(targetDir),
