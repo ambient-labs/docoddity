@@ -28,13 +28,7 @@
       "command": "path-exists ./dist/bin/cli.js && path-exists ./dist/bin/cli.d.ts "
     },
     "copy:json": {
-      "command": "cpx \"./src/**/*.{json}\" ./dist",
-      "files": [
-        "./src/**/*.json"
-      ],
-      "output": [
-        "./dist/**/*.json"
-      ]
+      "command": "cpx \"./src/**/*.json\" ./dist"
     },
     "copy:assets": {
       "command": "cp ../../README.md ./README.md && cp ../../LICENSE ./LICENSE",
