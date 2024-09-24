@@ -14,7 +14,7 @@
   "scripts": {
     "clean": "wireit",
     "copy:assets": "wireit",
-    "copy:json": "wireit",
+    "copy:files": "wireit",
     "build:tsc": "wireit",
     "build:check": "wireit",
     "build": "wireit",
@@ -27,8 +27,8 @@
     "build:check": {
       "command": "path-exists ./dist/bin/cli.js && path-exists ./dist/bin/cli.d.ts "
     },
-    "copy:json": {
-      "command": "cpx \"./src/**/*.{json,js}\" ./dist"
+    "copy:files": {
+      "command": "cpx \"./src/**/*.{json,js,css}\" ./dist"
     },
     "copy:assets": {
       "command": "cp ../../README.md ./README.md && cp ../../LICENSE ./LICENSE",
@@ -57,7 +57,7 @@
       ]
     },
     "build": {
-      "command": "pnpm build:tsc && pnpm copy:assets && pnpm copy:json"
+      "command": "pnpm build:tsc && pnpm copy:assets && pnpm copy:files"
     }
   },
   "keywords": [],
