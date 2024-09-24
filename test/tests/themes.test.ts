@@ -29,7 +29,7 @@ describe('Themes', () => {
   };
 
   describe('Default Theme', () => {
-    test.only('it loads the default theme', async () => {
+    test('it loads the default theme', async () => {
       const { runner, printURL } = await configureDocodditySite([
         content,
       ]);
