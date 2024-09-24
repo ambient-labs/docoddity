@@ -19,13 +19,6 @@
   ],
   "body": [
     {
-      "tag": "script",
-      "type": "module",
-      "content": {
-        "filename": "./data-theme.js"
-      }
-    },
-    {
       "defer": true,
       "type": "module",
       "src": "./scripts/index.ts"
