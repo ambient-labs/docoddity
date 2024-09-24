@@ -12,8 +12,6 @@
         "filename": "./importmap.json"
       }
     },
-    "https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace/dist/themes/light.css",
-    "https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace/dist/themes/dark.css",
     "./styles/reset.css",
     "./styles/github-markdown.css",
     "./styles/variables.css",
