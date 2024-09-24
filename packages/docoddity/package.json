@@ -14,6 +14,7 @@
   "scripts": {
     "clean": "wireit",
     "copy:assets": "wireit",
+    "copy:json": "wireit",
     "build:tsc": "wireit",
     "build:check": "wireit",
     "build": "wireit",
@@ -25,6 +26,15 @@
     },
     "build:check": {
       "command": "path-exists ./dist/bin/cli.js && path-exists ./dist/bin/cli.d.ts "
+    },
+    "copy:json": {
+      "command": "cpx \"./src/**/*.{json}\" ./dist",
+      "files": [
+        "./src/**/*.json"
+      ],
+      "output": [
+        "./dist/**/*.json"
+      ]
     },
     "copy:assets": {
       "command": "cp ../../README.md ./README.md && cp ../../LICENSE ./LICENSE",
@@ -53,7 +63,7 @@
       ]
     },
     "build": {
-      "command": "pnpm build:tsc && pnpm copy:assets"
+      "command": "pnpm build:tsc && pnpm copy:assets && pnpm copy:json"
     }
   },
   "keywords": [],
@@ -94,6 +104,7 @@
     "@types/node": "^20.12.7",
     "@types/nunjucks": "^3.2.6",
     "@typescript-eslint/eslint-plugin": "^7.8.0",
+    "cpx": "^1.5.0",
     "esbuild": "^0.20.2",
     "eslint-plugin-prettier": "^5.1.3",
     "path-exists-cli": "^2.0.0",
