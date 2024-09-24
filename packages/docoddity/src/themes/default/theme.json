@@ -17,15 +17,7 @@
     "./styles/reset.css",
     "./styles/github-markdown.css",
     "./styles/variables.css",
-    "./styles/style.css",
-    {
-      "tag": "script",
-      "type": "module",
-      "defer": "true",
-      "content": {
-        "filename": "./shoelace-config.js"
-      }
-    }
+    "./styles/style.css"
   ],
   "body": [
     {
