@@ -6,7 +6,7 @@ export const runDocoddityDev: RunDocoddityDev = (cwd: string, {
   stderr,
 } = {}) => new Promise((resolve, reject) => {
   const stderrChunks: Uint8Array[] = [];
-  const command = `docoddity dev`;
+  const command = `docoddity dev --buildDir .docoddity/staging`;
   const child = spawnPackageCommand(command, cwd);
   child.on('error', reject);
   child.on('close', (code) => {
