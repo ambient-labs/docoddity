@@ -137,7 +137,7 @@ jobs:
 
       - name: Install dependencies for package and build
         working-directory: ./packages/docoddity
-        run: pnpm install && pnpm build
+        run: pnpm install && pnpm exec playwright install && pnpm build
 
       - name: Install dependencies for repo
         run: pnpm install
