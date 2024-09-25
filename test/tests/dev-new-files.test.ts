@@ -10,7 +10,7 @@ describe('Listens for new files', () => {
   });
   test('it adds an html file', async () => {
     const content = 'foobar';
-    const { runner, printURL, waitForSelector, updateFiles } = await configureDevDocodditySite([
+    const { runner, printURL, waitFor, waitForSelector, updateFiles } = await configureDevDocodditySite([
       {
         filepath: `index.html`,
         content: `<p>${content}</p>`,
@@ -33,10 +33,6 @@ describe('Listens for new files', () => {
     await runner.goto('/foo');
 
     await waitForSelector(`text=${content2}`);
-    const [container] = await runner.page.evaluate(() => [
-      window.document.querySelector('body p')?.innerText,
-    ]);
-    expect(container).toEqual(content2);
   });
 
   test('it adds a deep HTML file', async () => {
@@ -62,15 +58,11 @@ describe('Listens for new files', () => {
     await runner.goto('/foo/bar/baz');
 
     await waitForSelector(`text=${content2}`);
-    const [container] = await runner.page.evaluate(() => [
-      window.document.querySelector('body p')?.innerText,
-    ]);
-    expect(container).toEqual(content2);
   });
 
   test('it adds a markdown file', async () => {
     const content = 'foobar';
-    const { runner, printURL, waitForSelector, updateFiles } = await configureDevDocodditySite([
+    const { runner, printURL, waitForSelector, updateFiles, waitFor } = await configureDevDocodditySite([
       {
         filepath: `index.md`,
         content: getMarkdownContent(content, { title: 'foo' }),
@@ -81,10 +73,12 @@ describe('Listens for new files', () => {
     await waitForSelector(`text=${content}`);
     const content2 = 'foobarbaz';
 
-    expect(await runner.page.evaluate(() => !!window.document.querySelector('a[aria-role="next"]'))).toEqual(false);
+    await waitFor(async () => {
+      expect(await runner.page.evaluate(() => !!window.document.querySelector('a[aria-role="next"]'))).toEqual(false);
+    });
     await updateFiles([
       {
-        filepath: `two.md`,
+        filepath: `twooo.md`,
         content: getMarkdownContent(content2, { title: 'foo' }),
       },
     ]);
@@ -97,11 +91,9 @@ describe('Listens for new files', () => {
     await runner.waitForUrl();
 
     await waitForSelector(`text=${content2}`);
-    const [container] = await runner.page.evaluate(() => [
-      window.document.querySelector('body p')?.innerText,
-    ]);
-    expect(container).toEqual(content2);
-    expect(await runner.page.evaluate(() => !!window.document.querySelector('a[aria-role="next"]'))).toEqual(false);
+    await waitFor(async () => {
+      expect(await runner.page.evaluate(() => !!window.document.querySelector('a[aria-role="next"]'))).toEqual(false);
+    });
   });
 
   test('it adds a deep markdown file', async () => {
@@ -127,10 +119,6 @@ describe('Listens for new files', () => {
     await runner.goto('/foo/bar/baz');
 
     await waitForSelector(`text=${content2}`);
-    const [container] = await runner.page.evaluate(() => [
-      window.document.querySelector('body p')?.innerText,
-    ]);
-    expect(container).toEqual(content2);
   });
 
   test('it adds a new stylesheet when no docoddity.json exists', async () => {

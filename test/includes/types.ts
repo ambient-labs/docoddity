@@ -25,7 +25,6 @@ interface StandardConfigureResponse {
   runner: Runner;
   printURL: PrintURL;
   updateFiles: (files: DocoddityTestFile[]) => Promise<void>;
-  removeFiles: (files: string[] | string) => Promise<void>;
 }
 type ConfigureDocodditySite<T extends StandardConfigureResponse> = (files: DocoddityTestFile[], args?: Args) => Promise<T>;
 
@@ -35,6 +34,7 @@ export type WaitFor = (fn: () => Promise<void | any>, timeout?: number, interval
 export type ConfigureBuildDocodditySite = ConfigureDocodditySite<StandardConfigureResponse>;
 export type ConfigureDevDocodditySite = ConfigureDocodditySite<StandardConfigureResponse & ReturnType<typeof getPageFunctionUtils> & {
   docoddityDevProcess: DocoddityDevProcess;
+  removeFiles: (files: string[] | string) => Promise<void>;
 }>;
 
 export type RunDocoddityBuild = (buildDir: string, cwd: string, std?: STD) => Promise<void>;

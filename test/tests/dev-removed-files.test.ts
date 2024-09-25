@@ -36,7 +36,7 @@ describe('Listens for removed files', () => {
     const files: DocoddityTestFile[] = [
       'index',
       'one',
-      'two',
+      'two2',
     ].map((title, order) => ({
       filepath: `${title}.md`,
       content: getMarkdownContent(`Contents: ${title}`, {
@@ -44,20 +44,26 @@ describe('Listens for removed files', () => {
         order,
       }).trim(),
     }));
-    const { runner, printURL, removeFiles } = await configureDevDocodditySite(files);
+    const { waitFor, runner, printURL, removeFiles } = await configureDevDocodditySite(files);
 
-    expect(await runner.page.evaluate(() => !!window.document.querySelector('a[aria-role="next"]'))).toEqual(true);
+    await waitFor(async () => {
+      expect(await runner.page.evaluate(() => !!window.document.querySelector('a[aria-role="next"]'))).toEqual(true);
+    });
     await runner.page.evaluate(() => {
       const button = window.document.querySelector('a[aria-role="next"]') as HTMLButtonElement;
       button.click();
     });
     await runner.waitForUrl();
-    expect(await runner.page.evaluate(() => !!window.document.querySelector('a[aria-role="next"]'))).toEqual(true);
+    await waitFor(async () => {
+      expect(await runner.page.evaluate(() => !!window.document.querySelector('a[aria-role="next"]'))).toEqual(true);
+    });
 
     await removeFiles([
-      'two.md',
+      'two2.md',
     ]);
-    expect(await runner.page.evaluate(() => !!window.document.querySelector('a[aria-role="next"]'))).toEqual(false);
+    await waitFor(async () => {
+      expect(await runner.page.evaluate(() => !!window.document.querySelector('a[aria-role="next"]'))).toEqual(false);
+    });
   });
 
   test('it removes a stylesheet when docoddity is present', async () => {
@@ -72,22 +78,28 @@ describe('Listens for removed files', () => {
         order,
       }).trim(),
     }));
-    const { runner, printURL, removeFiles } = await configureDevDocodditySite(files, {
+    const { runner, printURL, removeFiles, waitFor } = await configureDevDocodditySite(files, {
       key: 'it removes a stylesheet when docoddity is present',
     });
 
-    expect(await runner.page.evaluate(() => !!window.document.querySelector('a[aria-role="next"]'))).toEqual(true);
+    await waitFor(async () => {
+      expect(await runner.page.evaluate(() => !!window.document.querySelector('a[aria-role="next"]'))).toEqual(true);
+    });
     await runner.page.evaluate(() => {
       const button = window.document.querySelector('a[aria-role="next"]') as HTMLButtonElement;
       button.click();
     });
     await runner.waitForUrl();
-    expect(await runner.page.evaluate(() => !!window.document.querySelector('a[aria-role="next"]'))).toEqual(true);
+    await waitFor(async () => {
+      expect(await runner.page.evaluate(() => !!window.document.querySelector('a[aria-role="next"]'))).toEqual(true);
+    });
 
     await removeFiles([
       'two.md',
     ]);
-    expect(await runner.page.evaluate(() => !!window.document.querySelector('a[aria-role="next"]'))).toEqual(false);
+    await waitFor(async () => {
+      expect(await runner.page.evaluate(() => !!window.document.querySelector('a[aria-role="next"]'))).toEqual(false);
+    });
   });
 
   test('it removes a stylesheet when docoddity.json is deleted', async () => {

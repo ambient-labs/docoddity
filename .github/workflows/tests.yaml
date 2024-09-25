@@ -18,12 +18,12 @@ jobs:
 
   #     - uses: actions/setup-node@v4
   #       with:
-  #         node-version: '20.x'
+  #         node-version: '22.x'
 
   #     - uses: pnpm/action-setup@v3
   #       name: Install pnpm
   #       with:
-  #         version: 8
+  #         version: 9
   #         run_install: false
 
   #     - name: Get pnpm store directory
@@ -58,12 +58,12 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version: '20.x'
+          node-version: '22.x'
 
       - uses: pnpm/action-setup@v3
         name: Install pnpm
         with:
-          version: 8
+          version: 9
           run_install: false
 
       - name: Get pnpm store directory
@@ -107,14 +107,31 @@ jobs:
         with:
           lfs: 'true'
 
+
+      # - name: Free Disk Space (Ubuntu)
+      #   uses: jlumbroso/free-disk-space@main
+      #   with:
+      #     # # this might remove tools that are actually needed,
+      #     # # when set to "true" but frees about 6 GB
+      #     # tool-cache: true
+          
+      #     # all of these default to true, but feel free to set to
+      #     # "false" if necessary for your workflow
+      #     android: true
+      #     dotnet: true
+      #     haskell: true
+      #     large-packages: true
+      #     swap-storage: true
+
+
       - uses: actions/setup-node@v4
         with:
-          node-version: '20.x'
+          node-version: '22.x'
 
       - uses: pnpm/action-setup@v3
         name: Install pnpm
         with:
-          version: 8
+          version: 9
           run_install: false
 
       - name: Get pnpm store directory
@@ -130,13 +147,18 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-pnpm-store-
 
+
+      - name: Install dependencies
+        run: pnpm install && pnpm playwright install-deps && pnpm exec playwright install
+
       # - name: Setup tmate session
       #   uses: mxschmitt/action-tmate@v3
       #   with:
       #     detached: true
 
-      - name: Install dependencies
-        run: pnpm install && pnpm exec playwright install
+      - name: 'Build'
+        working-directory: ./packages/docoddity
+        run: 'pnpm build'
 
       - name: 'Integration Test'
         run: 'pnpm test:integration'
@@ -152,12 +174,12 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version: '20.x'
+          node-version: '22.x'
 
       - uses: pnpm/action-setup@v3
         name: Install pnpm
         with:
-          version: 8
+          version: 9
           run_install: false
 
       - name: Get pnpm store directory

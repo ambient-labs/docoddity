@@ -13,38 +13,28 @@ import { rimraf } from 'rimraf';
 export const setupSite = async (files: DocoddityTestFile[], key: string = '') => {
   const buildDirFolderName = '.build';
 
-  try {
-    const cwd = await getCwd(files, key);
-    const updateFiles = getUpdateFiles(cwd)
-    const removeFiles = getRemoveFiles(cwd)
-    const buildDir = path.resolve(cwd, buildDirFolderName);
-    const dist = await getDist(files, buildDir);
-    const runner = new Runner(dist, files);
+  const cwd = getCwd();
+  const updateFiles = getUpdateFiles(cwd)
+  const removeFiles = getRemoveFiles(cwd)
+  const buildDir = path.resolve(cwd, buildDirFolderName);
+  const dist = getDist(buildDir);
+  const runner = new Runner(dist, files);
 
-    await rimraf(cwd);
-
-    await Promise.all([
-      runner.setup(),
-      updateFiles(files),
-    ]);
-    await pnpmInstall(cwd);
-    return {
-      buildDir,
-      cwd,
-      dist,
-      runner,
-      updateFiles: async files => {
-        await updateFiles(files);
-        // await runner.waitForUrl();
-      },
-      removeFiles: async files => {
-        await removeFiles(files);
-        await runner.waitForUrl();
-      },
-      // buildDirFolderName,
-    };
-  } catch (err) {
-    console.error('Error setting up test:', err);
-    throw err;
-  }
+  await rimraf(cwd);
+  await Promise.all([
+    runner.setup(),
+    updateFiles(files),
+  ]);
+  await pnpmInstall(cwd);
+  return {
+    buildDir,
+    cwd,
+    dist,
+    runner,
+    updateFiles,
+    removeFiles: async files => {
+      await removeFiles(files);
+      await runner.waitForUrl();
+    },
+  };
 };

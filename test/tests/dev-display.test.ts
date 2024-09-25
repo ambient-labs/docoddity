@@ -43,7 +43,6 @@ describe('Dev: Display', () => {
       window.document.title,
       window.document.querySelector('body p')?.innerText,
     ]);
-    console.log(title, container)
     expect(title).toEqual('');
     expect(container).toEqual(content);
   });

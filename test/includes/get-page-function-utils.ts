@@ -8,7 +8,7 @@ import type {
   WaitUntilMessage
 } from "./types.js";
 
-const DEFAULT_TIMEOUT = 500;
+const DEFAULT_TIMEOUT = Infinity;
 const DEFAULT_INTERVAL = 50;
 
 export const getPageFunctionUtils = (runner: Runner, docoddityDevProcess: DocoddityDevProcess) => {

@@ -14,9 +14,10 @@
       "command": "cd packages/docoddity && pnpm build"
     },
     "test:integration": {
-      "command": "vitest --config ./vitest.config.ts --run --hideSkippedTests",
+      "command": "CI=true vitest --config ./vitest.config.ts --run --hideSkippedTests",
       "dependencies": [
-        "./packages/docoddity:build"
+        "./packages/docoddity:build",
+        "clean:tests"
       ]
     },
     "clean:tests": {
