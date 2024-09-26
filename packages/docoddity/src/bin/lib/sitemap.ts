@@ -97,9 +97,6 @@ class Node {
     order?: number;
   }> {
     const content = await this.#content;
-    if (!content) {
-      throw new Error(`No content for url ${this.url}`);
-    }
     const frontmatter = parseFrontmatter(content);
     return {
       title: frontmatter.title ?? '',
