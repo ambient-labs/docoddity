@@ -45,6 +45,7 @@ export interface DocoddityNavItem {
   url: string;
   mobile?: boolean;
   text: string;
+  class?: string;
   target?: string;
   rel?: string;
   ariaLabel?: string;
