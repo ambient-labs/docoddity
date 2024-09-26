@@ -278,6 +278,37 @@ describe('Themes', () => {
         'Right Two',
       ]);
     })
+
+    test('it renders left nav', async () => {
+      const { runner, printURL } = await configureDocodditySite([
+        {
+          filepath: `index.html`,
+          content: '<p>Home page</p>',
+        },
+        {
+          filepath: `docs/index.md`,
+          content: getMarkdownContent('0', { title: 'Getting Started', order: 0 }),
+        },
+        {
+          filepath: `docs/usage.md`,
+          content: getMarkdownContent('1', { title: 'Usage', order: 1 }),
+        },
+
+        {
+          filepath: `docs/no-page-title.md`,
+          content: getMarkdownContent('2', { order: 2 }),
+        },
+      ]);
+
+      await runner.goto('/docs/');
+
+      const nav = await runner.page.evaluate(() => Array.from(window.document.querySelectorAll('nav#left-nav a')).map(el => el.outerHTML.trim()));
+      expect(nav).toEqual([
+        "<a href=\"/docs/index\">Getting Started</a>",
+        "<a href=\"/docs/usage\">Usage</a>",
+        "<a href=\"/docs/no-page-title\">No Page Title</a>",
+      ])
+    });
   });
 });
 
