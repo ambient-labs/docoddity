@@ -51,8 +51,11 @@ export class Runner {
       }
     }
     const closePage = async () => {
-      const page = await this.page;
-      await page.close();
+      // can swallow this error
+      try {
+        const page = await this.page;
+        await page.close();
+      } catch (err) { }
     }
     await Promise.all([
       closePage(),
@@ -112,7 +115,7 @@ export const setupRunners = () => ({
   registerRunner: register,
   closeAllRunners: () => closeAll((runner) => runner._close(), (err, runner) => {
     if (err instanceof Error) {
-      console.error('error closing runner for files:', runner.files, err.message);
+      console.error('error closing runner for files:', runner.files.map(f => f.filepath), err.message);
     } else {
       throw err;
     }

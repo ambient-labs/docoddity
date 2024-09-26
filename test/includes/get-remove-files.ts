@@ -1,13 +1,11 @@
 import path from 'path';
-import {
-  type DocoddityTestFile
-} from "./types.js";
 import pkg from 'fs-extra';
 
 export const {
   exists,
-  unlink,
 } = pkg;
+
+import { unlink as fsUnlink } from 'fs/promises';
 
 export const getRemoveFiles = (cwd: string) => async (
   files: string[] | string,
@@ -16,11 +14,7 @@ export const getRemoveFiles = (cwd: string) => async (
     if (!(await exists(file))) {
       throw new Error(`File ${file} does not exist`);
     }
-    try {
-      return unlink(file);
-    } catch (err) {
-      console.error(`Error removing file ${file}:`, err);
-      throw err;
-    }
+    // console.log('[TEST] Removing file:', file);
+    await fsUnlink(file);
   }));
 };

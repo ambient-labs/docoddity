@@ -14,23 +14,18 @@ export const setupBuild: SetupBuild = ({
   const configureDocodditySite: ConfigureBuildDocodditySite = async (files, {
     std: stdTwo,
   } = {}) => {
-    try {
-      const { runner, dist, buildDir, cwd, updateFiles, } = await setupSite(files);
-      registerRunner(dist, runner);
-      await runDocoddityBuild(buildDir, cwd, {
-        ...stdOne,
-        ...stdTwo,
-      });
-      await runner.startServer();
-      return {
-        runner,
-        printURL: getPrintURL(files, runner),
-        updateFiles
-      };
-    } catch (err) {
-      console.error('Error setting up test:', err);
-      throw err;
-    }
+    const { runner, dist, buildDir, cwd, updateFiles, } = await setupSite(files);
+    registerRunner(dist, runner);
+    await runDocoddityBuild(buildDir, cwd, {
+      ...stdOne,
+      ...stdTwo,
+    });
+    await runner.startServer();
+    return {
+      runner,
+      printURL: getPrintURL(files, runner),
+      updateFiles
+    };
   };
 
   afterAll(closeAllRunners, 100);

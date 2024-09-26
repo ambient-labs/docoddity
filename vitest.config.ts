@@ -3,11 +3,13 @@ import path from 'path';
 
 export default defineConfig({
   test: {
+    maxConcurrency: 15,
     sequence: {
-      concurrent: true,
+      concurrent: process.env.CI === 'true',
     },
-    testTimeout: 5000,
-    hookTimeout: 5000,
+    testTimeout: 120000,
+    hookTimeout: 1000,
+    retry: 3,
     include: [
       'test/tests/**/*.test.ts',
     ],

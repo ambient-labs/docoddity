@@ -68,6 +68,7 @@ export const dev = async ({
       }
       await Promise.all([...sitemap].map(file => docoddity.writeFile(docoddity.getFilepath(file))))
     } else if (isWatchDeleteEvent(event)) {
+      // console.log('incoming delete event!!!!')
       const {
         data: sourceFilepath,
         sitemap,
@@ -80,7 +81,7 @@ export const dev = async ({
         // await Promise.all([...sitemap].map(file => docoddity.writeFile(docoddity.getFilepath(file))))
       } else {
         sitemap.remove(sourceFilepath);
-        console.log('ok, remove this file', relativeFilepath)
+        // console.log('ok, remove this file', relativeFilepath)
         await docoddity.removeFile(relativeFilepath);
         // sitemap.add(file);
         // await docoddity.writeFile(filepath);

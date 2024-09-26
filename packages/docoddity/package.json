@@ -14,7 +14,7 @@
   "scripts": {
     "clean": "wireit",
     "copy:assets": "wireit",
-    "copy:files": "wireit",
+    "copy:themes": "wireit",
     "build:tsc": "wireit",
     "build:check": "wireit",
     "build": "wireit",
@@ -27,8 +27,8 @@
     "build:check": {
       "command": "path-exists ./dist/bin/cli.js && path-exists ./dist/bin/cli.d.ts "
     },
-    "copy:files": {
-      "command": "cpx \"./src/**/*.{json,js,css}\" ./dist"
+    "copy:themes": {
+      "command": "cpx \"./src/themes/**/*\" ./dist/themes"
     },
     "copy:assets": {
       "command": "cp ../../README.md ./README.md && cp ../../LICENSE ./LICENSE",
@@ -57,7 +57,7 @@
       ]
     },
     "build": {
-      "command": "pnpm build:tsc && pnpm copy:assets && pnpm copy:files"
+      "command": "pnpm build:tsc && pnpm copy:assets && pnpm copy:themes"
     }
   },
   "keywords": [],
@@ -109,9 +109,13 @@
     "rollup-plugin-polyfill-node": "^0.13.0",
     "tslib": "^2.6.2",
     "typescript": "^5.4.5",
-    "vite": "^5.2.10",
+    "vite": "^5.4.2",
     "vite-plugin-html": "^3.2.2",
     "vitest": "^2.0.1",
     "wireit": "^0.14.4"
+  },
+  "engines": {
+    "node": ">=22.0.0",
+    "pnpm": ">=9.0.0"
   }
 }

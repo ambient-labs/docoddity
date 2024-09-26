@@ -8,6 +8,7 @@ import { DOCODDITY_PACKAGE } from './config.js';
 import { symlinkIfNotExists } from './symlinkIfNotExists.js';
 import { ifNotExists } from './ifNotExists.js';
 import { writeFile } from './writeFile.js';
+import { exec } from 'child_process';
 
 export const pnpmInstall = async (cwd: string) => {
   // console.log('pnpmInstall', cwd);
@@ -22,5 +23,6 @@ export const pnpmInstall = async (cwd: string) => {
     symlinkIfNotExists(DOCODDITY_PACKAGE, DOCODDITY_NODE_MODULES_FOLDER),
     ifNotExists(BIN_PATH, () => writeFile(BIN_PATH, binContents)),
   ]);
+  await exec(`chmod +x ${BIN_PATH}`);
   // await runPNPMCommand('install ', cwd);
 };

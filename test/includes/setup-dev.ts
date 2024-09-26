@@ -19,30 +19,25 @@ export const setupDev: SetupDev = ({
     key,
     std: stdTwo,
   } = {}) => {
-    try {
-      const { runner, dist, cwd, updateFiles, removeFiles } = await setupSite(files, key);
-      const {
-        child: docoddityDevProcess,
-        port,
-      } = await runDocoddityDev(cwd, {
-        ...stdOne,
-        ...stdTwo
-      });
-      registerRunner(dist, runner);
-      registerChildProcess(dist, docoddityDevProcess);
-      await runner.setPort(port);
-      return {
-        updateFiles,
-        removeFiles,
-        runner,
-        printURL: getPrintURL(files, runner),
-        docoddityDevProcess,
-        ...getPageFunctionUtils(runner, docoddityDevProcess),
-      };
-    } catch (err) {
-      console.error('Error setting up test:', err);
-      throw err;
-    }
+    const { runner, dist, cwd, updateFiles, removeFiles } = await setupSite(files, key);
+    const {
+      child: docoddityDevProcess,
+      port,
+    } = await runDocoddityDev(cwd, {
+      ...stdOne,
+      ...stdTwo
+    });
+    registerRunner(dist, runner);
+    registerChildProcess(dist, docoddityDevProcess);
+    await runner.setPort(port);
+    return {
+      updateFiles,
+      removeFiles,
+      runner,
+      printURL: getPrintURL(files, runner),
+      docoddityDevProcess,
+      ...getPageFunctionUtils(runner, docoddityDevProcess),
+    };
   }
 
   afterAll(async () => {
