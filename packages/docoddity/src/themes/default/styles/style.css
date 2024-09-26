@@ -737,6 +737,14 @@ a.button {
       font-weight: 400;
       display: block;
 
+      &.active {
+        color: var(--color-anchor-active);
+      }
+
+      &:hover {
+        color: var(--color-anchor-active);
+      }
+
     }
   }
 
