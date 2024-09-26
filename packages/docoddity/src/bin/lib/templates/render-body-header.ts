@@ -12,15 +12,15 @@ const externalLinkSVG = `
 `;
 
 const renderNavItem = (pageUrl: string) => (item: DocoddityNavItem): string => {
-  const active = pageUrl.startsWith(item.url) && item.url !== '/';
-  const mobile = item.mobile ? 'mobile' : '';
+  const active = pageUrl.startsWith(item.url) && item.url !== '/' ? 'active' : undefined;
+  const mobile = item.mobile ? 'mobile' : undefined;
   const isExternal = pageUrl.startsWith('http');
   const rel = item.rel ? item.rel : isExternal ? 'noopener noreferrer' : '';
   const target = item.target ? item.target : isExternal ? '_blank' : '';
   return `
     <a 
       href="${item.url}" 
-      class="${active} ${mobile}"
+    class="${[active, mobile, item.class].filter(Boolean).join(' ')}"
       ${target}
       ${rel}
       ${item.ariaLabel ? `aria-label="${item.ariaLabel}"` : ''}
