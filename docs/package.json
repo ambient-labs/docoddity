@@ -1,0 +1,34 @@
+{
+  "name": "docs",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "wireit",
+    "build": "wireit"
+  },
+  "wireit": {
+    "dev": {
+      "command": "docoddity dev",
+      "dependencies": [
+        "../packages/docoddity:build"
+      ]
+    },
+    "build": {
+      "command": "docoddity build --output ./build",
+      "dependencies": [
+        "../packages/docoddity:build"
+      ]
+    }
+  },
+  "author": "Ambient Labs",
+  "license": "MIT",
+  "dependencies": {
+    "docoddity": "workspace:*"
+  },
+  "devDependencies": {
+    "wireit": "^0.14.9"
+  }
+}
