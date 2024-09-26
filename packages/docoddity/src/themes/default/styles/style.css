@@ -89,6 +89,7 @@ header.site-head {
   theme-toggle {
     text-decoration: none;
     padding: 0 .75rem;
+    color: var(--color-nav-anchor);
   }
 
   #left {
