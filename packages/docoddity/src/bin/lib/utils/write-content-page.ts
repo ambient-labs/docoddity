@@ -20,6 +20,7 @@ import type {
 } from "../types.js";
 import { withExt } from "./with-ext.js";
 import { rewriteRelativeLinks } from "./rewrite-relative-links.js";
+import { parseTitleFromURL } from "./parse-title-from-url.js";
 
 export const writeContentPage = async (
   { sourceDir, targetDir, }: Folders,
@@ -59,7 +60,7 @@ export const writeContentPage = async (
       renderPage({
         ...args,
         ...fileFrontmatter,
-        title: title ?? parseTitle(pageURL) ?? '',
+        title: title ?? parseTitleFromURL(pageURL) ?? '',
         content: htmlContents,
       }).trim(),
     );
@@ -72,11 +73,4 @@ export const writeContentPage = async (
   return targetFilepath;
 }
 
-const parseTitle = (url: string) => {
-  const pageTitle = url.split('/').pop() || '';
-  const formattedTitle = pageTitle.split(/[-_]/g).map(uppercaseFirstChar).join(' ');
-  return formattedTitle;
-};
-
-const uppercaseFirstChar = (str: string) => str[0].toUpperCase() + str.slice(1);
 

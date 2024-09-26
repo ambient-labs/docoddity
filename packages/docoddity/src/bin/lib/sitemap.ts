@@ -4,6 +4,7 @@ import { parseFrontmatter } from './utils/parse-frontmatter.js';
 import { swallowErr } from './utils/swallow-err.js';
 import type { Page } from './types.js';
 import { makeRelative } from './utils/make-relative.js';
+import { parseTitleFromURL } from './utils/parse-title-from-url.js';
 
 class Node {
   leaf = false;
@@ -19,7 +20,10 @@ class Node {
     }
     this.parent = parent;
     if (this.leaf) {
-      this.url = '/' + parts.slice(0, -1).join('/') + parts[parts.length - 1].replace(/\.(md|html)$/, '');
+      this.url = '/' + [
+        ...parts.slice(0, -1),
+        parts[parts.length - 1].replace(/\.(md|html)$/, '')
+      ].join('/');
       this.#content = readFile(path.resolve(inputDir, ...parts));
     } else {
       this.url = '/' + parts.join('/');
@@ -99,7 +103,7 @@ class Node {
     const content = await this.#content;
     const frontmatter = parseFrontmatter(content);
     return {
-      title: frontmatter.title ?? '',
+      title: frontmatter.title ?? parseTitleFromURL(this.url) ?? '',
       order: frontmatter.order,
     }
   }
@@ -124,6 +128,9 @@ class Node {
   async getPage(): Promise<Page> {
     if (this.leaf) {
       const { title, order } = await this.getFrontmatter();
+      if (this.url.startsWith('docsu')) {
+        throw new Error('stop')
+      }
       return {
         url: this.url,
         title: title !== '' ? title : this.getTitleFromURL(),
