@@ -89,7 +89,7 @@ const renderDesktopMenu = ({
           </svg>
         </button>
 
-        <a aria-role="title" class="mobile" href="/">${docoddity.title ?? ''}</a>
+        <a class="title" aria-role="title" class="mobile" href="/">${docoddity.title ?? ''}</a>
 
         ${renderNavItems(page.url, docoddity.nav?.left)}
       </div>
