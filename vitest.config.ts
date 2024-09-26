@@ -7,9 +7,9 @@ export default defineConfig({
     sequence: {
       concurrent: process.env.CI === 'true',
     },
-    testTimeout: 120000,
+    testTimeout: process.env.CI === 'true' ? 120000 : 10000,
     hookTimeout: 1000,
-    retry: 3,
+    retry: process.env.CI === 'true' ? 3 : 0,
     include: [
       'test/tests/**/*.test.ts',
     ],

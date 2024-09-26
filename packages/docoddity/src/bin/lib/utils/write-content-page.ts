@@ -19,6 +19,7 @@ import type {
   DocoddityFilepath
 } from "../types.js";
 import { withExt } from "./with-ext.js";
+import { rewriteRelativeLinks } from "./rewrite-relative-links.js";
 
 export const writeContentPage = async (
   { sourceDir, targetDir, }: Folders,
@@ -66,6 +67,7 @@ export const writeContentPage = async (
   }
   await writeFile(targetFilepath, renderBase({
     ...args,
+    content: rewriteRelativeLinks(args.content, sourceDir),
   }).trim());
   return targetFilepath;
 }
@@ -77,3 +79,4 @@ const parseTitle = (url: string) => {
 };
 
 const uppercaseFirstChar = (str: string) => str[0].toUpperCase() + str.slice(1);
+

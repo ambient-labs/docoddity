@@ -11,7 +11,7 @@ import type {
 const DEFAULT_TIMEOUT = Infinity;
 const DEFAULT_INTERVAL = 50;
 
-export const getPageFunctionUtils = (runner: Runner, docoddityDevProcess: DocoddityDevProcess) => {
+export const getPageFunctionUtils = (runner: Runner, docoddityDevProcess?: DocoddityDevProcess) => {
   const getQuery = (selector: string) => runner.page.evaluate((selector) => {
     const el = window.document.querySelector(selector);
     if (!!el && el instanceof HTMLElement) {
@@ -20,19 +20,24 @@ export const getPageFunctionUtils = (runner: Runner, docoddityDevProcess: Docodd
     throw new Error('No element found');
   }, selector);
 
-  const waitUntilMessage: WaitUntilMessage = (msg, timeout = 5000) => new Promise((resolve, reject) => {
-    const timer = setTimeout(() => {
-      reject(`Timed out after ${timeout}ms waiting for message: "${msg}"`);
-    }, timeout);
-    docoddityDevProcess.stdout.on('data', (data: Uint8Array) => {
-      const stringData = data.toString();
-      // console.log('**', stringData);
-      if (stringData.includes(msg)) {
-        clearTimeout(timer);
-        resolve()
-      }
+  const waitUntilMessage: WaitUntilMessage = (msg, timeout = 5000) => {
+    if (!docoddityDevProcess) {
+      throw new Error('No docoddityDevProcess provided, cannot use waitUntilMessage');
+    }
+    return new Promise((resolve, reject) => {
+      const timer = setTimeout(() => {
+        reject(`Timed out after ${timeout}ms waiting for message: "${msg}"`);
+      }, timeout);
+      docoddityDevProcess.stdout.on('data', (data: Uint8Array) => {
+        const stringData = data.toString();
+        // console.log('**', stringData);
+        if (stringData.includes(msg)) {
+          clearTimeout(timer);
+          resolve()
+        }
+      });
     });
-  });
+  };
 
 
   const waitFor: WaitFor = async (fn, timeout = DEFAULT_TIMEOUT, interval = DEFAULT_INTERVAL) => {
