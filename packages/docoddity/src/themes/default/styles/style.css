@@ -97,10 +97,8 @@ header.site-head {
     align-items: center;
     flex: 1;
 
-    a {
-      &:first-child {
-        font-weight: 600;
-      }
+    a.title {
+      font-weight: 600;
     }
   }
 
