@@ -89,6 +89,7 @@ header.site-head {
   theme-toggle {
     text-decoration: none;
     padding: 0 .75rem;
+    color: var(--color-nav-anchor);
   }
 
   #left {
@@ -96,10 +97,8 @@ header.site-head {
     align-items: center;
     flex: 1;
 
-    a {
-      &:first-child {
-        font-weight: 600;
-      }
+    a.title {
+      font-weight: 600;
     }
   }
 

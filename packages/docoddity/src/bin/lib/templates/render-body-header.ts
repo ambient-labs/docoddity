@@ -42,7 +42,7 @@ const renderMobileMenu = ({
     <div id="hamburger-contents">
       <header>
         <div id="left">
-          <a aria-role="title" href="/">${docoddity.title ?? ''}</a>
+          <a class="title" aria-role="title" href="/">${docoddity.title ?? ''}</a>
           <theme-toggle></theme-toggle>
 
         </div>
