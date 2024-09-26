@@ -419,6 +419,10 @@ article {
     font-family: "Crimson Text", "Work Sans", "Open Sans", sans-serif;
     font-size: 24px;
 
+    p {
+      color: rgba(0, 0, 30, 0.8);
+    }
+
     a {
       cursor: pointer;
       color: var(--color-anchor-active);
@@ -433,26 +437,13 @@ article {
 
     h1 {
       font-size: 6rem;
-      /* margin-bottom: 1.25rem; */
-      margin-bottom: 4rem;
+      margin-bottom: 2rem;
       margin-top: 1rem;
       border: none;
       font-weight: 400;
-      /* padding-bottom: 0; */
-
-
-      /* color: var(--color-home-h1); */
       font-family: "Crimson Text", "Work Sans", "Open Sans", sans-serif;
-      /* opacity: 0.9; */
       font-weight: 300;
-
       font-size: 5.6rem;
-
-      /* 
-      margin-bottom: 4rem; */
-      /* text-align: center; */
-      /* margin-top: -23px; */
-      /* letter-spacing: 5px; */
     }
 
     .h2 {

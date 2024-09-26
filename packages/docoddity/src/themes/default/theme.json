@@ -15,6 +15,7 @@
     "./styles/reset.css",
     "./styles/github-markdown.css",
     "./styles/variables.css",
+    "./styles/theme-toggle.css",
     "./styles/style.css"
   ],
   "body": [

@@ -1,6 +1,6 @@
-import { $ } from "./utils.js";
+import { $_ } from "./utils.js";
 
-// const aside = $('aside#toc-desktop');
+const aside = $_('aside#toc-desktop');
 // if (aside) {
 //   const headers = document.querySelectorAll("h2, h3");
 //   const anchors = aside.querySelectorAll('a');

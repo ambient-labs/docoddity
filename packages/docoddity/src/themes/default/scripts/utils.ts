@@ -8,6 +8,7 @@ export const $ = (selector: string): Omit<HTMLElement, 'closest'> & {
   if (!(el instanceof HTMLElement)) {
     throw new Error(`Element is not an HTMLElement: ${el}`);
   }
+  console.log('el', el);
   return {
     ...el,
     closest: (selector: string) => {
@@ -19,3 +20,11 @@ export const $ = (selector: string): Omit<HTMLElement, 'closest'> & {
     }
   };
 }
+
+export const $_ = (selector: string): HTMLElement | null => {
+  try {
+    return $(selector);
+  } catch (err) {
+  }
+  return null;
+};

@@ -1,5 +1,3 @@
-// import { setBasePath } from '@shoelace-style/shoelace/dist/utilities/base-path.js';
-// setBasePath('https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace/cdn');
 import '@shoelace-style/shoelace/dist/themes/light.css';
 import '@shoelace-style/shoelace/dist/themes/dark.css';
 // import '@shoelace-style/shoelace/dist/components/button/button.js';
@@ -14,7 +12,4 @@ import './nav.js';
 import './page.js';
 import './head.js';
 import './aside.js';
-
-const theme = localStorage.getItem('theme') || 'light';
-document.documentElement.setAttribute('data-theme', theme);
-document.body.classList.add(`sl-theme-${theme}`);
+import './components/index.js';
