@@ -60,6 +60,16 @@ importers:
         specifier: ^0.14.9
         version: 0.14.9
 
+  docs:
+    dependencies:
+      docoddity:
+        specifier: workspace:*
+        version: link:../packages/docoddity
+    devDependencies:
+      wireit:
+        specifier: ^0.14.9
+        version: 0.14.9
+
   packages/docoddity:
     dependencies:
       '@docsearch/js':

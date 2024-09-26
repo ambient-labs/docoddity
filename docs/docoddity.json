@@ -1,0 +1,30 @@
+{
+  "title": "Docoddity",
+  "head": [],
+  "nav": {
+    "left": [
+      {
+        "url": "/docs/",
+        "text": "Docs"
+      }
+    ],
+    "right": [
+      {
+        "url": "https://npmjs.com/package/docoddity",
+        "label": "NPM",
+        "text": "NPM",
+        "target": "_blank",
+        "rel": "noopener noreferrer",
+        "ariaLabel": "Docoddity NPM package"
+      },
+      {
+        "url": "https://github.com/ambient-labs/docoddity",
+        "label": "Github",
+        "text": "Github",
+        "target": "_blank",
+        "rel": "noopener noreferrer",
+        "ariaLabel": "Docoddity Github package"
+      }
+    ]
+  }
+}
