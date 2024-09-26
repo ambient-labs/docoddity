@@ -90,6 +90,11 @@ header.site-head {
     text-decoration: none;
     padding: 0 .75rem;
     color: var(--color-nav-anchor);
+
+    &.active,
+    &:hover {
+      color: var(--color-anchor-active);
+    }
   }
 
   #left {
