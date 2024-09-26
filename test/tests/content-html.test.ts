@@ -81,7 +81,7 @@ describe('HTML page', () => {
     expect(container.split(siteTitle).join('').trim()).toEqual(content);
   });
 
-  test.only('it should handle relative references', async () => {
+  test('it should handle relative references', async () => {
     const content = 'foobar';
     const fnResponse = 'baz';
     const { runner, printURL, waitForComputedStyle, waitForScript } = await configureDocodditySite([
