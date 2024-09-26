@@ -6,6 +6,7 @@ import { setupRunners, } from './runner.js';
 import { runDocoddityBuild } from './run-docoddity-build.js';
 import { getPrintURL } from './get-print-url.js';
 import { setupSite } from './setup-site.js';
+import { getPageFunctionUtils } from './get-page-function-utils.js';
 
 export const setupBuild: SetupBuild = ({
   std: stdOne,
@@ -24,7 +25,8 @@ export const setupBuild: SetupBuild = ({
     return {
       runner,
       printURL: getPrintURL(files, runner),
-      updateFiles
+      updateFiles,
+      ...getPageFunctionUtils(runner),
     };
   };
 

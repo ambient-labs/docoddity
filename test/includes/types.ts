@@ -31,7 +31,7 @@ type ConfigureDocodditySite<T extends StandardConfigureResponse> = (files: Docod
 export type WaitUntilMessage = (msg: string, timeout?: number) => Promise<void>;
 export type WaitForSelector = (selector: string, timeout?: number, interval?: number) => Promise<void>;
 export type WaitFor = (fn: () => Promise<void | any>, timeout?: number, interval?: number) => Promise<void>;
-export type ConfigureBuildDocodditySite = ConfigureDocodditySite<StandardConfigureResponse>;
+export type ConfigureBuildDocodditySite = ConfigureDocodditySite<StandardConfigureResponse & ReturnType<typeof getPageFunctionUtils>>;
 export type ConfigureDevDocodditySite = ConfigureDocodditySite<StandardConfigureResponse & ReturnType<typeof getPageFunctionUtils> & {
   docoddityDevProcess: DocoddityDevProcess;
   removeFiles: (files: string[] | string) => Promise<void>;

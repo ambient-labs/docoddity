@@ -3,8 +3,8 @@ import { setupBuild } from '../includes/setup-build.js';
 describe('HTML page', () => {
   const configureDocodditySite = setupBuild({
     std: {
-      // stdout: console.log,
-      // stderr: console.error,
+      stdout: console.log,
+      stderr: console.error,
     }
   });
   test('it should render an HTML page without a docoddity.json', async () => {
@@ -79,5 +79,37 @@ describe('HTML page', () => {
     ]);
     expect(title).toEqual(siteTitle);
     expect(container.split(siteTitle).join('').trim()).toEqual(content);
+  });
+
+  test.only('it should handle relative references', async () => {
+    const content = 'foobar';
+    const fnResponse = 'baz';
+    const { runner, printURL, waitForComputedStyle, waitForScript } = await configureDocodditySite([
+      {
+        filepath: `index.html`,
+        content: `
+              <p>${content}</p>
+              <script type="module" src="./js.js"></script>
+              <script type="module" src="./ts.ts"></script>
+              <link rel="stylesheet" href="./style.css" />
+    `,
+      },
+      {
+        filepath: 'style.css',
+        content: `body { background: red; } `,
+      },
+      {
+        filepath: 'js.js',
+        content: `window.js = () => "${fnResponse}js";`,
+      },
+      {
+        filepath: 'ts.ts',
+        content: `(window as any).ts = () => "${fnResponse}ts";`,
+      },
+    ]);
+    // await printURL(1000);
+    await waitForComputedStyle('background', 'rgb(255, 0, 0) none repeat scroll 0% 0% / auto padding-box border-box');
+    await waitForScript('js', fnResponse + 'js');
+    await waitForScript('ts', fnResponse + 'ts');
   });
 });
