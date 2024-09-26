@@ -1,6 +1,6 @@
 import yaml from 'js-yaml';
 
-export function parseFrontmatter(content: string): Record<string, any> {
+export function parseFrontmatter(content: string = ''): Record<string, any> {
   const frontmatterRegex = /^---\n([\s\S]*?)\n---/;
   const match = content.match(frontmatterRegex);
 

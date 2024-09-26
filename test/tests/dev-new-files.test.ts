@@ -96,6 +96,50 @@ describe('Listens for new files', () => {
     });
   });
 
+  test('it adds an empty markdown file to start', async () => {
+    const content = 'foobar';
+    const { runner, printURL, waitForSelector, updateFiles, waitFor } = await configureDevDocodditySite([
+      {
+        filepath: `index.md`,
+        content: getMarkdownContent(content, { title: 'foo' }),
+      },
+    ]);
+
+    // await printURL(1000);
+    await waitForSelector(`text=${content}`);
+    const content2 = 'foobarbaz';
+
+    await waitFor(async () => {
+      expect(await runner.page.evaluate(() => !!window.document.querySelector('a[aria-role="next"]'))).toEqual(false);
+    });
+
+    await updateFiles([
+      {
+        filepath: `one.md`,
+        content: '',
+      },
+    ]);
+
+    await waitForSelector('a[aria-role="next"]')
+    await runner.page.evaluate(() => {
+      const button = window.document.querySelector('a[aria-role="next"]') as HTMLButtonElement;
+      button.click();
+    });
+    await runner.waitForUrl();
+
+    await updateFiles([
+      {
+        filepath: `one.md`,
+        content: getMarkdownContent(content2, { title: 'foo', order: 1 }),
+      },
+    ]);
+
+    await waitForSelector(`text=${content2}`);
+    await waitFor(async () => {
+      expect(await runner.page.evaluate(() => !!window.document.querySelector('a[aria-role="next"]'))).toEqual(false);
+    });
+  });
+
   test('it adds a deep markdown file', async () => {
     const content = 'foobar';
     const { runner, printURL, waitForSelector, updateFiles } = await configureDevDocodditySite([

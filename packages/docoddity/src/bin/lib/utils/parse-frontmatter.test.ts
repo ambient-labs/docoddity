@@ -1,6 +1,11 @@
 import { parseFrontmatter } from "./parse-frontmatter.js";
 
 describe('parseFrontmatter', () => {
+  test('it should handle empty input', () => {
+    expect(parseFrontmatter()).toEqual({
+    });
+  });
+
   test('it should parse frontmatter', () => {
     const content = [
       '---',
