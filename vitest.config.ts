@@ -4,6 +4,7 @@ import path from 'path';
 export default defineConfig({
   test: {
     maxConcurrency: 15,
+    // it works without a trailing slash
     sequence: {
       concurrent: process.env.CI === 'true',
     },

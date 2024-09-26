@@ -18,6 +18,7 @@ import { inlineCSSContent } from './inline-css-content.js';
 import { THEMES } from './constants.js';
 import { getBuildDir } from './utils/get-build-dir.js';
 
+
 export const isIncluded = (filepath?: string) => {
   return !!filepath
     && !filepath.startsWith('node_modules')
@@ -85,7 +86,10 @@ export const dev = async ({
 
   const vite = await createServer({
     root: targetDir,
-    plugins: [inlineCSSContent()],
+    appType: 'mpa',
+    plugins: [
+      inlineCSSContent(),
+    ],
     server: {
       port,
       open,
