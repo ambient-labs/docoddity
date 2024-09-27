@@ -118,7 +118,7 @@ describe('Dev: Listens for changes', () => {
     expect(container).toEqual(content2);
   });
 
-  test.only('it changes a markdown file name, and that gets reflected in the <title>, page title, sidebar, and pagination', async () => {
+  test('it changes a markdown file name, and that gets reflected in the <title>, page title, sidebar, and pagination', async () => {
     const { runner, printURL, renameFiles, waitFor } = await configureDevDocodditySite([
       // {
       //   filepath: `index.md`,
