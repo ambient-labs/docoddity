@@ -19,7 +19,7 @@ export const setupDev: SetupDev = ({
     key,
     std: stdTwo,
   } = {}) => {
-    const { runner, dist, cwd, updateFiles, removeFiles } = await setupSite(files, key);
+    const { runner, dist, cwd, updateFiles, removeFiles, renameFiles, } = await setupSite(files, key);
     const {
       child: docoddityDevProcess,
       port,
@@ -33,6 +33,7 @@ export const setupDev: SetupDev = ({
     return {
       updateFiles,
       removeFiles,
+      renameFiles,
       runner,
       printURL: getPrintURL(files, runner),
       docoddityDevProcess,

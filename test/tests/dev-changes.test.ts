@@ -5,7 +5,7 @@ import { getMarkdownContent } from '../setup/getMarkdownContent.js';
 describe('Dev: Listens for changes', () => {
   const configureDevDocodditySite = setupDev({
     std: {
-      // stdout: console.log,
+      stdout: console.log,
       // stderr: console.error,
     }
   });
@@ -116,6 +116,70 @@ describe('Dev: Listens for changes', () => {
       window.document.querySelector('body p')?.innerText,
     ]);
     expect(container).toEqual(content2);
+  });
+
+  test('it changes a markdown file name, and that gets reflected in the <title>, page title, sidebar, and pagination', async () => {
+    const { runner, printURL, renameFiles, waitFor } = await configureDevDocodditySite([
+      // {
+      //   filepath: `index.md`,
+      //   content: getMarkdownContent('index body', { title: 'Index Title' }),
+      // },
+      {
+        filepath: `docs/one.md`,
+        content: getMarkdownContent('one body', { title: 'One Title', order: 0, }),
+      },
+      {
+        filepath: `docs/two.md`,
+        content: getMarkdownContent('two body', { title: 'Two Title', order: 1, }),
+      },
+    ]);
+
+    // await printURL(1000, '/docs/one');
+    const expectPage = async (title: string, container: string, nav: string[], prev: string, next: string, url?: string) => {
+      if (url) {
+        await runner.goto(url);
+      }
+      await waitFor(async () => {
+        expect(await runner.page.evaluate(() => {
+          const prev = window.document.querySelector('a[aria-role="prev"] span');
+          const next = window.document.querySelector('a[aria-role="next"] span');
+          return [
+            window.document.title,
+            window.document.querySelector('article#page-article p')?.innerText,
+            Array.from(window.document.querySelectorAll('nav#left-nav a')).map(el => el.outerHTML.trim()),
+            prev ? prev.innerText : undefined,
+            next ? next.innerText : undefined,
+          ];
+        })).toEqual([title, container, nav, prev, next]);
+      });
+    };
+
+    await expectPage('Two Title', 'two body', [
+      "<a href=\"/docs/one\">One Title</a>",
+      "<a href=\"/docs/two\">Two Title</a>",
+    ], 'One Title', undefined, '/docs/two');
+
+    await expectPage('One Title', 'one body', [
+      "<a href=\"/docs/one\">One Title</a>",
+      "<a href=\"/docs/two\">Two Title</a>",
+    ], undefined, 'Two Title', '/docs/one');
+
+    await renameFiles([
+      {
+        source: 'docs/two.md', target: 'docs/three.md',
+        content: getMarkdownContent('three body', { title: 'Three Title', order: 1, }),
+      },
+    ]);
+
+    await expectPage('One Title', 'one body', [
+      "<a href=\"/docs/one\">One Title</a>",
+      "<a href=\"/docs/three\">Three Title</a>",
+    ], undefined, 'Three Title');
+
+    await expectPage('Three Title', 'three body', [
+      "<a href=\"/docs/one\">One Title</a>",
+      "<a href=\"/docs/three\">Three Title</a>",
+    ], 'One Title', undefined, '/docs/three');
   });
 
   test('it modifies a stylesheet', async () => {

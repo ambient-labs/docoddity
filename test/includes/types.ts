@@ -35,6 +35,7 @@ export type ConfigureBuildDocodditySite = ConfigureDocodditySite<StandardConfigu
 export type ConfigureDevDocodditySite = ConfigureDocodditySite<StandardConfigureResponse & ReturnType<typeof getPageFunctionUtils> & {
   docoddityDevProcess: DocoddityDevProcess;
   removeFiles: (files: string[] | string) => Promise<void>;
+  renameFiles: (files: { source: string; target: string; content?: string; }[]) => Promise<void>;
 }>;
 
 export type RunDocoddityBuild = (buildDir: string, cwd: string, std?: STD) => Promise<void>;

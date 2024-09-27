@@ -307,7 +307,7 @@ describe('Themes', () => {
         "<a href=\"/docs/index\">Getting Started</a>",
         "<a href=\"/docs/usage\">Usage</a>",
         "<a href=\"/docs/no-page-title\">No Page Title</a>",
-      ])
+      ]);
     });
   });
 });

@@ -18,25 +18,15 @@ const DEFAULT_PACKAGE_JSON = {
 };
 
 const getFilesForUpdate = (files: DocoddityTestFile[]): DocoddityTestFile[] => {
-  let hasPackageJSON = false;
-  for (const file of files) {
-    if (file.filepath === 'package.json') {
-      hasPackageJSON = true;
-      break;
-    }
-  }
-
-  if (hasPackageJSON) {
-    return files;
-  }
+  const hasPackageJSON = files.reduce((acc, { filepath }) => acc || filepath === 'package.json', false);
 
   return [
     ...files,
-    {
+    hasPackageJSON ? undefined : {
       filepath: 'package.json',
       content: JSON.stringify(DEFAULT_PACKAGE_JSON, null, 2),
     },
-  ];
+  ].filter(Boolean);
 };
 
 
