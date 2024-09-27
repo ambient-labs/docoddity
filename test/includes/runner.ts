@@ -107,7 +107,9 @@ export class Runner {
     return this.server.url;
   }
 
-  goto = (url: string) => this.page.goto(`${this.url}${url}`);
+  goto = async (url: string) => {
+    await this.page.goto(`${this.url}${url}`);
+  };
 }
 
 const { register, closeAll } = setupMap<Runner>();

@@ -24,6 +24,7 @@ describe('Listens for removed files', () => {
     await removeFiles([
       'one.html',
     ]);
+    await runner.waitForUrl();
     await waitFor(async () => {
       const [container] = await runner.page.evaluate(() => [
         window.document.querySelector('body p')?.innerText,
@@ -61,6 +62,7 @@ describe('Listens for removed files', () => {
     await removeFiles([
       'two2.md',
     ]);
+    await runner.waitForUrl();
     await waitFor(async () => {
       expect(await runner.page.evaluate(() => !!window.document.querySelector('a[aria-role="next"]'))).toEqual(false);
     });
@@ -97,6 +99,7 @@ describe('Listens for removed files', () => {
     await removeFiles([
       'two.md',
     ]);
+    await runner.waitForUrl();
     await waitFor(async () => {
       expect(await runner.page.evaluate(() => !!window.document.querySelector('a[aria-role="next"]'))).toEqual(false);
     });
@@ -104,7 +107,7 @@ describe('Listens for removed files', () => {
 
   test('it removes a stylesheet when docoddity.json is deleted', async () => {
     const content = 'foobar';
-    const { printURL, waitForComputedStyle, removeFiles } = await configureDevDocodditySite([
+    const { runner, printURL, waitForComputedStyle, removeFiles } = await configureDevDocodditySite([
       {
         filepath: `index.md`,
         content: getMarkdownContent(content, { title: 'foo' }),
@@ -128,6 +131,7 @@ describe('Listens for removed files', () => {
     await waitForComputedStyle('background', 'rgb(255, 0, 0) none repeat scroll 0% 0% / auto padding-box border-box', 2000);
 
     await removeFiles('docoddity.json');
+    await runner.waitForUrl();
 
     await waitForComputedStyle('background', 'rgb(255, 255, 255) none repeat scroll 0% 0% / auto padding-box border-box');
   });
@@ -196,6 +200,7 @@ describe('Listens for removed files', () => {
     await waitForScript('foo', 'foo');
 
     await removeFiles('docoddity.json');
+    await runner.waitForUrl();
 
     expect(await runner.page.evaluate(() => { return !!(window as any).foo; })).toEqual(false);
   });
