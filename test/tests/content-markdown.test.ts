@@ -147,4 +147,53 @@ describe('Markdown page', () => {
     ], undefined, 'Two Title', '<code>code</code>', '/docs/one');
 
   });
+
+  test('it should preserve lowercase in page title', async () => {
+    const { runner, printURL } = await configureDocodditySite([
+      {
+        filepath: `docs/one.md`,
+        content: getMarkdownContent('one body', { title: 'code', order: 0, }),
+      },
+      {
+        filepath: `docs/two.md`,
+        content: getMarkdownContent('two body', { title: 'Two Title', order: 1, }),
+      },
+    ]);
+
+    const expectPage = async (title: string, container: string, nav: string[], prev: string, next: string, pageTitle: string, url?: string) => {
+      if (url) {
+        await runner.goto(url);
+      }
+      const results = await runner.page.evaluate(() => {
+        const prev = window.document.querySelector('a[aria-role="prev"] span');
+        const next = window.document.querySelector('a[aria-role="next"] span');
+        return [
+          window.document.title,
+          window.document.querySelector('article#page-article p')?.innerHTML,
+          Array.from(window.document.querySelectorAll('nav#left-nav a')).map(el => el.outerHTML.trim()),
+          prev ? prev.innerHTML : undefined,
+          next ? next.innerHTML : undefined,
+          window.document.querySelector('article#page-article h1')?.innerHTML,
+        ];
+      });
+      expect(results[0]).toEqual(title);
+      expect(results[1]).toEqual(container);
+      expect(results[2]).toEqual(nav);
+      expect(results[3]).toEqual(prev);
+      expect(results[4]).toEqual(next);
+      expect(results[5]).toEqual(pageTitle);
+    };
+
+
+    await expectPage('Two Title', 'two body', [
+      "<a href=\"/docs/one\">code</a>",
+      "<a href=\"/docs/two\">Two Title</a>",
+    ], 'code', undefined, 'Two Title', '/docs/two');
+
+    await expectPage('code', 'one body', [
+      "<a href=\"/docs/one\">code</a>",
+      "<a href=\"/docs/two\">Two Title</a>",
+    ], undefined, 'Two Title', 'code', '/docs/one');
+
+  });
 });
