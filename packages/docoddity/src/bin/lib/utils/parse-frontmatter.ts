@@ -1,4 +1,4 @@
-import yaml from 'js-yaml';
+// import yaml from 'js-yaml';
 import type { Frontmatter } from '../types.js';
 
 export type ParsedFrontmatter = Record<string, unknown>;
