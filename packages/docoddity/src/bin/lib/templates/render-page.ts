@@ -13,9 +13,9 @@ const getPageContent = ({
 }: DocoddityRenderedArgs): string => `
   <main tabindex="-1" id="page">
     ${renderNavList('left-nav', page.pages, page.url)}
-    <article id="page-article" class="markdown-body">
+    <article id="page-article">
       ${renderTocMobile(content)}
-      <div id="content">
+      <div id="content" class="markdown-body">
         <h1>${title}</h1>
         ${content}
       </div>
