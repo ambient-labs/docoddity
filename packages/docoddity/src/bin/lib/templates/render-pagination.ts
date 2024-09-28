@@ -1,17 +1,17 @@
 import type {
-  Page,
+  PageDefinition,
 } from '../types.js';
 import { getMarkdownWithCodeElement } from '../utils/get-markdown.js';
 import { html } from '../utils/html.js';
 
-export const renderPaginationButton = (label: string, ariaRole: string, page?: Page) => page ? html`
+export const renderPaginationButton = (label: string, ariaRole: string, page?: PageDefinition) => page ? html`
   <a class="button" href="${page.url}" aria-role="${ariaRole}">
     <label>${label}</label>
     <span>${getMarkdownWithCodeElement(page.title)}</span>
   </a>
 ` : ``;
 
-export const renderPagination = (pages: Page[]) => {
+export const renderPagination = (pages: PageDefinition[]) => {
   if (!pages?.length) {
     return html``;
   }

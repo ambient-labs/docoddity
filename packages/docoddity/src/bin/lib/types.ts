@@ -79,10 +79,10 @@ export const isTagDefinitionWithFilepathContent = (tag: TagDefinition): tag is T
 export type ValidTagForTemplateRendering = (TagDefinitionWithStringContent | { tag: ValidTagName; } & Omit<DocoddityFileDefinition, 'content'>);
 // export const isTagDefinitionWithStringOrUndefinedContent = (tag: TagDefinition): tag is ValidTagForTemplateRendering => ('content' in tag && typeof tag.content === 'string') || !('content' in tag);
 
-export interface Page {
+export interface PageDefinition {
   url: string;
   title: string;
-  children: Page[];
+  children: PageDefinition[];
   current?: boolean;
   order?: number;
 }
@@ -90,7 +90,7 @@ export interface Page {
 export interface DocoddityRenderedArgs {
   page: {
     url: string;
-    pages: Page[];
+    pages: PageDefinition[];
   };
   title?: string;
   docoddity: {
