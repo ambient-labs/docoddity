@@ -74,6 +74,8 @@
     "fs-extra": "^11.2.0",
     "glob": "^10.3.12",
     "js-yaml": "^4.1.0",
+    "lit": "^3.2.0",
+    "lit-html": "^3.2.0",
     "micromark": "^4.0.0",
     "micromark-extension-frontmatter": "^2.0.0",
     "micromark-extension-gfm": "^3.0.0",

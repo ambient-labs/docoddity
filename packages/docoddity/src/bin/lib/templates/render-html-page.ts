@@ -31,6 +31,11 @@ export const renderHTMLPage = ({
       ${docoddity.head ? renderTags(docoddity.head) : ''}
     </head>
     <body>
+      <script type="text/javascript">
+        const theme = localStorage.getItem('theme') || 'light';
+        document.documentElement.setAttribute('data-theme', theme);
+        document.body.classList.add(\`sl-theme-$\{theme\}\`);
+      </script>
       ${renderBodyHeader({ page, docoddity })}
 
       ${content}

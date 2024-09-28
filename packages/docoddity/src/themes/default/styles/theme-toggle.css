@@ -1,0 +1,20 @@
+button#theme-toggle {
+  cursor: pointer;
+  background: none;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &.dark {
+    #sun {
+      display: none;
+    }
+  }
+
+  &.light {
+    #moon {
+      display: none;
+    }
+  }
+}

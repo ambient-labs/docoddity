@@ -102,6 +102,12 @@ importers:
       js-yaml:
         specifier: ^4.1.0
         version: 4.1.0
+      lit:
+        specifier: ^3.2.0
+        version: 3.2.0
+      lit-html:
+        specifier: ^3.2.0
+        version: 3.2.0
       micromark:
         specifier: ^4.0.0
         version: 4.0.0
@@ -1704,6 +1710,12 @@ importers:
         version: link:../../../packages/docoddity
 
   test/.sites/e205a62b5d3f2552210ce9c01efbaf94:
+    devDependencies:
+      docoddity:
+        specifier: workspace:*
+        version: link:../../../packages/docoddity
+
+  test/.sites/e209ba85b0ccf71bad11a625f2040450:
     devDependencies:
       docoddity:
         specifier: workspace:*
