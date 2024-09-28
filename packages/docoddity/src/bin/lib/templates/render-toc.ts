@@ -1,4 +1,6 @@
-export const renderTocMobile = (content: string): string => `
+import { html } from "../utils/html.js";
+
+export const renderTocMobile = (content: string | Promise<string>) => html`
   <aside 
     id="toc-mobile" x-data="{ open: false }" 
     :class="{ 'open': open }"
@@ -14,7 +16,7 @@ export const renderTocMobile = (content: string): string => `
   </aside>
 `;
 
-const getHeadings = (content: string) => (content.match(/<h[1-6][^>]*>.*?<\/h[1-6]>/g) || []).map((heading) => {
+const getHeadings = async (content: string | Promise<string>) => ((await content).match(/<h[1-6][^>]*>.*?<\/h[1-6]>/g) || []).map((heading) => {
   const id = heading.match(/id="([^"]*)"/)?.[1] || '';
   const text = heading.replace(/<[^>]*>/g, '');
   const level = heading.match(/<h([1-6])/)?.[1] || '1';
@@ -25,10 +27,10 @@ const getHeadings = (content: string) => (content.match(/<h[1-6][^>]*>.*?<\/h[1-
   };
 });
 
-export const renderToc = (content: string): string => `
+export const renderToc = async (content: string | Promise<string>) => html`
   <div class="toc">
     <ol>
-      ${getHeadings(content).map(({ id, text, level }) => `
+      ${(await getHeadings(content)).map(({ id, text, level }) => `
         <li class="indent-${level}">
           <a href="#${id}">${text}</a>
         </li>

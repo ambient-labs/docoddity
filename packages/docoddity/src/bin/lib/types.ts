@@ -101,10 +101,15 @@ export interface DocoddityRenderedArgs {
     head: (TagDefinitionWithStringContent | string)[];
     body: (TagDefinitionWithStringContent | string)[];
   } & Omit<DocoddityContents, 'head' | 'body'>;
-  content: string;
+  content: string | Promise<string>;
 }
 
 export interface DocoddityFilepath {
   sourceFilepath: string;
   targetFilepath: string;
+}
+
+export interface Frontmatter {
+  title?: string;
+  order?: number;
 }

@@ -45,8 +45,6 @@ export const dev = async ({
 
   const relativeToSource = makeRelative(sourceDir);
 
-  // const writtenFiles = await docoddity.writeFiles();
-  // const htmlFiles = writtenFiles.filter((file) => file.endsWith('.html'));
   const callback: WatchCallback = async (event) => {
     if (isWatchAddEvent(event) || isWatchChangeEvent(event)) {
       const {
@@ -55,20 +53,16 @@ export const dev = async ({
       } = event;
       const relativeFilepath = relativeToSource(sourceFilepath);
       if (relativeFilepath === 'docoddity.json') {
-        // const docoddityContents = await readDocoddityJSON(sourceDir);
-        // await Promise.all([...sitemap].map(file => docoddity.writeFile(docoddity.getFilepath(file))))
       } else {
         sitemap.add(sourceFilepath);
         const filepath = Files.getFilepath(relativeFilepath, {
           sourceDir,
           targetDir,
         });
-        // sitemap.add(file);
         await docoddity.writeFile(filepath);
       }
       await Promise.all([...sitemap].map(file => docoddity.writeFile(docoddity.getFilepath(file))))
     } else if (isWatchDeleteEvent(event)) {
-      // console.log('incoming delete event!!!!')
       const {
         data: sourceFilepath,
         sitemap,
@@ -81,12 +75,8 @@ export const dev = async ({
         // await Promise.all([...sitemap].map(file => docoddity.writeFile(docoddity.getFilepath(file))))
       } else {
         sitemap.remove(sourceFilepath);
-        // console.log('ok, remove this file', relativeFilepath)
         await docoddity.removeFile(relativeFilepath);
-        // sitemap.add(file);
-        // await docoddity.writeFile(filepath);
       }
-      // await docoddity.removeFile(event.data)
       await Promise.all([...sitemap].map(file => docoddity.writeFile(docoddity.getFilepath(file))))
     }
   };

@@ -1,15 +1,38 @@
-import yaml from 'js-yaml';
+// import yaml from 'js-yaml';
+import type { Frontmatter } from '../types.js';
 
-export function parseFrontmatter(content: string = ''): Record<string, any> {
+export type ParsedFrontmatter = Record<string, unknown>;
+
+
+const parseYamlFrontmatter = (content: string = ''): ParsedFrontmatter => {
+  const lines = content.split('\n').filter(Boolean).map(l => l.trim());
+  const keyVals = lines.map(l => l.split(':')).map(([
+    key,
+    ...value
+  ]) => [key.trim(), value.join(':').trim()]);
+  return keyVals.reduce((acc, [key, value]) => ({
+    ...acc,
+    [key]: value,
+  }), {});
+};
+
+export const parseFrontmatter = async (content: string = ''): Promise<Frontmatter> => {
   const frontmatterRegex = /^---\n([\s\S]*?)\n---/;
   const match = content.match(frontmatterRegex);
 
   if (match) {
     const frontmatter = match[1];
     if (frontmatter) {
-      return yaml.load(frontmatter) as Record<string, any>;
+      const parsedFronmatter = parseYamlFrontmatter(frontmatter);
+      const { title, order: _order, ...rest } = parsedFronmatter;
+      const order = Number(_order);
+      return {
+        ...rest,
+        title: typeof title === 'string' ? title : undefined,
+        order: Number.isNaN(order) ? undefined : order,
+      }
     }
-  }
 
+  }
   return {};
-}
+};

@@ -1,22 +1,29 @@
 import type {
   DocoddityRenderedArgs,
 } from '../types.js';
-import { renderBase } from './render-base.js';
+import { renderHTMLPage } from './render-html-page.js';
 import { renderToc, renderTocMobile } from './render-toc.js';
 import { renderPagination } from './render-pagination.js';
 import { renderNavList } from './render-nav-list.js';
+import { html } from '../utils/html.js';
+import { getMarkdownWithCodeElement } from '../utils/get-markdown.js';
 
-const getPageContent = ({
+export const renderMarkdownPage = ({
   title,
   content,
   page,
-}: DocoddityRenderedArgs): string => `
+  ...args
+}: DocoddityRenderedArgs): Promise<string> => renderHTMLPage({
+  title,
+  page,
+  ...args,
+  content: html`
   <main tabindex="-1" id="page">
     ${renderNavList('left-nav', page.pages, page.url)}
     <article id="page-article">
       ${renderTocMobile(content)}
       <div id="content" class="markdown-body">
-        <h1>${title}</h1>
+        <h1>${getMarkdownWithCodeElement(title)}</h1>
         ${content}
       </div>
 
@@ -27,9 +34,5 @@ const getPageContent = ({
       ${renderToc(content)}
     </aside>
   </main>
-`;
-
-export const renderPage = (args: DocoddityRenderedArgs): string => renderBase({
-  ...args,
-  content: getPageContent(args),
+`,
 });

@@ -1,7 +1,10 @@
-export const renderNavList = (name: string, navList: NavListItem[], pageURL: string): string => `
+import { html } from '../utils/html.js';
+import { getMarkdownWithCodeElement } from "../utils/get-markdown.js";
+
+export const renderNavList = async (name: string, navList: NavListItem[], pageURL: string) => html`
   <nav id="${name}">
     <ul>
-      ${navList.map(entry => renderNavListItem(entry, pageURL).trim()).join('\n')}
+      ${navList.map(entry => renderNavListItem(entry, pageURL))}
     </ul>
   </nav>
 `;
@@ -12,11 +15,11 @@ export interface NavListItem {
   children: NavListItem[];
 }
 
-const renderNavListItem = (entry: NavListItem, pageURL?: string): string => `
+const renderNavListItem = (entry: NavListItem, pageURL?: string): Promise<string> => html`
   <li class="open">
     <div class="inner">
     <div class="menu-list ${entry.url === pageURL ? 'active' : ''}">
-      <a href="${entry.url}">${entry.title}</a>
+      <a href="${entry.url}">${getMarkdownWithCodeElement(entry.title)}</a>
       ${when(entry.children.length > 0, `
         <button class="toggle" aria-label="Toggle the category" type="button"></button>
       `)}
