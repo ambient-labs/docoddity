@@ -60,16 +60,6 @@ importers:
         specifier: ^0.14.9
         version: 0.14.9
 
-  docs:
-    dependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../packages/docoddity
-    devDependencies:
-      wireit:
-        specifier: ^0.14.9
-        version: 0.14.9
-
   packages/docoddity:
     dependencies:
       '@docsearch/js':
@@ -108,15 +98,15 @@ importers:
       lit-html:
         specifier: ^3.2.0
         version: 3.2.0
-      micromark:
-        specifier: ^4.0.0
-        version: 4.0.0
-      micromark-extension-frontmatter:
-        specifier: ^2.0.0
-        version: 2.0.0
-      micromark-extension-gfm:
-        specifier: ^3.0.0
-        version: 3.0.0
+      markdown-it:
+        specifier: ^14.1.0
+        version: 14.1.0
+      markdown-it-anchor:
+        specifier: ^9.2.0
+        version: 9.2.0(@types/markdown-it@14.1.2)(markdown-it@14.1.0)
+      markdown-it-front-matter:
+        specifier: ^0.2.4
+        version: 0.2.4
       mustache:
         specifier: ^4.2.0
         version: 4.2.0
@@ -126,21 +116,6 @@ importers:
       parser-front-matter:
         specifier: ^1.6.4
         version: 1.6.4
-      rehype:
-        specifier: ^13.0.1
-        version: 13.0.1
-      rehype-autolink-headings:
-        specifier: ^7.1.0
-        version: 7.1.0
-      rehype-slug:
-        specifier: ^6.0.0
-        version: 6.0.0
-      slugify:
-        specifier: ^1.6.6
-        version: 1.6.6
-      vfile-matter:
-        specifier: ^5.0.0
-        version: 5.0.0
     devDependencies:
       '@rollup/plugin-commonjs':
         specifier: ^25.0.7
@@ -163,6 +138,9 @@ importers:
       '@types/js-yaml':
         specifier: ^4.0.9
         version: 4.0.9
+      '@types/markdown-it':
+        specifier: ^14.1.2
+        version: 14.1.2
       '@types/mustache':
         specifier: ^4.2.5
         version: 4.2.5
@@ -221,343 +199,13 @@ importers:
         specifier: ^0.14.4
         version: 0.14.8
 
-  test/.sites/013261d4acc24a7f5e7f9dd08c55b506:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/031f2689112a526c64494238c25af639:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/03407ff22475a631b665b1e626787d76:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/0416ab471bba60297d9fac63a64597fd:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/042657d68c8df1279a9ca44034d0c472:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/0489b8eff8a8a5db7953be86f4c5591a:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/059561007b8ba5e1e636262b87a26631:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/05b4b54922674a9247ff0c61c50fa469:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/06a744f5511305e32b8612356b9f229c:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/0813708d871366b14f5780a68e1a8415:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/0845171e1cdeec5d85eae38e8ae814da:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/08696fbb360800c98c5ae5e18ab6d044:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/09533cc9bbb7b539ed7156b218de842e:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/09c3ab36d285e7b8e2dc2acca21b4cca:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/0cad6d7124d1855f6e3827d431f673b0:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/0d4d481a3adff4af729b2d28be6d9fbf:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/0dffda03d3382c57381e93aec2187ce4:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/0fd7e2d0793562698a1714ca397582ab:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/0ffce95f0749cfbd4576aa696c550cc3:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/1098707ff19712dd3773fc96223a47a3:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/110c59fd690a336efdd9cf991219ef5f:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/117810ce330864df8c320dd2cfd9beff:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/11d9819c7a2346462914bc0ad2f5327e:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/132106edde1b42b9ee97b036cd130c36:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/14daa43a1487556d88467a4c17744e98:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/156656e57ca4a8686b9408cbdbdf0e87:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/159ac7920fafdd27fcca207fb56740d2:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/1664a2bdc865bb52b672725346175911:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/17366926bb4491f36c7ef66ce2fb3103:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/17f92af4f1f395d73b0695f5213bdb4a:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/1873ece02d817fb7a3d4338fa0e77499:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/19f7d3f51c9c7737118c5452eda18b5d:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/1a2d9683941e38469a8650a83d147f7e:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/1af0e557ec176739dbab8968df3458b2:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/1b6720bfc72049b792d380a86ca3b445:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/1cde116800e5023c3cd198b44148bf02:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/1d285b3beb88d7e1668df1beb4574aa2:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/1d8e05ac0a3e30cf4bb1bb256362ad37:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/1f36274fd8bf4a5e54f0c7f0e3ba3f84:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
   test/.sites/203c0dae6f8a2a5c8c1a31eb5592bda0:
     devDependencies:
       docoddity:
         specifier: workspace:*
         version: link:../../../packages/docoddity
 
-  test/.sites/21150e8f27d77ad242ec1bf53b820a68:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/21770999b43b77f52bb2e06eccb7166f:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/22c04b3885f5c6dc2565ed6776717571:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/22f71c03c0cc3cf864729369ac9bc1b3:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/243807a3d0ece3fb99dfefea2f24a500:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/2537b2689b3e9754557847c7320aca7e:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/2613d90b6130d171b2a605e263460fc3:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/261c4c622f387bc8150e71398ec792e1:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/268e1d501961ec6ce69eb172a1973a60:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/28626513929b384046f1e4be88d2466c:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/28be16181ad7bcbe08254c1f6134e913:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/291e57ac4d67ff43fb38bbb36a006223:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/2acb60bf081d63c53c9af75e22da29a2:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/2ad46e25c16e3f8629e4b6f823d2023d:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/2b4c6281f64d53f9dd0204ad4cb7df52:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/2b56ff81758ee0c8621a55401389b550:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/2b7c76fbbb083a942eac4a2175fb614d:
+  test/.sites/20bebaf7ff822de6fc64d8437b5d6e6a:
     devDependencies:
       docoddity:
         specifier: workspace:*
@@ -569,937 +217,7 @@ importers:
         specifier: workspace:*
         version: link:../../../packages/docoddity
 
-  test/.sites/2f2183f4d1611f3361930094d28886e3:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/3141bbac77fa08f31fa401d40bd1603f:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/3246c2140323b70b9d81af546739673d:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/327c16817176dcf8fbcaf4eed0c30b60:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/328c8ec65e2de5b9de26d9869d9ac482:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/33d572839c09fe20d8bcdf0cfa016773:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/35f4e8d62607b643b53a4d948619f361:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/37682b420aef604ba0745e588312afda:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/376c5a3a35b7092bb486a067d18562e7:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/382db7b1be3fa4a3f818845c7776ae16:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/38845545a303adfec786c10b44bcf0e0:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/391e847a6cd0b8a846015b356d6230bb:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/3bc8d13addea83e12272f91ecc195bf3:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/3c4d8cb8f53c323398d33cabeb4a7357:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/3effeff93a1a865d5ffd8939fdb12401:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/41ba89ef03147a85e270720f41658e8b:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/424b6aed29fefe013446e10a5910a711:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/44953d301473096e9428790a51c53e43:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/45d6292b9034b5d0b33c1891370a6dcf:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/461a66f5fee80f41e87aac976890fa72:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/4679ed940a448343d5409b13580f03e2:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/47b896115122538109a6a53b4f79400d:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/48b4107929dcd79e9f154592a41d2898:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/4b0acc5ac6de479fa05d6f11465dd344:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/4c5e2f0de03f25aa7d9bd7767ca10797:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/4c8a8ae743c928628481c413d022e334:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/4d775b796cdf998ddd4b819ababa5f81:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/4d79278c9625e92464c7620290c3e53d:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/4fbf70b4dd83d07160ea109805aa9938:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/509a5840e9ae89e3abf262c881a1afa0:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/53216ccdaf51d97dc8b0d1b1ededa907:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/53ed743c667819281389721081852835:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/552323b20547cd6749e1cd8fd8dbac92:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/58e27cd3f3976d8ed36c24ce7fe15683:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/58fdff23a6e00802846c967940a0dab1:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/597b61c8c45d1a396e382f9e2af76ce9:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/5a4eac49687d699c6ba82fe2c0d49826:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/5a8960f3ae64a42a231abe7d09f0fa67:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/5ad7483f74ca93e8d714dfe391ec598d:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/5b880a04070e94c9a055d6f32ef72213:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/5fe9aa62cf2fe8e13dbdd355b217d4db:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/628064ca9f33074b5f578ccd4534870a:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/62e9706ec7fef27b227b63f81e3d4f8c:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/6410b99997789fdbeeea6e45467f3f93:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/64ecaf57f8e69e3d4de76e5ddbb1b0b7:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/6638c9d3d5b458da1c4229502ef3499c:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/670d8cacafc1ae3cce1ea52969fcc4f8:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/674744ae1f50d492f93fb491633b2c6c:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/67fd288b5d5588ffd1cc96b2ec1fa11d:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/68328c9d47b861e72a0d99491c71ecda:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/6a0a009f02101d4fe1897378beb42b49:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/6a51216cf582e6eaeeb3c6621851a62a:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/6b270450a901d9809cbb2358b7416e14:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/6b3ab8301170d5f62150dda06f0837cd:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/6c43b05b5a83b089967671385fa2cf87:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/6d0df1771d4d4532d2d3eb2d905eec95:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/6d6aa508ccf86e49c6d37428debd5429:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/6ef6e2c5ef0c2559b6e3c1ee96889092:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/6f08e2f2b4f3e3bcdcee9b7daba6f23a:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/6f10c02549157df41cbbabac771118e2:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/6f5c0250526dad9f6b303a08a66455c5:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/717b8cd2fc25b3172a9dadc43c34194e:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/72df43f04f40f1d80e204460e13c70c4:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/72e1db8f29765fdd7e7df4d8fe3f7b09:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/7319cf30bbe2be6f8465476b41780c95:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/73312a8c9b2ceb0ee76e6be9ce9efeb6:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/73a04f762ce1bfa6fcac325a9bb853b3:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/73d6b54551605133cc2dea579d6383b4:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/748c8fdb003a5f5c3c1fe4674db3de49:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/7644538e0c6eedd04c38849bb06de9a4:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/7670ee369ff015e15a0f8e08aba93256:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/768fc47b8c4d880ceb00c2e2980fbc0c:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/76b93aab1f8ddff7019bee7994db6eba:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/78fd54b6843283c064ad40758c489a2f:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/7a4592479f1ad0b5b254ad4d5faa21bd:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/7a60a4b03a908bb52f044bee293003e4:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/7ab19ef1e1e9a9b1d9e96ee020b15e29:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/7c2ef458d185b3b8cdd550c4044e00ae:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/7cfd8e10a888bdf444f65b08612bd901:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/7d953739f6714cde1806798c1fffa417:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/7d9d938ea640bd0427a28cf5448d03d6:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/7e4ab67a990e1c7a33a8c362c9cd0431:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/7e78f3d338bf90199024b435fb353668:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/7f0830876b69d4689d5857564c40a39e:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/7ffde673327a2abcb124e975dc84d902:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/8187854642e70f61e03fe0483fc2b169:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/822ccfe371181048329e926c129dcc9f:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/82eed7f8bb707a8c430e0d6e5e12e5a8:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/8374e0f70f98fc5094f70819ae1f2af4:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/83fad2392717f2bad317b12ba1c91a00:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/8462586c8f44625dfa6b48fc5144b914:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/848b7310e141df9e2f498eeda8ff08e5:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/849c0df08082d1e49de453c6538ae22e:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/84ecf238e5385041c6c5a262aadf4d7b:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/84efa169bf61a1c0d85d2a83574dbbd5:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/875e7fa5a4db9dd44befa556962436e7:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/87d0047515d1e2bd4049907981c7994d:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/87fd70cf1d10b7642518c2708a9f2632:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/889c5160d84b75dc66de5423dd30aba7:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/891ab786cd624cd918493522b3f3b12b:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/89a4e2d4f52d4aa7db18aa0cf2fa1b18:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/89df995847851c20fb6c69cc0ee25dc3:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/8a705497c683f1b44d68c0bdab672143:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/8a8ff98c729286df100f57ede3a1d124:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/8e7cad4a42a2f93a0145781f5cf8b376:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/8f55911decccd7573ee34879e1cfc6fd:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/900b470e96844aeb4d517173cf47735f:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/90504c2ddd825b44b530f80e51125469:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/919b904996573a61ca7c496e5900b329:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/92a57b0caa4ad3adc18f2a6923f88f95:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/9450ae543cfec9bacee85a520b34057a:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/94f302a79bc1a0108d4aae4495c7e119:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/9547a635b3bf6fba9e7cd9556bb3a4ae:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/9548c83e852ef7ae18c2610f19b43f7d:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/95d810cc0a00533fa8f21548cb8f87b1:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/963a106d8000eb21537f112d24a2d880:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/970cb12f6f48a8a294f398fab8fce163:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/97c81bedd02f7425189b219d8ecf22ac:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/9a673a98ce4b9bcdfef101c7ea0897ad:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/9ab3e26e01a88323863587408d00bebe:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/9b20e3cdf22ca75474ac8586f8f3d74b:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/9c4bd48605485e53e3ba20e16416a19d:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/9c8d3257b55ddc2388a83fa853862d77:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/9cb550ea861861639b44c726f9dc5841:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/9ebaa91c07029a797c4b7c5ba4472c31:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/a0b9988af86052c573ae8a6020124e98:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/a0ef8956119ff00dcb8a5bc1f8722df3:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/a3363f35e951c1604bcff6b58eef1809:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/a3533d9a7f9b7f61812b436e306fa596:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/a536f7104ffe80cdbaf9b6a7b1a89c68:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/a5b6aef02b1c469a70128abb98b16576:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/a600452eb62ddc3a8dcbee5eef95e505:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/a74cde5613cb5cefdecd75a63f42d148:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/a868f3d0adbf0b9f6bc850ca0ab4b827:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/a86c9aad9d9a7cd04b2a9f70a5358c39:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/aad0d3b6023f9700bcba35d1e4543d95:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/abf3d501634193896053bacd80eeeb33:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/abf8a464be1e726b5f18dea26a4d69c5:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/ac779c239969f0ef2141ca6eecf472d6:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/ad3fd19146273d1777d96489b2a241b5:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/affb1184451f13581735b44c0cba80b5:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/b00473d2bd94add6cfc82d11a30e2849:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/b10990325563d4ea898af4bc8903a0e0:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/b326f7942e80edb83832d25c42f82b94:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/b33df72a8cc181a7e1f831d5907c4c27:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/b3e849a45752b69459deec82fce0aec2:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/b421c90f30d3d7ea3da6278b9727980b:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/b45d2bc37b47f6a5c6f8106967f66fa8:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/b4b573ed179707512e76611065dbd07c:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/b62efaedb7e4d657b7051cb11e8457da:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/b637b59bba422fb1a429e1d746d0b393:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/b8da67975e2a5542b875f460cb7311d5:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/b96e61581484c9cd9d832acb3d80be1c:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/b9bd079e3f6cf880e155ebff5d888bba:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/baebbe09ea3267789a2bc7cececfda95:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/bb4201ea9058b7e8d01b98f08a4fcb35:
+  test/.sites/b4dbac228ca1f0f8bd14c7cfc206da8c:
     devDependencies:
       docoddity:
         specifier: workspace:*
@@ -1511,469 +229,7 @@ importers:
         specifier: workspace:*
         version: link:../../../packages/docoddity
 
-  test/.sites/bc64662decd999f3f953d1988c84eec0:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/bccb95508b41aa0c03cb88378dd35634:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/be347e8b0d8d6cf1dc14a81a7c0f65f7:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/be56f4ae474bc1dc963d29750c0e6c0d:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/c16209cbf73603c500f69daef720de7c:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/c27e5217330de57fd0d59d178368c86f:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/c4f9d36b114e7c3959191f561be942c3:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/c5b0010f29f5cbea4ee676bf7530ed00:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/c5bba6c22789cf80b393908ec0eb504f:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/ca2155711cf24b6cb5b768755d4da7f3:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/ca474f1bb6573c218aa7fb90ed9c1fb6:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/ca606b3b58eccf43df872b9fbd6909c4:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/ca8c7f2a50f1a4dd76ad440ec9182d2a:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/cb1d5da5c2f997d18b06b6b7c6b7790d:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/cbb617dc49de479bd3ac9287f0635d89:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/cbcfbad066a5c02ebe17ba6fa5ad697f:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/cc4120cb31241a8b9eb2c03ee0a211e1:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/cc76ee3c930bc6d946798d3367c9a815:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/cd18375d6aa649d8d4f550e6059ddabf:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/cd1ae6650bf322cf05534e560763b8c9:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/cfd20afee82c0455050ca4204cdad0cf:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/d2d307399d5a705a1464ae226ce6c737:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/d32fd52bff47691e647c792d6cfe80f0:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/d5e7e8fc57748575e39759ee09638b27:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/d7fa7fb571b910f8987f7a21e6fc645e:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/d9a4c86a8159d4ac9c13e889f55d9bbb:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/db286d7dfefd3adb1b1264ddb23a8edd:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/dc8d4d5c0d7c9d77033086ae4d593a67:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/dde62620926528920eb1298d1f6f0de9:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/de5f32ee517694c8740d5627c988ccff:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/df48d8fec1d4ee7a61a166c3b38c0819:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/df89f6228f62b1358e9a30e68069455c:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/e0942ddc9c4426688724aac575c27f75:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/e205a62b5d3f2552210ce9c01efbaf94:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/e209ba85b0ccf71bad11a625f2040450:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/e277d699b5f0d9845b59c4e2ad3a37ac:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/e2fdcfabcbbebba178b51d536c6b252a:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/e38068c866663547976aefad190b84ee:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/e3e477b8b3ada60c4027aeae431f647d:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/e4f4dbb2f5c004c26a7e6a9fe8a4a341:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/e519fe8a07e529c88ee8f43fd5165868:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/e64da5d913a2ea54c6d2fee8544b9d04:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/e6c1ae470fa78e0d4b589d844e0513e3:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/e7513d51f240f7190d489088c83c3a8c:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/e75abadb0e97974215804c847e028407:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/e7a3b82c8de3d747124b8eac7bf4a2e0:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/e867fa7d124d710d10373f33d68f4b22:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/e887f36251615b1f9ffe027ca89ce7d2:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/e8ddd46fc137020ccd914f25e989ae1e:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/e9cb5575e7afd90320849ae9e1f2a733:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/ea19c925bb68858917ce4a7e2b35ce54:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/ea99675d2d8869f61f2808c7fab11975:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/eb8bd859b6c524894d64b2c03620f252:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/eb972eb8f2b952ae234ff29b088ca24a:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/ecca835c4545fc2e6e79daadd3a9f79f:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/edc060db5b68922cec60f16d737c0c30:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/ee302d4eb588d5aabf56e3133ef88b4f:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/eea3039610a784deb0a852941e4a231d:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/f094c469322c01431274f533646d16ae:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
   test/.sites/f0ecb72920158f464cff933e8b7b7232:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/f157bc8f0e630b8cc27a2ef95926011d:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/f1f8c7545132e54d066cb9cc3aa8c9c5:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/f44dd15d91e7348048925f698321b5ea:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/f58eae9156afb99758849c245d9c8093:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/f5ef38998b28639d47f6da2c26f3c8b3:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/f754c280a15d6ba8b4de2c2f40bc3bc4:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/f91f0af303c1e61326bcc62208764e52:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/f9d24611af8f64e98b1e0d5f3087f552:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/fa5ec632c5ca97ff6fc62bdfaf12b700:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/fa7e2f4f3a2a7aae4cd42453bc8b2131:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/fb5db917c2a571ad80fd1838c6cf59b0:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/fbf44c0cf81fd5179c14e90ddf056312:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/fd5cd2dc807282a7175b94b8017948b2:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/fdb9777ee453253d301f1b65567f9a78:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/fe54bc1fed81af3ce6bc74e640fe6687:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/feadc0ac5606ce5528d1eb534534b3f5:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/fef9c7e2e96e5fbd072a72f47c53925e:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/ff717d28659d36a021f978049a29e026:
     devDependencies:
       docoddity:
         specifier: workspace:*
@@ -2731,9 +987,6 @@ packages:
   '@types/cors@2.8.17':
     resolution: {integrity: sha512-8CGDvrBj1zgo2qE+oS3pOCyYNqCPryMWY2bGfwA0dcfopWGgxs+78df0Rs3rc9THP4JkOhLsAa+15VdpAqkcUA==}
 
-  '@types/debug@4.1.12':
-    resolution: {integrity: sha512-vIChWdVG3LG1SMxEvI/AK+FWJthlrqlTu7fbrlywTkkaONwk/UAGaULXRlf8vkzFBLVm0zkMdCquhL5aOjhXPQ==}
-
   '@types/deep-equal@1.0.4':
     resolution: {integrity: sha512-tqdiS4otQP4KmY0PR3u6KbZ5EWvhNdUoS/jc93UuK23C220lOZ/9TvjfxdPcKvqwwDVtmtSCrnr0p/2dirAxkA==}
 
@@ -2745,9 +998,6 @@ packages:
 
   '@types/fs-extra@11.0.4':
     resolution: {integrity: sha512-yTbItCNreRooED33qjunPthRcSjERP1r4MqCZc7wv0u2sUkzTFp45tgUfS5+r7FrZPdmCCNflLhVSP/o+SemsQ==}
-
-  '@types/hast@3.0.4':
-    resolution: {integrity: sha512-WPs+bbQw5aCj+x6laNGWLH3wviHtoCv/P3+otBhbOhJgG8qtpdAMlTCxLtsTWA7LH1Oh/bFCHsBn0TPS5m30EQ==}
 
   '@types/html-minifier-terser@6.1.0':
     resolution: {integrity: sha512-oh/6byDPnL1zeNXFrDXFLyZjkr1MsBG667IM792caf1L2UPOOMf65NFzjUH/ltyfwjAGfs1rsX1eftK0jC/KIg==}
@@ -2782,8 +1032,14 @@ packages:
   '@types/jsonfile@6.1.4':
     resolution: {integrity: sha512-D5qGUYwjvnNNextdU59/+fI+spnwtTFmyQP0h+PfIOSkNfpU6AOICUOkm4i0OnSk+NyjdPJrxCDro0sJsWlRpQ==}
 
-  '@types/mdast@4.0.4':
-    resolution: {integrity: sha512-kGaNbPh1k7AFzgpud/gMdvIm5xuECykRR+JnWKQno9TAXVa6WIVCGTPvYGekIDL4uwCZQSYbUxNBSb1aUo79oA==}
+  '@types/linkify-it@5.0.0':
+    resolution: {integrity: sha512-sVDA58zAw4eWAffKOaQH5/5j3XeayukzDk+ewSsnv3p4yJEZHCCzMDiZM8e0OUrRvmpGZ85jf4yDHkHsgBNr9Q==}
+
+  '@types/markdown-it@14.1.2':
+    resolution: {integrity: sha512-promo4eFwuiW+TfGxhi+0x3czqTYJkG8qB17ZUJiVF10Xm7NLVRSLUsfRTU/6h1e24VvRnXCx+hG7li58lkzog==}
+
+  '@types/mdurl@2.0.0':
+    resolution: {integrity: sha512-RGdgjQUZba5p6QEFAVx2OGb8rQDL/cPRG7GiedRzMcJ1tYnUANBncjbSB1NRGwbvjcPeikRABz2nshyPk1bhWg==}
 
   '@types/micromatch@2.3.35':
     resolution: {integrity: sha512-J749bHo/Zu56w0G0NI/IGHLQPiSsjx//0zJhfEVAN95K/xM5C8ZDmhkXtU3qns0sBOao7HuQzr8XV1/2o5LbXA==}
@@ -2793,9 +1049,6 @@ packages:
 
   '@types/minimist@1.2.5':
     resolution: {integrity: sha512-hov8bUuiLiyFPGyFPE1lwWhmzYbirOXQNNo40+y3zow8aFVTeyn3VWL0VFFfdNddA8S4Vf0Tc062rzyNr7Paag==}
-
-  '@types/ms@0.7.34':
-    resolution: {integrity: sha512-nG96G3Wp6acyAgJqGasjODb+acrI7KltPiRxzHPXnP3NgI28bpQDRv53olbqGXbfcgF5aiiHmO3xpwEpS5Ld9g==}
 
   '@types/mustache@4.2.5':
     resolution: {integrity: sha512-PLwiVvTBg59tGFL/8VpcGvqOu3L4OuveNvPi0EYbWchRdEVP++yRUXJPFl+CApKEq13017/4Nf7aQ5lTtHUNsA==}
@@ -2847,9 +1100,6 @@ packages:
 
   '@types/trusted-types@2.0.7':
     resolution: {integrity: sha512-ScaPdn1dQczgbl0QFTeTOmVHFULt394XJgOQNoyVhZ6r2vLnMLJfBPd53SB52T/3G36VI1/g2MZaX0cwDuXsfw==}
-
-  '@types/unist@3.0.3':
-    resolution: {integrity: sha512-ko/gIFJRv177XgZsZcBwnqJN5x/Gien8qNOn0D5bQU/zAzVf9Zt3BlcUiLqhV9y4ARk0GbT3tnUiPNgnTXzc/Q==}
 
   '@types/validator@13.12.2':
     resolution: {integrity: sha512-6SlHBzUW8Jhf3liqrGGXyTJSIFe4nqlJ5A5KaMZ2l/vbM3Wh3KSybots/wfWVzNLK4D1NZluDlSQIbIEPx6oyA==}
@@ -3174,9 +1424,6 @@ packages:
   babel-runtime@6.26.0:
     resolution: {integrity: sha512-ITKNuq2wKlW1fJg9sSW52eepoYgZBggvOAHC0u/CYu/qxQ9EVzThCgR69BnSXLHjy2f7SY5zaQ4yt7H9ZVxY2g==}
 
-  bail@2.0.2:
-    resolution: {integrity: sha512-0xO6mYd7JB2YesxDKplafRpsiOzPt9V02ddPCLbY1xYGPOX24NTyN50qnUxgCPcSoYMhKpAuBTjQoRZCAkUDRw==}
-
   balanced-match@1.0.2:
     resolution: {integrity: sha512-3oSeUO0TMV67hN1AmbXsK4yaqU7tjiHlbxRDZOpH0KW9+CeX4bRAaX0Anxt0tx2MrpRpWwQaPwIlISEJhYU5Pw==}
 
@@ -3300,9 +1547,6 @@ packages:
   caniuse-lite@1.0.30001663:
     resolution: {integrity: sha512-o9C3X27GLKbLeTYZ6HBOLU1tsAcBZsLis28wrVzddShCS16RujjHp9GDHKZqrB3meE0YjhawvMFsGb/igqiPzA==}
 
-  ccount@2.0.1:
-    resolution: {integrity: sha512-eyrF0jiFpY+3drT6383f1qhkbGsLSifNAjA61IUjZjmLCWjItY6LB9ft9YhoDgwfmclB2zhu51Lc7+95b8NRAg==}
-
   chai@5.1.1:
     resolution: {integrity: sha512-pT1ZgP8rPNqUgieVaEY+ryQr6Q4HXNg8Ei9UnLUrjN4IA7dvQC5JB+/kxVcPNDHyBcc/26CXPkbNzq3qwrOEKA==}
     engines: {node: '>=12'}
@@ -3318,15 +1562,6 @@ packages:
   chalk@5.3.0:
     resolution: {integrity: sha512-dLitG79d+GV1Nb/VYcCDFivJeK1hiukt9QjRNVOsUtTy1rR1YJsmpGGTZ3qJos+uw7WmWF4wUwBd9jxjocFC2w==}
     engines: {node: ^12.17.0 || ^14.13 || >=16.0.0}
-
-  character-entities-html4@2.1.0:
-    resolution: {integrity: sha512-1v7fgQRj6hnSwFpq1Eu0ynr/CDEw0rXo2B61qXrLNdHZmPKgb7fqS1a2JwF0rISo9q77jDI8VMEHoApn8qDoZA==}
-
-  character-entities-legacy@3.0.0:
-    resolution: {integrity: sha512-RpPp0asT/6ufRm//AJVwpViZbGM/MkjQFxJccQRHmISF/22NBtsHqAWmL+/pmkPWoIUJdWyeVleTl1wydHATVQ==}
-
-  character-entities@2.0.2:
-    resolution: {integrity: sha512-shx7oQ0Awen/BRIdkjkvz54PnEEI/EjwXDSIZp86/KKdbafHh1Df/RYGBhn4hbe2+uKC9FnT5UCEdyPz3ai9hQ==}
 
   check-error@2.1.1:
     resolution: {integrity: sha512-OAlb+T7V4Op9OwdkjmguYRqncdlx5JiofwOAUkmTF+jNdHwzTaTs4sRAGpzLF3oOz5xAyDGrPgeIDFQmDOTiJw==}
@@ -3382,9 +1617,6 @@ packages:
   combined-stream@1.0.8:
     resolution: {integrity: sha512-FQN4MRfuJeHf7cBbBMJFXhKSDq+2kAArBlmRBvcvFE5BB1HZKXtSFASDhdlz9zOYwxh8lDdnvmMOe/+5cdoEdg==}
     engines: {node: '>= 0.8'}
-
-  comma-separated-tokens@2.0.3:
-    resolution: {integrity: sha512-Fu4hJdvzeylCfQPp9SGWidpzrMs7tTrlu6Vb8XGaRGck8QSNZJJp538Wrb60Lax4fPwR64ViY468OIUTbRlGZg==}
 
   commander@11.1.0:
     resolution: {integrity: sha512-yPVavfyCcRhmorC7rWlkHn15b4wDVgVmBA7kV4QVBsF7kv/9TKJAbAXVTxvTnwP8HHKjRCJDClKbciiYS7p0DQ==}
@@ -3520,9 +1752,6 @@ packages:
     resolution: {integrity: sha512-VfxadyCECXgQlkoEAjeghAr5gY3Hf+IKjKb+X8tGVDtveCjN+USwprd2q3QXBR9T1+x2DG0XZF5/w+7HAtSaXA==}
     engines: {node: '>=10'}
 
-  decode-named-character-reference@1.0.2:
-    resolution: {integrity: sha512-O8x12RzrUF8xyVcY0KJowWsmaJxQbmy0/EtnNtHRpsOcT7dFk5W598coHqBVpmWo1oQQfsCqfCmkZN5DJrZVdg==}
-
   decode-uri-component@0.2.2:
     resolution: {integrity: sha512-FqUYQ+8o158GyGTrMFJms9qh3CqTKvAqgqsTnkLI8sKu0028orqBhxNMFkFen0zGyg6epACD32pjVk58ngIErQ==}
     engines: {node: '>=0.10'}
@@ -3574,10 +1803,6 @@ packages:
     resolution: {integrity: sha512-g7nH6P6dyDioJogAAGprGpCtVImJhpPk/roCzdb3fIh61/s/nPsfR6onyMwkCAR/OlC3yBC0lESvUoQEAssIrw==}
     engines: {node: '>= 0.8'}
 
-  dequal@2.0.3:
-    resolution: {integrity: sha512-0je+qPKHEMohvfRTCEo3CrPG6cAzAYgmzKyxRiYSSDkS6eGJdyVJm7WaYA5ECaAD9wLB2T4EEeymA5aFVcYXCA==}
-    engines: {node: '>=6'}
-
   destroy@1.0.4:
     resolution: {integrity: sha512-3NdhDuEXnfun/z7x9GOElY49LoqVHoGScmOKwmxhsS8N5Y+Z8KyPPDnaSzqWgYt/ji4mqwfTS34Htrk0zPIXVg==}
 
@@ -3585,9 +1810,6 @@ packages:
     resolution: {integrity: sha512-LmVkry/oDShEgSZPNgqCIp2/TlqtExeGmymru3uCELnfyjY11IzpAproLYs+1X88fXO6DBoYP3ul2Xo2yz2j6A==}
     engines: {node: '>= 0.8.0'}
     hasBin: true
-
-  devlop@1.1.0:
-    resolution: {integrity: sha512-RWmIqhcFf1lRYBvNmr7qTNuyCt/7/ns2jbpp1+PalgE/rDQcBT0fioSMUpJ93irlUhC5hrg4cYqe6U+0ImW0rA==}
 
   diff-sequences@29.6.3:
     resolution: {integrity: sha512-EjePK1srD3P08o2j4f0ExnylqRs5B9tJjcp9t1krH2qRi8CCdsYfwe9JgSLurFBWwq4uOlipzfk5fHNvwFKr8Q==}
@@ -3839,9 +2061,6 @@ packages:
     resolution: {integrity: sha512-BwY5b5Ql4+qZoefgMj2NUmx+tehVTH/Kf4k1ZEtOHNFcm2wSxMRo992l6X3TIgni2eZVTZ85xMOjF31fwZAj6Q==}
     engines: {node: '>=0.10.0'}
 
-  extend@3.0.2:
-    resolution: {integrity: sha512-fjquC59cD7CyW6urNXK0FBufkZcoiGG80wTuPujX590cB5Ttln20E2UB4S/WARVqhXffZl2LNgS+gQdPIIim/g==}
-
   extglob@0.3.2:
     resolution: {integrity: sha512-1FOj1LOwn42TMrruOHGt18HemVnbwAmAak7krWk+wa93KXxGbK+2jpezm+ytJYDaBX0/SPLZFHKM7m+tKobWGg==}
     engines: {node: '>=0.10.0'}
@@ -3871,9 +2090,6 @@ packages:
 
   fastq@1.17.1:
     resolution: {integrity: sha512-sRVD3lWVIXWg6By68ZN7vho9a1pQcN/WBFaAAsDDFzlJjvoGx0P8z7V1t72grFJfJhu3YPZBuu25f7Kaw2jN1w==}
-
-  fault@2.0.1:
-    resolution: {integrity: sha512-WtySTkS4OKev5JtpHXnib4Gxiurzh5NCGvWrFaZ34m6JehfTUhKZvn9njTfw48t6JumVQOmrKqpmGcdwxnhqBQ==}
 
   file-entry-cache@6.0.1:
     resolution: {integrity: sha512-7Gps/XWymbLk2QLYK4NzpMOrYjMhdIxXuIvy2QBsLE6ljuodKvdkWs/cpyJJ3CVIVpH0Oi1Hvg1ovbMzLdFBBg==}
@@ -3964,10 +2180,6 @@ packages:
     resolution: {integrity: sha512-ETEklSGi5t0QMZuiXoA/Q6vcnxcLQP5vdugSpuAyi6SVGi2clPPp+xgEhuMaHC+zGgn31Kd235W35f7Hykkaww==}
     engines: {node: '>= 6'}
 
-  format@0.2.2:
-    resolution: {integrity: sha512-wzsgA6WOq+09wrU1tsJ09udeR/YZRaeArL9e1wPbFg3GG2yDnC2ldKpxs4xunpFF9DgqCqOIra3bc1HWrJ37Ww==}
-    engines: {node: '>=0.4.x'}
-
   fragment-cache@0.2.1:
     resolution: {integrity: sha512-GMBAbW9antB8iZRHLoGw0b3HANt57diZYFO/HL1JGIC1MjKrdmhxvrJbupnVvpys0zsz7yBApXdQyfepKly2kA==}
     engines: {node: '>=0.10.0'}
@@ -4037,9 +2249,6 @@ packages:
   get-value@2.0.6:
     resolution: {integrity: sha512-Ln0UQDlxH1BapMu3GPtf7CuYNwRZf2gwCuPqbyG6pB8WfmFpzqcy4xtAaAMUhnNqjMKTiCPZG2oMT3YSx8U2NA==}
     engines: {node: '>=0.10.0'}
-
-  github-slugger@2.0.0:
-    resolution: {integrity: sha512-IaOQ9puYtjrkq7Y0Ygl9KDZnrf/aiUJYUpVf89y8kyaxbRG7Y1SrX/jaumrv81vc61+kiMempujsM3Yw7w5qcw==}
 
   glob-base@0.3.0:
     resolution: {integrity: sha512-ab1S1g1EbO7YzauaJLkgLp7DZVAqj9M/dvKlTt8DkXA2tiOIcSMrlVI2J1RZyB5iJVccEscjGn+kpOG9788MHA==}
@@ -4147,33 +2356,6 @@ packages:
     resolution: {integrity: sha512-0hJU9SCPvmMzIBdZFqNPXWa6dqh7WdH0cII9y+CyS8rG3nL48Bclra9HmKhVVUHyPWNH5Y7xDwAB7bfgSjkUMQ==}
     engines: {node: '>= 0.4'}
 
-  hast-util-from-html@2.0.2:
-    resolution: {integrity: sha512-HwOHwxdt2zC5KQ/CNoybBntRook2zJvfZE/u5/Ap7aLPe22bDqen7KwGkOqOyzL5zIqKwiYX/OTtE0FWgr6XXA==}
-
-  hast-util-from-parse5@8.0.1:
-    resolution: {integrity: sha512-Er/Iixbc7IEa7r/XLtuG52zoqn/b3Xng/w6aZQ0xGVxzhw5xUFxcRqdPzP6yFi/4HBYRaifaI5fQ1RH8n0ZeOQ==}
-
-  hast-util-heading-rank@3.0.0:
-    resolution: {integrity: sha512-EJKb8oMUXVHcWZTDepnr+WNbfnXKFNf9duMesmr4S8SXTJBJ9M4Yok08pu9vxdJwdlGRhVumk9mEhkEvKGifwA==}
-
-  hast-util-is-element@3.0.0:
-    resolution: {integrity: sha512-Val9mnv2IWpLbNPqc/pUem+a7Ipj2aHacCwgNfTiK0vJKl0LF+4Ba4+v1oPHFpf3bLYmreq0/l3Gud9S5OH42g==}
-
-  hast-util-parse-selector@4.0.0:
-    resolution: {integrity: sha512-wkQCkSYoOGCRKERFWcxMVMOcYE2K1AaNLU8DXS9arxnLOUEWbOXKXiJUNzEpqZ3JOKpnha3jkFrumEjVliDe7A==}
-
-  hast-util-to-html@9.0.3:
-    resolution: {integrity: sha512-M17uBDzMJ9RPCqLMO92gNNUDuBSq10a25SDBI08iCCxmorf4Yy6sYHK57n9WAbRAAaU+DuR4W6GN9K4DFZesYg==}
-
-  hast-util-to-string@3.0.0:
-    resolution: {integrity: sha512-OGkAxX1Ua3cbcW6EJ5pT/tslVb90uViVkcJ4ZZIMW/R33DX/AkcJcRrPebPwJkHYwlDHXz4aIwvAAaAdtrACFA==}
-
-  hast-util-whitespace@3.0.0:
-    resolution: {integrity: sha512-88JUN06ipLwsnv+dVn+OIYOvAuvBMy/Qoi6O7mQHxdPXpjy+Cd6xRkWwux7DKO+4sYILtLBRIKgsdpS2gQc7qw==}
-
-  hastscript@8.0.0:
-    resolution: {integrity: sha512-dMOtzCEd3ABUeSIISmrETiKuyydk1w0pa+gE/uormcTpSYuaNJPbX1NU3JLyscSLjwAQM8bWMhhIlnCqnRvDTw==}
-
   he@1.2.0:
     resolution: {integrity: sha512-F/1DnUGPopORZi0ni+CvrCgHQ5FyEAHRLSApuYWMmrbSwoN2Mn/7k+Gl38gJnR7yyDZk6WLXwiGod1JOWNDKGw==}
     hasBin: true
@@ -4186,9 +2368,6 @@ packages:
     resolution: {integrity: sha512-YXxSlJBZTP7RS3tWnQw74ooKa6L9b9i9QYXY21eUEvhZ3u9XLfv6OnFsQq6RxkhHygsaUMvYsZRV5rU/OVNZxw==}
     engines: {node: '>=12'}
     hasBin: true
-
-  html-void-elements@3.0.0:
-    resolution: {integrity: sha512-bEqo66MRXsUGxWHV5IP0PUiAWwoEjba4VCzg0LjFJBpchPaTfyfCKTG6bc5F8ucKec3q5y6qOdGyYTSBEvhCrg==}
 
   html-webpack-plugin@5.6.0:
     resolution: {integrity: sha512-iwaY4wzbe48AfKLZ/Cc8k0L+FKG6oSNRaZ8x5A/T/IVDGyXcbHncM9TdDa93wn0FsSm82FhTKW7f3vS61thXAw==}
@@ -4398,10 +2577,6 @@ packages:
     resolution: {integrity: sha512-yvkRyxmFKEOQ4pNXCmJG5AEQNlXJS5LaONXo5/cLdTZdWvsZ1ioJEonLGAosKlMWE8lwUy/bJzMjcw8az73+Fg==}
     engines: {node: '>=0.10.0'}
 
-  is-plain-obj@4.1.0:
-    resolution: {integrity: sha512-+Pgi+vMuUNkJyExiMBt5IlFoMyKnr5zhJ4Uspz58WOhBF5QoIZkFyNHIbBAtHwzVAgk5RtndVNsDRN61/mmDqg==}
-    engines: {node: '>=12'}
-
   is-plain-object@2.0.4:
     resolution: {integrity: sha512-h5PpgXkWitc38BBMYawTYMWJHFZJVnBquFE57xFpjB8pJFiF6gZ+bU+WyI/yqXiFR5mdLsgYNaPe8uao6Uv9Og==}
     engines: {node: '>=0.10.0'}
@@ -4575,6 +2750,9 @@ packages:
   lines-and-columns@1.2.4:
     resolution: {integrity: sha512-7ylylesZQ/PV29jhEDl3Ufjo6ZX7gCqJr5F7PKrqc93v7fzSymt1BpwEU8nAUXs8qzzvqhbjhK5QZg6Mt/HkBg==}
 
+  linkify-it@5.0.0:
+    resolution: {integrity: sha512-5aHCbzQRADcdP+ATqnDuhhJ/MRIqDkZX5pyjFHRRysS8vZ5AbqGEoFIb6pYHPZ+L/OC2Lc+xT8uHVVR5CAK/wQ==}
+
   lit-element@4.1.0:
     resolution: {integrity: sha512-gSejRUQJuMQjV2Z59KAS/D4iElUhwKpIyJvZ9w+DIagIQjfJnhR20h2Q5ddpzXGS+fF0tMZ/xEYGMnKmaI/iww==}
 
@@ -4636,11 +2814,24 @@ packages:
     resolution: {integrity: sha512-4y7uGv8bd2WdM9vpQsiQNo41Ln1NvhvDRuVt0k2JZQ+ezN2uaQes7lZeZ+QQUHOLQAtDaBJ+7wCbi+ab/KFs+w==}
     engines: {node: '>=0.10.0'}
 
+  markdown-it-anchor@9.2.0:
+    resolution: {integrity: sha512-sa2ErMQ6kKOA4l31gLGYliFQrMKkqSO0ZJgGhDHKijPf0pNFM9vghjAh3gn26pS4JDRs7Iwa9S36gxm3vgZTzg==}
+    peerDependencies:
+      '@types/markdown-it': '*'
+      markdown-it: '*'
+
+  markdown-it-front-matter@0.2.4:
+    resolution: {integrity: sha512-25GUs0yjS2hLl8zAemVndeEzThB1p42yxuDEKbd4JlL3jiz+jsm6e56Ya8B0VREOkNxLYB4TTwaoPJ3ElMmW+w==}
+
+  markdown-it@14.1.0:
+    resolution: {integrity: sha512-a54IwgWPaeBCAAsv13YgmALOF1elABB08FxO9i+r4VFk5Vl4pKokRPeX8u5TCgSsPi6ec1otfLjdOpVcgbpshg==}
+    hasBin: true
+
   math-random@1.0.4:
     resolution: {integrity: sha512-rUxjysqif/BZQH2yhd5Aaq7vXMSx9NdEsQcyA07uEzIvxgI7zIr33gGsh+RU0/XjmQpCW7RsVof1vlkvQVCK5A==}
 
-  mdast-util-to-hast@13.2.0:
-    resolution: {integrity: sha512-QGYKEuUsYT9ykKBCMOEDLsU5JRObWQusAolFMeko/tYPufNkRffBAQjIE+99jbA87xv6FgmjLtwjh9wBWajwAA==}
+  mdurl@2.0.0:
+    resolution: {integrity: sha512-Lf+9+2r+Tdp5wXDXC4PcIBjTDtq4UKjCPMQhKIuzpJNW0b96kVqSwW0bT7FhRSfmAiFYgP+SCRvdrDozfh0U5w==}
 
   media-typer@0.3.0:
     resolution: {integrity: sha512-dq+qelQ9akHpcOl/gUVRTxVIOkAJ1wR3QAvb4RsVjS8oVoFjDGTc679wJYmUmknUF5HwMLOgb5O+a3KxfWapPQ==}
@@ -4656,90 +2847,6 @@ packages:
   merge2@1.4.1:
     resolution: {integrity: sha512-8q7VEgMJW4J8tcfVPy8g09NcQwZdbwFEqhe/WZkoIzjn/3TGDwtOCYtXGxA3O8tPzpczCCDgv+P2P5y00ZJOOg==}
     engines: {node: '>= 8'}
-
-  micromark-core-commonmark@2.0.1:
-    resolution: {integrity: sha512-CUQyKr1e///ZODyD1U3xit6zXwy1a8q2a1S1HKtIlmgvurrEpaw/Y9y6KSIbF8P59cn/NjzHyO+Q2fAyYLQrAA==}
-
-  micromark-extension-frontmatter@2.0.0:
-    resolution: {integrity: sha512-C4AkuM3dA58cgZha7zVnuVxBhDsbttIMiytjgsM2XbHAB2faRVaHRle40558FBN+DJcrLNCoqG5mlrpdU4cRtg==}
-
-  micromark-extension-gfm-autolink-literal@2.1.0:
-    resolution: {integrity: sha512-oOg7knzhicgQ3t4QCjCWgTmfNhvQbDDnJeVu9v81r7NltNCVmhPy1fJRX27pISafdjL+SVc4d3l48Gb6pbRypw==}
-
-  micromark-extension-gfm-footnote@2.1.0:
-    resolution: {integrity: sha512-/yPhxI1ntnDNsiHtzLKYnE3vf9JZ6cAisqVDauhp4CEHxlb4uoOTxOCJ+9s51bIB8U1N1FJ1RXOKTIlD5B/gqw==}
-
-  micromark-extension-gfm-strikethrough@2.1.0:
-    resolution: {integrity: sha512-ADVjpOOkjz1hhkZLlBiYA9cR2Anf8F4HqZUO6e5eDcPQd0Txw5fxLzzxnEkSkfnD0wziSGiv7sYhk/ktvbf1uw==}
-
-  micromark-extension-gfm-table@2.1.0:
-    resolution: {integrity: sha512-Ub2ncQv+fwD70/l4ou27b4YzfNaCJOvyX4HxXU15m7mpYY+rjuWzsLIPZHJL253Z643RpbcP1oeIJlQ/SKW67g==}
-
-  micromark-extension-gfm-tagfilter@2.0.0:
-    resolution: {integrity: sha512-xHlTOmuCSotIA8TW1mDIM6X2O1SiX5P9IuDtqGonFhEK0qgRI4yeC6vMxEV2dgyr2TiD+2PQ10o+cOhdVAcwfg==}
-
-  micromark-extension-gfm-task-list-item@2.1.0:
-    resolution: {integrity: sha512-qIBZhqxqI6fjLDYFTBIa4eivDMnP+OZqsNwmQ3xNLE4Cxwc+zfQEfbs6tzAo2Hjq+bh6q5F+Z8/cksrLFYWQQw==}
-
-  micromark-extension-gfm@3.0.0:
-    resolution: {integrity: sha512-vsKArQsicm7t0z2GugkCKtZehqUm31oeGBV/KVSorWSy8ZlNAv7ytjFhvaryUiCUJYqs+NoE6AFhpQvBTM6Q4w==}
-
-  micromark-factory-destination@2.0.0:
-    resolution: {integrity: sha512-j9DGrQLm/Uhl2tCzcbLhy5kXsgkHUrjJHg4fFAeoMRwJmJerT9aw4FEhIbZStWN8A3qMwOp1uzHr4UL8AInxtA==}
-
-  micromark-factory-label@2.0.0:
-    resolution: {integrity: sha512-RR3i96ohZGde//4WSe/dJsxOX6vxIg9TimLAS3i4EhBAFx8Sm5SmqVfR8E87DPSR31nEAjZfbt91OMZWcNgdZw==}
-
-  micromark-factory-space@2.0.0:
-    resolution: {integrity: sha512-TKr+LIDX2pkBJXFLzpyPyljzYK3MtmllMUMODTQJIUfDGncESaqB90db9IAUcz4AZAJFdd8U9zOp9ty1458rxg==}
-
-  micromark-factory-title@2.0.0:
-    resolution: {integrity: sha512-jY8CSxmpWLOxS+t8W+FG3Xigc0RDQA9bKMY/EwILvsesiRniiVMejYTE4wumNc2f4UbAa4WsHqe3J1QS1sli+A==}
-
-  micromark-factory-whitespace@2.0.0:
-    resolution: {integrity: sha512-28kbwaBjc5yAI1XadbdPYHX/eDnqaUFVikLwrO7FDnKG7lpgxnvk/XGRhX/PN0mOZ+dBSZ+LgunHS+6tYQAzhA==}
-
-  micromark-util-character@2.1.0:
-    resolution: {integrity: sha512-KvOVV+X1yLBfs9dCBSopq/+G1PcgT3lAK07mC4BzXi5E7ahzMAF8oIupDDJ6mievI6F+lAATkbQQlQixJfT3aQ==}
-
-  micromark-util-chunked@2.0.0:
-    resolution: {integrity: sha512-anK8SWmNphkXdaKgz5hJvGa7l00qmcaUQoMYsBwDlSKFKjc6gjGXPDw3FNL3Nbwq5L8gE+RCbGqTw49FK5Qyvg==}
-
-  micromark-util-classify-character@2.0.0:
-    resolution: {integrity: sha512-S0ze2R9GH+fu41FA7pbSqNWObo/kzwf8rN/+IGlW/4tC6oACOs8B++bh+i9bVyNnwCcuksbFwsBme5OCKXCwIw==}
-
-  micromark-util-combine-extensions@2.0.0:
-    resolution: {integrity: sha512-vZZio48k7ON0fVS3CUgFatWHoKbbLTK/rT7pzpJ4Bjp5JjkZeasRfrS9wsBdDJK2cJLHMckXZdzPSSr1B8a4oQ==}
-
-  micromark-util-decode-numeric-character-reference@2.0.1:
-    resolution: {integrity: sha512-bmkNc7z8Wn6kgjZmVHOX3SowGmVdhYS7yBpMnuMnPzDq/6xwVA604DuOXMZTO1lvq01g+Adfa0pE2UKGlxL1XQ==}
-
-  micromark-util-encode@2.0.0:
-    resolution: {integrity: sha512-pS+ROfCXAGLWCOc8egcBvT0kf27GoWMqtdarNfDcjb6YLuV5cM3ioG45Ys2qOVqeqSbjaKg72vU+Wby3eddPsA==}
-
-  micromark-util-html-tag-name@2.0.0:
-    resolution: {integrity: sha512-xNn4Pqkj2puRhKdKTm8t1YHC/BAjx6CEwRFXntTaRf/x16aqka6ouVoutm+QdkISTlT7e2zU7U4ZdlDLJd2Mcw==}
-
-  micromark-util-normalize-identifier@2.0.0:
-    resolution: {integrity: sha512-2xhYT0sfo85FMrUPtHcPo2rrp1lwbDEEzpx7jiH2xXJLqBuy4H0GgXk5ToU8IEwoROtXuL8ND0ttVa4rNqYK3w==}
-
-  micromark-util-resolve-all@2.0.0:
-    resolution: {integrity: sha512-6KU6qO7DZ7GJkaCgwBNtplXCvGkJToU86ybBAUdavvgsCiG8lSSvYxr9MhwmQ+udpzywHsl4RpGJsYWG1pDOcA==}
-
-  micromark-util-sanitize-uri@2.0.0:
-    resolution: {integrity: sha512-WhYv5UEcZrbAtlsnPuChHUAsu/iBPOVaEVsntLBIdpibO0ddy8OzavZz3iL2xVvBZOpolujSliP65Kq0/7KIYw==}
-
-  micromark-util-subtokenize@2.0.1:
-    resolution: {integrity: sha512-jZNtiFl/1aY73yS3UGQkutD0UbhTt68qnRpw2Pifmz5wV9h8gOVsN70v+Lq/f1rKaU/W8pxRe8y8Q9FX1AOe1Q==}
-
-  micromark-util-symbol@2.0.0:
-    resolution: {integrity: sha512-8JZt9ElZ5kyTnO94muPxIGS8oyElRJaiJO8EzV6ZSyGQ1Is8xwl4Q45qU5UOg+bGH4AikWziz0iN4sFLWs8PGw==}
-
-  micromark-util-types@2.0.0:
-    resolution: {integrity: sha512-oNh6S2WMHWRZrmutsRmDDfkzKtxF+bc2VxLC9dvtrDIRFln627VsFP6fLMgTryGDljgLPjkrzQSDcPrjPyDJ5w==}
-
-  micromark@4.0.0:
-    resolution: {integrity: sha512-o/sd0nMof8kYff+TqcDx3VSrgBTcZpSvYcAHIfHhv5VAuNmisCxjhx6YmxS8PFEpb9z5WKWKPdzf0jM23ro3RQ==}
 
   micromatch@2.3.11:
     resolution: {integrity: sha512-LnU2XFEk9xxSJ6rfgAry/ty5qwUTyHYOBU0g4R6tIw5ljwgGIBmiKhRWLw5NpMOnrgUNcDJ4WMp8rl3sYVHLNA==}
@@ -4989,9 +3096,6 @@ packages:
     resolution: {integrity: sha512-ayCKvm/phCGxOkYRSCM82iDwct8/EonSEgCSxWxD7ve6jHggsFl4fZVQBPRNgQoKiuV/odhFrGzQXZwbifC8Rg==}
     engines: {node: '>=8'}
 
-  parse5@7.1.2:
-    resolution: {integrity: sha512-Czj1WaSVpaoj0wbhMzLmWD69anp2WH7FXMB9n1Sy8/ZFF9jolSQVMu1Ij5WIyGmcBmhk7EOndpO4mIpihVqAXw==}
-
   parser-front-matter@1.6.4:
     resolution: {integrity: sha512-eqtUnI5+COkf1CQOYo8FmykN5Zs+5Yr60f/7GcPgQDZEEjdE/VZ4WMaMo9g37foof8h64t/TH2Uvk2Sq0fDy/g==}
     engines: {node: '>=0.10.0'}
@@ -5145,9 +3249,6 @@ packages:
   proper-lockfile@4.1.2:
     resolution: {integrity: sha512-TjNPblN4BwAWMXU8s9AEz4JmQxnD1NNL7bNOY/AKUzyamc379FWASUhc/K1pL2noVb+XmZKLL68cjzLsiOAMaA==}
 
-  property-information@6.5.0:
-    resolution: {integrity: sha512-PgTgs/BlvHxOu8QuEN7wi5A0OmXaBcHpmCSTehcs6Uuu9IkDIEo13Hy7n898RHfrQ49vKCoGeWZSaAK01nwVig==}
-
   proxy-from-env@1.1.0:
     resolution: {integrity: sha512-D+zkORCbA9f1tdWRK0RaCR3GPv50cMxcrz4X8k5LTSUD1Dkw47mKJEZQNunItRTkWwgtaUSo1RVFRIG9ZXiFYg==}
 
@@ -5155,6 +3256,10 @@ packages:
     resolution: {integrity: sha512-0VnamPPYHl4uaU/nSFeZZpR21QAWRz+sRv4iW9+v/GS/J5U5iZB5BNN6J0RMoOvdx2gWM2+ZFMIm58q24e4UYA==}
     engines: {node: '>= 0.10'}
     hasBin: true
+
+  punycode.js@2.3.1:
+    resolution: {integrity: sha512-uxFIHU0YlHYhDQtV4R9J6a52SLx28BCjT+4ieh7IGbgwVJWO+km431c4yRlREUAsAmt/uMjQUyQHNEPf0M39CA==}
+    engines: {node: '>=6'}
 
   punycode@1.4.1:
     resolution: {integrity: sha512-jmYNElW7yvO7TV33CjSmvSiE2yco3bV2czu/OzDKdMNVZQWfxCblURLhf+47syQRBntjfLdd/H0egrzIG+oaFQ==}
@@ -5238,21 +3343,6 @@ packages:
   regexp.prototype.flags@1.5.2:
     resolution: {integrity: sha512-NcDiDkTLuPR+++OCKB0nWafEmhg/Da8aUPLPMQbK+bxKKCm1/S5he+AqYa4PlMCVBalb4/yxIRub6qkEx5yJbw==}
     engines: {node: '>= 0.4'}
-
-  rehype-autolink-headings@7.1.0:
-    resolution: {integrity: sha512-rItO/pSdvnvsP4QRB1pmPiNHUskikqtPojZKJPPPAVx9Hj8i8TwMBhofrrAYRhYOOBZH9tgmG5lPqDLuIWPWmw==}
-
-  rehype-parse@9.0.0:
-    resolution: {integrity: sha512-WG7nfvmWWkCR++KEkZevZb/uw41E8TsH4DsY9UxsTbIXCVGbAs4S+r8FrQ+OtH5EEQAs+5UxKC42VinkmpA1Yw==}
-
-  rehype-slug@6.0.0:
-    resolution: {integrity: sha512-lWyvf/jwu+oS5+hL5eClVd3hNdmwM1kAC0BUvEGD19pajQMIzcNUd/k9GsfQ+FfECvX+JE+e9/btsKH0EjJT6A==}
-
-  rehype-stringify@10.0.0:
-    resolution: {integrity: sha512-1TX1i048LooI9QoecrXy7nGFFbFSufxVRAfc6Y9YMRAi56l+oB0zP51mLSV312uRuvVLPV1opSlJmslozR1XHQ==}
-
-  rehype@13.0.1:
-    resolution: {integrity: sha512-AcSLS2mItY+0fYu9xKxOu1LhUZeBZZBx8//5HKzF+0XP+eP8+6a5MXn2+DW2kfXR6Dtp1FEXMVrjyKAcvcU8vg==}
 
   relateurl@0.2.7:
     resolution: {integrity: sha512-G08Dxvm4iDN3MLM0EsP62EDV9IuhXPR6blNz6Utcp7zyV3tr4HVNINt6MpaRWbxoOHT3Q7YN2P+jaHX8vUbgog==}
@@ -5444,10 +3534,6 @@ packages:
   slide@1.1.6:
     resolution: {integrity: sha512-NwrtjCg+lZoqhFU8fOwl4ay2ei8PaqCBOUV3/ektPY9trO1yQ1oXEfmHAhKArUVUr/hOHvy5f6AdP17dCM0zMw==}
 
-  slugify@1.6.6:
-    resolution: {integrity: sha512-h+z7HKHYXj6wJU+AnS/+IH8Uh9fdcX1Lrhg1/VMdf9PwoBQXFcXiAdsy2tSK0P6gKwJLXp02r90ahUCqHk9rrw==}
-    engines: {node: '>=8.0.0'}
-
   snapdragon-node@2.1.1:
     resolution: {integrity: sha512-O27l4xaMYt/RSQ5TR3vpWCAB5Kb/czIcqUFOM/C4fYcLnbZUc1PkjTAMjof2pBWaSTwOUd6qUHcFGVGj7aIwnw==}
     engines: {node: '>=0.10.0'}
@@ -5501,9 +3587,6 @@ packages:
   source-map@0.6.1:
     resolution: {integrity: sha512-UjgapumWlbMhkBgzT7Ykc5YXUT46F0iKu8SGXq0bcwP5dz/h0Plj6enJqjz1Zbq2l5WaqYnrVbwWOWMyF3F47g==}
     engines: {node: '>=0.10.0'}
-
-  space-separated-tokens@2.0.2:
-    resolution: {integrity: sha512-PEGlAwrG8yXGXRjW32fGbg66JAlOAwbObuqVoJpv/mRgoWDQfgH1wDPvtzWyUSNAXBGSk8h755YDbbcEy3SH2Q==}
 
   spawn-command@0.0.2:
     resolution: {integrity: sha512-zC8zGoGkmc8J9ndvml8Xksr1Amk9qBujgbF0JAIWO7kXr43w0h/0GJNM/Vustixu+YE8N/MTrQ7N31FvHUACxQ==}
@@ -5582,9 +3665,6 @@ packages:
 
   string_decoder@1.1.1:
     resolution: {integrity: sha512-n/ShnvDi6FHbbVfviro+WojiFzv+s8MPMHBczVePfUpDJLwoLT0ht1l4YwBCbi8pJAveEEdnkHyPyTP/mzRfwg==}
-
-  stringify-entities@4.0.4:
-    resolution: {integrity: sha512-IwfBptatlO+QCJUo19AqvrPNqlVMpW9YEL2LIVY+Rpv2qsjCGxaDLNRgeGsQWJhfItebuJhsGSLjaBbNSQ+ieg==}
 
   strip-ansi@6.0.1:
     resolution: {integrity: sha512-Y38VPSHcqkFrCpFnQ9vuSXmquuv5oXOKpGeT6aGrr3o3Gc9AlVa6JBfUSOCnbxGGZF+/0ooI7KrPuUSztUdU5A==}
@@ -5729,15 +3809,9 @@ packages:
     resolution: {integrity: sha512-ViFS8blDWJN4Jg10fyZ+sIAfkSSAn5NiTVywc3kKtMWK3DZjaV7FV86oX3i9KY6/gqYkdka/UNeM2/NMGttiyA==}
     engines: {node: '>=0.10.0'}
 
-  trim-lines@3.0.1:
-    resolution: {integrity: sha512-kRj8B+YHZCc9kQYdWfJB2/oUl9rA99qbowYYBtr4ui4mZyAQ2JpvVBd/6U2YloATfqBhBTSMhTpgBHtU0Mf3Rg==}
-
   trim-newlines@4.1.1:
     resolution: {integrity: sha512-jRKj0n0jXWo6kh62nA5TEh3+4igKDXLvzBJcPpiizP7oOolUrYIxmVBG9TOtHYFHoddUk6YvAkGeGoSVTXfQXQ==}
     engines: {node: '>=12'}
-
-  trough@2.2.0:
-    resolution: {integrity: sha512-tmMpK00BjZiUyVyvrBK7knerNgmgvcV/KLVyuma/SC+TQN167GrMRciANTz09+k3zW8L8t60jWO1GpfkZdjTaw==}
 
   ts-api-utils@1.3.0:
     resolution: {integrity: sha512-UQMIo7pb8WRomKR1/+MFVLTroIvDVtMX3K6OUir8ynLyzB8Jeriont2bTAtmNPa1ekAgN7YPDyf6V+ygrdU+eQ==}
@@ -5784,30 +3858,15 @@ packages:
   ua-parser-js@1.0.38:
     resolution: {integrity: sha512-Aq5ppTOfvrCMgAPneW1HfWj66Xi7XL+/mIy996R1/CLS/rcyJQm6QZdsKrUeivDFQ+Oc9Wyuwor8Ze8peEoUoQ==}
 
+  uc.micro@2.1.0:
+    resolution: {integrity: sha512-ARDJmphmdvUk6Glw7y9DQ2bFkKBHwQHLi2lsaH6PPmz/Ka9sFOBsBluozhDltWmnv9u/cF6Rt87znRTPV+yp/A==}
+
   undici-types@6.19.8:
     resolution: {integrity: sha512-ve2KP6f/JnbPBFyobGHuerC9g1FYGn/F8n1LWTwNxCEzd6IfqTwUQcNXgEtmmQ6DlRrC1hrSrBnCZPokRrDHjw==}
-
-  unified@11.0.5:
-    resolution: {integrity: sha512-xKvGhPWw3k84Qjh8bI3ZeJjqnyadK+GEFtazSfZv/rKeTkTjOJho6mFqh2SM96iIcZokxiOpg78GazTSg8+KHA==}
 
   union-value@1.0.1:
     resolution: {integrity: sha512-tJfXmxMeWYnczCVs7XAEvIV7ieppALdyepWMkHkwciRpZraG/xwT+s2JN8+pr1+8jCRf80FFzvr+MpQeeoF4Xg==}
     engines: {node: '>=0.10.0'}
-
-  unist-util-is@6.0.0:
-    resolution: {integrity: sha512-2qCTHimwdxLfz+YzdGfkqNlH0tLi9xjTnHddPmJwtIG9MGsdbutfTc4P+haPD7l7Cjxf/WZj+we5qfVPvvxfYw==}
-
-  unist-util-position@5.0.0:
-    resolution: {integrity: sha512-fucsC7HjXvkB5R3kTCO7kUjRdrS0BJt3M/FPxmHMBOm8JQi2BsHAHFsy27E0EolP8rp0NzXsJ+jNPyDWvOJZPA==}
-
-  unist-util-stringify-position@4.0.0:
-    resolution: {integrity: sha512-0ASV06AAoKCDkS2+xw5RXJywruurpbC4JZSm7nr7MOt1ojAzvyyaO+UxZf18j8FCF6kmzCZKcAgN/yu2gm2XgQ==}
-
-  unist-util-visit-parents@6.0.1:
-    resolution: {integrity: sha512-L/PqWzfTP9lzzEa6CKs0k2nARxTdZduw3zyh8d2NVBnsyvHjSX4TWse388YrrQKbvI8w20fGjGlhgT96WwKykw==}
-
-  unist-util-visit@5.0.0:
-    resolution: {integrity: sha512-MR04uvD+07cwl/yhVuVWAtw+3GOR/knlL55Nd/wAdblk27GCVt3lqpTivy/tkJcZoNPzTwS1Y+KMojlLDhoTzg==}
 
   universalify@0.1.2:
     resolution: {integrity: sha512-rBJeI5CXAlmy1pV+617WB9J63U6XcazHHF2f2dbJix4XzpUF0RS3Zbj0FGIOCAva5P/d/GBOYaACQ1w+0azUkg==}
@@ -5862,18 +3921,6 @@ packages:
   vary@1.1.2:
     resolution: {integrity: sha512-BNGbWLfd0eUPabhkXUVm0j8uuvREyTh5ovRa/dyow/BqAbZJyC+5fU+IzQOzmAKzYqYRAISoRhdQr3eIZ/PXqg==}
     engines: {node: '>= 0.8'}
-
-  vfile-location@5.0.3:
-    resolution: {integrity: sha512-5yXvWDEgqeiYiBe1lbxYF7UMAIm/IcopxMHrMQDq3nvKcjPKIhZklUKL+AE7J7uApI4kwe2snsK+eI6UTj9EHg==}
-
-  vfile-matter@5.0.0:
-    resolution: {integrity: sha512-jhPSqlj8hTSkTXOqyxbUeZAFFVq/iwu/jukcApEqc/7DOidaAth6rDc0Zgg0vWpzUnWkwFP7aK28l6nBmxMqdQ==}
-
-  vfile-message@4.0.2:
-    resolution: {integrity: sha512-jRDZ1IMLttGj41KcZvlrYAaI3CfqpLpfpf+Mfig13viT6NKvRzWZ+lXz0Y5D60w6uJIBAOGq9mSHf0gktF0duw==}
-
-  vfile@6.0.3:
-    resolution: {integrity: sha512-KzIbH/9tXat2u30jf+smMwFCsno4wHVdNmzFyL+T/L3UGqqk6JKfVqOFOZEpZSHADH1k40ab6NUIXZq422ov3Q==}
 
   vite-node@2.0.5:
     resolution: {integrity: sha512-LdsW4pxj0Ot69FAoXZ1yTnA9bjGohr2yNBU7QKRxpz8ITSkhuDl6h3zS/tvgz4qrNjeRnvrWeXQ8ZF7Um4W00Q==}
@@ -6006,9 +4053,6 @@ packages:
     resolution: {integrity: sha512-TnbFSbcOCcDgjZ4piURLCbJ3nJhznVh9kw6F6iokjiFPl8ONxe9A6nMDVXDiNbrSfLILs6vB07F7wLBrwPYzJw==}
     engines: {node: '>=10.13.0'}
 
-  web-namespaces@2.0.1:
-    resolution: {integrity: sha512-bKr1DkiNa2krS7qxNtdrtHAmzuYGFQLiQ13TsorsdT6ULTkPLKuu5+GsFpDlg6JFjUTwX2DyhMPG2be8uPrqsQ==}
-
   webidl-conversions@3.0.1:
     resolution: {integrity: sha512-2JAn3z8AR6rjK8Sm8orRC0h/bcl/DqL7tRPdGZ4I1CjdF+EaMLmYxBHyXuKL849eucPFhvBoxMsflfOb8kxaeQ==}
 
@@ -6117,11 +4161,6 @@ packages:
   yallist@4.0.0:
     resolution: {integrity: sha512-3wdGidZyq5PB084XLES5TpOSRA3wjXAlIWMhum2kRcv/41Sn2emQ0dycQW4uZXLejwKvg6EsvbdlVL+FYEct7A==}
 
-  yaml@2.5.1:
-    resolution: {integrity: sha512-bLQOjaX/ADgQ20isPJRvF0iRUHIxVhYvr53Of7wGcWlO2jvtUlH5m87DsmulFVxRpNLOnI4tB6p/oh8D7kpn9Q==}
-    engines: {node: '>= 14'}
-    hasBin: true
-
   yargs-parser@20.2.9:
     resolution: {integrity: sha512-y11nGElTIV+CT3Zv9t7VKl+Q3hTQoT9a1Qzezhhl6Rp21gJ/IVTW7Z3y9EWXhuUBC2Shnf+DX0antecpAwSP8w==}
     engines: {node: '>=10'}
@@ -6137,9 +4176,6 @@ packages:
   yocto-queue@0.1.0:
     resolution: {integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==}
     engines: {node: '>=10'}
-
-  zwitch@2.0.4:
-    resolution: {integrity: sha512-bXE4cR/kVZhKZX/RjPEflHaKVhUVl85noU3v6b8apfQEc1x4A+zBxjZ4lN8LqGd6WZ3dl98pY4o717VFmoPp+A==}
 
 snapshots:
 
@@ -6770,10 +4806,6 @@ snapshots:
     dependencies:
       '@types/node': 20.16.2
 
-  '@types/debug@4.1.12':
-    dependencies:
-      '@types/ms': 0.7.34
-
   '@types/deep-equal@1.0.4': {}
 
   '@types/estree@1.0.5': {}
@@ -6784,10 +4816,6 @@ snapshots:
     dependencies:
       '@types/jsonfile': 6.1.4
       '@types/node': 20.16.2
-
-  '@types/hast@3.0.4':
-    dependencies:
-      '@types/unist': 3.0.3
 
   '@types/html-minifier-terser@6.1.0': {}
 
@@ -6823,9 +4851,14 @@ snapshots:
     dependencies:
       '@types/node': 20.16.2
 
-  '@types/mdast@4.0.4':
+  '@types/linkify-it@5.0.0': {}
+
+  '@types/markdown-it@14.1.2':
     dependencies:
-      '@types/unist': 3.0.3
+      '@types/linkify-it': 5.0.0
+      '@types/mdurl': 2.0.0
+
+  '@types/mdurl@2.0.0': {}
 
   '@types/micromatch@2.3.35':
     dependencies:
@@ -6834,8 +4867,6 @@ snapshots:
   '@types/mime@1.3.5': {}
 
   '@types/minimist@1.2.5': {}
-
-  '@types/ms@0.7.34': {}
 
   '@types/mustache@4.2.5': {}
 
@@ -6893,8 +4924,6 @@ snapshots:
   '@types/stack-utils@2.0.3': {}
 
   '@types/trusted-types@2.0.7': {}
-
-  '@types/unist@3.0.3': {}
 
   '@types/validator@13.12.2': {}
 
@@ -7353,8 +5382,6 @@ snapshots:
       core-js: 2.6.12
       regenerator-runtime: 0.11.1
 
-  bail@2.0.2: {}
-
   balanced-match@1.0.2: {}
 
   balanced-match@3.0.1: {}
@@ -7539,8 +5566,6 @@ snapshots:
 
   caniuse-lite@1.0.30001663: {}
 
-  ccount@2.0.1: {}
-
   chai@5.1.1:
     dependencies:
       assertion-error: 2.0.1
@@ -7561,12 +5586,6 @@ snapshots:
       supports-color: 7.2.0
 
   chalk@5.3.0: {}
-
-  character-entities-html4@2.1.0: {}
-
-  character-entities-legacy@3.0.0: {}
-
-  character-entities@2.0.2: {}
 
   check-error@2.1.1: {}
 
@@ -7640,8 +5659,6 @@ snapshots:
   combined-stream@1.0.8:
     dependencies:
       delayed-stream: 1.0.0
-
-  comma-separated-tokens@2.0.3: {}
 
   commander@11.1.0: {}
 
@@ -7767,10 +5784,6 @@ snapshots:
 
   decamelize@5.0.1: {}
 
-  decode-named-character-reference@1.0.2:
-    dependencies:
-      character-entities: 2.0.2
-
   decode-uri-component@0.2.2: {}
 
   deep-eql@5.0.2: {}
@@ -7831,15 +5844,9 @@ snapshots:
 
   depd@2.0.0: {}
 
-  dequal@2.0.3: {}
-
   destroy@1.0.4: {}
 
   dev-ip@1.0.1: {}
-
-  devlop@1.1.0:
-    dependencies:
-      dequal: 2.0.3
 
   diff-sequences@29.6.3: {}
 
@@ -8189,8 +6196,6 @@ snapshots:
       assign-symbols: 1.0.0
       is-extendable: 1.0.1
 
-  extend@3.0.2: {}
-
   extglob@0.3.2:
     dependencies:
       is-extglob: 1.0.0
@@ -8231,10 +6236,6 @@ snapshots:
   fastq@1.17.1:
     dependencies:
       reusify: 1.0.4
-
-  fault@2.0.1:
-    dependencies:
-      format: 0.2.2
 
   file-entry-cache@6.0.1:
     dependencies:
@@ -8327,8 +6328,6 @@ snapshots:
       combined-stream: 1.0.8
       mime-types: 2.1.35
 
-  format@0.2.2: {}
-
   fragment-cache@0.2.1:
     dependencies:
       map-cache: 0.2.2
@@ -8390,8 +6389,6 @@ snapshots:
   get-stream@8.0.1: {}
 
   get-value@2.0.6: {}
-
-  github-slugger@2.0.0: {}
 
   glob-base@0.3.0:
     dependencies:
@@ -8513,68 +6510,6 @@ snapshots:
     dependencies:
       function-bind: 1.1.2
 
-  hast-util-from-html@2.0.2:
-    dependencies:
-      '@types/hast': 3.0.4
-      devlop: 1.1.0
-      hast-util-from-parse5: 8.0.1
-      parse5: 7.1.2
-      vfile: 6.0.3
-      vfile-message: 4.0.2
-
-  hast-util-from-parse5@8.0.1:
-    dependencies:
-      '@types/hast': 3.0.4
-      '@types/unist': 3.0.3
-      devlop: 1.1.0
-      hastscript: 8.0.0
-      property-information: 6.5.0
-      vfile: 6.0.3
-      vfile-location: 5.0.3
-      web-namespaces: 2.0.1
-
-  hast-util-heading-rank@3.0.0:
-    dependencies:
-      '@types/hast': 3.0.4
-
-  hast-util-is-element@3.0.0:
-    dependencies:
-      '@types/hast': 3.0.4
-
-  hast-util-parse-selector@4.0.0:
-    dependencies:
-      '@types/hast': 3.0.4
-
-  hast-util-to-html@9.0.3:
-    dependencies:
-      '@types/hast': 3.0.4
-      '@types/unist': 3.0.3
-      ccount: 2.0.1
-      comma-separated-tokens: 2.0.3
-      hast-util-whitespace: 3.0.0
-      html-void-elements: 3.0.0
-      mdast-util-to-hast: 13.2.0
-      property-information: 6.5.0
-      space-separated-tokens: 2.0.2
-      stringify-entities: 4.0.4
-      zwitch: 2.0.4
-
-  hast-util-to-string@3.0.0:
-    dependencies:
-      '@types/hast': 3.0.4
-
-  hast-util-whitespace@3.0.0:
-    dependencies:
-      '@types/hast': 3.0.4
-
-  hastscript@8.0.0:
-    dependencies:
-      '@types/hast': 3.0.4
-      comma-separated-tokens: 2.0.3
-      hast-util-parse-selector: 4.0.0
-      property-information: 6.5.0
-      space-separated-tokens: 2.0.2
-
   he@1.2.0: {}
 
   hosted-git-info@4.1.0:
@@ -8590,8 +6525,6 @@ snapshots:
       param-case: 3.0.4
       relateurl: 0.2.7
       terser: 5.31.6
-
-  html-void-elements@3.0.0: {}
 
   html-webpack-plugin@5.6.0(webpack@5.94.0(esbuild@0.20.2)):
     dependencies:
@@ -8788,8 +6721,6 @@ snapshots:
 
   is-plain-obj@1.1.0: {}
 
-  is-plain-obj@4.1.0: {}
-
   is-plain-object@2.0.4:
     dependencies:
       isobject: 3.0.1
@@ -8964,6 +6895,10 @@ snapshots:
 
   lines-and-columns@1.2.4: {}
 
+  linkify-it@5.0.0:
+    dependencies:
+      uc.micro: 2.1.0
+
   lit-element@4.1.0:
     dependencies:
       '@lit-labs/ssr-dom-shim': 1.2.1
@@ -9022,19 +6957,25 @@ snapshots:
     dependencies:
       object-visit: 1.0.1
 
+  markdown-it-anchor@9.2.0(@types/markdown-it@14.1.2)(markdown-it@14.1.0):
+    dependencies:
+      '@types/markdown-it': 14.1.2
+      markdown-it: 14.1.0
+
+  markdown-it-front-matter@0.2.4: {}
+
+  markdown-it@14.1.0:
+    dependencies:
+      argparse: 2.0.1
+      entities: 4.5.0
+      linkify-it: 5.0.0
+      mdurl: 2.0.0
+      punycode.js: 2.3.1
+      uc.micro: 2.1.0
+
   math-random@1.0.4: {}
 
-  mdast-util-to-hast@13.2.0:
-    dependencies:
-      '@types/hast': 3.0.4
-      '@types/mdast': 4.0.4
-      '@ungap/structured-clone': 1.2.0
-      devlop: 1.1.0
-      micromark-util-sanitize-uri: 2.0.0
-      trim-lines: 3.0.1
-      unist-util-position: 5.0.0
-      unist-util-visit: 5.0.0
-      vfile: 6.0.3
+  mdurl@2.0.0: {}
 
   media-typer@0.3.0: {}
 
@@ -9056,197 +6997,6 @@ snapshots:
   merge-stream@2.0.0: {}
 
   merge2@1.4.1: {}
-
-  micromark-core-commonmark@2.0.1:
-    dependencies:
-      decode-named-character-reference: 1.0.2
-      devlop: 1.1.0
-      micromark-factory-destination: 2.0.0
-      micromark-factory-label: 2.0.0
-      micromark-factory-space: 2.0.0
-      micromark-factory-title: 2.0.0
-      micromark-factory-whitespace: 2.0.0
-      micromark-util-character: 2.1.0
-      micromark-util-chunked: 2.0.0
-      micromark-util-classify-character: 2.0.0
-      micromark-util-html-tag-name: 2.0.0
-      micromark-util-normalize-identifier: 2.0.0
-      micromark-util-resolve-all: 2.0.0
-      micromark-util-subtokenize: 2.0.1
-      micromark-util-symbol: 2.0.0
-      micromark-util-types: 2.0.0
-
-  micromark-extension-frontmatter@2.0.0:
-    dependencies:
-      fault: 2.0.1
-      micromark-util-character: 2.1.0
-      micromark-util-symbol: 2.0.0
-      micromark-util-types: 2.0.0
-
-  micromark-extension-gfm-autolink-literal@2.1.0:
-    dependencies:
-      micromark-util-character: 2.1.0
-      micromark-util-sanitize-uri: 2.0.0
-      micromark-util-symbol: 2.0.0
-      micromark-util-types: 2.0.0
-
-  micromark-extension-gfm-footnote@2.1.0:
-    dependencies:
-      devlop: 1.1.0
-      micromark-core-commonmark: 2.0.1
-      micromark-factory-space: 2.0.0
-      micromark-util-character: 2.1.0
-      micromark-util-normalize-identifier: 2.0.0
-      micromark-util-sanitize-uri: 2.0.0
-      micromark-util-symbol: 2.0.0
-      micromark-util-types: 2.0.0
-
-  micromark-extension-gfm-strikethrough@2.1.0:
-    dependencies:
-      devlop: 1.1.0
-      micromark-util-chunked: 2.0.0
-      micromark-util-classify-character: 2.0.0
-      micromark-util-resolve-all: 2.0.0
-      micromark-util-symbol: 2.0.0
-      micromark-util-types: 2.0.0
-
-  micromark-extension-gfm-table@2.1.0:
-    dependencies:
-      devlop: 1.1.0
-      micromark-factory-space: 2.0.0
-      micromark-util-character: 2.1.0
-      micromark-util-symbol: 2.0.0
-      micromark-util-types: 2.0.0
-
-  micromark-extension-gfm-tagfilter@2.0.0:
-    dependencies:
-      micromark-util-types: 2.0.0
-
-  micromark-extension-gfm-task-list-item@2.1.0:
-    dependencies:
-      devlop: 1.1.0
-      micromark-factory-space: 2.0.0
-      micromark-util-character: 2.1.0
-      micromark-util-symbol: 2.0.0
-      micromark-util-types: 2.0.0
-
-  micromark-extension-gfm@3.0.0:
-    dependencies:
-      micromark-extension-gfm-autolink-literal: 2.1.0
-      micromark-extension-gfm-footnote: 2.1.0
-      micromark-extension-gfm-strikethrough: 2.1.0
-      micromark-extension-gfm-table: 2.1.0
-      micromark-extension-gfm-tagfilter: 2.0.0
-      micromark-extension-gfm-task-list-item: 2.1.0
-      micromark-util-combine-extensions: 2.0.0
-      micromark-util-types: 2.0.0
-
-  micromark-factory-destination@2.0.0:
-    dependencies:
-      micromark-util-character: 2.1.0
-      micromark-util-symbol: 2.0.0
-      micromark-util-types: 2.0.0
-
-  micromark-factory-label@2.0.0:
-    dependencies:
-      devlop: 1.1.0
-      micromark-util-character: 2.1.0
-      micromark-util-symbol: 2.0.0
-      micromark-util-types: 2.0.0
-
-  micromark-factory-space@2.0.0:
-    dependencies:
-      micromark-util-character: 2.1.0
-      micromark-util-types: 2.0.0
-
-  micromark-factory-title@2.0.0:
-    dependencies:
-      micromark-factory-space: 2.0.0
-      micromark-util-character: 2.1.0
-      micromark-util-symbol: 2.0.0
-      micromark-util-types: 2.0.0
-
-  micromark-factory-whitespace@2.0.0:
-    dependencies:
-      micromark-factory-space: 2.0.0
-      micromark-util-character: 2.1.0
-      micromark-util-symbol: 2.0.0
-      micromark-util-types: 2.0.0
-
-  micromark-util-character@2.1.0:
-    dependencies:
-      micromark-util-symbol: 2.0.0
-      micromark-util-types: 2.0.0
-
-  micromark-util-chunked@2.0.0:
-    dependencies:
-      micromark-util-symbol: 2.0.0
-
-  micromark-util-classify-character@2.0.0:
-    dependencies:
-      micromark-util-character: 2.1.0
-      micromark-util-symbol: 2.0.0
-      micromark-util-types: 2.0.0
-
-  micromark-util-combine-extensions@2.0.0:
-    dependencies:
-      micromark-util-chunked: 2.0.0
-      micromark-util-types: 2.0.0
-
-  micromark-util-decode-numeric-character-reference@2.0.1:
-    dependencies:
-      micromark-util-symbol: 2.0.0
-
-  micromark-util-encode@2.0.0: {}
-
-  micromark-util-html-tag-name@2.0.0: {}
-
-  micromark-util-normalize-identifier@2.0.0:
-    dependencies:
-      micromark-util-symbol: 2.0.0
-
-  micromark-util-resolve-all@2.0.0:
-    dependencies:
-      micromark-util-types: 2.0.0
-
-  micromark-util-sanitize-uri@2.0.0:
-    dependencies:
-      micromark-util-character: 2.1.0
-      micromark-util-encode: 2.0.0
-      micromark-util-symbol: 2.0.0
-
-  micromark-util-subtokenize@2.0.1:
-    dependencies:
-      devlop: 1.1.0
-      micromark-util-chunked: 2.0.0
-      micromark-util-symbol: 2.0.0
-      micromark-util-types: 2.0.0
-
-  micromark-util-symbol@2.0.0: {}
-
-  micromark-util-types@2.0.0: {}
-
-  micromark@4.0.0:
-    dependencies:
-      '@types/debug': 4.1.12
-      debug: 4.3.6
-      decode-named-character-reference: 1.0.2
-      devlop: 1.1.0
-      micromark-core-commonmark: 2.0.1
-      micromark-factory-space: 2.0.0
-      micromark-util-character: 2.1.0
-      micromark-util-chunked: 2.0.0
-      micromark-util-combine-extensions: 2.0.0
-      micromark-util-decode-numeric-character-reference: 2.0.1
-      micromark-util-encode: 2.0.0
-      micromark-util-normalize-identifier: 2.0.0
-      micromark-util-resolve-all: 2.0.0
-      micromark-util-sanitize-uri: 2.0.0
-      micromark-util-subtokenize: 2.0.1
-      micromark-util-symbol: 2.0.0
-      micromark-util-types: 2.0.0
-    transitivePeerDependencies:
-      - supports-color
 
   micromatch@2.3.11:
     dependencies:
@@ -9531,10 +7281,6 @@ snapshots:
       json-parse-even-better-errors: 2.3.1
       lines-and-columns: 1.2.4
 
-  parse5@7.1.2:
-    dependencies:
-      entities: 4.5.0
-
   parser-front-matter@1.6.4:
     dependencies:
       extend-shallow: 2.0.1
@@ -9666,13 +7412,13 @@ snapshots:
       retry: 0.12.0
       signal-exit: 3.0.7
 
-  property-information@6.5.0: {}
-
   proxy-from-env@1.1.0: {}
 
   ps-tree@1.2.0:
     dependencies:
       event-stream: 3.3.4
+
+  punycode.js@2.3.1: {}
 
   punycode@1.4.1: {}
 
@@ -9768,42 +7514,6 @@ snapshots:
       define-properties: 1.2.1
       es-errors: 1.3.0
       set-function-name: 2.0.2
-
-  rehype-autolink-headings@7.1.0:
-    dependencies:
-      '@types/hast': 3.0.4
-      '@ungap/structured-clone': 1.2.0
-      hast-util-heading-rank: 3.0.0
-      hast-util-is-element: 3.0.0
-      unified: 11.0.5
-      unist-util-visit: 5.0.0
-
-  rehype-parse@9.0.0:
-    dependencies:
-      '@types/hast': 3.0.4
-      hast-util-from-html: 2.0.2
-      unified: 11.0.5
-
-  rehype-slug@6.0.0:
-    dependencies:
-      '@types/hast': 3.0.4
-      github-slugger: 2.0.0
-      hast-util-heading-rank: 3.0.0
-      hast-util-to-string: 3.0.0
-      unist-util-visit: 5.0.0
-
-  rehype-stringify@10.0.0:
-    dependencies:
-      '@types/hast': 3.0.4
-      hast-util-to-html: 9.0.3
-      unified: 11.0.5
-
-  rehype@13.0.1:
-    dependencies:
-      '@types/hast': 3.0.4
-      rehype-parse: 9.0.0
-      rehype-stringify: 10.0.0
-      unified: 11.0.5
 
   relateurl@0.2.7: {}
 
@@ -10051,8 +7761,6 @@ snapshots:
 
   slide@1.1.6: {}
 
-  slugify@1.6.6: {}
-
   snapdragon-node@2.1.1:
     dependencies:
       define-property: 1.0.0
@@ -10140,8 +7848,6 @@ snapshots:
 
   source-map@0.6.1: {}
 
-  space-separated-tokens@2.0.2: {}
-
   spawn-command@0.0.2: {}
 
   spdx-correct@3.2.0:
@@ -10217,11 +7923,6 @@ snapshots:
   string_decoder@1.1.1:
     dependencies:
       safe-buffer: 5.1.2
-
-  stringify-entities@4.0.4:
-    dependencies:
-      character-entities-html4: 2.1.0
-      character-entities-legacy: 3.0.0
 
   strip-ansi@6.0.1:
     dependencies:
@@ -10343,11 +8044,7 @@ snapshots:
     dependencies:
       is-whitespace: 0.3.0
 
-  trim-lines@3.0.1: {}
-
   trim-newlines@4.1.1: {}
-
-  trough@2.2.0: {}
 
   ts-api-utils@1.3.0(typescript@5.5.4):
     dependencies:
@@ -10411,17 +8108,9 @@ snapshots:
 
   ua-parser-js@1.0.38: {}
 
-  undici-types@6.19.8: {}
+  uc.micro@2.1.0: {}
 
-  unified@11.0.5:
-    dependencies:
-      '@types/unist': 3.0.3
-      bail: 2.0.2
-      devlop: 1.1.0
-      extend: 3.0.2
-      is-plain-obj: 4.1.0
-      trough: 2.2.0
-      vfile: 6.0.3
+  undici-types@6.19.8: {}
 
   union-value@1.0.1:
     dependencies:
@@ -10429,29 +8118,6 @@ snapshots:
       get-value: 2.0.6
       is-extendable: 0.1.1
       set-value: 2.0.1
-
-  unist-util-is@6.0.0:
-    dependencies:
-      '@types/unist': 3.0.3
-
-  unist-util-position@5.0.0:
-    dependencies:
-      '@types/unist': 3.0.3
-
-  unist-util-stringify-position@4.0.0:
-    dependencies:
-      '@types/unist': 3.0.3
-
-  unist-util-visit-parents@6.0.1:
-    dependencies:
-      '@types/unist': 3.0.3
-      unist-util-is: 6.0.0
-
-  unist-util-visit@5.0.0:
-    dependencies:
-      '@types/unist': 3.0.3
-      unist-util-is: 6.0.0
-      unist-util-visit-parents: 6.0.1
 
   universalify@0.1.2: {}
 
@@ -10492,26 +8158,6 @@ snapshots:
   validator@13.12.0: {}
 
   vary@1.1.2: {}
-
-  vfile-location@5.0.3:
-    dependencies:
-      '@types/unist': 3.0.3
-      vfile: 6.0.3
-
-  vfile-matter@5.0.0:
-    dependencies:
-      vfile: 6.0.3
-      yaml: 2.5.1
-
-  vfile-message@4.0.2:
-    dependencies:
-      '@types/unist': 3.0.3
-      unist-util-stringify-position: 4.0.0
-
-  vfile@6.0.3:
-    dependencies:
-      '@types/unist': 3.0.3
-      vfile-message: 4.0.2
 
   vite-node@2.0.5(@types/node@20.16.2)(terser@5.33.0):
     dependencies:
@@ -10656,8 +8302,6 @@ snapshots:
       glob-to-regexp: 0.4.1
       graceful-fs: 4.2.11
 
-  web-namespaces@2.0.1: {}
-
   webidl-conversions@3.0.1: {}
 
   webpack-sources@3.2.3: {}
@@ -10779,8 +8423,6 @@ snapshots:
 
   yallist@4.0.0: {}
 
-  yaml@2.5.1: {}
-
   yargs-parser@20.2.9: {}
 
   yargs-parser@21.1.1: {}
@@ -10796,5 +8438,3 @@ snapshots:
       yargs-parser: 21.1.1
 
   yocto-queue@0.1.0: {}
-
-  zwitch@2.0.4: {}
