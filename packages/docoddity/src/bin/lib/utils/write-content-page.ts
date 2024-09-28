@@ -50,9 +50,6 @@ export const writeContentPage = async (
   }
   if (targetFilepath.endsWith('.md')) {
     const { title, ...fileFrontmatter } = await parseFrontmatter(content);
-    if (!content) {
-      throw new Error(`No content found in ${sourceFilepath}`);
-    }
     const htmlContents = await getMarkdown(content);
 
     if (typeof htmlContents !== 'string') {

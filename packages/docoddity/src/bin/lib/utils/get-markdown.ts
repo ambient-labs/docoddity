@@ -14,7 +14,7 @@ const getMarkdownWithAnchorHeadings = async (content: string) => String(await re
   .use(rehypeAutolinkHeadings)
   .process(`${content}`));
 
-export const getMarkdown = async (content: string) => await getMarkdownWithAnchorHeadings(micromark(content, {
+export const getMarkdown = async (content: string = '') => await getMarkdownWithAnchorHeadings(micromark(content, {
   allowDangerousHtml: true,
   extensions: [gfm(), frontmatter()],
   htmlExtensions: [gfmHtml(), frontmatterHtml()]
