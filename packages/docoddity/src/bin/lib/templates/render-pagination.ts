@@ -1,13 +1,13 @@
 import type {
   Page,
 } from '../types.js';
-import { getMarkdownCode } from '../utils/get-markdown.js';
+import { getMarkdownWithCodeElement } from '../utils/get-markdown.js';
 import { html } from '../utils/html.js';
 
 export const renderPaginationButton = (label: string, ariaRole: string, page?: Page) => page ? html`
   <a class="button" href="${page.url}" aria-role="${ariaRole}">
     <label>${label}</label>
-    <span>${getMarkdownCode(page.title)}</span>
+    <span>${getMarkdownWithCodeElement(page.title)}</span>
   </a>
 ` : ``;
 

@@ -20,7 +20,7 @@ export const getMarkdown = async (content: string) => await getMarkdownWithAncho
   htmlExtensions: [gfmHtml(), frontmatterHtml()]
 }));
 
-export const getMarkdownCode = async (_markdown: string | Promise<string>) => {
+export const getMarkdownWithCodeElement = async (_markdown: string | Promise<string> = '') => {
   const markdown = await _markdown;
   return markdown.startsWith('`') && markdown.endsWith('`') ? `<code>${markdown.slice(1, -1)}</code>` : markdown;
 };

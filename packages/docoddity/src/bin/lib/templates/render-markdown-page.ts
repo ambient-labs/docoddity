@@ -6,7 +6,7 @@ import { renderToc, renderTocMobile } from './render-toc.js';
 import { renderPagination } from './render-pagination.js';
 import { renderNavList } from './render-nav-list.js';
 import { html } from '../utils/html.js';
-import { getMarkdownCode } from '../utils/get-markdown.js';
+import { getMarkdownWithCodeElement } from '../utils/get-markdown.js';
 
 export const renderMarkdownPage = ({
   title,
@@ -23,7 +23,7 @@ export const renderMarkdownPage = ({
     <article id="page-article">
       ${renderTocMobile(content)}
       <div id="content" class="markdown-body">
-        <h1>${getMarkdownCode(title || '')}</h1>
+        <h1>${getMarkdownWithCodeElement(title)}</h1>
         ${content}
       </div>
 
