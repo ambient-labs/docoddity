@@ -34,3 +34,8 @@ md.renderer.rules.link_open = function (tokens, idx, options, env, self) {
 };
 
 export const getMarkdown = async (content: string) => md.render(content);
+
+export const getMarkdownWithCodeElement = async (_markdown: string | Promise<string> = '') => {
+  const markdown = await _markdown;
+  return markdown.startsWith('`') && markdown.endsWith('`') ? `<code>${markdown.slice(1, -1)}</code>` : markdown;
+};
