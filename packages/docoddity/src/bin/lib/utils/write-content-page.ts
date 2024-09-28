@@ -9,8 +9,8 @@ import { parseFrontmatter } from "./parse-frontmatter.js";
 import { readDocoddityJSON } from "./read-docoddity-json.js";
 import type { Sitemap } from "../sitemap.js";
 import { swallowErr } from "./swallow-err.js";
-import { renderBase } from "../templates/render-base.js";
-import { renderPage } from "../templates/render-page.js";
+import { renderHTMLPage } from "../templates/render-html-page.js";
+import { renderMarkdownPage } from "../templates/render-markdown-page.js";
 import { Theme } from "../theme.js";
 import type {
   DocoddityContents,
@@ -36,6 +36,7 @@ export const writeContentPage = async (
 
   const theme = new Theme(docoddityContents);
   const pageURL = relativeFilepath.split('.').slice(0, -1).join('.');
+  const pages = await sitemap.getPages(relativeFilepath);
   const args: DocoddityRenderedArgs = {
     docoddity: await buildTagArgs(docoddityContents, sourceDir),
     theme: await buildTagArgs(await theme.json, theme.dir, {
@@ -43,12 +44,12 @@ export const writeContentPage = async (
     }),
     page: {
       url: pageURL,
-      pages: await sitemap.getPages(relativeFilepath),
+      pages,
     },
     content,
   }
   if (targetFilepath.endsWith('.md')) {
-    const { title, ...fileFrontmatter } = parseFrontmatter(content);
+    const { title, ...fileFrontmatter } = await parseFrontmatter(content);
     const htmlContents = await getMarkdown(content);
 
     if (typeof htmlContents !== 'string') {
@@ -57,19 +58,19 @@ export const writeContentPage = async (
     const targetHTMLFilepath = withExt(targetFilepath, 'html');
     await writeFile(
       targetHTMLFilepath,
-      renderPage({
+      (await renderMarkdownPage({
         ...args,
         ...fileFrontmatter,
         title: title ?? parseTitleFromURL(pageURL) ?? '',
         content: htmlContents,
-      }).trim(),
+      })).trim(),
     );
     return targetHTMLFilepath;
   }
-  await writeFile(targetFilepath, renderBase({
+  await writeFile(targetFilepath, renderHTMLPage({
     ...args,
-    content: rewriteRelativeLinks(args.content, sourceDir),
-  }).trim());
+    content: rewriteRelativeLinks(await args.content, sourceDir),
+  }));
   return targetFilepath;
 }
 

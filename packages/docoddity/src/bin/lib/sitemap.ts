@@ -101,10 +101,10 @@ class Node {
     order?: number;
   }> {
     const content = await this.#content;
-    const frontmatter = parseFrontmatter(content);
+    const { title, order, } = await parseFrontmatter(content);
     return {
-      title: frontmatter.title ?? parseTitleFromURL(this.url) ?? '',
-      order: frontmatter.order,
+      title: title ?? parseTitleFromURL(this.url) ?? '',
+      order: order,
     }
   }
 
@@ -140,21 +140,22 @@ class Node {
     } else {
       const { title } = await this.getCategory();
       const children = await Promise.all([...this.children.values()].map(child => child.getPage()));
+      const sortedChildren = children.sort(({ order: a }, { order: b }) => {
+        if (a === undefined && b === undefined) {
+          return 0;
+        }
+        if (a === undefined) {
+          return 1;
+        }
+        if (b === undefined) {
+          return -1;
+        }
+        return a - b;
+      });
       return {
         url: this.url,
         title,
-        children: children.sort(({ order: a }, { order: b }) => {
-          if (a === undefined && b === undefined) {
-            return 0;
-          }
-          if (a === undefined) {
-            return 1;
-          }
-          if (b === undefined) {
-            return -1;
-          }
-          return a - b;
-        }),
+        children: sortedChildren,
       };
     }
   }
