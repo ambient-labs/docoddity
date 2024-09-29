@@ -8,8 +8,10 @@ import { setupBuild } from '../includes/setup-build.js';
 import path from 'path';
 import { TagDefinition } from '../setup/matchers/toContainTags.js';
 import { getMarkdownContent } from '../setup/getMarkdownContent.js';
-import { getActions } from '../includes/getActions.js';
+import { getActions, getClick } from '../includes/getActions.js';
 import { DocoddityTestFile } from '../includes/types.js';
+import { type Runner } from '../includes/runner.js';
+import { getElementTransformStyle } from '../includes/get-element-transform-style.js';
 const __dirname = url.fileURLToPath(new URL('.', import.meta.url))
 const ROOT = path.resolve(__dirname, '../..')
 
@@ -309,6 +311,110 @@ describe('Themes', () => {
         "<a href=\"/docs/no-page-title\">No Page Title</a>",
       ]);
     });
+
+    test('it renders hamburger menu when in mobile', async () => {
+      const { runner, printURL } = await configureDocodditySite([
+        {
+          filepath: `index.md`,
+          content: getMarkdownContent('Some more text'),
+        },
+        {
+          filepath: 'docoddity.json',
+          content: {
+            title: 'Home',
+            nav: {
+              left: [
+                {
+                  url: '/page',
+                  text: 'Page',
+                },
+                {
+                  url: '/page2',
+                  text: 'Page 2',
+                },
+                {
+                  url: '/page3',
+                  text: 'Page 3',
+                },
+              ],
+            }
+          },
+        },
+      ]);
+
+      runner.page.setViewportSize({ width: 600, height: 600 });
+      const click = getClick(runner);
+      await runner.page.evaluate(() => (window.document.querySelector('#hamburger-menu') as HTMLElement).style.transitionDuration = '0s');
+      expect(await runner.page.evaluate(() => window.document.querySelector('#hamburger').getAttribute('aria-expanded'))).toEqual('false');
+      expect((await getElementTransformStyle(runner, '#hamburger-menu')).x).toEqual(-600);
+      await click('#hamburger');
+      expect(await runner.page.evaluate(() => window.document.querySelector('#hamburger').getAttribute('aria-expanded'))).toEqual('true');
+      expect((await getElementTransformStyle(runner, '#hamburger-menu')).x).toEqual(0);
+      await click('#close-hamburger');
+      expect(await runner.page.evaluate(() => window.document.querySelector('#hamburger').getAttribute('aria-expanded'))).toEqual('false');
+      expect((await getElementTransformStyle(runner, '#hamburger-menu')).x).toEqual(-600);
+      await click('#hamburger');
+      expect(await runner.page.evaluate(() => window.document.querySelector('#hamburger').getAttribute('aria-expanded'))).toEqual('true');
+      expect((await getElementTransformStyle(runner, '#hamburger-menu')).x).toEqual(0);
+      await click('#hamburger-menu-overlay');
+      expect(await runner.page.evaluate(() => window.document.querySelector('#hamburger').getAttribute('aria-expanded'))).toEqual('false');
+      expect((await getElementTransformStyle(runner, '#hamburger-menu')).x).toEqual(-600);
+    });
+
+    test('it renders hamburger menu in mobile with a back to main menu button', async () => {
+      const { runner, printURL } = await configureDocodditySite([
+        {
+          filepath: `index.md`,
+          content: getMarkdownContent('Some more text'),
+        },
+        {
+          filepath: `docs/index.md`,
+          content: getMarkdownContent('Docs index', { order: 0 }),
+        },
+        {
+          filepath: `docs/subfolder/index.md`,
+          content: getMarkdownContent('Subfolder index', { title: 'One', order: 0 }),
+        },
+        {
+          filepath: `docs/subfolder/two.md`,
+          content: getMarkdownContent('Subfolder page two', { title: 'Two', order: 1 }),
+        },
+        {
+          filepath: 'docoddity.json',
+          content: {
+            title: 'Home',
+            nav: {
+              "left": [
+                { text: 'Zero', url: '/zero' },
+                { text: 'One', url: '/one' },
+                { text: 'Two', url: '/data/foo/two' },
+              ]
+            },
+          },
+        }
+      ]);
+
+      await runner.goto('/docs/subfolder');
+      runner.page.setViewportSize({ width: 600, height: 600 });
+      const click = getClick(runner);
+      await runner.page.evaluate(() => (window.document.querySelector('#hamburger-menu') as HTMLElement).style.transitionDuration = '0s');
+      await runner.page.evaluate(() => (window.document.querySelector('#hamburger-contents main') as HTMLElement).style.transitionDuration = '0s');
+      expect((await getElementTransformStyle(runner, '#hamburger-menu')).x).toEqual(-600);
+      await click('#hamburger');
+      expect((await getElementTransformStyle(runner, '#hamburger-menu')).x).toEqual(0);
+      await expect(runner.page).toMatchQuerySelectorAll('#hamburger-contents main section:first-child a', [
+        '<a href="/docs/subfolder/index">One</a>',
+        '<a href="/docs/subfolder/two">Two</a>',
+      ]);
+      await expect(runner.page).toMatchQuerySelectorAll('#hamburger-contents main section:last-child a', [
+        '<a href="/zero">Zero</a>',
+        '<a href="/one">One</a>',
+        '<a href="/data/foo/two">Two</a>',
+      ]);
+
+      expect((await getElementTransformStyle(runner, '#hamburger-contents main')).x).toEqual(0);
+      await click('#back-to-main-menu');
+      expect((await getElementTransformStyle(runner, '#hamburger-contents main')).x).toEqual(498);
+    });
   });
 });
-

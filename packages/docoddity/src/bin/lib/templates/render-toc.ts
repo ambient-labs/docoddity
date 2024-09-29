@@ -2,9 +2,10 @@ import { html } from "../utils/html.js";
 
 export const renderTocMobile = (content: string | Promise<string>) => html`
   <aside 
-    id="toc-mobile" x-data="{ open: false }" 
+    id="toc-mobile" 
+    x-data="{ open: false }" 
     :class="{ 'open': open }"
-    class="open" @click.outside="open = false"
+    @click.outside="open = false"
   >
     <div class="inner">
       <label>

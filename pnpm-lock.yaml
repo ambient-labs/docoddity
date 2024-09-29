@@ -11,6 +11,9 @@ importers:
       '@ambient-labs/the_floor_is_lava':
         specifier: ^0.1.1
         version: 0.1.1
+      '@minify-html/node':
+        specifier: ^0.15.0
+        version: 0.15.0
       '@types/fs-extra':
         specifier: ^11.0.4
         version: 11.0.4
@@ -32,6 +35,9 @@ importers:
       fs-extra:
         specifier: ^11.2.0
         version: 11.2.0
+      html-minifier:
+        specifier: ^4.0.0
+        version: 4.0.0
       playwright:
         specifier: ^1.47.2
         version: 1.47.2
@@ -224,6 +230,12 @@ importers:
         version: link:../../../packages/docoddity
 
   test/.sites/c108c89651a28fa19aa3617402b01a5a:
+    devDependencies:
+      docoddity:
+        specifier: workspace:*
+        version: link:../../../packages/docoddity
+
+  test/.sites/ecd4f375b54ecc4350210fe7f7a11e97:
     devDependencies:
       docoddity:
         specifier: workspace:*
@@ -721,6 +733,26 @@ packages:
 
   '@lit/reactive-element@2.0.4':
     resolution: {integrity: sha512-GFn91inaUa2oHLak8awSIigYz0cU0Payr1rcFsrkf5OJ5eSPxElyZfKh0f2p9FsTiZWXQdWGJeXZICEfXXYSXQ==}
+
+  '@minify-html/node-darwin-x64@0.15.0':
+    resolution: {integrity: sha512-D9M9UDku/8I5VEMS0gTLFFQK1DFXK8io+QZvR5cbya4u8NmdDQix/t3EyCR4Wgv/Gfk86gwIS+zfMSvuKcpb5A==}
+    cpu: [x64]
+    os: [darwin]
+
+  '@minify-html/node-linux-x64@0.15.0':
+    resolution: {integrity: sha512-cO893EV6O9ZHUFX+2Yge546OCo/eCiatjzJDmUmrPP56fQ7pzTRquHs4ko3t8Rg6tMKG7RT49mBuF09JWPnrgg==}
+    cpu: [x64]
+    os: [linux]
+
+  '@minify-html/node-win32-x64@0.15.0':
+    resolution: {integrity: sha512-n92IFdtntchlUtyrq13pRI8TT3sOddbzuo4EPTSeocuTJMXaR77v0JYDu0fIjxXNawgGq6nBEeicxAcH4CbvUQ==}
+    cpu: [x64]
+    os: [win32]
+
+  '@minify-html/node@0.15.0':
+    resolution: {integrity: sha512-ANzt6ZBiqtwrepVXRfa0Qn/woCkINFBjQEKiXyBmg7+51mIFQHVAUbAm6UHRrT0L3xoPG0BX0/XI3NqtjK8Vyg==}
+    engines: {node: '>= 8.6.0'}
+    hasBin: true
 
   '@nodelib/fs.scandir@2.1.5':
     resolution: {integrity: sha512-vq24Bq3ym5HEQm2NKCr3yXDwjc7vTsEThRDnkp2DK9p1uqLR+DHurm/NOTo0KG7HYHU7eppKZj3MyqYuMBf62g==}
@@ -1533,6 +1565,9 @@ packages:
     resolution: {integrity: sha512-P8BjAsXvZS+VIDUI11hHCQEv74YT67YUi5JJFNWIqL235sBmjX4+qx9Muvls5ivyNENctx46xQLQ3aTuE7ssaQ==}
     engines: {node: '>=6'}
 
+  camel-case@3.0.0:
+    resolution: {integrity: sha512-+MbKztAYHXPr1jNTSKQF52VpcFjwY5RkR7fxksV8Doo4KAYc5Fl4UJRgthBbTmEx8C54DqahhbLJkDwjI3PI/w==}
+
   camel-case@4.1.2:
     resolution: {integrity: sha512-gxGWBrTT1JuMx6R+o5PTXMmUnhnVzLQ9SNutD4YqKtI6ap897t3tKECYla6gCWEkplXnlNybEkZg9GEGxKFCgw==}
 
@@ -1585,6 +1620,10 @@ packages:
   class-utils@0.3.6:
     resolution: {integrity: sha512-qOhPa/Fj7s6TY8H8esGu5QNpMMQxz79h+urzrNYN6mn+9BnxlDGf5QZ+XeCDsxSjPqsSR56XOZOJmpeurnLMeg==}
     engines: {node: '>=0.10.0'}
+
+  clean-css@4.2.4:
+    resolution: {integrity: sha512-EJUDT7nDVFDvaQgAo2G/PJvxmp1o/c6iXLbswsBbUFXi1Nr+AjA2cKmfbKDMjMvzEe75g3P6JkaDDAKk96A85A==}
+    engines: {node: '>= 4.0'}
 
   clean-css@5.3.3:
     resolution: {integrity: sha512-D5J+kHaVb/wKSFcyyV75uCn8fiY4sV38XJoe4CUyGQ+mOU/fMVYUdH1hJC+CJQ5uY3EnW27SbJYS4X8BiLrAFg==}
@@ -2369,6 +2408,11 @@ packages:
     engines: {node: '>=12'}
     hasBin: true
 
+  html-minifier@4.0.0:
+    resolution: {integrity: sha512-aoGxanpFPLg7MkIl/DDFYtb0iWz7jMFGqFhvEDZga6/4QTjneiD8I/NXL1x5aaoCp7FSIT6h/OhykDdPsbtMig==}
+    engines: {node: '>=6'}
+    hasBin: true
+
   html-webpack-plugin@5.6.0:
     resolution: {integrity: sha512-iwaY4wzbe48AfKLZ/Cc8k0L+FKG6oSNRaZ8x5A/T/IVDGyXcbHncM9TdDa93wn0FsSm82FhTKW7f3vS61thXAw==}
     engines: {node: '>=10.13.0'}
@@ -2782,6 +2826,9 @@ packages:
   loupe@3.1.1:
     resolution: {integrity: sha512-edNu/8D5MKVfGVFRhFf8aAxiTM6Wumfz5XsaatSxlD3w4R1d/WEKUTydCdPGbl9K7QG/Ca3GnDV2sIKIpXRQcw==}
 
+  lower-case@1.1.4:
+    resolution: {integrity: sha512-2Fgx1Ycm599x+WGpIYwJOvsjmXFzTSc34IwDWALRA/8AopUKAVPwfJ+h5+f85BCp0PWmmJcWzEpxOpoXycMpdA==}
+
   lower-case@2.0.2:
     resolution: {integrity: sha512-7fm3l3NAF9WfN6W3JOmf5drwpVqX78JtoGJ3A6W0a6ZnldM41w2fV5D490psKFTpMds8TJse/eHLFFsNHHjHgg==}
 
@@ -2960,6 +3007,9 @@ packages:
   neo-async@2.6.2:
     resolution: {integrity: sha512-Yd3UES5mWCSqR+qNT93S3UoYUkqAZ9lLg8a7g9rimsWmYGK8cVToA4/sF3RrshdyV3sAGMXVUmpMYOw+dLpOuw==}
 
+  no-case@2.3.2:
+    resolution: {integrity: sha512-rmTZ9kz+f3rCvK2TD1Ue/oZlns7OGoIWP4fc3llxxRXlOkHKoWPPWJOfFYpITabSow43QJbRIoHQXtt10VldyQ==}
+
   no-case@3.0.4:
     resolution: {integrity: sha512-fgAN3jGAh+RoxUGZHTSOLJIqUc2wmoBwGR4tbpNAKmmovFoWq0OdRkb0VkldReO2a2iBT/OEulG9XSUc10r3zg==}
 
@@ -3080,6 +3130,9 @@ packages:
   package-up@5.0.0:
     resolution: {integrity: sha512-MQEgDUvXCa3sGvqHg3pzHO8e9gqTCMPVrWUko3vPQGntwegmFo52mZb2abIVTjFnUcW0BcPz0D93jV5Cas1DWA==}
     engines: {node: '>=18'}
+
+  param-case@2.1.1:
+    resolution: {integrity: sha512-eQE845L6ot89sk2N8liD8HAuH4ca6Vvr7VWAWwt7+kvvG5aBcPmmphQ68JsEG2qa9n1TykS2DLeMt363AAH8/w==}
 
   param-case@3.0.4:
     resolution: {integrity: sha512-RXlj7zCYokReqWpOPH9oYivUzLYZ5vAPIfEmCTNViosC78F8F0H9y7T7gG2M39ymgutxF5gcFEsyZQSph9Bp3A==}
@@ -3861,6 +3914,11 @@ packages:
   uc.micro@2.1.0:
     resolution: {integrity: sha512-ARDJmphmdvUk6Glw7y9DQ2bFkKBHwQHLi2lsaH6PPmz/Ka9sFOBsBluozhDltWmnv9u/cF6Rt87znRTPV+yp/A==}
 
+  uglify-js@3.19.3:
+    resolution: {integrity: sha512-v3Xu+yuwBXisp6QYTcH4UbH+xYJXqnq2m/LtQVWKWzYc1iehYnLixoQDN9FH6/j9/oybfd6W9Ghwkl8+UMKTKQ==}
+    engines: {node: '>=0.8.0'}
+    hasBin: true
+
   undici-types@6.19.8:
     resolution: {integrity: sha512-ve2KP6f/JnbPBFyobGHuerC9g1FYGn/F8n1LWTwNxCEzd6IfqTwUQcNXgEtmmQ6DlRrC1hrSrBnCZPokRrDHjw==}
 
@@ -3889,6 +3947,9 @@ packages:
     hasBin: true
     peerDependencies:
       browserslist: '>= 4.21.0'
+
+  upper-case@1.1.3:
+    resolution: {integrity: sha512-WRbjgmYzgXkCV7zNVpy5YgrHgbBv126rMALQQMrmzOVC4GM2waQ9x7xtm8VU+1yF2kWyPzI9zbZ48n4vSxwfSA==}
 
   uri-js@4.4.1:
     resolution: {integrity: sha512-7rKUyy33Q1yc98pQ1DAmLtwX109F7TIfWlW1Ydo8Wl1ii1SeHieeh0HHfPeL2fMXK6z0s8ecKs9frCuLJvndBg==}
@@ -4601,6 +4662,21 @@ snapshots:
     dependencies:
       '@lit-labs/ssr-dom-shim': 1.2.1
 
+  '@minify-html/node-darwin-x64@0.15.0':
+    optional: true
+
+  '@minify-html/node-linux-x64@0.15.0':
+    optional: true
+
+  '@minify-html/node-win32-x64@0.15.0':
+    optional: true
+
+  '@minify-html/node@0.15.0':
+    optionalDependencies:
+      '@minify-html/node-darwin-x64': 0.15.0
+      '@minify-html/node-linux-x64': 0.15.0
+      '@minify-html/node-win32-x64': 0.15.0
+
   '@nodelib/fs.scandir@2.1.5':
     dependencies:
       '@nodelib/fs.stat': 2.0.5
@@ -4798,7 +4874,7 @@ snapshots:
 
   '@types/commander@2.12.2':
     dependencies:
-      commander: 12.1.0
+      commander: 11.1.0
 
   '@types/cookie@0.4.1': {}
 
@@ -5550,6 +5626,11 @@ snapshots:
 
   callsites@3.1.0: {}
 
+  camel-case@3.0.0:
+    dependencies:
+      no-case: 2.3.2
+      upper-case: 1.1.3
+
   camel-case@4.1.2:
     dependencies:
       pascal-case: 3.1.2
@@ -5626,6 +5707,10 @@ snapshots:
       define-property: 0.2.5
       isobject: 3.0.1
       static-extend: 0.1.2
+
+  clean-css@4.2.4:
+    dependencies:
+      source-map: 0.6.1
 
   clean-css@5.3.3:
     dependencies:
@@ -6526,6 +6611,16 @@ snapshots:
       relateurl: 0.2.7
       terser: 5.31.6
 
+  html-minifier@4.0.0:
+    dependencies:
+      camel-case: 3.0.0
+      clean-css: 4.2.4
+      commander: 2.20.3
+      he: 1.2.0
+      param-case: 2.1.1
+      relateurl: 0.2.7
+      uglify-js: 3.19.3
+
   html-webpack-plugin@5.6.0(webpack@5.94.0(esbuild@0.20.2)):
     dependencies:
       '@types/html-minifier-terser': 6.1.0
@@ -6931,6 +7026,8 @@ snapshots:
     dependencies:
       get-func-name: 2.0.2
 
+  lower-case@1.1.4: {}
+
   lower-case@2.0.2:
     dependencies:
       tslib: 2.7.0
@@ -7133,6 +7230,10 @@ snapshots:
 
   neo-async@2.6.2: {}
 
+  no-case@2.3.2:
+    dependencies:
+      lower-case: 1.1.4
+
   no-case@3.0.4:
     dependencies:
       lower-case: 2.0.2
@@ -7257,6 +7358,10 @@ snapshots:
   package-up@5.0.0:
     dependencies:
       find-up-simple: 1.0.0
+
+  param-case@2.1.1:
+    dependencies:
+      no-case: 2.3.2
 
   param-case@3.0.4:
     dependencies:
@@ -8110,6 +8215,8 @@ snapshots:
 
   uc.micro@2.1.0: {}
 
+  uglify-js@3.19.3: {}
+
   undici-types@6.19.8: {}
 
   union-value@1.0.1:
@@ -8135,6 +8242,8 @@ snapshots:
       browserslist: 4.23.3
       escalade: 3.2.0
       picocolors: 1.1.0
+
+  upper-case@1.1.3: {}
 
   uri-js@4.4.1:
     dependencies:

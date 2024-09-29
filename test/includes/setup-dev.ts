@@ -3,7 +3,6 @@ import type {
   SetupDev,
 } from './types.js';
 import { runDocoddityDev } from './run-docoddity-dev.js';
-import { getPrintURL } from './get-print-url.js';
 import { setupSite } from './setup-site.js';
 import { getPageFunctionUtils } from './get-page-function-utils.js';
 import { setupRunners, } from './runner.js';
@@ -19,7 +18,7 @@ export const setupDev: SetupDev = ({
     key,
     std: stdTwo,
   } = {}) => {
-    const { runner, dist, cwd, updateFiles, removeFiles, renameFiles, } = await setupSite(files, key);
+    const { runner, dist, cwd, printURL, updateFiles, removeFiles, renameFiles, } = await setupSite(files, key);
     const {
       child: docoddityDevProcess,
       port,
@@ -35,7 +34,7 @@ export const setupDev: SetupDev = ({
       removeFiles,
       renameFiles,
       runner,
-      printURL: getPrintURL(files, runner),
+      printURL,
       docoddityDevProcess,
       ...getPageFunctionUtils(runner, docoddityDevProcess),
     };

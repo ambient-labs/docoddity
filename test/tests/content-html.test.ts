@@ -3,8 +3,8 @@ import { setupBuild } from '../includes/setup-build.js';
 describe('HTML page', () => {
   const configureDocodditySite = setupBuild({
     std: {
-      stdout: console.log,
-      stderr: console.error,
+      // stdout: chunk => console.log('[Docoddity]', chunk),
+      // stderr: chunk => console.error('[Docoddity]', chunk),
     }
   });
   test('it should render an HTML page without a docoddity.json', async () => {
@@ -79,6 +79,57 @@ describe('HTML page', () => {
     ]);
     expect(title).toEqual(siteTitle);
     expect(container.split(siteTitle).join('').trim()).toEqual(content);
+  });
+
+  test('it should render active pages in nav', async () => {
+    const { runner, printURL } = await configureDocodditySite([
+      {
+        filepath: `zero.html`,
+        content: `<p>zero</p>`,
+      },
+      {
+        filepath: `one.html`,
+        content: `<p>one</p>`,
+      },
+      {
+        filepath: `data/foo/two.html`,
+        content: `<p>two</p>`,
+      },
+      {
+        filepath: 'docoddity.json',
+
+        content: {
+          nav: {
+            "left": [
+              { text: 'Zero', url: '/zero' },
+              { text: 'One', url: '/one' },
+              { text: 'Two', url: '/data/foo/two' },
+            ]
+          },
+        },
+      }
+    ]);
+    await runner.goto(`/zero`);
+    await expect(runner.page).toMatchQuerySelectorAll('header.site-head.desktop a', [
+      "<a class=\"title\" aria-role=\"title\" href=\"/\"></a>",
+      '<a href="/zero" class="active">Zero</a>',
+      '<a href="/one">One</a>',
+      '<a href="/data/foo/two">Two</a>',
+    ]);
+    await runner.goto(`/one`);
+    await expect(runner.page).toMatchQuerySelectorAll('header.site-head.desktop a', [
+      "<a class=\"title\" aria-role=\"title\" href=\"/\"></a>",
+      '<a href="/zero">Zero</a>',
+      '<a href="/one" class="active">One</a>',
+      '<a href="/data/foo/two">Two</a>',
+    ]);
+    await runner.goto(`/data/foo/two`);
+    await expect(runner.page).toMatchQuerySelectorAll('header.site-head.desktop a', [
+      "<a class=\"title\" aria-role=\"title\" href=\"/\"></a>",
+      '<a href="/zero">Zero</a>',
+      '<a href="/one">One</a>',
+      '<a href="/data/foo/two" class="active">Two</a>',
+    ]);
   });
 
   test('it should handle relative references', async () => {

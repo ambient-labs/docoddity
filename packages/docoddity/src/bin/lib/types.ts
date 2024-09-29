@@ -43,8 +43,8 @@ export type DocoddityFileDefinition = Record<string, ValidTagValue>;
 
 export interface DocoddityNavItem {
   url: string;
-  mobile?: boolean;
   text: string;
+  mobile?: boolean;
   class?: string;
   target?: string;
   rel?: string;
@@ -54,8 +54,8 @@ export interface DocoddityNavItem {
 export interface DocoddityNav {
   left?: DocoddityNavItem[];
   right?: DocoddityNavItem[];
-
 }
+
 export interface DocoddityContents {
   theme?: string;
   title?: string;
@@ -113,3 +113,19 @@ export interface Frontmatter {
   title?: string;
   order?: number;
 }
+
+
+export const isDocoddityNavItem = (item: unknown): item is DocoddityNavItem => typeof item === 'object' && !!item && !Array.isArray(item) && 'url' in item && 'text' in item;
+export const isDocoddityNav = (nav: unknown): nav is DocoddityNav => typeof nav === 'object' && !!nav && !Array.isArray(nav) && (('left' in nav && Array.isArray(nav.left)) || !('left' in nav)) && (('right' in nav && Array.isArray(nav.right)) || !('right' in nav));
+export const isDocoddityFileDefinition = (tag: unknown): tag is DocoddityFileDefinition => typeof tag === 'object' && !!tag && !Array.isArray(tag) && Object.values(tag).every(val => typeof val === 'string' || typeof val === 'number' || typeof val === 'boolean');
+export const isDocoddityContentsHeadOrBodyTag = (tag: unknown): tag is (string | DocoddityFileDefinition) => typeof tag === 'string' || isDocoddityFileDefinition(tag);
+export const isDocoddityContentsHeadOrBody = (tags: unknown): tags is (string | DocoddityFileDefinition)[] => Array.isArray(tags) && tags.every(isDocoddityContentsHeadOrBodyTag);
+
+export const isDocoddityContents = (contents: unknown): contents is DocoddityContents => typeof contents === 'object'
+  && !!contents
+  && !Array.isArray(contents)
+  && (('title' in contents && typeof contents.title === 'string') || !('title' in contents))
+  && (('theme' in contents && typeof contents.theme === 'string') || !('theme' in contents))
+  && (('nav' in contents && isDocoddityNav(contents.nav)) || !('nav' in contents))
+  && (('head' in contents && isDocoddityContentsHeadOrBody(contents.head)) || !('head' in contents))
+  && (('body' in contents && isDocoddityContentsHeadOrBody(contents.body)) || !('body' in contents));

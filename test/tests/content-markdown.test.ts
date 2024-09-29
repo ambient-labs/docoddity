@@ -5,8 +5,8 @@ import { getMarkdownContent } from '../setup/getMarkdownContent.js';
 describe('Markdown page', () => {
   const configureDocodditySite = setupBuild({
     std: {
-      stdout: console.log,
-      stderr: console.error,
+      // stdout: chunk => console.log('[Docoddity]', chunk),
+      // stderr: chunk => console.error('[Docoddity]', chunk),
     }
   });
   test('it should render a markdown page without a docoddity.json', async () => {
@@ -233,4 +233,67 @@ describe('Markdown page', () => {
     ], undefined, 'Two Title', 'code', '/docs/one');
 
   });
+
+  test('it should render active pages in left nav', async () => {
+    const { runner, printURL } = await configureDocodditySite([
+      {
+        filepath: `docs/index.md`,
+        content: getMarkdownContent('one body', { title: 'One Title', order: 0, }),
+      },
+      {
+        filepath: `docs/two.md`,
+        content: getMarkdownContent('two body', { title: 'Two Title', order: 1, }),
+      },
+      {
+        filepath: `docs/three.md`,
+        content: getMarkdownContent('three body', { title: 'Three Title', order: 2, }),
+      },
+    ]);
+    await runner.goto(`/docs`);
+    await expect(runner.page).toMatchQuerySelectorAll('#left-nav a', [
+      '<a href="/docs/index" class="active">One Title</a>',
+      '<a href="/docs/two">Two Title</a>',
+      '<a href="/docs/three">Three Title</a>',
+    ]);
+    await runner.goto(`/docs/two`);
+    await expect(runner.page).toMatchQuerySelectorAll('#left-nav a', [
+      '<a href="/docs/index">One Title</a>',
+      '<a href="/docs/two" class="active">Two Title</a>',
+      '<a href="/docs/three">Three Title</a>',
+    ]);
+    await runner.goto(`/docs/three`);
+    await expect(runner.page).toMatchQuerySelectorAll('#left-nav a', [
+      '<a href="/docs/index">One Title</a>',
+      '<a href="/docs/two">Two Title</a>',
+      '<a href="/docs/three" class="active">Three Title</a>',
+    ]);
+  });
+
+  // test.only('it should render nested active pages in left nav', async () => {
+  //   const { runner, printURL } = await configureDocodditySite([
+  //     {
+  //       filepath: `docs/index.md`,
+  //       content: getMarkdownContent('one body', { title: 'One Title', order: 0, }),
+  //     },
+  //     {
+  //       filepath: `docs/two/index.md`,
+  //       content: getMarkdownContent('two body', { title: 'Two Index Title', order: 1, }),
+  //     },
+  //     {
+  //       filepath: `docs/two/a.md`,
+  //       content: getMarkdownContent('two a body', { title: 'Two A Title', order: 1, }),
+  //     },
+  //     {
+  //       filepath: `docs/three.md`,
+  //       content: getMarkdownContent('three body', { title: 'Three Title', order: 2, }),
+  //     },
+  //   ]);
+  //   await printURL(1000, '/docs/');
+  //   await runner.goto(`/docs/two`);
+  //   await expect(runner.page).toMatchQuerySelectorAll('#left-nav a', [
+  //     '<a href="/docs/index" class="active">One Title</a>',
+  //     '<a href="/docs/two">Two Title</a>',
+  //     '<a href="/docs/three">Three Title</a>',
+  //   ]);
+  // });
 });

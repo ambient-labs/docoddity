@@ -30,7 +30,7 @@ export const renderHTMLPage = ({
       <!-- docoddity.headTags -->
       ${docoddity.head ? renderTags(docoddity.head) : ''}
     </head>
-    <body>
+    <body x-data="{ hamburgerOpen: false }">
       <script type="text/javascript">
         const theme = localStorage.getItem('theme') || 'light';
         document.documentElement.setAttribute('data-theme', theme);
