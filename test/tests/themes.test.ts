@@ -304,7 +304,7 @@ describe('Themes', () => {
 
       const nav = await runner.page.evaluate(() => Array.from(window.document.querySelectorAll('nav#left-nav a')).map(el => el.outerHTML.trim()));
       expect(nav).toEqual([
-        "<a href=\"/docs/index\">Getting Started</a>",
+        "<a href=\"/docs/\">Getting Started</a>",
         "<a href=\"/docs/usage\">Usage</a>",
         "<a href=\"/docs/no-page-title\">No Page Title</a>",
       ]);

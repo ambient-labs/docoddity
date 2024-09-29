@@ -3,8 +3,8 @@ import { setupBuild } from '../includes/setup-build.js';
 describe('HTML page', () => {
   const configureDocodditySite = setupBuild({
     std: {
-      // stdout: console.log,
-      // stderr: console.error,
+      stdout: console.log,
+      stderr: console.error,
     }
   });
   test('it should render an HTML page without a docoddity.json', async () => {

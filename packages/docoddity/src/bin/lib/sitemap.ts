@@ -2,9 +2,10 @@ import path from 'path';
 import { readFile } from "./utils/fs.js";
 import { parseFrontmatter } from './utils/parse-frontmatter.js';
 import { swallowErr } from './utils/swallow-err.js';
-import type { Page } from './types.js';
+import type { PageDefinition } from './types.js';
 import { makeRelative } from './utils/make-relative.js';
 import { parseTitleFromURL } from './utils/parse-title-from-url.js';
+import { buildPageNodeURL } from './utils/build-page-node-url.js';
 
 class Node {
   leaf = false;
@@ -20,10 +21,7 @@ class Node {
     }
     this.parent = parent;
     if (this.leaf) {
-      this.url = '/' + [
-        ...parts.slice(0, -1),
-        parts[parts.length - 1].replace(/\.(md|html)$/, '')
-      ].join('/');
+      this.url = buildPageNodeURL(parts);
       this.#content = readFile(path.resolve(inputDir, ...parts));
     } else {
       this.url = '/' + parts.join('/');
@@ -125,7 +123,7 @@ class Node {
     }
   };
 
-  async getPage(): Promise<Page> {
+  async getPage(): Promise<PageDefinition> {
     if (this.leaf) {
       const { title, order } = await this.getFrontmatter();
       if (this.url.startsWith('docsu')) {
@@ -207,7 +205,7 @@ export class Sitemap {
     return node;
   }
 
-  async getPages(filepath: string): Promise<Page[]> {
+  async getPages(filepath: string): Promise<PageDefinition[]> {
     const page = this.getNode(filepath);
     const parent = page.parent;
     if (!parent) {
