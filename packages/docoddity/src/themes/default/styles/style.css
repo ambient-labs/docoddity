@@ -142,10 +142,14 @@ main {
 
   &#page {
     overflow-y: scroll;
-    margin-top: calc(-1 * var(--header-height));
+    /* margin-top: calc(-1 * var(--header-height)); */
 
     article#page-article {
-      margin-top: calc(1 * var(--header-height));
+      /* margin-top: calc(1 * var(--header-height)); */
+    }
+
+    #article-bottom {
+      min-height: calc(4 * var(--padding));
     }
   }
 }
@@ -169,7 +173,8 @@ nav#left-nav {
   padding: .5rem;
   width: 300px;
   position: sticky;
-  top: calc(var(--header-height));
+  /* top: calc(var(--header-height)); */
+  top: 0;
   /* top: 150px; */
   /* max-height: 150px; */
   max-height: calc(100vh - var(--header-height) - var(--nav-padding));
@@ -283,7 +288,8 @@ aside#toc-desktop {
   /* max-height: calc(100vh - var(--header-height) - var(--nav-padding)); */
   position: sticky;
   overflow-y: scroll;
-  top: calc(var(--header-height) + var(--aside-padding));
+  /* top: calc(var(--header-height) + var(--aside-padding)); */
+  top: 0;
 
   li {
     padding: 0 var(--aside-padding);
