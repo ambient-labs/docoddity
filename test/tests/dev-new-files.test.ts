@@ -99,7 +99,7 @@ describe('Listens for new files', () => {
     const { runner, printURL, waitForSelector, updateFiles, waitFor } = await configureDevDocodditySite([
       {
         filepath: `index.md`,
-        content: getMarkdownContent(content, { title: 'foo' }),
+        content: getMarkdownContent(content, { title: 'foo', order: 0 }),
       },
     ]);
 
@@ -128,7 +128,7 @@ describe('Listens for new files', () => {
     await updateFiles([
       {
         filepath: `one.md`,
-        content: getMarkdownContent(content2, { title: 'foo', order: 1 }),
+        content: getMarkdownContent(content2, { title: 'bar', order: 1 }),
       },
     ]);
 
