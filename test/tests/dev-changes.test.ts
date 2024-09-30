@@ -118,7 +118,7 @@ describe('Dev: Listens for changes', () => {
     });
   });
 
-  test.only('it changes markdown frontmatter across all pages', async () => {
+  test('it changes markdown frontmatter across all pages', async () => {
     const content = 'foobar';
     const { runner, printURL, waitForSelector, updateFiles, waitFor } = await configureDevDocodditySite([
       {
