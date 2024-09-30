@@ -157,9 +157,9 @@ describe('Dev: Display', () => {
         },
       ]);
 
-      await waitForSelector(`text=${content}`, 500);
+      await waitForSelector(`text=${content}`);
       await runner.goto('/docs');
-      await waitForSelector(`text=${markdownContent}`, 500);
+      await waitForSelector(`text=${markdownContent}`);
     });
 
     test('it works with a trailing slash', async () => {
@@ -176,9 +176,9 @@ describe('Dev: Display', () => {
         },
       ]);
 
-      await waitForSelector(`text=${content}`, 500);
+      await waitForSelector(`text=${content}`);
       await runner.goto('/docs/');
-      await waitForSelector(`text=${markdownContent}`, 500);
+      await waitForSelector(`text=${markdownContent}`);
     });
   });
 });
