@@ -201,8 +201,8 @@ describe('Markdown page', () => {
     await expect(runner).toMatchPage({
       pageTitle: 'Two Title',
       leftNav: [
-        "<a href=\"/docs/one\">code</a>",
-        "<a href=\"/docs/two\">Two Title</a>",
+        { href: '/docs/one', text: 'code', },
+        { href: '/docs/two', text: 'Two Title', },
       ],
       bodyH1: 'Two Title',
     });
@@ -232,8 +232,8 @@ describe('Markdown page', () => {
     await expect(runner).toMatchPage({
       pageTitle: 'Two Title',
       leftNav: [
-        "<a href=\"/docs/one\">code</a>",
-        "<a href=\"/docs/two\">Two Title</a>",
+        { href: '/docs/one', text: 'code', },
+        { href: '/docs/two', text: 'Two Title', },
       ],
       bodyH1: 'Two Title',
     });
