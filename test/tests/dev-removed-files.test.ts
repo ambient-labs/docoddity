@@ -39,13 +39,16 @@ describe('Listens for removed files', () => {
       'one',
       'two2',
     ].map((title, order) => ({
-      filepath: `${title}.md`,
+      filepath: `docs/${title}.md`,
       content: getMarkdownContent(`Contents: ${title}`, {
         title,
         order,
       }).trim(),
     }));
     const { waitFor, runner, printURL, removeFiles } = await configureDevDocodditySite(files);
+
+    await runner.goto('/docs');
+    // await printURL();
 
     await waitFor(async () => {
       expect(await runner.page.evaluate(() => !!window.document.querySelector('a[aria-role="next"]'))).toEqual(true);
@@ -60,7 +63,7 @@ describe('Listens for removed files', () => {
     });
 
     await removeFiles([
-      'two2.md',
+      'docs/two2.md',
     ]);
     await runner.waitForUrl();
     await waitFor(async () => {
@@ -74,15 +77,14 @@ describe('Listens for removed files', () => {
       'one',
       'two',
     ].map((title, order) => ({
-      filepath: `${title}.md`,
+      filepath: `docs/${title}.md`,
       content: getMarkdownContent(`Contents: ${title}`, {
         title,
         order,
       }).trim(),
     }));
-    const { runner, printURL, removeFiles, waitFor } = await configureDevDocodditySite(files, {
-      key: 'it removes a stylesheet when docoddity is present',
-    });
+    const { runner, printURL, removeFiles, waitFor } = await configureDevDocodditySite(files);
+    await runner.goto('/docs');
 
     await waitFor(async () => {
       expect(await runner.page.evaluate(() => !!window.document.querySelector('a[aria-role="next"]'))).toEqual(true);
@@ -97,7 +99,7 @@ describe('Listens for removed files', () => {
     });
 
     await removeFiles([
-      'two.md',
+      'docs/two.md',
     ]);
     await runner.waitForUrl();
     await waitFor(async () => {

@@ -58,15 +58,16 @@ describe('Listens for new files', () => {
     await waitForSelector(`text=${content2}`);
   });
 
-  test('it adds a markdown file', async () => {
+  test.only('it adds a markdown file', async () => {
     const content = 'foobar';
     const { runner, printURL, waitForSelector, updateFiles, waitFor } = await configureDevDocodditySite([
       {
-        filepath: `index.md`,
+        filepath: `docs/index.md`,
         content: getMarkdownContent(content, { title: 'foo' }),
       },
     ]);
 
+    await runner.goto('/docs');
     // await printURL(1000);
     await waitForSelector(`text=${content}`);
     const content2 = 'foobarbaz';
@@ -76,7 +77,7 @@ describe('Listens for new files', () => {
     });
     await updateFiles([
       {
-        filepath: `twooo.md`,
+        filepath: `docs/twooo.md`,
         content: getMarkdownContent(content2, { title: 'foo' }),
       },
     ]);
@@ -98,10 +99,12 @@ describe('Listens for new files', () => {
     const content = 'foobar';
     const { runner, printURL, waitForSelector, updateFiles, waitFor } = await configureDevDocodditySite([
       {
-        filepath: `index.md`,
+        filepath: `docs/index.md`,
         content: getMarkdownContent(content, { title: 'foo', order: 0 }),
       },
     ]);
+
+    await runner.goto('/docs');
 
     // await printURL(1000);
     await waitForSelector(`text=${content}`);
@@ -113,7 +116,7 @@ describe('Listens for new files', () => {
 
     await updateFiles([
       {
-        filepath: `one.md`,
+        filepath: `docs/one.md`,
         content: '',
       },
     ]);

@@ -40,26 +40,28 @@ const aside = document.querySelector('aside#toc-desktop');
 if (page && page instanceof HTMLElement && aside && aside instanceof HTMLElement) {
   const headers = document.querySelectorAll("h2, h3");
   const anchors = aside.querySelectorAll('a');
-
-  let currentlyActive = 0;
-  anchors[0].classList.add('active');
-  const detectPosition = () => {
-    const headerPositions = [...headers].map((header) => header.getBoundingClientRect().top);
-    for (let i = 0; i < headerPositions.length; i++) {
-      const pos = headerPositions[i];
-      if (pos > 0) {
-        if (currentlyActive !== i) {
-          anchors[currentlyActive].classList.remove('active');
-          anchors[i].classList.add('active');
-          currentlyActive = i;
+  if (headers.length && anchors.length) {
+    let currentlyActive = 0;
+    anchors[0].classList.add('active');
+    const detectPosition = () => {
+      const headerPositions = [...headers].map((header) => header.getBoundingClientRect().top);
+      for (let i = 0; i < headerPositions.length; i++) {
+        const pos = headerPositions[i];
+        if (pos > 0) {
+          if (currentlyActive !== i) {
+            anchors[currentlyActive].classList.remove('active');
+            anchors[i].classList.add('active');
+            currentlyActive = i;
+          }
+          break;
         }
-        break;
       }
     }
-  }
-  detectPosition();
+    detectPosition();
 
-  page.addEventListener("scroll", detectPosition);
+    page.addEventListener("scroll", detectPosition);
+  }
+
 }
 
       </script>

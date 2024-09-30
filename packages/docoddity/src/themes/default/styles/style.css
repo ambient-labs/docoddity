@@ -838,6 +838,10 @@ a.button {
         &:last-child {
           left: -100%;
         }
+
+        &:first-child {
+          left: 0%;
+        }
       }
     }
   }

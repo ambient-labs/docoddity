@@ -6,8 +6,8 @@ import { getMarkdownContent } from '../setup/getMarkdownContent.js';
 describe('Dev: Listens for changes', () => {
   const configureDevDocodditySite = setupDev({
     std: {
-      stdout: chunk => console.log('[Docoddity]', chunk),
-      stderr: chunk => console.error('[Docoddity]', chunk),
+      // stdout: chunk => console.log('[Docoddity]', chunk),
+      // stderr: chunk => console.error('[Docoddity]', chunk),
     }
   });
   test('it changes an html file', async () => {
@@ -122,31 +122,32 @@ describe('Dev: Listens for changes', () => {
     const content = 'foobar';
     const { runner, printURL, waitForSelector, updateFiles, waitFor } = await configureDevDocodditySite([
       {
-        filepath: `one.md`,
+        filepath: `docs/one.md`,
         content: getMarkdownContent('one', { title: 'one', order: 1 }),
       },
       {
-        filepath: `two.md`,
+        filepath: `docs/two.md`,
         content: getMarkdownContent('two', { title: 'two', order: 2 }),
       },
       {
-        filepath: `three.md`,
+        filepath: `docs/three.md`,
         content: getMarkdownContent('three', { title: 'three', order: 3 }),
       },
     ]);
 
-    await runner.goto('/two');
+    await runner.goto('/docs/two');
 
     await updateFiles([
       {
-        filepath: `one.md`,
+        filepath: `docs/one.md`,
         content: getMarkdownContent('one', { title: 'one2', order: 1 }),
       },
       {
-        filepath: `three.md`,
+        filepath: `docs/three.md`,
         content: getMarkdownContent('three', { title: 'three2', order: 3 }),
       },
     ]);
+    // await printURL();
 
     await waitFor(async () => {
       const anchor = await runner.page.evaluate(() => {
@@ -155,12 +156,11 @@ describe('Dev: Listens for changes', () => {
       });
       expect(anchor).toEqual(true);
     });
-    console.log('-----')
     await expect(runner).toMatchPage({
       leftNav: [
-        { href: '/one', text: 'one2', },
-        { href: '/two', text: 'two', },
-        { href: '/three', text: 'three2', },
+        { href: '/docs/one', text: 'one2', },
+        { href: '/docs/two', text: 'two', },
+        { href: '/docs/three', text: 'three2', },
       ],
       prevHTML: 'one2',
       nextHTML: 'three2',
