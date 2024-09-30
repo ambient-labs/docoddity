@@ -110,7 +110,7 @@ describe('Themes', () => {
         expect(desktopTitle).toEqual(title);
       });
 
-      test('it renders left and right in header', async () => {
+      test('it renders boths sides of top page header', async () => {
         const content = getMarkdownContent('Contents');
         const { runner, printURL } = await configureDocodditySite([
           {
@@ -627,6 +627,104 @@ describe('Themes', () => {
         await runner.page.evaluate(() => (window.document.querySelector('#left-nav li:nth-child(4) li:nth-child(4) button') as HTMLElement).click());
         await expect((await runner.page.evaluate(() => window.getComputedStyle(window.document.querySelector('#left-nav li:nth-child(4)')))).gridTemplateRows).toEqual('276px');
         await expect((await runner.page.evaluate(() => window.getComputedStyle(window.document.querySelector('#left-nav li:nth-child(4) li:nth-child(4)')))).gridTemplateRows).toEqual('116px');
+      });
+
+      describe('.category.json', () => {
+        test('it shows nested rows that lack a .category.json', async () => {
+          const { runner, printURL } = await configureDocodditySite([
+            {
+              filepath: `index.html`,
+              content: '<p>Home page</p>',
+            },
+            {
+              filepath: `docs/index.md`,
+              content: getMarkdownContent('0', { title: 'Getting Started', order: 0 }),
+            },
+            {
+              filepath: `docs/section-one/index.md`,
+              content: getMarkdownContent('section one index', { title: 'Section One Index', order: 0 }),
+            },
+            {
+              filepath: `docs/section-one/page-two.md`,
+              content: getMarkdownContent('section one page two', { title: 'Section One Page Two', order: 1 }),
+            },
+            {
+              filepath: `docs/section-one/page-three.md`,
+              content: getMarkdownContent('section one page three', { title: 'Section One Page Three', order: 2 }),
+            },
+            {
+              filepath: `api/index.md`,
+              content: getMarkdownContent('api', { title: 'API', order: 0 }),
+            },
+            {
+              filepath: `api/page-two.md`,
+              content: getMarkdownContent('page two', { title: 'Page Two', order: 1 }),
+            },
+          ]);
+          await runner.goto('/docs');
+
+          // await printURL();
+          await expect(runner).toMatchPage({
+            leftNav: [
+              { href: '/docs/', text: 'Getting Started', class: 'active' },
+              { href: '/docs/section-one', text: 'Section One', },
+              { href: '/docs/section-one/', text: 'Section One Index', },
+              { href: '/docs/section-one/page-two', text: 'Section One Page Two', },
+              { href: '/docs/section-one/page-three', text: 'Section One Page Three', },
+            ]
+          });
+        });
+
+        test('it shows nested rows that have a .category.json without a title', async () => {
+          const { runner, printURL } = await configureDocodditySite([
+            {
+              filepath: `index.html`,
+              content: '<p>Home page</p>',
+            },
+            {
+              filepath: `docs/index.md`,
+              content: getMarkdownContent('0', { title: 'Getting Started', order: 0 }),
+            },
+            {
+              filepath: `docs/section-one/.category.json`,
+              content: {
+                order: 1,
+              },
+            },
+            {
+              filepath: `docs/section-one/index.md`,
+              content: getMarkdownContent('section one index', { title: 'Section One Index', order: 0 }),
+            },
+            {
+              filepath: `docs/section-one/page-two.md`,
+              content: getMarkdownContent('section one page two', { title: 'Section One Page Two', order: 1 }),
+            },
+            {
+              filepath: `docs/section-one/page-three.md`,
+              content: getMarkdownContent('section one page three', { title: 'Section One Page Three', order: 2 }),
+            },
+            {
+              filepath: `api/index.md`,
+              content: getMarkdownContent('api', { title: 'API', order: 0 }),
+            },
+            {
+              filepath: `api/page-two.md`,
+              content: getMarkdownContent('page two', { title: 'Page Two', order: 1 }),
+            },
+          ]);
+          await runner.goto('/docs');
+
+          // await printURL();
+          await expect(runner).toMatchPage({
+            leftNav: [
+              { href: '/docs/', text: 'Getting Started', class: 'active' },
+              { href: '/docs/section-one', text: 'Section One', },
+              { href: '/docs/section-one/', text: 'Section One Index', },
+              { href: '/docs/section-one/page-two', text: 'Section One Page Two', },
+              { href: '/docs/section-one/page-three', text: 'Section One Page Three', },
+            ]
+          });
+        });
       });
     });
   });
