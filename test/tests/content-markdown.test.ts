@@ -198,7 +198,7 @@ describe('Markdown page', () => {
 
     await runner.goto('/docs/two');
 
-    await expect(runner.page).toMatchPage({
+    await expect(runner).toMatchPage({
       pageTitle: 'Two Title',
       leftNav: [
         "<a href=\"/docs/one\">code</a>",
@@ -209,7 +209,7 @@ describe('Markdown page', () => {
 
     await runner.goto('/docs/one');
 
-    await expect(runner.page).toMatchPage({
+    await expect(runner).toMatchPage({
       nextHTML: 'Two Title',
     });
 
@@ -229,7 +229,7 @@ describe('Markdown page', () => {
 
     await runner.goto('/docs/two');
 
-    await expect(runner.page).toMatchPage({
+    await expect(runner).toMatchPage({
       pageTitle: 'Two Title',
       leftNav: [
         "<a href=\"/docs/one\">code</a>",
@@ -240,7 +240,7 @@ describe('Markdown page', () => {
 
     await runner.goto('/docs/one');
 
-    await expect(runner.page).toMatchPage({
+    await expect(runner).toMatchPage({
       nextHTML: 'Two Title',
     });
 
@@ -349,7 +349,7 @@ describe('Markdown page', () => {
   //   ]);
   //   await printURL(1000, '/docs/');
   //   await runner.goto(`/docs/two`);
-  //   await expect(runner.page).toMatchQuerySelectorAll('#left-nav a', [
+  //   await expect(runner).toMatchQuerySelectorAll('#left-nav a', [
   //     '<a href="/docs/index" class="active">One Title</a>',
   //     '<a href="/docs/two">Two Title</a>',
   //     '<a href="/docs/three">Three Title</a>',

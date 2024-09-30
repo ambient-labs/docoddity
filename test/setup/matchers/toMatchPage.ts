@@ -18,6 +18,9 @@ expect.extend({
     nextHTML,
     bodyH1,
   }: Expectations) {
+    if (!runner.page) {
+      throw new Error('No page found on runner. Did you pass `runner.page`? If so, please pass `runner`.');
+    }
     const { isNot } = this;
 
     if (isNot) {
