@@ -32,6 +32,9 @@ importers:
       fs-extra:
         specifier: ^11.2.0
         version: 11.2.0
+      html-minifier:
+        specifier: ^4.0.0
+        version: 4.0.0
       playwright:
         specifier: ^1.47.2
         version: 1.47.2
@@ -199,6 +202,36 @@ importers:
         specifier: ^0.14.4
         version: 0.14.8
 
+  test/.sites/0cad6d7124d1855f6e3827d431f673b0:
+    devDependencies:
+      docoddity:
+        specifier: workspace:*
+        version: link:../../../packages/docoddity
+
+  test/.sites/0fd7e2d0793562698a1714ca397582ab:
+    devDependencies:
+      docoddity:
+        specifier: workspace:*
+        version: link:../../../packages/docoddity
+
+  test/.sites/159ac7920fafdd27fcca207fb56740d2:
+    devDependencies:
+      docoddity:
+        specifier: workspace:*
+        version: link:../../../packages/docoddity
+
+  test/.sites/17366926bb4491f36c7ef66ce2fb3103:
+    devDependencies:
+      docoddity:
+        specifier: workspace:*
+        version: link:../../../packages/docoddity
+
+  test/.sites/1b6720bfc72049b792d380a86ca3b445:
+    devDependencies:
+      docoddity:
+        specifier: workspace:*
+        version: link:../../../packages/docoddity
+
   test/.sites/203c0dae6f8a2a5c8c1a31eb5592bda0:
     devDependencies:
       docoddity:
@@ -211,7 +244,253 @@ importers:
         specifier: workspace:*
         version: link:../../../packages/docoddity
 
+  test/.sites/21770999b43b77f52bb2e06eccb7166f:
+    devDependencies:
+      docoddity:
+        specifier: workspace:*
+        version: link:../../../packages/docoddity
+
   test/.sites/2b80bc814df8ddb51e9dbd3c068994e7:
+    devDependencies:
+      docoddity:
+        specifier: workspace:*
+        version: link:../../../packages/docoddity
+
+  test/.sites/2f2183f4d1611f3361930094d28886e3:
+    devDependencies:
+      docoddity:
+        specifier: workspace:*
+        version: link:../../../packages/docoddity
+
+  test/.sites/3246c2140323b70b9d81af546739673d:
+    devDependencies:
+      docoddity:
+        specifier: workspace:*
+        version: link:../../../packages/docoddity
+
+  test/.sites/391e847a6cd0b8a846015b356d6230bb:
+    devDependencies:
+      docoddity:
+        specifier: workspace:*
+        version: link:../../../packages/docoddity
+
+  test/.sites/424b6aed29fefe013446e10a5910a711:
+    devDependencies:
+      docoddity:
+        specifier: workspace:*
+        version: link:../../../packages/docoddity
+
+  test/.sites/4fbf70b4dd83d07160ea109805aa9938:
+    devDependencies:
+      docoddity:
+        specifier: workspace:*
+        version: link:../../../packages/docoddity
+
+  test/.sites/53216ccdaf51d97dc8b0d1b1ededa907:
+    devDependencies:
+      docoddity:
+        specifier: workspace:*
+        version: link:../../../packages/docoddity
+
+  test/.sites/5a8960f3ae64a42a231abe7d09f0fa67:
+    devDependencies:
+      docoddity:
+        specifier: workspace:*
+        version: link:../../../packages/docoddity
+
+  test/.sites/5b880a04070e94c9a055d6f32ef72213:
+    devDependencies:
+      docoddity:
+        specifier: workspace:*
+        version: link:../../../packages/docoddity
+
+  test/.sites/5ed7fe2d7ac707993bf584393b9e3c4d:
+    devDependencies:
+      docoddity:
+        specifier: workspace:*
+        version: link:../../../packages/docoddity
+
+  test/.sites/628064ca9f33074b5f578ccd4534870a:
+    devDependencies:
+      docoddity:
+        specifier: workspace:*
+        version: link:../../../packages/docoddity
+
+  test/.sites/6410b99997789fdbeeea6e45467f3f93:
+    devDependencies:
+      docoddity:
+        specifier: workspace:*
+        version: link:../../../packages/docoddity
+
+  test/.sites/6638c9d3d5b458da1c4229502ef3499c:
+    devDependencies:
+      docoddity:
+        specifier: workspace:*
+        version: link:../../../packages/docoddity
+
+  test/.sites/670d8cacafc1ae3cce1ea52969fcc4f8:
+    devDependencies:
+      docoddity:
+        specifier: workspace:*
+        version: link:../../../packages/docoddity
+
+  test/.sites/67fd288b5d5588ffd1cc96b2ec1fa11d:
+    devDependencies:
+      docoddity:
+        specifier: workspace:*
+        version: link:../../../packages/docoddity
+
+  test/.sites/68328c9d47b861e72a0d99491c71ecda:
+    devDependencies:
+      docoddity:
+        specifier: workspace:*
+        version: link:../../../packages/docoddity
+
+  test/.sites/6d0df1771d4d4532d2d3eb2d905eec95:
+    devDependencies:
+      docoddity:
+        specifier: workspace:*
+        version: link:../../../packages/docoddity
+
+  test/.sites/6d6aa508ccf86e49c6d37428debd5429:
+    devDependencies:
+      docoddity:
+        specifier: workspace:*
+        version: link:../../../packages/docoddity
+
+  test/.sites/7670ee369ff015e15a0f8e08aba93256:
+    devDependencies:
+      docoddity:
+        specifier: workspace:*
+        version: link:../../../packages/docoddity
+
+  test/.sites/7a4592479f1ad0b5b254ad4d5faa21bd:
+    devDependencies:
+      docoddity:
+        specifier: workspace:*
+        version: link:../../../packages/docoddity
+
+  test/.sites/7c2ef458d185b3b8cdd550c4044e00ae:
+    devDependencies:
+      docoddity:
+        specifier: workspace:*
+        version: link:../../../packages/docoddity
+
+  test/.sites/7e78f3d338bf90199024b435fb353668:
+    devDependencies:
+      docoddity:
+        specifier: workspace:*
+        version: link:../../../packages/docoddity
+
+  test/.sites/82eed7f8bb707a8c430e0d6e5e12e5a8:
+    devDependencies:
+      docoddity:
+        specifier: workspace:*
+        version: link:../../../packages/docoddity
+
+  test/.sites/830d7d252579931c3c0f87ddc4692663:
+    devDependencies:
+      docoddity:
+        specifier: workspace:*
+        version: link:../../../packages/docoddity
+
+  test/.sites/84ecf238e5385041c6c5a262aadf4d7b:
+    devDependencies:
+      docoddity:
+        specifier: workspace:*
+        version: link:../../../packages/docoddity
+
+  test/.sites/87d0047515d1e2bd4049907981c7994d:
+    devDependencies:
+      docoddity:
+        specifier: workspace:*
+        version: link:../../../packages/docoddity
+
+  test/.sites/889c5160d84b75dc66de5423dd30aba7:
+    devDependencies:
+      docoddity:
+        specifier: workspace:*
+        version: link:../../../packages/docoddity
+
+  test/.sites/891ab786cd624cd918493522b3f3b12b:
+    devDependencies:
+      docoddity:
+        specifier: workspace:*
+        version: link:../../../packages/docoddity
+
+  test/.sites/8a705497c683f1b44d68c0bdab672143:
+    devDependencies:
+      docoddity:
+        specifier: workspace:*
+        version: link:../../../packages/docoddity
+
+  test/.sites/8e7cad4a42a2f93a0145781f5cf8b376:
+    devDependencies:
+      docoddity:
+        specifier: workspace:*
+        version: link:../../../packages/docoddity
+
+  test/.sites/9450ae543cfec9bacee85a520b34057a:
+    devDependencies:
+      docoddity:
+        specifier: workspace:*
+        version: link:../../../packages/docoddity
+
+  test/.sites/9548c83e852ef7ae18c2610f19b43f7d:
+    devDependencies:
+      docoddity:
+        specifier: workspace:*
+        version: link:../../../packages/docoddity
+
+  test/.sites/95d810cc0a00533fa8f21548cb8f87b1:
+    devDependencies:
+      docoddity:
+        specifier: workspace:*
+        version: link:../../../packages/docoddity
+
+  test/.sites/9c8d3257b55ddc2388a83fa853862d77:
+    devDependencies:
+      docoddity:
+        specifier: workspace:*
+        version: link:../../../packages/docoddity
+
+  test/.sites/a3363f35e951c1604bcff6b58eef1809:
+    devDependencies:
+      docoddity:
+        specifier: workspace:*
+        version: link:../../../packages/docoddity
+
+  test/.sites/a3533d9a7f9b7f61812b436e306fa596:
+    devDependencies:
+      docoddity:
+        specifier: workspace:*
+        version: link:../../../packages/docoddity
+
+  test/.sites/a5b6aef02b1c469a70128abb98b16576:
+    devDependencies:
+      docoddity:
+        specifier: workspace:*
+        version: link:../../../packages/docoddity
+
+  test/.sites/a74cde5613cb5cefdecd75a63f42d148:
+    devDependencies:
+      docoddity:
+        specifier: workspace:*
+        version: link:../../../packages/docoddity
+
+  test/.sites/b00473d2bd94add6cfc82d11a30e2849:
+    devDependencies:
+      docoddity:
+        specifier: workspace:*
+        version: link:../../../packages/docoddity
+
+  test/.sites/b4dbac228ca1f0f8bd14c7cfc206da8c:
+    devDependencies:
+      docoddity:
+        specifier: workspace:*
+        version: link:../../../packages/docoddity
+
+  test/.sites/b96e61581484c9cd9d832acb3d80be1c:
     devDependencies:
       docoddity:
         specifier: workspace:*
@@ -229,7 +508,97 @@ importers:
         specifier: workspace:*
         version: link:../../../packages/docoddity
 
+  test/.sites/c27e5217330de57fd0d59d178368c86f:
+    devDependencies:
+      docoddity:
+        specifier: workspace:*
+        version: link:../../../packages/docoddity
+
+  test/.sites/ca474f1bb6573c218aa7fb90ed9c1fb6:
+    devDependencies:
+      docoddity:
+        specifier: workspace:*
+        version: link:../../../packages/docoddity
+
+  test/.sites/cbb617dc49de479bd3ac9287f0635d89:
+    devDependencies:
+      docoddity:
+        specifier: workspace:*
+        version: link:../../../packages/docoddity
+
+  test/.sites/e209ba85b0ccf71bad11a625f2040450:
+    devDependencies:
+      docoddity:
+        specifier: workspace:*
+        version: link:../../../packages/docoddity
+
+  test/.sites/e38068c866663547976aefad190b84ee:
+    devDependencies:
+      docoddity:
+        specifier: workspace:*
+        version: link:../../../packages/docoddity
+
+  test/.sites/e519fe8a07e529c88ee8f43fd5165868:
+    devDependencies:
+      docoddity:
+        specifier: workspace:*
+        version: link:../../../packages/docoddity
+
+  test/.sites/e6c1ae470fa78e0d4b589d844e0513e3:
+    devDependencies:
+      docoddity:
+        specifier: workspace:*
+        version: link:../../../packages/docoddity
+
+  test/.sites/ecca835c4545fc2e6e79daadd3a9f79f:
+    devDependencies:
+      docoddity:
+        specifier: workspace:*
+        version: link:../../../packages/docoddity
+
+  test/.sites/edc060db5b68922cec60f16d737c0c30:
+    devDependencies:
+      docoddity:
+        specifier: workspace:*
+        version: link:../../../packages/docoddity
+
+  test/.sites/ee302d4eb588d5aabf56e3133ef88b4f:
+    devDependencies:
+      docoddity:
+        specifier: workspace:*
+        version: link:../../../packages/docoddity
+
+  test/.sites/eea3039610a784deb0a852941e4a231d:
+    devDependencies:
+      docoddity:
+        specifier: workspace:*
+        version: link:../../../packages/docoddity
+
+  test/.sites/eed58997fcf49c54d5d59cbac8109905:
+    devDependencies:
+      docoddity:
+        specifier: workspace:*
+        version: link:../../../packages/docoddity
+
+  test/.sites/f094c469322c01431274f533646d16ae:
+    devDependencies:
+      docoddity:
+        specifier: workspace:*
+        version: link:../../../packages/docoddity
+
   test/.sites/f0ecb72920158f464cff933e8b7b7232:
+    devDependencies:
+      docoddity:
+        specifier: workspace:*
+        version: link:../../../packages/docoddity
+
+  test/.sites/f5ef38998b28639d47f6da2c26f3c8b3:
+    devDependencies:
+      docoddity:
+        specifier: workspace:*
+        version: link:../../../packages/docoddity
+
+  test/.sites/fa5ec632c5ca97ff6fc62bdfaf12b700:
     devDependencies:
       docoddity:
         specifier: workspace:*
@@ -1533,6 +1902,9 @@ packages:
     resolution: {integrity: sha512-P8BjAsXvZS+VIDUI11hHCQEv74YT67YUi5JJFNWIqL235sBmjX4+qx9Muvls5ivyNENctx46xQLQ3aTuE7ssaQ==}
     engines: {node: '>=6'}
 
+  camel-case@3.0.0:
+    resolution: {integrity: sha512-+MbKztAYHXPr1jNTSKQF52VpcFjwY5RkR7fxksV8Doo4KAYc5Fl4UJRgthBbTmEx8C54DqahhbLJkDwjI3PI/w==}
+
   camel-case@4.1.2:
     resolution: {integrity: sha512-gxGWBrTT1JuMx6R+o5PTXMmUnhnVzLQ9SNutD4YqKtI6ap897t3tKECYla6gCWEkplXnlNybEkZg9GEGxKFCgw==}
 
@@ -1585,6 +1957,10 @@ packages:
   class-utils@0.3.6:
     resolution: {integrity: sha512-qOhPa/Fj7s6TY8H8esGu5QNpMMQxz79h+urzrNYN6mn+9BnxlDGf5QZ+XeCDsxSjPqsSR56XOZOJmpeurnLMeg==}
     engines: {node: '>=0.10.0'}
+
+  clean-css@4.2.4:
+    resolution: {integrity: sha512-EJUDT7nDVFDvaQgAo2G/PJvxmp1o/c6iXLbswsBbUFXi1Nr+AjA2cKmfbKDMjMvzEe75g3P6JkaDDAKk96A85A==}
+    engines: {node: '>= 4.0'}
 
   clean-css@5.3.3:
     resolution: {integrity: sha512-D5J+kHaVb/wKSFcyyV75uCn8fiY4sV38XJoe4CUyGQ+mOU/fMVYUdH1hJC+CJQ5uY3EnW27SbJYS4X8BiLrAFg==}
@@ -2369,6 +2745,11 @@ packages:
     engines: {node: '>=12'}
     hasBin: true
 
+  html-minifier@4.0.0:
+    resolution: {integrity: sha512-aoGxanpFPLg7MkIl/DDFYtb0iWz7jMFGqFhvEDZga6/4QTjneiD8I/NXL1x5aaoCp7FSIT6h/OhykDdPsbtMig==}
+    engines: {node: '>=6'}
+    hasBin: true
+
   html-webpack-plugin@5.6.0:
     resolution: {integrity: sha512-iwaY4wzbe48AfKLZ/Cc8k0L+FKG6oSNRaZ8x5A/T/IVDGyXcbHncM9TdDa93wn0FsSm82FhTKW7f3vS61thXAw==}
     engines: {node: '>=10.13.0'}
@@ -2782,6 +3163,9 @@ packages:
   loupe@3.1.1:
     resolution: {integrity: sha512-edNu/8D5MKVfGVFRhFf8aAxiTM6Wumfz5XsaatSxlD3w4R1d/WEKUTydCdPGbl9K7QG/Ca3GnDV2sIKIpXRQcw==}
 
+  lower-case@1.1.4:
+    resolution: {integrity: sha512-2Fgx1Ycm599x+WGpIYwJOvsjmXFzTSc34IwDWALRA/8AopUKAVPwfJ+h5+f85BCp0PWmmJcWzEpxOpoXycMpdA==}
+
   lower-case@2.0.2:
     resolution: {integrity: sha512-7fm3l3NAF9WfN6W3JOmf5drwpVqX78JtoGJ3A6W0a6ZnldM41w2fV5D490psKFTpMds8TJse/eHLFFsNHHjHgg==}
 
@@ -2960,6 +3344,9 @@ packages:
   neo-async@2.6.2:
     resolution: {integrity: sha512-Yd3UES5mWCSqR+qNT93S3UoYUkqAZ9lLg8a7g9rimsWmYGK8cVToA4/sF3RrshdyV3sAGMXVUmpMYOw+dLpOuw==}
 
+  no-case@2.3.2:
+    resolution: {integrity: sha512-rmTZ9kz+f3rCvK2TD1Ue/oZlns7OGoIWP4fc3llxxRXlOkHKoWPPWJOfFYpITabSow43QJbRIoHQXtt10VldyQ==}
+
   no-case@3.0.4:
     resolution: {integrity: sha512-fgAN3jGAh+RoxUGZHTSOLJIqUc2wmoBwGR4tbpNAKmmovFoWq0OdRkb0VkldReO2a2iBT/OEulG9XSUc10r3zg==}
 
@@ -3080,6 +3467,9 @@ packages:
   package-up@5.0.0:
     resolution: {integrity: sha512-MQEgDUvXCa3sGvqHg3pzHO8e9gqTCMPVrWUko3vPQGntwegmFo52mZb2abIVTjFnUcW0BcPz0D93jV5Cas1DWA==}
     engines: {node: '>=18'}
+
+  param-case@2.1.1:
+    resolution: {integrity: sha512-eQE845L6ot89sk2N8liD8HAuH4ca6Vvr7VWAWwt7+kvvG5aBcPmmphQ68JsEG2qa9n1TykS2DLeMt363AAH8/w==}
 
   param-case@3.0.4:
     resolution: {integrity: sha512-RXlj7zCYokReqWpOPH9oYivUzLYZ5vAPIfEmCTNViosC78F8F0H9y7T7gG2M39ymgutxF5gcFEsyZQSph9Bp3A==}
@@ -3861,6 +4251,11 @@ packages:
   uc.micro@2.1.0:
     resolution: {integrity: sha512-ARDJmphmdvUk6Glw7y9DQ2bFkKBHwQHLi2lsaH6PPmz/Ka9sFOBsBluozhDltWmnv9u/cF6Rt87znRTPV+yp/A==}
 
+  uglify-js@3.19.3:
+    resolution: {integrity: sha512-v3Xu+yuwBXisp6QYTcH4UbH+xYJXqnq2m/LtQVWKWzYc1iehYnLixoQDN9FH6/j9/oybfd6W9Ghwkl8+UMKTKQ==}
+    engines: {node: '>=0.8.0'}
+    hasBin: true
+
   undici-types@6.19.8:
     resolution: {integrity: sha512-ve2KP6f/JnbPBFyobGHuerC9g1FYGn/F8n1LWTwNxCEzd6IfqTwUQcNXgEtmmQ6DlRrC1hrSrBnCZPokRrDHjw==}
 
@@ -3889,6 +4284,9 @@ packages:
     hasBin: true
     peerDependencies:
       browserslist: '>= 4.21.0'
+
+  upper-case@1.1.3:
+    resolution: {integrity: sha512-WRbjgmYzgXkCV7zNVpy5YgrHgbBv126rMALQQMrmzOVC4GM2waQ9x7xtm8VU+1yF2kWyPzI9zbZ48n4vSxwfSA==}
 
   uri-js@4.4.1:
     resolution: {integrity: sha512-7rKUyy33Q1yc98pQ1DAmLtwX109F7TIfWlW1Ydo8Wl1ii1SeHieeh0HHfPeL2fMXK6z0s8ecKs9frCuLJvndBg==}
@@ -4798,7 +5196,7 @@ snapshots:
 
   '@types/commander@2.12.2':
     dependencies:
-      commander: 12.1.0
+      commander: 11.1.0
 
   '@types/cookie@0.4.1': {}
 
@@ -5550,6 +5948,11 @@ snapshots:
 
   callsites@3.1.0: {}
 
+  camel-case@3.0.0:
+    dependencies:
+      no-case: 2.3.2
+      upper-case: 1.1.3
+
   camel-case@4.1.2:
     dependencies:
       pascal-case: 3.1.2
@@ -5626,6 +6029,10 @@ snapshots:
       define-property: 0.2.5
       isobject: 3.0.1
       static-extend: 0.1.2
+
+  clean-css@4.2.4:
+    dependencies:
+      source-map: 0.6.1
 
   clean-css@5.3.3:
     dependencies:
@@ -6526,6 +6933,16 @@ snapshots:
       relateurl: 0.2.7
       terser: 5.31.6
 
+  html-minifier@4.0.0:
+    dependencies:
+      camel-case: 3.0.0
+      clean-css: 4.2.4
+      commander: 2.20.3
+      he: 1.2.0
+      param-case: 2.1.1
+      relateurl: 0.2.7
+      uglify-js: 3.19.3
+
   html-webpack-plugin@5.6.0(webpack@5.94.0(esbuild@0.20.2)):
     dependencies:
       '@types/html-minifier-terser': 6.1.0
@@ -6931,6 +7348,8 @@ snapshots:
     dependencies:
       get-func-name: 2.0.2
 
+  lower-case@1.1.4: {}
+
   lower-case@2.0.2:
     dependencies:
       tslib: 2.7.0
@@ -7133,6 +7552,10 @@ snapshots:
 
   neo-async@2.6.2: {}
 
+  no-case@2.3.2:
+    dependencies:
+      lower-case: 1.1.4
+
   no-case@3.0.4:
     dependencies:
       lower-case: 2.0.2
@@ -7257,6 +7680,10 @@ snapshots:
   package-up@5.0.0:
     dependencies:
       find-up-simple: 1.0.0
+
+  param-case@2.1.1:
+    dependencies:
+      no-case: 2.3.2
 
   param-case@3.0.4:
     dependencies:
@@ -8110,6 +8537,8 @@ snapshots:
 
   uc.micro@2.1.0: {}
 
+  uglify-js@3.19.3: {}
+
   undici-types@6.19.8: {}
 
   union-value@1.0.1:
@@ -8135,6 +8564,8 @@ snapshots:
       browserslist: 4.23.3
       escalade: 3.2.0
       picocolors: 1.1.0
+
+  upper-case@1.1.3: {}
 
   uri-js@4.4.1:
     dependencies:

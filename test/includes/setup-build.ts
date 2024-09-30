@@ -4,7 +4,6 @@ import type {
 } from './types.js';
 import { setupRunners, } from './runner.js';
 import { runDocoddityBuild } from './run-docoddity-build.js';
-import { getPrintURL } from './get-print-url.js';
 import { setupSite } from './setup-site.js';
 import { getPageFunctionUtils } from './get-page-function-utils.js';
 
@@ -15,7 +14,7 @@ export const setupBuild: SetupBuild = ({
   const configureDocodditySite: ConfigureBuildDocodditySite = async (files, {
     std: stdTwo,
   } = {}) => {
-    const { runner, dist, buildDir, cwd, updateFiles, } = await setupSite(files);
+    const { runner, dist, buildDir, cwd, updateFiles, printURL, } = await setupSite(files);
     registerRunner(dist, runner);
     await runDocoddityBuild(buildDir, cwd, {
       ...stdOne,
@@ -24,7 +23,7 @@ export const setupBuild: SetupBuild = ({
     await runner.startServer();
     return {
       runner,
-      printURL: getPrintURL(files, runner),
+      printURL,
       updateFiles,
       ...getPageFunctionUtils(runner),
     };

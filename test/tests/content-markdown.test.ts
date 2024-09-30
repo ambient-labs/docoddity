@@ -1,12 +1,11 @@
-import type { Runner } from '../includes/runner.js';
 import { setupBuild } from '../includes/setup-build.js';
 import { getMarkdownContent } from '../setup/getMarkdownContent.js';
 
 describe('Markdown page', () => {
   const configureDocodditySite = setupBuild({
     std: {
-      stdout: console.log,
-      stderr: console.error,
+      // stdout: chunk => console.log('[Docoddity]', chunk),
+      // stderr: chunk => console.error('[Docoddity]', chunk),
     }
   });
   test('it should render a markdown page without a docoddity.json', async () => {
@@ -117,13 +116,13 @@ describe('Markdown page', () => {
     // await printURL(1000, '/docs/two');
 
     await runner.goto('/docs/');
-    await expect(runner.page).toMatchPage({
+    await expect(runner).toMatchPage({
       pageTitle: 'Index Title',
       bodyText: 'index',
       leftNav: [
-        "<a href=\"/docs/\">Index Title</a>",
-        "<a href=\"/docs/one\">One Title</a>",
-        "<a href=\"/docs/two\">Two Title</a>",
+        { href: '/docs/', text: 'Index Title', },
+        { href: '/docs/one', text: 'One Title', },
+        { href: '/docs/two', text: 'Two Title', },
       ],
       prevHTML: undefined,
       nextHTML: 'One Title',
@@ -131,13 +130,13 @@ describe('Markdown page', () => {
     });
 
     await runner.goto('/docs/one');
-    await expect(runner.page).toMatchPage({
+    await expect(runner).toMatchPage({
       pageTitle: 'One Title',
       bodyText: 'one body',
       leftNav: [
-        "<a href=\"/docs/\">Index Title</a>",
-        "<a href=\"/docs/one\">One Title</a>",
-        "<a href=\"/docs/two\">Two Title</a>",
+        { href: '/docs/', text: 'Index Title', },
+        { href: '/docs/one', text: 'One Title', },
+        { href: '/docs/two', text: 'Two Title', },
       ],
       prevHTML: 'Index Title',
       nextHTML: 'Two Title',
@@ -159,12 +158,12 @@ describe('Markdown page', () => {
 
     await runner.goto('/docs/two');
 
-    await expect(runner.page).toMatchPage({
+    await expect(runner).toMatchPage({
       pageTitle: 'Two Title',
       bodyText: 'two body',
       leftNav: [
-        "<a href=\"/docs/one\"><code>code</code></a>",
-        "<a href=\"/docs/two\">Two Title</a>",
+        { href: '/docs/one', text: '<code>code</code>', },
+        { href: '/docs/two', text: 'Two Title', },
       ],
       prevHTML: '<code>code</code>',
       nextHTML: undefined,
@@ -172,12 +171,12 @@ describe('Markdown page', () => {
     });
 
     await runner.goto('/docs/one');
-    await expect(runner.page).toMatchPage({
+    await expect(runner).toMatchPage({
       pageTitle: 'code',
       bodyText: 'one body',
       leftNav: [
-        "<a href=\"/docs/one\"><code>code</code></a>",
-        "<a href=\"/docs/two\">Two Title</a>",
+        { href: '/docs/one', text: '<code>code</code>', },
+        { href: '/docs/two', text: 'Two Title', },
       ],
       prevHTML: undefined,
       nextHTML: 'Two Title',
@@ -259,40 +258,101 @@ describe('Markdown page', () => {
       },
     ]);
 
-    const expectPage = async (title: string, container: string, nav: string[], prev: string, next: string, pageTitle: string, url?: string) => {
-      if (url) {
-        await runner.goto(url);
-      }
-      const results = await runner.page.evaluate(() => {
-        const prev = window.document.querySelector('a[aria-role="prev"] span');
-        const next = window.document.querySelector('a[aria-role="next"] span');
-        return [
-          window.document.title,
-          window.document.querySelector('article#page-article p')?.innerHTML,
-          Array.from(window.document.querySelectorAll('nav#left-nav a')).map(el => el.outerHTML.trim()),
-          prev ? prev.innerHTML : undefined,
-          next ? next.innerHTML : undefined,
-          window.document.querySelector('article#page-article h1')?.innerHTML,
-        ];
-      });
-      expect(results[0]).toEqual(title);
-      expect(results[1]).toEqual(container);
-      expect(results[2]).toEqual(nav);
-      expect(results[3]).toEqual(prev);
-      expect(results[4]).toEqual(next);
-      expect(results[5]).toEqual(pageTitle);
-    };
+    await runner.goto('/docs/two');
+    await expect(runner).toMatchPage({
+      pageTitle: 'Two Title',
+      bodyText: 'two body',
+      leftNav: [
+        { href: '/docs/one', text: 'code', },
+        { href: '/docs/two', text: 'Two Title', },
+      ],
+      prevHTML: 'code',
+      nextHTML: undefined,
+      bodyH1: 'Two Title',
+    });
 
-
-    await expectPage('Two Title', 'two body', [
-      "<a href=\"/docs/one\">code</a>",
-      "<a href=\"/docs/two\">Two Title</a>",
-    ], 'code', undefined, 'Two Title', '/docs/two');
-
-    await expectPage('code', 'one body', [
-      "<a href=\"/docs/one\">code</a>",
-      "<a href=\"/docs/two\">Two Title</a>",
-    ], undefined, 'Two Title', 'code', '/docs/one');
+    await runner.goto('/docs/one');
+    await expect(runner).toMatchPage({
+      pageTitle: 'code',
+      bodyText: 'one body',
+      leftNav: [
+        { href: '/docs/one', text: 'code', },
+        { href: '/docs/two', text: 'Two Title', },
+      ],
+      prevHTML: undefined,
+      nextHTML: 'Two Title',
+      bodyH1: 'code',
+    });
 
   });
+
+  test('it should render active pages in left nav', async () => {
+    const { runner, printURL } = await configureDocodditySite([
+      {
+        filepath: `docs/index.md`,
+        content: getMarkdownContent('one body', { title: 'One Title', order: 0, }),
+      },
+      {
+        filepath: `docs/two.md`,
+        content: getMarkdownContent('two body', { title: 'Two Title', order: 1, }),
+      },
+      {
+        filepath: `docs/three.md`,
+        content: getMarkdownContent('three body', { title: 'Three Title', order: 2, }),
+      },
+    ]);
+    await runner.goto(`/docs/`);
+    // await printURL(1000, '/docs');
+    await expect(runner).toMatchPage({
+      leftNav: [
+        { href: '/docs/', text: 'One Title', class: 'active', },
+        { href: '/docs/two', text: 'Two Title', },
+        { href: '/docs/three', text: 'Three Title', },
+      ],
+    })
+    await runner.goto(`/docs/two`);
+    await expect(runner).toMatchPage({
+      leftNav: [
+        { href: '/docs/', text: 'One Title', },
+        { href: '/docs/two', text: 'Two Title', class: 'active', },
+        { href: '/docs/three', text: 'Three Title', },
+      ],
+    })
+    await runner.goto(`/docs/three`);
+    await expect(runner).toMatchPage({
+      leftNav: [
+        { href: '/docs/', text: 'One Title', },
+        { href: '/docs/two', text: 'Two Title', },
+        { href: '/docs/three', text: 'Three Title', class: 'active' },
+      ],
+    })
+  });
+
+  // test.only('it should render nested active pages in left nav', async () => {
+  //   const { runner, printURL } = await configureDocodditySite([
+  //     {
+  //       filepath: `docs/index.md`,
+  //       content: getMarkdownContent('one body', { title: 'One Title', order: 0, }),
+  //     },
+  //     {
+  //       filepath: `docs/two/index.md`,
+  //       content: getMarkdownContent('two body', { title: 'Two Index Title', order: 1, }),
+  //     },
+  //     {
+  //       filepath: `docs/two/a.md`,
+  //       content: getMarkdownContent('two a body', { title: 'Two A Title', order: 1, }),
+  //     },
+  //     {
+  //       filepath: `docs/three.md`,
+  //       content: getMarkdownContent('three body', { title: 'Three Title', order: 2, }),
+  //     },
+  //   ]);
+  //   await printURL(1000, '/docs/');
+  //   await runner.goto(`/docs/two`);
+  //   await expect(runner.page).toMatchQuerySelectorAll('#left-nav a', [
+  //     '<a href="/docs/index" class="active">One Title</a>',
+  //     '<a href="/docs/two">Two Title</a>',
+  //     '<a href="/docs/three">Three Title</a>',
+  //   ]);
+  // });
 });

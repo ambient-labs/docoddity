@@ -29,7 +29,7 @@ export const writeContentPage = async (
 ) => {
   const [content, docoddityContents] = await Promise.all([
     readFile(sourceFilepath),
-    swallowErr<DocoddityContents>(() => readDocoddityJSON(sourceDir), {}),
+    await readDocoddityJSON(sourceDir) || {},
   ]);
 
   const relativeFilepath = makeRelative(targetDir)(targetFilepath);

@@ -108,7 +108,7 @@ export class Runner {
   }
 
   goto = async (url: string) => {
-    await this.page.goto(`${this.url}${url}`);
+    await this.page.goto(`${this.url}${url}`, { waitUntil: 'networkidle' });
   };
 }
 

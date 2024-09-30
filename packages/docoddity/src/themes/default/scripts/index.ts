@@ -9,7 +9,6 @@ import { setBasePath } from '@shoelace-style/shoelace/dist/utilities/base-path.j
 setBasePath('https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace/cdn');
 
 import './nav.js';
-import './page.js';
 import './head.js';
 import './aside.js';
 import './components/index.js';

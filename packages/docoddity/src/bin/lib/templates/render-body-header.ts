@@ -2,6 +2,7 @@ import type {
   DocoddityNavItem,
   DocoddityRenderedArgs,
 } from '../types.js';
+import { getIsActive } from '../utils/get-is-active.js';
 import { html } from '../utils/html.js';
 
 import { renderNavList } from './render-nav-list.js';
@@ -12,21 +13,31 @@ const externalLinkSVG = html`
   </svg>
 `;
 
-const renderNavItem = (pageUrl: string) => (item: DocoddityNavItem) => {
-  const active = pageUrl.startsWith(item.url) && item.url !== '/' ? 'active' : undefined;
+export const renderNavItem = (pageUrl: string) => (item: DocoddityNavItem) => {
+  if (!item.url) {
+    throw new Error(`Missing URL for nav item: ${JSON.stringify(item)}`);
+  }
+  if (!item.text) {
+    throw new Error(`Missing text for nav item: ${JSON.stringify(item)}`);
+  }
+  const active = getIsActive(item.url, pageUrl) ? 'active' : undefined;
+  // console.log(pageUrl, item.url, active);
   const mobile = item.mobile ? 'mobile' : undefined;
   const isExternal = pageUrl.startsWith('http');
   const rel = item.rel ? item.rel : isExternal ? 'noopener noreferrer' : '';
   const target = item.target ? item.target : isExternal ? '_blank' : '';
+  const classes = [active, mobile, item.class].filter(Boolean).join(' ');
+  const attributes = [
+    'a',
+    `href="${item.url}"`,
+    classes ? `class="${classes}"` : '',
+    target,
+    rel,
+    item.ariaLabel ? `aria-label="${item.ariaLabel}"` : ''
+  ].filter(Boolean).join(' ');
   return html`
-    <a 
-      href="${item.url}" 
-    class="${[active, mobile, item.class].filter(Boolean).join(' ')}"
-      ${target}
-      ${rel}
-      ${item.ariaLabel ? `aria-label="${item.ariaLabel}"` : ''}
-    >
-      ${item.text}
+    <${attributes}>
+      ${item.text.trim()}
       ${isExternal ? externalLinkSVG : ''}
     </a>
     `;
@@ -38,8 +49,12 @@ const renderMobileMenu = ({
   page,
   docoddity,
 }: Pick<DocoddityRenderedArgs, 'page' | 'docoddity'>) => html`
-  <div id="hamburger-menu">
-    <div id="hamburger-menu-overlay"></div>
+  <div 
+    id="hamburger-menu" 
+    :class="{ 'open': hamburgerOpen }"
+    x-data="{  backToMainMenu: false }"
+  >
+    <div id="hamburger-menu-overlay" @click="hamburgerOpen = false; backToMainMenu = false;"></div>
     <div id="hamburger-contents">
       <header>
         <div id="left">
@@ -47,15 +62,21 @@ const renderMobileMenu = ({
           <theme-toggle></theme-toggle>
 
         </div>
-        <button id="close-hamburger" type="button" aria-label="Close navigation bar">
+        <button id="close-hamburger" type="button" aria-label="Close navigation bar" @click="hamburgerOpen = false; backToMainMenu = false;">
           <svg viewBox="0 0 15 15" width="21" height="21"><g stroke-width="1.2"><path d="M.75.75l13.5 13.5M14.25.75L.75 14.25"></path></g></svg>
         </button>
       </header>
 
-      <main>
-        ${page.pages.length > 1 ? `
+      <main 
+        :class="{ 'main-menu': backToMainMenu }"
+      >
+        ${page.pages.length > 1 ? html`
           <section>
-            <button type="button" id="back-to-main-menu">← Back to main menu</button>
+            <button 
+              type="button" 
+              id="back-to-main-menu"
+              @click="backToMainMenu = true"
+            >← Back to main menu</button>
             ${renderNavList('hamburger-nav', page.pages, page.url)}
           </section>
           ` : ''}
@@ -75,14 +96,18 @@ const renderDesktopMenu = ({
   page,
   docoddity,
 }: Pick<DocoddityRenderedArgs, 'page' | 'docoddity'>) => html`
-    <header role="banner" class="site-head desktop">
+    <header 
+      role="banner" 
+      class="site-head desktop"
+    >
       <div id="left">
         <button 
           id="hamburger"
           class="mobile"
           aria-label="Toggle navigation bar" 
-          aria-expanded="false" 
+          :aria-expanded="hamburgerOpen" 
           type="button"
+          @click="hamburgerOpen = true"
         >
           <svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true">
             <path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path>

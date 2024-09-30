@@ -5,8 +5,8 @@ import { getMarkdownContent } from '../setup/getMarkdownContent.js';
 describe('Listens for removed files', () => {
   const configureDevDocodditySite = setupDev({
     std: {
-      // stdout: console.log,
-      // stderr: console.error,
+      // stdout: chunk => console.log('[Docoddity]', chunk),
+      // stderr: chunk => console.error('[Docoddity]', chunk),
     }
   });
   test('it removes an html file', async () => {

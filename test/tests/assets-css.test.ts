@@ -4,8 +4,8 @@ import { toSelector } from '../includes/to-selector.js';
 describe('CSS Assets', () => {
   const configureDocodditySite = setupBuild({
     std: {
-      // stdout: console.log,
-      // stderr: console.error,
+      // stdout: chunk => console.log('[Docoddity]', chunk),
+      // stderr: chunk => console.error('[Docoddity]', chunk),
     }
   });
 

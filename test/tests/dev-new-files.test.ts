@@ -4,8 +4,8 @@ import { getMarkdownContent } from '../setup/getMarkdownContent.js';
 describe('Listens for new files', () => {
   const configureDevDocodditySite = setupDev({
     std: {
-      // stdout: console.log,
-      // stderr: console.error,
+      // stdout: chunk => console.log('[Docoddity]', chunk),
+      // stderr: chunk => console.error('[Docoddity]', chunk),
     }
   });
   test('it adds an html file', async () => {

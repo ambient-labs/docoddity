@@ -10,6 +10,7 @@ import { getUpdateFiles } from './get-update-files.js';
 import { getRemoveFiles } from './get-remove-files.js';
 import { rimraf } from 'rimraf';
 import { rename, writeFile, } from 'fs/promises';
+import { getPrintURL } from './get-print-url.js';
 
 export const setupSite = async (files: DocoddityTestFile[]) => {
   const buildDirFolderName = '.build';
@@ -32,13 +33,16 @@ export const setupSite = async (files: DocoddityTestFile[]) => {
     cwd,
     dist,
     runner,
+    printURL: getPrintURL(files, runner),
     updateFiles,
     removeFiles,
-    renameFiles: (files) => Promise.all(files.map(async ({ source, target, content }) => {
-      await rename(path.resolve(cwd, source), path.resolve(cwd, target));
-      if (content) {
-        await writeFile(path.resolve(cwd, target), content, 'utf-8');
-      }
-    }))
+    renameFiles: async (files): Promise<void> => {
+      await Promise.all(files.map(async ({ source, target, content }) => {
+        await rename(path.resolve(cwd, source), path.resolve(cwd, target));
+        if (content) {
+          await writeFile(path.resolve(cwd, target), content, 'utf-8');
+        }
+      }));
+    },
   };
 };

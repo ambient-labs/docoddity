@@ -3,8 +3,8 @@ import { setupBuild } from '../includes/setup-build.js';
 describe('Typescript Assets', () => {
   const configureDocodditySite = setupBuild({
     std: {
-      // stdout: console.log,
-      // stderr: console.error,
+      // stdout: chunk => console.log('[Docoddity]', chunk),
+      // stderr: chunk => console.error('[Docoddity]', chunk),
     }
   });
 

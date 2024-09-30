@@ -122,6 +122,11 @@ header.site-head {
 
     svg {
       display: block;
+      stroke: var(--color-heavy);
+
+      &:hover {
+        stroke: var(--color-accent);
+      }
     }
   }
 }
@@ -851,6 +856,10 @@ a.button {
 
   svg {
     stroke: var(--color-heavy);
+
+    &:hover {
+      stroke: var(--color-accent);
+    }
   }
 }
 

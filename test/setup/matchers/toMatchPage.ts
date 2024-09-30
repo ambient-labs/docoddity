@@ -1,16 +1,16 @@
-import { type Page, } from 'playwright';
+import type { Runner } from '../../includes/runner.js';
 
 export interface Expectations {
   pageTitle: string;
   bodyText?: string;
-  leftNav?: string[];
+  leftNav?: (string | Record<string, unknown>)[];
   prevHTML?: string;
   nextHTML?: string;
   bodyH1?: string;
 }
 
 expect.extend({
-  async toMatchPage(page: Page, {
+  async toMatchPage(runner: Runner, {
     pageTitle,
     bodyText,
     leftNav,
@@ -24,7 +24,7 @@ expect.extend({
       throw new Error('isNot not yet implemented for `toMatchPage`');
     }
 
-    const results = await page.evaluate(() => {
+    const results = await runner.page.evaluate((leftNav) => {
       const prev = window.document.querySelector('a[aria-role="prev"] span');
       const next = window.document.querySelector('a[aria-role="next"] span');
       return [
@@ -43,7 +43,40 @@ expect.extend({
       expect(results[1]).toEqual(bodyText);
     }
     if (leftNav) {
-      expect(results[2]).toEqual(leftNav);
+      if (leftNav.every((el) => typeof el === 'string')) {
+        expect(results[2]).toEqual(leftNav);
+      } else {
+        for (let i = 0; i < leftNav.length; i++) {
+          const outerHTML = results[2][i];
+          const expectation = leftNav[i];
+
+          const actualValues = await runner.page.evaluate(({ attrs, outerHTML }) => {
+            const tempEl = document.createElement('div');
+            tempEl.innerHTML = outerHTML;
+            const anchorEl = tempEl.firstChild as HTMLAnchorElement;
+            const result = attrs.reduce((obj, attr) => ({
+              ...obj,
+              [attr]: anchorEl.getAttribute(attr),
+            }), {});
+
+            result.text = anchorEl.innerHTML;
+            return result;
+          }, { attrs: Object.keys(expectation), outerHTML });
+          try {
+            expect(actualValues).toEqual(expectation);
+          } catch (err) {
+            return {
+              message: () => {
+                const diffMessage = this.utils.diff(expectation, actualValues, {
+                  expand: this.expand,
+                });
+                return `Expected left nav anchor tags to match, but they didn't:\n\n${diffMessage}`;
+              },
+              pass: false,
+            };
+          }
+        }
+      }
     }
     if (prevHTML) {
       expect(results[3]).toEqual(prevHTML);
