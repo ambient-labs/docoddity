@@ -8,13 +8,6 @@ import {
 } from './runner.js';
 
 export const getPrintURL = (files: DocoddityTestFile[], runner: Runner) => async (d = 1000, _url?: string) => {
-  // const name = await getDist(files, buildDirFolderName);
-  // const runner = runners.get(name);
-  // if (!runner) {
-  //   throw new Error('No runner');
-  // }
-
-
   const url = _url ? `${runner.url}${_url}` : runner.page.url();
 
   console.log(url);

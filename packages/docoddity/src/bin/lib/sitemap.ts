@@ -81,6 +81,7 @@ class Node {
   private async getFrontmatter(): Promise<{
     title: string;
     order?: number;
+    open?: boolean;
   }> {
     const content = await this.content;
     if (this.leaf) {
@@ -124,7 +125,7 @@ class Node {
       const title = await this.getCategory();
       console.log('title', title);
       const children = await Promise.all([...this.children.values()].map(child => child.getPage()));
-      const { order } = await this.getFrontmatter();
+      const { order, open } = await this.getFrontmatter();
       const sortedChildren = children.sort(({ order: a }, { order: b }) => {
         if (a === undefined && b === undefined) {
           return 0;
@@ -142,6 +143,7 @@ class Node {
         url: this.url,
         title,
         children: sortedChildren,
+        open,
       };
     }
   }
