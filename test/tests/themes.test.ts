@@ -334,6 +334,40 @@ describe('Themes', () => {
         await click('#back-to-main-menu');
         expect((await getElementTransformStyle(runner, '#hamburger-contents main')).x).toEqual(498);
       });
+
+      test('it renders active links on toc on desktop', async () => {
+        const getParagraph = (nums: number[]) => nums.map(num => Array(num).fill('').map((_, i) => i).join(' ')).reduce((acc, num) => acc.length === 0 ? acc.concat(num) : acc.concat('', '', num), []);
+        const content = getMarkdownContent([
+          '## First one',
+          ...getParagraph([50, 50]),
+          '## Second one',
+          ...getParagraph([50, 120, 30]),
+          '### Nested one',
+          ...getParagraph([40, 150, 80]),
+          '### Nested two',
+          ...getParagraph([50, 120, 30, 120]),
+          '## Third one',
+          ...getParagraph([50, 40, 130, 120, 50]),
+        ].join('\n'));
+        const { runner, printURL } = await configureDocodditySite([
+          {
+            filepath: `index.md`,
+            content,
+          },
+        ]);
+
+        await expect(runner.page.evaluate(() => window.document.querySelector('#toc-desktop a.active')?.innerHTML)).resolves.toEqual('First one');
+        // await printURL(1000)
+        // await runner.page.mouse.wheel(0, 2000);
+        // // await runner.page.locator('h2[id="second-one"]').scrollIntoViewIfNeeded();
+        // await expect(runner.page.evaluate(() => window.document.querySelector('#toc-desktop a.active')?.innerHTML)).resolves.toEqual('Second one');
+        // // await runner.page.scrollTo(0, 500);
+        // // await expect(runner.page.evaluate(() => window.document.querySelector('#toc-desktop a.active')?.innerHTML)).resolves.toEqual('Nested one');
+        // // await runner.page.scrollTo(0, 1200);
+        // // await expect(runner.page.evaluate(() => window.document.querySelector('#toc-desktop a.active')?.innerHTML)).resolves.toEqual('Nested two');
+        // // await runner.page.scrollTo(0, 1800);
+        // // await expect(runner.page.evaluate(() => window.document.querySelector('#toc-desktop a.active')?.innerHTML)).resolves.toEqual('Third one');
+      });
     })
 
     describe('Pagination', () => {

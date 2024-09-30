@@ -10,9 +10,13 @@
     "experimentalDecorators": true,
     "moduleResolution": "NodeNext",
     "sourceMap": true,
+    "downlevelIteration": true,
+
     "skipLibCheck": true,
     "declaration": true,
     "rootDir": "./src",
+    "lib": ["dom", "es6"],
+
     "outDir": "./dist",
     "types": [
       "vitest/globals", 
@@ -20,7 +24,7 @@
   },
   "include": [
     "./src/**/*.ts"
-, "src/themes/default/scripts/page.ts.bk"],
+],
   "exclude": [
     "node_modules",
     ".vscode-test",
