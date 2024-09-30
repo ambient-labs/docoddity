@@ -7,7 +7,7 @@ import {
   type Runner
 } from './runner.js';
 
-export const getPrintURL = (files: DocoddityTestFile[], runner: Runner) => async (d = 10000, _url?: string) => {
+export const getPrintURL = (files: DocoddityTestFile[], runner: Runner) => async (d = 1000, _url?: string) => {
   // const name = await getDist(files, buildDirFolderName);
   // const runner = runners.get(name);
   // if (!runner) {

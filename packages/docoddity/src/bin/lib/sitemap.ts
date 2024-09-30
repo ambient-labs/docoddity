@@ -115,20 +115,19 @@ class Node {
   }
 
   private getTitleFromURL() {
-    return this.url.split('/').pop() ?? '';
+    const pageName = this.url.split('/').pop() ?? '';
+    return pageName.split(/[-_]/).map(word => word?.[0]?.toUpperCase() + word.slice(1)).join(' ');
   }
 
-  private async getCategory(): Promise<{ title: string; }> {
+  private async getCategory(): Promise<string> {
     const content = await this.content;
     if (content) {
       const { title } = JSON.parse(content);
-      return {
-        title,
-      };
+      if (title) {
+        return title;
+      }
     }
-    return {
-      title: this.getTitleFromURL(),
-    }
+    return this.getTitleFromURL();
   };
 
   async getPage(): Promise<PageDefinition> {
@@ -141,7 +140,8 @@ class Node {
         order,
       };
     } else {
-      const { title } = await this.getCategory();
+      const title = await this.getCategory();
+      console.log('title', title);
       const children = await Promise.all([...this.children.values()].map(child => child.getPage()));
       const { order } = await this.getFrontmatter();
       const sortedChildren = children.sort(({ order: a }, { order: b }) => {
