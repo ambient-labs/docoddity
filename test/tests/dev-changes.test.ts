@@ -201,7 +201,7 @@ describe('Dev: Listens for changes', () => {
       nextHTML: undefined,
       bodyH1: 'Three Title',
     });
-  }, 5000);
+  });
 
   test('it modifies a stylesheet', async () => {
     const content = 'foobar';
