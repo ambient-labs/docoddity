@@ -16,7 +16,7 @@ export const setupDev: SetupDev = ({
   const configureDocodditySite: ConfigureDevDocodditySite = async (files, {
     std: stdTwo,
   } = {}) => {
-    const { runner, dist, cwd, printURL, updateFiles, removeFiles, renameFiles, } = await setupSite(files);
+    const { runner, dist, cwd, printURL, ...rest } = await setupSite(files);
     const {
       child: docoddityDevProcess,
       port,
@@ -27,15 +27,14 @@ export const setupDev: SetupDev = ({
     registerRunner(dist, runner);
     registerChildProcess(dist, docoddityDevProcess);
     await runner.setPort(port);
-    return {
-      updateFiles,
-      removeFiles,
-      renameFiles,
+    const response = {
+      ...rest,
       runner,
       printURL,
       docoddityDevProcess,
       ...getPageFunctionUtils(runner, docoddityDevProcess),
     };
+    return response;
   }
 
   afterAll(async () => {

@@ -45,7 +45,7 @@ export const runDocoddityDev: RunDocoddityDev = (cwd: string, {
     const stringData = stripColor(data.toString());
     if (stringData) {
       stderrChunks.push(stringData);
-      console.error(stringData)
+      // console.error('[Docoddity Dev Process]', stringData)
       if (stderr) {
         stderr(stringData);
       }
