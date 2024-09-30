@@ -56,12 +56,22 @@ export interface DocoddityNav {
   right?: DocoddityNavItem[];
 }
 
+export interface AlgoliaConfig {
+
+  appId: string;
+  indexName: string;
+  apiKey: string;
+}
+
 export interface DocoddityContents {
   theme?: string;
   title?: string;
   head?: (string | DocoddityFileDefinition)[];
   body?: (string | DocoddityFileDefinition)[];
   nav?: DocoddityNav;
+  config?: {
+    algolia?: AlgoliaConfig;
+  }
 }
 
 export interface TagDefinitionFilepathContent {
@@ -128,6 +138,8 @@ export const isDocoddityFileDefinition = (tag: unknown): tag is DocoddityFileDef
 });
 export const isDocoddityContentsHeadOrBodyTag = (tag: unknown): tag is (string | DocoddityFileDefinition) => typeof tag === 'string' || isDocoddityFileDefinition(tag);
 export const isDocoddityContentsHeadOrBody = (tags: unknown): tags is (string | DocoddityFileDefinition)[] => Array.isArray(tags) && tags.every(isDocoddityContentsHeadOrBodyTag);
+export const isDocoddityContentsConfig = (config: unknown): config is DocoddityContents['config'] => typeof config === 'object' && !!config && !Array.isArray(config) && (('algolia' in config && isDocoddityContentsConfigAlgolia(config.algolia)) || !('algolia' in config));
+export const isDocoddityContentsConfigAlgolia = (config: unknown): config is AlgoliaConfig => typeof config === 'object' && !!config && !Array.isArray(config) && 'appId' in config && 'indexName' in config && 'apiKey' in config;
 
 export const isDocoddityContents = (contents: unknown): contents is DocoddityContents => typeof contents === 'object'
   && !!contents
@@ -136,4 +148,5 @@ export const isDocoddityContents = (contents: unknown): contents is DocoddityCon
   && (('theme' in contents && typeof contents.theme === 'string') || !('theme' in contents))
   && (('nav' in contents && isDocoddityNav(contents.nav)) || !('nav' in contents))
   && (('head' in contents && isDocoddityContentsHeadOrBody(contents.head)) || !('head' in contents))
-  && (('body' in contents && isDocoddityContentsHeadOrBody(contents.body)) || !('body' in contents));
+  && (('body' in contents && isDocoddityContentsHeadOrBody(contents.body)) || !('body' in contents))
+  && (('config' in contents && isDocoddityContentsConfig(contents.config)) || !('config' in contents));

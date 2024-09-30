@@ -122,7 +122,17 @@ const renderDesktopMenu = ({
       <div id="right">
         ${renderNavItems(page.url, docoddity.nav?.right)}
         <theme-toggle></theme-toggle>
-        <div class="mobile" id="docsearch"></div>
+        ${docoddity.config?.algolia ? html`
+          <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3"/></pre></li>
+          <script src="https://cdn.jsdelivr.net/npm/@docsearch/js@3"></script>
+          <div class="mobile" id="docsearch"></div><script>
+               window.docsearch({
+                  container: '#docsearch',
+                  apiKey: '${docoddity.config.algolia.apiKey}',
+                  appId: '${docoddity.config.algolia.appId}',
+                  indexName: '${docoddity.config.algolia.indexName}',
+                });
+          </script>` : ''}
       </div>
     </header>
   `;
