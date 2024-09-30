@@ -165,7 +165,7 @@ describe('Dev: Listens for changes', () => {
       prevHTML: 'one2',
       nextHTML: 'three2',
     });
-  }, 4000);
+  });
 
   test('it changes a non-root markdown file', async () => {
     const content = 'foobar';
