@@ -141,4 +141,44 @@ describe('Dev: Display', () => {
     await waitForSelector(`text=${content}`);
     expect(await runner.page.evaluate(() => { return window['foo'](); })).toEqual(fnResponse);
   });
+
+  describe('Trailing slashes', () => {
+    test('it works without a trailing slash', async () => {
+      const content = 'foobar';
+      const markdownContent = 'foobarbaz';
+      const { runner, printURL, waitForSelector } = await configureDevDocodditySite([
+        {
+          filepath: `index.html`,
+          content: `<p>${content}</p>`,
+        },
+        {
+          filepath: `docs/index.md`,
+          content: getMarkdownContent(markdownContent, { title: 'Docs' }),
+        },
+      ]);
+
+      await waitForSelector(`text=${content}`, 500);
+      await runner.goto('/docs');
+      await waitForSelector(`text=${markdownContent}`, 500);
+    });
+
+    test('it works with a trailing slash', async () => {
+      const content = 'foobar';
+      const markdownContent = 'foobarbaz';
+      const { runner, printURL, waitForSelector } = await configureDevDocodditySite([
+        {
+          filepath: `index.html`,
+          content: `<p>${content}</p>`,
+        },
+        {
+          filepath: `docs/index.md`,
+          content: getMarkdownContent(markdownContent, { title: 'Docs' }),
+        },
+      ]);
+
+      await waitForSelector(`text=${content}`, 500);
+      await runner.goto('/docs/');
+      await waitForSelector(`text=${markdownContent}`, 500);
+    });
+  });
 });

@@ -25,7 +25,7 @@ export const setupSite = async (files: DocoddityTestFile[]) => {
   await rimraf(cwd);
   await Promise.all([
     runner.setup(),
-    updateFiles(files),
+    updateFiles(files, false),
   ]);
   await pnpmInstall(cwd);
   return {

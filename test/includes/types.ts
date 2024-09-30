@@ -15,7 +15,6 @@ export interface STD {
 
 export interface Args {
   std?: STD;
-  key?: string;
 }
 
 export type PrintURL = (d?: number, url?: string) => Promise<string>;
@@ -24,7 +23,7 @@ export type DocoddityDevProcess = ReturnType<typeof spawnPackageCommand>;
 interface StandardConfigureResponse {
   runner: Runner;
   printURL: PrintURL;
-  updateFiles: (files: DocoddityTestFile[]) => Promise<void>;
+  updateFiles: (files: DocoddityTestFile[], waitForDocoddity?: boolean) => Promise<void>;
 }
 type ConfigureDocodditySite<T extends StandardConfigureResponse> = (files: DocoddityTestFile[], args?: Args) => Promise<T>;
 

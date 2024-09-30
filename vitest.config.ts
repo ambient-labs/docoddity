@@ -4,10 +4,11 @@ import path from 'path';
 export default defineConfig({
   test: {
     maxConcurrency: 15,
+    // it works without a trailing slash
     sequence: {
       concurrent: process.env.CI === 'true',
     },
-    testTimeout: process.env.CI === 'true' ? 120000 : 10000,
+    testTimeout: process.env.CI === 'true' ? 120000 : 5000,
     hookTimeout: 1000,
     retry: process.env.CI === 'true' ? 3 : 0,
     include: [
