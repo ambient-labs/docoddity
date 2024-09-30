@@ -597,7 +597,7 @@ describe('Themes', () => {
       });
     });
 
-    test.only('it toggles left nav rows', async () => {
+    test('it toggles left nav rows', async () => {
       const { runner, printURL } = await configureDocodditySite([
         {
           filepath: `index.html`,
