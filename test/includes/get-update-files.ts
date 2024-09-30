@@ -3,9 +3,7 @@ import {
   type DocoddityTestFile
 } from "./types.js";
 import { writeFile } from './writeFile.js';
-import { exists } from 'fs-extra';
-import { waitFor } from './wait-for.js';
-import { withExt } from '../../packages/docoddity/src/bin/lib/utils/with-ext.js';
+import { getWaitForDocoddityFileToBeWritten } from './get-wait-for-docoddity-file-to-be-written.js';
 
 const DEFAULT_PACKAGE_JSON = {
   "name": "docs",
@@ -32,7 +30,7 @@ const getFilesForUpdate = (files: DocoddityTestFile[]): DocoddityTestFile[] => {
   ].filter(Boolean);
 };
 
-export const getUpdateFiles = (cwd: string) => async (files: DocoddityTestFile[], waitForDocoddity = true) => {
+export const getUpdateFiles = (cwd: string, waitForDocoddityFile: ReturnType<typeof getWaitForDocoddityFileToBeWritten>) => async (files: DocoddityTestFile[], waitForDocoddity = true) => {
   await Promise.all([
     ...getFilesForUpdate(files).map(({
       filepath,
@@ -48,19 +46,7 @@ export const getUpdateFiles = (cwd: string) => async (files: DocoddityTestFile[]
     }) => {
       await writeFile(resolvedFilepath, content);
       if (waitForDocoddity && !['package.json', 'docoddity.json'].includes(filepath) && (filepath.endsWith('html') || filepath.endsWith('md'))) {
-        // For our tests, we need to wait for the .docoddity/site version of the HTML file to get writen
-        const targetHTMLFilepath = withExt(filepath, 'html');
-        const docoddityFilepath = path.resolve(cwd, '.docoddity/site', targetHTMLFilepath);
-        const duration = 500;
-        try {
-          return await waitFor(async () => {
-            if (!await exists(docoddityFilepath)) {
-              throw new Error('not yet')
-            }
-          }, duration);
-        } catch (err) {
-          throw new Error(`Docoddity file ${docoddityFilepath} was not created in ${duration}ms`);
-        }
+        await waitForDocoddityFile(filepath);
       }
     }),
   ]);

@@ -14,7 +14,7 @@ export const setupBuild: SetupBuild = ({
   const configureDocodditySite: ConfigureBuildDocodditySite = async (files, {
     std: stdTwo,
   } = {}) => {
-    const { runner, dist, buildDir, cwd, updateFiles, printURL, } = await setupSite(files);
+    const { runner, dist, buildDir, cwd, ...rest } = await setupSite(files);
     registerRunner(dist, runner);
     await runDocoddityBuild(buildDir, cwd, {
       ...stdOne,
@@ -23,8 +23,7 @@ export const setupBuild: SetupBuild = ({
     await runner.startServer();
     return {
       runner,
-      printURL,
-      updateFiles,
+      ...rest,
       ...getPageFunctionUtils(runner),
     };
   };

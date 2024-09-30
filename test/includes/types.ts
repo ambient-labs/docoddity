@@ -22,6 +22,7 @@ export type DocoddityDevProcess = ReturnType<typeof spawnPackageCommand>;
 
 interface StandardConfigureResponse {
   runner: Runner;
+  waitForDocoddityFileToBeWritten: (file: string) => Promise<void>;
   printURL: PrintURL;
   updateFiles: (files: DocoddityTestFile[], waitForDocoddity?: boolean) => Promise<void>;
 }

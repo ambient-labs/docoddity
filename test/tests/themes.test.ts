@@ -12,6 +12,7 @@ import { getActions, getClick } from '../includes/getActions.js';
 import { DocoddityTestFile } from '../includes/types.js';
 import { type Runner } from '../includes/runner.js';
 import { getElementTransformStyle } from '../includes/get-element-transform-style.js';
+import { setupDev } from '../includes/setup-dev.js';
 const __dirname = url.fileURLToPath(new URL('.', import.meta.url))
 const ROOT = path.resolve(__dirname, '../..')
 
@@ -419,6 +420,54 @@ describe('Themes', () => {
   });
 
   describe('Config', () => {
+    test('it should crash if provided a badly formatted docoddity in build mode', async () => {
+      const content = 'foobar';
+      await expect(async () => await configureDocodditySite([
+        {
+          filepath: `index.html`,
+          content: `
+              <p>${content}</p>
+    `,
+        },
+        {
+          filepath: 'docoddity.json',
+          content: '{',
+        }
+      ])).rejects.toThrow();
+    });
+
+    test('it should not crash if provided a badly formatted docoddity in dev mode', async () => {
+      const configureDevDocodditySite = setupDev({
+        std: {
+          stdout: chunk => console.log('[Docoddity]', chunk),
+          stderr: chunk => console.error('[Docoddity]', chunk),
+        }
+      });
+      const content = 'foobar';
+      const { waitForDocoddityFileToBeWritten, runner, printURL, updateFiles } = await configureDevDocodditySite([
+        {
+          filepath: `index.html`,
+          content: `
+        <p>${content}</p>
+      `,
+        },
+        {
+          filepath: 'docoddity.json',
+          content: '{',
+        }
+      ]);
+
+      expect(await runner.page.evaluate(() => window.document.body.innerText)).toEqual('');
+      await updateFiles([{
+        filepath: 'docoddity.json',
+        content: '{}',
+      }]);
+      await waitForDocoddityFileToBeWritten('index.html');
+      await runner.goto('/')
+      expect(await runner.page.evaluate(() => window.document.querySelector('body p')?.innerText)).toEqual(content);
+
+    });
+
     test('it should not render algolia if omitted', async () => {
       const content = 'foobar';
       const { runner, printURL } = await configureDocodditySite([

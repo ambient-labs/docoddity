@@ -48,38 +48,42 @@ export const dev = async ({
   const relativeToSource = makeRelative(sourceDir);
 
   const callback: WatchCallback = async (event) => {
-    if (isWatchAddEvent(event) || isWatchChangeEvent(event)) {
-      const {
-        data: sourceFilepath,
-        sitemap,
-      } = event;
-      const relativeFilepath = relativeToSource(sourceFilepath);
-      if (relativeFilepath === 'docoddity.json') {
-      } else {
-        sitemap.add(sourceFilepath);
-        const filepath = Files.getFilepath(relativeFilepath, {
-          sourceDir,
-          targetDir,
-        });
-        await docoddity.writeFile(filepath);
-      }
-      await Promise.all([...sitemap].map(file => docoddity.writeFile(docoddity.getFilepath(file))))
-    } else if (isWatchDeleteEvent(event)) {
-      const {
-        data: sourceFilepath,
-        sitemap,
-      } = event;
+    try {
+      if (isWatchAddEvent(event) || isWatchChangeEvent(event)) {
+        const {
+          data: sourceFilepath,
+          sitemap,
+        } = event;
+        const relativeFilepath = relativeToSource(sourceFilepath);
+        if (relativeFilepath === 'docoddity.json') {
+        } else {
+          sitemap.add(sourceFilepath);
+          const filepath = Files.getFilepath(relativeFilepath, {
+            sourceDir,
+            targetDir,
+          });
+          await docoddity.writeFile(filepath);
+        }
+        await Promise.all([...sitemap].map(file => docoddity.writeFile(docoddity.getFilepath(file))))
+      } else if (isWatchDeleteEvent(event)) {
+        const {
+          data: sourceFilepath,
+          sitemap,
+        } = event;
 
-      const relativeFilepath = relativeToSource(sourceFilepath);
+        const relativeFilepath = relativeToSource(sourceFilepath);
 
-      if (relativeFilepath === 'docoddity.json') {
-        // const docoddityContents = await readDocoddityJSON(sourceDir);
-        // await Promise.all([...sitemap].map(file => docoddity.writeFile(docoddity.getFilepath(file))))
-      } else {
-        sitemap.remove(sourceFilepath);
-        await docoddity.removeFile(relativeFilepath);
+        if (relativeFilepath === 'docoddity.json') {
+          // const docoddityContents = await readDocoddityJSON(sourceDir);
+          // await Promise.all([...sitemap].map(file => docoddity.writeFile(docoddity.getFilepath(file))))
+        } else {
+          sitemap.remove(sourceFilepath);
+          await docoddity.removeFile(relativeFilepath);
+        }
+        await Promise.all([...sitemap].map(file => docoddity.writeFile(docoddity.getFilepath(file))))
       }
-      await Promise.all([...sitemap].map(file => docoddity.writeFile(docoddity.getFilepath(file))))
+    } catch (err) {
+      console.error(err);
     }
   };
 
