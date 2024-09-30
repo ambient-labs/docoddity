@@ -12,14 +12,15 @@ import { getActions, getClick } from '../includes/getActions.js';
 import { DocoddityTestFile } from '../includes/types.js';
 import { getElementTransformStyle } from '../includes/get-element-transform-style.js';
 import { setupDev } from '../includes/setup-dev.js';
+import { getUpdateFiles } from '../includes/get-update-files.js';
 const __dirname = url.fileURLToPath(new URL('.', import.meta.url))
 const ROOT = path.resolve(__dirname, '../..')
 
 describe('Themes', () => {
   const configureDocodditySite = setupBuild({
     std: {
-      stdout: chunk => console.log('[Docoddity]', chunk),
-      stderr: chunk => console.error('[Docoddity]', chunk),
+      // stdout: chunk => console.log('[Docoddity]', chunk),
+      // stderr: chunk => console.error('[Docoddity]', chunk),
     }
   });
 
@@ -778,104 +779,191 @@ describe('Themes', () => {
             ]
           });
         });
-      });
-    });
-  });
 
-  describe('Config', () => {
-    test('it should crash if provided a badly formatted docoddity in build mode', async () => {
-      const content = 'foobar';
-      await expect(async () => await configureDocodditySite([
-        {
-          filepath: `index.html`,
-          content: `
-              <p>${content}</p>
-    `,
-        },
-        {
-          filepath: 'docoddity.json',
-          content: '{',
-        }
-      ])).rejects.toThrow();
-    });
-
-    test('it should not crash if provided a badly formatted docoddity in dev mode', async () => {
-      const configureDevDocodditySite = setupDev({
-        std: {
-          stdout: chunk => console.log('[Docoddity]', chunk),
-          stderr: chunk => console.error('[Docoddity]', chunk),
-        }
-      });
-      const content = 'foobar';
-      const { waitForDocoddityFileToBeWritten, runner, printURL, updateFiles } = await configureDevDocodditySite([
-        {
-          filepath: `index.html`,
-          content: `
-        <p>${content}</p>
-      `,
-        },
-        {
-          filepath: 'docoddity.json',
-          content: '{',
-        }
-      ]);
-
-      expect(await runner.page.evaluate(() => window.document.body.innerText)).toEqual('');
-      await updateFiles([{
-        filepath: 'docoddity.json',
-        content: '{}',
-      }]);
-      await waitForDocoddityFileToBeWritten('index.html');
-      await runner.goto('/')
-      expect(await runner.page.evaluate(() => window.document.querySelector('body p')?.innerText)).toEqual(content);
-
-    });
-
-    test('it should not render algolia if omitted', async () => {
-      const content = 'foobar';
-      const { runner, printURL } = await configureDocodditySite([
-        {
-          filepath: `index.html`,
-          content: `
-              <p>${content}</p>
-    `,
-        },
-        {
-          filepath: 'docoddity.json',
-          content: {
-            config: {
+        test('it defaults to open if specified', async () => {
+          const { runner, printURL } = await configureDocodditySite([
+            {
+              filepath: `index.html`,
+              content: '<p>Home page</p>',
             },
-          },
-        }
-      ]);
-      expect(await runner.page.evaluate(() => !!window.document.querySelector('#docsearch'))).toBe(false);
-    });
-
-    test('it should render algolia if included', async () => {
-      const content = 'foobar';
-      const { runner, printURL } = await configureDocodditySite([
-        {
-          filepath: `index.html`,
-          content: `
-              <p>${content}</p>
-    `,
-        },
-        {
-          filepath: 'docoddity.json',
-          content: {
-            config: {
-              algolia: {
-                appId: '123',
-                indexName: 'some-index-name',
-                apiKey: '123',
+            {
+              filepath: `docs/index.md`,
+              content: getMarkdownContent('0', { title: 'Getting Started', order: 0 }),
+            },
+            {
+              filepath: `docs/section-one/.category.json`,
+              content: {
+                order: 1,
+                title: 'Section One',
+                open: true,
               },
             },
+            {
+              filepath: `docs/section-one/index.md`,
+              content: getMarkdownContent('section one index', { title: 'Section One Index', order: 0 }),
+            },
+            {
+              filepath: `docs/section-one/page-two.md`,
+              content: getMarkdownContent('section one page two', { title: 'Section One Page Two', order: 1 }),
+            },
+            {
+              filepath: `docs/section-one/page-three.md`,
+              content: getMarkdownContent('section one page three', { title: 'Section One Page Three', order: 2 }),
+            },
+            {
+              filepath: `docs/page-two.md`,
+              content: getMarkdownContent('2', { title: 'Page Two', order: 2 }),
+            },
+            {
+              filepath: `docs/section-three/.category.json`,
+              content: {
+                order: 3,
+                title: 'Section Three',
+              },
+            },
+            {
+              filepath: `docs/section-three/index.md`,
+              content: getMarkdownContent('section three index', { title: 'Section Three Index', order: 0 }),
+            },
+            {
+              filepath: `docs/section-three/page-two.md`,
+              content: getMarkdownContent('section three page two', { title: 'Section Three Page Two', order: 1 }),
+            },
+            {
+              filepath: `docs/section-three/nested/.category.json`,
+              content: {
+                order: 4,
+                title: 'Nested',
+                open: true,
+              },
+            },
+            {
+              filepath: `docs/section-three/nested/index.md`,
+              content: getMarkdownContent('section three nested page index', { title: 'Nested Index', order: 0 }),
+            },
+            {
+              filepath: `docs/section-three/nested/page-one.md`,
+              content: getMarkdownContent('section three nested page one', { title: 'Nested Page One', order: 1 }),
+            },
+            {
+              filepath: `docs/section-three/page-three.md`,
+              content: getMarkdownContent('section three page three', { title: 'Section Three Page Three', order: 2 }),
+            },
+            {
+              filepath: `docs/page-five.md`,
+              content: getMarkdownContent('5', { title: 'Page Five', order: 5 }),
+            },
+          ]);
+          await runner.goto('/docs');
+
+          const nonExpanded = '36px';
+
+          await runner.page.evaluate(() => Array.from(window.document.querySelectorAll('#left-nav li')).map(li => (li as HTMLElement).style.transitionDuration = '0s'));
+          await expect((await runner.page.evaluate(() => window.getComputedStyle(window.document.querySelector('#left-nav li:nth-child(2)')))).gridTemplateRows).toEqual('156px');
+          await expect((await runner.page.evaluate(() => window.getComputedStyle(window.document.querySelector('#left-nav li:nth-child(4)')))).gridTemplateRows).toEqual(nonExpanded);
+          await runner.page.evaluate(() => (window.document.querySelector('#left-nav li:nth-child(4) button') as HTMLElement).click());
+          await expect((await runner.page.evaluate(() => window.getComputedStyle(window.document.querySelector('#left-nav li:nth-child(4)')))).gridTemplateRows).toEqual('276px');
+          await expect((await runner.page.evaluate(() => window.getComputedStyle(window.document.querySelector('#left-nav li:nth-child(4) li:nth-child(4)')))).gridTemplateRows).toEqual('116px');
+        });
+      });
+
+    });
+
+    describe('Config', () => {
+      test('it should crash if provided a badly formatted docoddity in build mode', async () => {
+        const content = 'foobar';
+        await expect(async () => await configureDocodditySite([
+          {
+            filepath: `index.html`,
+            content: `
+              <p>${content}</p>
+    `,
           },
-        }
-      ]);
-      expect(await runner.page.evaluate(() => !!window.document.querySelector('#docsearch'))).toBe(true);
+          {
+            filepath: 'docoddity.json',
+            content: '{',
+          }
+        ])).rejects.toThrow();
+      });
+
+      test('it should not crash if provided a badly formatted docoddity in dev mode', async () => {
+        const configureDevDocodditySite = setupDev({
+          std: {
+            stdout: chunk => console.log('[Docoddity]', chunk),
+            stderr: chunk => console.error('[Docoddity]', chunk),
+          }
+        });
+        const content = 'foobar';
+        const { waitForDocoddityFileToBeWritten, runner, printURL, updateFiles } = await configureDevDocodditySite([
+          {
+            filepath: `index.html`,
+            content: `
+        <p>${content}</p>
+      `,
+          },
+          {
+            filepath: 'docoddity.json',
+            content: '{',
+          }
+        ]);
+
+        expect(await runner.page.evaluate(() => window.document.body.innerText)).toEqual('');
+        await updateFiles([{
+          filepath: 'docoddity.json',
+          content: '{}',
+        }]);
+        await waitForDocoddityFileToBeWritten('index.html');
+        await runner.goto('/')
+        expect(await runner.page.evaluate(() => window.document.querySelector('body p')?.innerText)).toEqual(content);
+
+      });
+
+      test('it should not render algolia if omitted', async () => {
+        const content = 'foobar';
+        const { runner, printURL } = await configureDocodditySite([
+          {
+            filepath: `index.html`,
+            content: `
+              <p>${content}</p>
+    `,
+          },
+          {
+            filepath: 'docoddity.json',
+            content: {
+              config: {
+              },
+            },
+          }
+        ]);
+        expect(await runner.page.evaluate(() => !!window.document.querySelector('#docsearch'))).toBe(false);
+      });
+
+      test('it should render algolia if included', async () => {
+        const content = 'foobar';
+        const { runner, printURL } = await configureDocodditySite([
+          {
+            filepath: `index.html`,
+            content: `
+              <p>${content}</p>
+    `,
+          },
+          {
+            filepath: 'docoddity.json',
+            content: {
+              config: {
+                algolia: {
+                  appId: '123',
+                  indexName: 'some-index-name',
+                  apiKey: '123',
+                },
+              },
+            },
+          }
+        ]);
+        expect(await runner.page.evaluate(() => !!window.document.querySelector('#docsearch'))).toBe(true);
+      });
+
     });
 
   });
-
 });

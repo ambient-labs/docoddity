@@ -36,8 +36,8 @@ export const renderMarkdownPage = ({
       ${renderToc(content)}
       <script type="module">
 const page = window.document.querySelector('main#page');
-if (page && page instanceof HTMLElement) {
-  const aside = document.querySelector('aside#toc-desktop');
+const aside = document.querySelector('aside#toc-desktop');
+if (page && page instanceof HTMLElement && aside && aside instanceof HTMLElement) {
   const headers = document.querySelectorAll("h2, h3");
   const anchors = aside.querySelectorAll('a');
 

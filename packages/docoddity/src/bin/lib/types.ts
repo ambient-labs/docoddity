@@ -95,6 +95,7 @@ export interface PageDefinition {
   children: PageDefinition[];
   current?: boolean;
   order?: number;
+  open?: boolean;
 }
 
 export interface DocoddityRenderedArgs {
