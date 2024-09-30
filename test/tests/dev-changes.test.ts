@@ -6,8 +6,8 @@ import { getMarkdownContent } from '../setup/getMarkdownContent.js';
 describe('Dev: Listens for changes', () => {
   const configureDevDocodditySite = setupDev({
     std: {
-      // stdout: chunk => console.log('[Docoddity]', chunk),
-      // stderr: chunk => console.error('[Docoddity]', chunk),
+      stdout: chunk => console.log('[Docoddity]', chunk),
+      stderr: chunk => console.error('[Docoddity]', chunk),
     }
   });
   test('it changes an html file', async () => {
@@ -90,6 +90,82 @@ describe('Dev: Listens for changes', () => {
     ]);
     expect(container).toEqual(content2);
   });
+
+  test('it changes markdown frontmatter', async () => {
+    const content = 'foobar';
+    const { runner, printURL, waitForSelector, updateFiles } = await configureDevDocodditySite([
+      {
+        filepath: `index.md`,
+        content: getMarkdownContent(content, { title: 'foo' }),
+      },
+    ]);
+
+    // await printURL(1000);
+    await waitForSelector(`text=${content}`);
+    const content2 = 'foobarbaz';
+
+    await updateFiles([
+      {
+        filepath: `index.md`,
+        content: getMarkdownContent(content2, { title: 'bar' }),
+      },
+    ]);
+
+    await waitForSelector(`text=${content2}`);
+    await expect(runner).toMatchPage({
+      pageTitle: 'bar',
+      bodyText: content2,
+    });
+  });
+
+  test.only('it changes markdown frontmatter across all pages', async () => {
+    const content = 'foobar';
+    const { runner, printURL, waitForSelector, updateFiles, waitFor } = await configureDevDocodditySite([
+      {
+        filepath: `one.md`,
+        content: getMarkdownContent('one', { title: 'one', order: 1 }),
+      },
+      {
+        filepath: `two.md`,
+        content: getMarkdownContent('two', { title: 'two', order: 2 }),
+      },
+      {
+        filepath: `three.md`,
+        content: getMarkdownContent('three', { title: 'three', order: 3 }),
+      },
+    ]);
+
+    await runner.goto('/two');
+
+    await updateFiles([
+      {
+        filepath: `one.md`,
+        content: getMarkdownContent('one', { title: 'one2', order: 1 }),
+      },
+      {
+        filepath: `three.md`,
+        content: getMarkdownContent('three', { title: 'three2', order: 3 }),
+      },
+    ]);
+
+    await waitFor(async () => {
+      const anchor = await runner.page.evaluate(() => {
+        const anchors = Array.from(window.document.querySelectorAll('nav#left-nav a'));
+        return anchors.some(anchor => anchor.textContent.includes('three2'));
+      });
+      expect(anchor).toEqual(true);
+    });
+    console.log('-----')
+    await expect(runner).toMatchPage({
+      leftNav: [
+        { href: '/one', text: 'one2', },
+        { href: '/two', text: 'two', },
+        { href: '/three', text: 'three2', },
+      ],
+      prevHTML: 'one2',
+      nextHTML: 'three2',
+    });
+  }, 4000);
 
   test('it changes a non-root markdown file', async () => {
     const content = 'foobar';

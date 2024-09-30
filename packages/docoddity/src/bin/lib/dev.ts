@@ -62,7 +62,6 @@ export const dev = async ({
             sourceDir,
             targetDir,
           });
-          await docoddity.writeFile(filepath);
         }
         await Promise.all([...sitemap].map(file => docoddity.writeFile(docoddity.getFilepath(file))))
       } else if (isWatchDeleteEvent(event)) {
@@ -74,8 +73,6 @@ export const dev = async ({
         const relativeFilepath = relativeToSource(sourceFilepath);
 
         if (relativeFilepath === 'docoddity.json') {
-          // const docoddityContents = await readDocoddityJSON(sourceDir);
-          // await Promise.all([...sitemap].map(file => docoddity.writeFile(docoddity.getFilepath(file))))
         } else {
           sitemap.remove(sourceFilepath);
           await docoddity.removeFile(relativeFilepath);
