@@ -38,7 +38,7 @@ export const isWatchAddEvent = (event: WatchCallbackEvent): event is AddEvent =>
 export const isWatchChangeEvent = (event: WatchCallbackEvent): event is ChangeEvent => event.type === 'change';
 export const isWatchDeleteEvent = (event: WatchCallbackEvent): event is DeleteEvent => event.type === 'unlink';
 
-export type ValidTagValue = string | number | boolean;
+export type ValidTagValue = string | number | boolean | { filename: string };
 export type DocoddityFileDefinition = Record<string, ValidTagValue>;
 
 export interface DocoddityNavItem {
@@ -117,7 +117,15 @@ export interface Frontmatter {
 
 export const isDocoddityNavItem = (item: unknown): item is DocoddityNavItem => typeof item === 'object' && !!item && !Array.isArray(item) && 'url' in item && 'text' in item;
 export const isDocoddityNav = (nav: unknown): nav is DocoddityNav => typeof nav === 'object' && !!nav && !Array.isArray(nav) && (('left' in nav && Array.isArray(nav.left)) || !('left' in nav)) && (('right' in nav && Array.isArray(nav.right)) || !('right' in nav));
-export const isDocoddityFileDefinition = (tag: unknown): tag is DocoddityFileDefinition => typeof tag === 'object' && !!tag && !Array.isArray(tag) && Object.values(tag).every(val => typeof val === 'string' || typeof val === 'number' || typeof val === 'boolean');
+export const isDocoddityFileDefinition = (tag: unknown): tag is DocoddityFileDefinition => typeof tag === 'object' && !!tag && !Array.isArray(tag) && Object.entries(tag).every(([key, val]) => {
+  if (key === 'content') {
+    if (typeof val === 'string') {
+      return true;
+    }
+    return typeof val === 'object' && !!val && !Array.isArray(val) && 'filename' in val && typeof val.filename === 'string';
+  }
+  return typeof val === 'string' || typeof val === 'number' || typeof val === 'boolean';
+});
 export const isDocoddityContentsHeadOrBodyTag = (tag: unknown): tag is (string | DocoddityFileDefinition) => typeof tag === 'string' || isDocoddityFileDefinition(tag);
 export const isDocoddityContentsHeadOrBody = (tags: unknown): tags is (string | DocoddityFileDefinition)[] => Array.isArray(tags) && tags.every(isDocoddityContentsHeadOrBodyTag);
 

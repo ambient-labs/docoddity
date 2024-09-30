@@ -6,8 +6,8 @@ import { TagDefinition } from '../setup/matchers/toContainTags.js';
 describe('Javascript Assets', () => {
   const configureDocodditySite = setupBuild({
     std: {
-      // stdout: console.log,
-      // stderr: console.error,
+      // stdout: chunk => console.log('[Docoddity]', chunk),
+      // stderr: chunk => console.error('[Docoddity]', chunk),
     }
   });
 

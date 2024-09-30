@@ -1,3 +1,4 @@
+import { getClick } from '../includes/getActions.js';
 import { setupDev } from '../includes/setup-dev.js';
 import { DocoddityTestFile } from '../includes/types.js';
 import { getMarkdownContent } from '../setup/getMarkdownContent.js';
@@ -5,8 +6,8 @@ import { getMarkdownContent } from '../setup/getMarkdownContent.js';
 describe('Dev: Listens for changes', () => {
   const configureDevDocodditySite = setupDev({
     std: {
-      stdout: console.log,
-      // stderr: console.error,
+      // stdout: chunk => console.log('[Docoddity]', chunk),
+      // stderr: chunk => console.error('[Docoddity]', chunk),
     }
   });
   test('it changes an html file', async () => {
@@ -120,10 +121,6 @@ describe('Dev: Listens for changes', () => {
 
   test('it changes a markdown file name, and that gets reflected in the <title>, page title, sidebar, and pagination', async () => {
     const { runner, printURL, renameFiles, waitFor } = await configureDevDocodditySite([
-      // {
-      //   filepath: `index.md`,
-      //   content: getMarkdownContent('index body', { title: 'Index Title' }),
-      // },
       {
         filepath: `docs/one.md`,
         content: getMarkdownContent('one body', { title: 'One Title', order: 0, }),
@@ -135,35 +132,37 @@ describe('Dev: Listens for changes', () => {
     ]);
 
     // await printURL(1000, '/docs/one');
-    const expectPage = async (title: string, container: string, nav: string[], prev: string, next: string, url?: string) => {
-      if (url) {
-        await runner.goto(url);
-      }
-      await waitFor(async () => {
-        expect(await runner.page.evaluate(() => {
-          const prev = window.document.querySelector('a[aria-role="prev"] span');
-          const next = window.document.querySelector('a[aria-role="next"] span');
-          return [
-            window.document.title,
-            window.document.querySelector('article#page-article p')?.innerText,
-            Array.from(window.document.querySelectorAll('nav#left-nav a')).map(el => el.outerHTML.trim()),
-            prev ? prev.innerText : undefined,
-            next ? next.innerText : undefined,
-          ];
-        })).toEqual([title, container, nav, prev, next]);
-      });
-    };
 
-    await expectPage('Two Title', 'two body', [
-      "<a href=\"/docs/one\">One Title</a>",
-      "<a href=\"/docs/two\">Two Title</a>",
-    ], 'One Title', undefined, '/docs/two');
+    const click = getClick(runner);
 
-    await expectPage('One Title', 'one body', [
-      "<a href=\"/docs/one\">One Title</a>",
-      "<a href=\"/docs/two\">Two Title</a>",
-    ], undefined, 'Two Title', '/docs/one');
+    await runner.goto('/docs/two');
+    await expect(runner).toMatchPage({
+      pageTitle: 'Two Title',
+      bodyText: 'two body',
+      leftNav: [
+        { href: '/docs/one', text: 'One Title', },
+        { href: '/docs/two', text: 'Two Title', },
+      ],
+      prevHTML: 'One Title',
+      nextHTML: undefined,
+      bodyH1: 'Two Title',
+    });
 
+    await runner.goto('/docs/one')
+
+    await expect(runner).toMatchPage({
+      pageTitle: 'One Title',
+      bodyText: 'one body',
+      leftNav: [
+        { href: '/docs/one', text: 'One Title', },
+        { href: '/docs/two', text: 'Two Title', },
+      ],
+      prevHTML: undefined,
+      nextHTML: 'Two Title',
+      bodyH1: 'One Title',
+    });
+
+    // await printURL(1000, '/docs/one');
     await renameFiles([
       {
         source: 'docs/two.md', target: 'docs/three.md',
@@ -171,16 +170,38 @@ describe('Dev: Listens for changes', () => {
       },
     ]);
 
-    await expectPage('One Title', 'one body', [
-      "<a href=\"/docs/one\">One Title</a>",
-      "<a href=\"/docs/three\">Three Title</a>",
-    ], undefined, 'Three Title');
+    await waitFor(async () => {
+      const anchor = await runner.page.evaluate(() => !!window.document.querySelector('nav#left-nav a[href="/docs/three"]'));
+      expect(anchor).toEqual(true);
+    });
 
-    await expectPage('Three Title', 'three body', [
-      "<a href=\"/docs/one\">One Title</a>",
-      "<a href=\"/docs/three\">Three Title</a>",
-    ], 'One Title', undefined, '/docs/three');
-  });
+    await expect(runner).toMatchPage({
+      pageTitle: 'One Title',
+      bodyText: 'one body',
+      leftNav: [
+        { href: '/docs/one', text: 'One Title', },
+        { href: '/docs/three', text: 'Three Title', },
+      ],
+      prevHTML: undefined,
+      nextHTML: 'Three Title',
+      bodyH1: 'One Title',
+    });
+
+    await click('a[aria-role="next"]');
+    await runner.page.waitForNavigation();
+
+    await expect(runner).toMatchPage({
+      pageTitle: 'Three Title',
+      bodyText: 'three body',
+      leftNav: [
+        { href: '/docs/one', text: 'One Title', },
+        { href: '/docs/three', text: 'Three Title', },
+      ],
+      prevHTML: 'One Title',
+      nextHTML: undefined,
+      bodyH1: 'Three Title',
+    });
+  }, 5000);
 
   test('it modifies a stylesheet', async () => {
     const content = 'foobar';

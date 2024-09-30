@@ -1,6 +1,6 @@
 import { html } from '../utils/html.js';
 import { getMarkdownWithCodeElement } from "../utils/get-markdown.js";
-import { getIsActive } from './render-body-header.js';
+import { getIsActive } from '../utils/get-is-active.js';
 
 export const renderNavList = async (name: string, navList: NavListItem[], pageURL: string) => html`
   <nav id="${name}">
@@ -16,11 +16,21 @@ export interface NavListItem {
   children: NavListItem[];
 }
 
+const buildMenuListAnchorAttributes = (entry: NavListItem, pageURL?: string) => {
+  const isActive = getIsActive(entry.url, pageURL);
+  const attbs = [
+    `href="${entry.url}"`,
+    isActive ? 'class="active"' :
+      ''
+  ].filter(Boolean).join(' ');
+  return attbs;
+};
+
 const renderNavListItem = (entry: NavListItem, pageURL?: string): Promise<string> => html`
   <li class="open">
     <div class="inner">
     <div class="menu-list ${entry.url === pageURL ? 'active' : ''}">
-      <a ${[`href="${entry.url}"`, getIsActive(entry.url, pageURL) ? 'class="active"' : ''].filter(Boolean).join(' ')}>${getMarkdownWithCodeElement(entry.title)}</a>
+      <a ${buildMenuListAnchorAttributes(entry, pageURL)}>${getMarkdownWithCodeElement(entry.title)}</a>
       ${when(entry.children.length > 0, html`
         <button class="toggle" aria-label="Toggle the category" type="button"></button>
       `)}

@@ -1,6 +1,7 @@
 import path from 'path';
 import {
   isDocoddityContents,
+  isDocoddityFileDefinition,
   type DocoddityContents
 } from '../types.js';
 import {
@@ -33,11 +34,25 @@ export const readDocoddityJSON = async (inputDir: string): Promise<DocoddityCont
     if (!!parsedContents.theme && typeof parsedContents.theme !== 'string') {
       throw new Error(`Invalid docoddity.json at ${docoddityPath}: expected theme to be string, got ${typeof parsedContents.theme}`);
     }
-    if (!!parsedContents.head && !Array.isArray(parsedContents.head)) {
-      throw new Error(`Invalid docoddity.json at ${docoddityPath}: expected head to be array, got ${typeof parsedContents.head}`);
+    if (!!parsedContents.head) {
+      if (!Array.isArray(parsedContents.head)) {
+        throw new Error(`Invalid docoddity.json at ${docoddityPath}: expected head to be array, got ${typeof parsedContents.head}`);
+      }
+      for (const tag of parsedContents.head) {
+        if (typeof tag !== 'string' && !isDocoddityFileDefinition(tag)) {
+          throw new Error(`Invalid docoddity.json at ${docoddityPath}: expected head to be array of strings or objects, got ${JSON.stringify(tag)}`);
+        }
+      }
     }
-    if (!!parsedContents.body && !Array.isArray(parsedContents.body)) {
-      throw new Error(`Invalid docoddity.json at ${docoddityPath}: expected body to be array, got ${typeof parsedContents.body}`);
+    if (!!parsedContents.body) {
+      if (!Array.isArray(parsedContents.body)) {
+        throw new Error(`Invalid docoddity.json at ${docoddityPath}: expected body to be array, got ${typeof parsedContents.body}`);
+      }
+      for (const tag of parsedContents.body) {
+        if (typeof tag !== 'string' && !isDocoddityFileDefinition(tag)) {
+          throw new Error(`Invalid docoddity.json at ${docoddityPath}: expected body to be array of strings or objects, got ${JSON.stringify(tag)}`);
+        }
+      }
     }
     if (!!parsedContents.nav) {
       if (typeof parsedContents.nav !== 'object') {
@@ -53,7 +68,7 @@ export const readDocoddityJSON = async (inputDir: string): Promise<DocoddityCont
         throw new Error(`Invalid docoddity.json at ${docoddityPath}: expected nav.right to be array, got ${typeof parsedContents.nav.right}`);
       }
     }
-    throw new Error(`Invalid docoddity.json at ${docoddityPath}, but don't know why`);
+    throw new Error(`Invalid docoddity.json at ${docoddityPath}, but don't know why: ${JSON.stringify(parsedContents)}`);
   }
   return parsedContents;
 };

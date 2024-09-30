@@ -3,7 +3,7 @@ import type { Runner } from "./runner.js";
 export const getClick = (runner: Runner) => (selector: string) => runner.page.evaluate((selector) => {
   const el = window.document.querySelector(selector);
   if (!el || !(el instanceof HTMLElement)) {
-    throw new Error('No next button found');
+    throw new Error(`No HTML element for ${selector} found`);
   }
   el.click();
 }, selector);

@@ -2,9 +2,16 @@ import type { Page } from 'playwright';
 // import { Buffer } from "node:buffer";
 import { minify as _minify } from "html-minifier";
 
-const minify = (html: string) => _minify(html, {
-  collapseWhitespace: true,
-});
+const minify = (html: string = '') => {
+  try {
+    return _minify(html, {
+      collapseWhitespace: true,
+    });
+  } catch (err) {
+    console.error(html)
+    throw new Error(`Error minifying: ${html}: ${err}`);
+  }
+};
 
 
 expect.extend({

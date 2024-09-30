@@ -18,8 +18,8 @@ const ROOT = path.resolve(__dirname, '../..')
 describe('Themes', () => {
   const configureDocodditySite = setupBuild({
     std: {
-      // stdout: console.log,
-      // stderr: console.error,
+      // stdout: chunk => console.log('[Docoddity]', chunk),
+      // stderr: chunk => console.error('[Docoddity]', chunk),
     }
   });
 
@@ -306,7 +306,7 @@ describe('Themes', () => {
 
       const nav = await runner.page.evaluate(() => Array.from(window.document.querySelectorAll('nav#left-nav a')).map(el => el.outerHTML.trim()));
       expect(nav).toEqual([
-        "<a href=\"/docs/\">Getting Started</a>",
+        '<a href="/docs/" class="active">Getting Started</a>',
         "<a href=\"/docs/usage\">Usage</a>",
         "<a href=\"/docs/no-page-title\">No Page Title</a>",
       ]);
@@ -394,7 +394,7 @@ describe('Themes', () => {
         }
       ]);
 
-      await runner.goto('/docs/subfolder');
+      await runner.goto('/docs/subfolder/');
       runner.page.setViewportSize({ width: 600, height: 600 });
       const click = getClick(runner);
       await runner.page.evaluate(() => (window.document.querySelector('#hamburger-menu') as HTMLElement).style.transitionDuration = '0s');
@@ -403,7 +403,7 @@ describe('Themes', () => {
       await click('#hamburger');
       expect((await getElementTransformStyle(runner, '#hamburger-menu')).x).toEqual(0);
       await expect(runner.page).toMatchQuerySelectorAll('#hamburger-contents main section:first-child a', [
-        '<a href="/docs/subfolder/index">One</a>',
+        '<a href="/docs/subfolder/" class="active">One</a>',
         '<a href="/docs/subfolder/two">Two</a>',
       ]);
       await expect(runner.page).toMatchQuerySelectorAll('#hamburger-contents main section:last-child a', [
