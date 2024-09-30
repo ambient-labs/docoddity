@@ -89,7 +89,7 @@ export const dev = async ({
     root: targetDir,
     plugins: [
       inlineCSSContent(),
-      forwardToTrailingSlashPlugin(),
+      forwardToTrailingSlashPlugin(targetDir),
     ],
     server: {
       port,

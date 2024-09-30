@@ -8,6 +8,8 @@ import type {
   WaitUntilMessage
 } from "./types.js";
 
+import { waitFor as _waitFor } from "./wait-for.js";
+
 const DEFAULT_TIMEOUT = Infinity;
 const DEFAULT_INTERVAL = 50;
 
@@ -40,23 +42,10 @@ export const getPageFunctionUtils = (runner: Runner, docoddityDevProcess?: Docod
   };
 
 
-  const waitFor: WaitFor = async (fn, timeout = DEFAULT_TIMEOUT, interval = DEFAULT_INTERVAL) => {
-    const start = performance.now();
-    const test = async () => {
-      await runner.page.reload();
-      await fn();
-    };
-    while (true) {
-      if (performance.now() - start > timeout) {
-        throw new Error(`Timed out after ${timeout}ms waiting to execute function`);
-      }
-      try {
-        await test();
-        break;
-      } catch (err) { }
-      await sleep(interval);
-    }
-  };
+  const waitFor: WaitFor = async (fn, timeout, interval) => _waitFor(async () => {
+    await runner.page.reload();
+    await fn();
+  }, timeout, interval);
 
   const waitForSelector: WaitForSelector = async (selector, timeout = DEFAULT_TIMEOUT, interval) => {
     try {
@@ -102,4 +91,3 @@ export const getPageFunctionUtils = (runner: Runner, docoddityDevProcess?: Docod
   }
 }
 
-const sleep = (duration: number) => new Promise((r) => setTimeout(r, duration));

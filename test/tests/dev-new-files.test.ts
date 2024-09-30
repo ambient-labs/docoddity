@@ -15,11 +15,8 @@ describe('Listens for new files', () => {
         filepath: `index.html`,
         content: `<p>${content}</p>`,
       },
-    ], {
-      key: 'it adds an html file',
-    });
+    ]);
 
-    // await printURL(1000);
     await waitForSelector(`text=${content}`);
     const content2 = 'foobarbaz';
 
@@ -28,15 +25,16 @@ describe('Listens for new files', () => {
         filepath: `foo.html`,
         content: `<p>${content2}</p>`,
       },
-    ],);
+    ]);
 
     await runner.goto('/foo');
+    // await printURL(1000);
 
     await waitForSelector(`text=${content2}`);
   });
 
   test('it adds a deep HTML file', async () => {
-    const content = 'foobar';
+    const content = 'index.html';
     const { runner, printURL, waitForSelector, updateFiles } = await configureDevDocodditySite([
       {
         filepath: `index.html`,
@@ -46,7 +44,7 @@ describe('Listens for new files', () => {
 
     // await printURL(1000);
     await waitForSelector(`text=${content}`);
-    const content2 = 'foobarbaz';
+    const content2 = 'foo/bar/baz.html';
 
     await updateFiles([
       {
