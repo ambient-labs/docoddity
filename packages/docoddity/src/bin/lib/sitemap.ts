@@ -8,25 +8,28 @@ import { parseTitleFromURL } from './utils/parse-title-from-url.js';
 import { buildPageNodeURL } from './utils/build-page-node-url.js';
 
 class Node {
-  leaf = false;
-  #content?: Promise<string>;
   children = new Map<string, Node>();
   url: string;
   parent?: Node;
 
-  constructor(parts: string[], isLeaf: boolean, inputDir: string, parent?: Node) {
-    this.leaf = isLeaf;
+  constructor(protected parts: string[], protected leaf: boolean, protected inputDir: string, parent?: Node) {
     if (parts.length > 0 && !parent) {
       throw new Error('Parent is required for non-root nodes');
     }
     this.parent = parent;
     if (this.leaf) {
       this.url = buildPageNodeURL(parts);
-      this.#content = readFile(path.resolve(inputDir, ...parts));
     } else {
       this.url = '/' + parts.join('/');
-      this.#content = swallowErr<string>(() => readFile(path.resolve(inputDir, ...parts, '.category.json')), '{}');
     }
+  }
+
+  get content() {
+    const { parts, inputDir, } = this;
+    if (this.leaf) {
+      return readFile(path.resolve(inputDir, ...parts));
+    }
+    return swallowErr<string>(() => readFile(path.resolve(inputDir, ...parts, '.category.json')), '{}');
   }
 
   add = (parts: string[], inputDir: string, position = 0): void => {
@@ -98,12 +101,13 @@ class Node {
     title: string;
     order?: number;
   }> {
-    const content = await this.#content;
+    const content = await this.content;
     const { title, order, } = await parseFrontmatter(content);
-    return {
+    const frontmatter = {
       title: title ?? parseTitleFromURL(this.url) ?? '',
       order: order,
     }
+    return frontmatter;
   }
 
   private getTitleFromURL() {
@@ -111,7 +115,7 @@ class Node {
   }
 
   private async getCategory(): Promise<{ title: string; }> {
-    const content = await this.#content;
+    const content = await this.content;
     if (content) {
       const { title } = JSON.parse(content);
       return {
@@ -126,9 +130,6 @@ class Node {
   async getPage(): Promise<PageDefinition> {
     if (this.leaf) {
       const { title, order } = await this.getFrontmatter();
-      if (this.url.startsWith('docsu')) {
-        throw new Error('stop')
-      }
       return {
         url: this.url,
         title: title !== '' ? title : this.getTitleFromURL(),
