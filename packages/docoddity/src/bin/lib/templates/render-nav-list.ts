@@ -27,12 +27,12 @@ const buildMenuListAnchorAttributes = (entry: NavListItem, pageURL?: string) => 
 };
 
 const renderNavListItem = (entry: NavListItem, pageURL?: string): Promise<string> => html`
-  <li class="open">
+  <li x-data="{ open: false }" :class="{ open: open }">
     <div class="inner">
     <div class="menu-list ${entry.url === pageURL ? 'active' : ''}">
       <a ${buildMenuListAnchorAttributes(entry, pageURL)}>${getMarkdownWithCodeElement(entry.title)}</a>
       ${when(entry.children.length > 0, html`
-        <button class="toggle" aria-label="Toggle the category" type="button"></button>
+        <button @click="open = ! open" class="toggle" aria-label="Toggle the category" type="button"></button>
       `)}
     </div>
     ${when(entry.children.length > 0, html`

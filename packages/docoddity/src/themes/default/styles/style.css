@@ -221,11 +221,16 @@ nav#left-nav {
     &.open {
       grid-template-rows: 1fr;
 
-
-      button {
+      &>.inner>.menu-list>button.toggle {
         &:before {
           transform: rotate(180deg);
         }
+      }
+    }
+
+    button.toggle {
+      &:before {
+        transform: rotate(90deg);
       }
     }
 
@@ -242,10 +247,6 @@ nav#left-nav {
 
       button.toggle {
         padding: calc(var(--padding) * 1);
-
-        &:before {
-          transform: rotate(90deg);
-        }
       }
     }
 
@@ -260,8 +261,10 @@ button.toggle {
   transition-duration: var(--transition-duration);
   background: none;
   border: none;
-  --sublist-icon: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16px" height="16px" viewBox="0 0 24 24"><path fill="rgba(0,0,0,0.5)" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path></svg>');
-  --filter: invert(100%) sepia(94%) saturate(17%) hue-rotate(223deg) brightness(104%) contrast(98%);
+  /* --sublist-icon: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16px" height="16px" viewBox="0 0 24 24"><path fill="rgba(0,0,0,0.5)" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path></svg>'); */
+  --sublist-icon: url('data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2216px%22%20height%3D%2216px%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20fill%3D%22rgba(0%2C0%2C0%2C0.5)%22%20d%3D%22M7.41%2015.41L12%2010.83l4.59%204.58L18%2014l-6-6-6%206z%22%2F%3E%3C%2Fsvg%3E');
+
+  --filter: invert(0%) sepia(94%) saturate(17%) hue-rotate(223deg) brightness(104%) contrast(98%);
   cursor: pointer;
 
   &:hover {
@@ -929,4 +932,10 @@ a.button {
 
 .markdown-body p code {
   color: var(--color-inline-code);
+}
+
+[data-theme='dark'] {
+  button.toggle {
+    --filter: invert(100%) sepia(94%) saturate(17%) hue-rotate(223deg) brightness(104%) contrast(98%);
+  }
 }

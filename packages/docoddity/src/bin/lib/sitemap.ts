@@ -102,12 +102,16 @@ class Node {
     order?: number;
   }> {
     const content = await this.content;
-    const { title, order, } = await parseFrontmatter(content);
-    const frontmatter = {
-      title: title ?? parseTitleFromURL(this.url) ?? '',
-      order: order,
+    if (this.leaf) {
+      const { title, order, } = await parseFrontmatter(content);
+      const frontmatter = {
+        title: title ?? parseTitleFromURL(this.url) ?? '',
+        order: order,
+      }
+      return frontmatter;
+    } else {
+      return JSON.parse(content);
     }
-    return frontmatter;
   }
 
   private getTitleFromURL() {
@@ -139,6 +143,7 @@ class Node {
     } else {
       const { title } = await this.getCategory();
       const children = await Promise.all([...this.children.values()].map(child => child.getPage()));
+      const { order } = await this.getFrontmatter();
       const sortedChildren = children.sort(({ order: a }, { order: b }) => {
         if (a === undefined && b === undefined) {
           return 0;
@@ -152,6 +157,7 @@ class Node {
         return a - b;
       });
       return {
+        order,
         url: this.url,
         title,
         children: sortedChildren,
