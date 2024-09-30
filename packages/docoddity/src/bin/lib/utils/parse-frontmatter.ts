@@ -28,11 +28,18 @@ export const parseFrontmatter = async (content: string = ''): Promise<Frontmatte
       const order = Number(_order);
       return {
         ...rest,
-        title: typeof title === 'string' ? title : undefined,
+        title: typeof title === 'string' ? parseTitle(title) : undefined,
         order: Number.isNaN(order) ? undefined : order,
       }
     }
 
   }
   return {};
+};
+
+const parseTitle = (title: string) => {
+  if ((title.startsWith("'") && title.endsWith("'")) || (title.startsWith('"') && title.endsWith('"'))) {
+    return title.slice(1, -1);
+  }
+  return title;
 };

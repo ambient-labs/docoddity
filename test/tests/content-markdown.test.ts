@@ -185,6 +185,68 @@ describe('Markdown page', () => {
     });
   });
 
+  test('it should strip single quotes from title', async () => {
+    const { runner, printURL } = await configureDocodditySite([
+      {
+        filepath: `docs/one.md`,
+        content: getMarkdownContent('one body', { title: 'code', order: 0, }),
+      },
+      {
+        filepath: `docs/two.md`,
+        content: getMarkdownContent('two body', { title: "'Two Title'", order: 1, }),
+      },
+    ]);
+
+    await runner.goto('/docs/two');
+
+    await expect(runner.page).toMatchPage({
+      pageTitle: 'Two Title',
+      leftNav: [
+        "<a href=\"/docs/one\">code</a>",
+        "<a href=\"/docs/two\">Two Title</a>",
+      ],
+      bodyH1: 'Two Title',
+    });
+
+    await runner.goto('/docs/one');
+
+    await expect(runner.page).toMatchPage({
+      nextHTML: 'Two Title',
+    });
+
+  });
+
+  test('it should strip double quotes from title', async () => {
+    const { runner, printURL } = await configureDocodditySite([
+      {
+        filepath: `docs/one.md`,
+        content: getMarkdownContent('one body', { title: 'code', order: 0, }),
+      },
+      {
+        filepath: `docs/two.md`,
+        content: getMarkdownContent('two body', { title: '"Two Title"', order: 1, }),
+      },
+    ]);
+
+    await runner.goto('/docs/two');
+
+    await expect(runner.page).toMatchPage({
+      pageTitle: 'Two Title',
+      leftNav: [
+        "<a href=\"/docs/one\">code</a>",
+        "<a href=\"/docs/two\">Two Title</a>",
+      ],
+      bodyH1: 'Two Title',
+    });
+
+    await runner.goto('/docs/one');
+
+    await expect(runner.page).toMatchPage({
+      nextHTML: 'Two Title',
+    });
+
+  });
+
   test('it should preserve lowercase in page title', async () => {
     const { runner, printURL } = await configureDocodditySite([
       {
