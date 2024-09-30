@@ -32,25 +32,6 @@ class Node {
     return swallowErr<string>(() => readFile(path.resolve(inputDir, ...parts, '.category.json')), '{}');
   }
 
-  add = (parts: string[], inputDir: string, position = 0): void => {
-    let currentNode: Node = this;
-    let i = position;
-
-    while (i < parts.length) {
-      const name = parts[i];
-      let node = currentNode.children.get(name);
-
-      if (!node) {
-        const isLeaf = i === parts.length - 1;
-        node = new Node(parts.slice(0, i + 1), isLeaf, inputDir, currentNode);
-        currentNode.children.set(name, node);
-      }
-
-      currentNode = node;
-      i++;
-    }
-  }
-
   remove = (parts: string[], position = 0): boolean => {
     if (position === parts.length) {
       if (!this.leaf) {
@@ -180,7 +161,23 @@ export class Sitemap {
 
   add = (filepath: string): void => {
     const parts = split(this.relativeToInputDir(filepath));
-    this.root.add(parts, this.inputDir);
+    let currentNode = this.root;
+    let i = 0;
+
+    while (i < parts.length) {
+      const name = parts[i];
+      let node = currentNode.children.get(name);
+
+      if (!node) {
+        const isLeaf = i === parts.length - 1;
+        node = new Node(parts.slice(0, i + 1), isLeaf, this.inputDir, currentNode);
+        currentNode.children.set(name, node);
+      }
+
+      currentNode = node;
+      i++;
+    }
+
   }
 
   remove = (filepath: string): void => {
