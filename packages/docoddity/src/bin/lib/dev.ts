@@ -17,6 +17,7 @@ import { makeRelative } from './utils/make-relative.js';
 import { inlineCSSContent } from './inline-css-content.js';
 import { THEMES } from './constants.js';
 import { getBuildDir } from './utils/get-build-dir.js';
+import { forwardToTrailingSlashPlugin } from './forward-to-trailing-slash-plugin.js';
 
 
 export const isIncluded = (filepath?: string) => {
@@ -86,9 +87,9 @@ export const dev = async ({
 
   const vite = await createServer({
     root: targetDir,
-    appType: 'mpa',
     plugins: [
       inlineCSSContent(),
+      forwardToTrailingSlashPlugin(),
     ],
     server: {
       port,

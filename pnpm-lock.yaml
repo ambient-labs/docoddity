@@ -190,11 +190,11 @@ importers:
         specifier: ^5.4.5
         version: 5.5.4
       vite:
-        specifier: ^5.4.2
-        version: 5.4.2(@types/node@20.16.2)(terser@5.33.0)
+        specifier: ^5.4.8
+        version: 5.4.8(@types/node@20.16.2)(terser@5.33.0)
       vite-plugin-html:
         specifier: ^3.2.2
-        version: 3.2.2(vite@5.4.2(@types/node@20.16.2)(terser@5.33.0))
+        version: 3.2.2(vite@5.4.8(@types/node@20.16.2)(terser@5.33.0))
       vitest:
         specifier: ^2.0.1
         version: 2.0.5(@types/node@20.16.2)(terser@5.33.0)
@@ -202,133 +202,13 @@ importers:
         specifier: ^0.14.4
         version: 0.14.8
 
-  test/.sites/0cad6d7124d1855f6e3827d431f673b0:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
   test/.sites/0fd7e2d0793562698a1714ca397582ab:
     devDependencies:
       docoddity:
         specifier: workspace:*
         version: link:../../../packages/docoddity
 
-  test/.sites/159ac7920fafdd27fcca207fb56740d2:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/17366926bb4491f36c7ef66ce2fb3103:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/1b6720bfc72049b792d380a86ca3b445:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/203c0dae6f8a2a5c8c1a31eb5592bda0:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/20bebaf7ff822de6fc64d8437b5d6e6a:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/21770999b43b77f52bb2e06eccb7166f:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/2b80bc814df8ddb51e9dbd3c068994e7:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/2f2183f4d1611f3361930094d28886e3:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/3246c2140323b70b9d81af546739673d:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/391e847a6cd0b8a846015b356d6230bb:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/424b6aed29fefe013446e10a5910a711:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/4fbf70b4dd83d07160ea109805aa9938:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/53216ccdaf51d97dc8b0d1b1ededa907:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/5a8960f3ae64a42a231abe7d09f0fa67:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/5b880a04070e94c9a055d6f32ef72213:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/5ed7fe2d7ac707993bf584393b9e3c4d:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/628064ca9f33074b5f578ccd4534870a:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/6410b99997789fdbeeea6e45467f3f93:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/6638c9d3d5b458da1c4229502ef3499c:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/670d8cacafc1ae3cce1ea52969fcc4f8:
+  test/.sites/1a75d93711413c4c239e67c2c278e9c5:
     devDependencies:
       docoddity:
         specifier: workspace:*
@@ -340,103 +220,7 @@ importers:
         specifier: workspace:*
         version: link:../../../packages/docoddity
 
-  test/.sites/68328c9d47b861e72a0d99491c71ecda:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/6d0df1771d4d4532d2d3eb2d905eec95:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/6d6aa508ccf86e49c6d37428debd5429:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/7670ee369ff015e15a0f8e08aba93256:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/7a4592479f1ad0b5b254ad4d5faa21bd:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/7c2ef458d185b3b8cdd550c4044e00ae:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/7e78f3d338bf90199024b435fb353668:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
   test/.sites/82eed7f8bb707a8c430e0d6e5e12e5a8:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/830d7d252579931c3c0f87ddc4692663:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/84ecf238e5385041c6c5a262aadf4d7b:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/87d0047515d1e2bd4049907981c7994d:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/889c5160d84b75dc66de5423dd30aba7:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/891ab786cd624cd918493522b3f3b12b:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/8a705497c683f1b44d68c0bdab672143:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/8e7cad4a42a2f93a0145781f5cf8b376:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/9450ae543cfec9bacee85a520b34057a:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/9548c83e852ef7ae18c2610f19b43f7d:
     devDependencies:
       docoddity:
         specifier: workspace:*
@@ -448,151 +232,13 @@ importers:
         specifier: workspace:*
         version: link:../../../packages/docoddity
 
-  test/.sites/9c8d3257b55ddc2388a83fa853862d77:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
   test/.sites/a3363f35e951c1604bcff6b58eef1809:
     devDependencies:
       docoddity:
         specifier: workspace:*
         version: link:../../../packages/docoddity
 
-  test/.sites/a3533d9a7f9b7f61812b436e306fa596:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/a5b6aef02b1c469a70128abb98b16576:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/a74cde5613cb5cefdecd75a63f42d148:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/b00473d2bd94add6cfc82d11a30e2849:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/b4dbac228ca1f0f8bd14c7cfc206da8c:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/b96e61581484c9cd9d832acb3d80be1c:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/bbca80a7dd5d7a6e927f8d62735e5c3f:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/c108c89651a28fa19aa3617402b01a5a:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/c27e5217330de57fd0d59d178368c86f:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/ca474f1bb6573c218aa7fb90ed9c1fb6:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/cbb617dc49de479bd3ac9287f0635d89:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/e209ba85b0ccf71bad11a625f2040450:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/e38068c866663547976aefad190b84ee:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/e519fe8a07e529c88ee8f43fd5165868:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/e6c1ae470fa78e0d4b589d844e0513e3:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/ecca835c4545fc2e6e79daadd3a9f79f:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/edc060db5b68922cec60f16d737c0c30:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/ee302d4eb588d5aabf56e3133ef88b4f:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/eea3039610a784deb0a852941e4a231d:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
   test/.sites/eed58997fcf49c54d5d59cbac8109905:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/f094c469322c01431274f533646d16ae:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/f0ecb72920158f464cff933e8b7b7232:
-    devDependencies:
-      docoddity:
-        specifier: workspace:*
-        version: link:../../../packages/docoddity
-
-  test/.sites/f5ef38998b28639d47f6da2c26f3c8b3:
     devDependencies:
       docoddity:
         specifier: workspace:*
@@ -3556,9 +3202,6 @@ packages:
   pause-stream@0.0.11:
     resolution: {integrity: sha512-e3FBlXLmN/D1S+zHzanP4E/4Z60oFAa3O051qt1pxa7DEJWKAyil6upYVXCWadEnuoqa4Pkc9oUx9zsxYeRv8A==}
 
-  picocolors@1.0.1:
-    resolution: {integrity: sha512-anP1Z8qwhkbmu7MFP5iTt+wQKXgwzf7zTyGlcdzabySa9vd0Xt392U0rVmz9poOaBj0uHJKyyo9/upk0HrEQew==}
-
   picocolors@1.1.0:
     resolution: {integrity: sha512-TQ92mBOW0l3LeMeyLV6mzy/kWr8lkd/hp3mTg7wYK7zJhuBStmGMBG0BdeDZS/dZx1IukaX6Bk11zcln25o1Aw==}
 
@@ -3597,10 +3240,6 @@ packages:
   possible-typed-array-names@1.0.0:
     resolution: {integrity: sha512-d7Uw+eZoloe0EHDIYoe+bQ5WXnGMOpmiZFTuMWCwpjzzkL2nTjcKiAk4hh8TjnGye2TwWOk3UXucZ+3rbmBa8Q==}
     engines: {node: '>= 0.4'}
-
-  postcss@8.4.42:
-    resolution: {integrity: sha512-hywKUQB9Ra4dR1mGhldy5Aj1X3MWDSIA1cEi+Uy0CjheLvP6Ual5RlwMCh8i/X121yEDLDIKBsrCQ8ba3FDMfQ==}
-    engines: {node: ^10 || ^12 || >=14}
 
   postcss@8.4.47:
     resolution: {integrity: sha512-56rxCq7G/XfB4EkXq9Egn5GCqugWvDFjafDOThIdMBsI15iqPqR5r15TfSr1YPYeEI19YeaXMCbY6u88Y76GLQ==}
@@ -3950,10 +3589,6 @@ packages:
   socket.io@4.7.5:
     resolution: {integrity: sha512-DmeAkF6cwM9jSfmp6Dr/5/mfMwb5Z5qRrSXLpo3Fq5SqyU8CMF15jIN4ZhfSwu35ksM1qmHZDQ/DK5XTccSTvA==}
     engines: {node: '>=10.2.0'}
-
-  source-map-js@1.2.0:
-    resolution: {integrity: sha512-itJW8lvSA0TXEphiRoawsCksnlf8SyvmFzIhltqAHluXd88pkCd+cXJVHTDwdCr0IzwptSm035IHQktUu1QUMg==}
-    engines: {node: '>=0.10.0'}
 
   source-map-js@1.2.1:
     resolution: {integrity: sha512-UXWMKhLOwVKb728IUtQPXxfYU+usdybtUrK/8uGE8CQMvrhOpwvzDBwj0QhSL7MQc7vIsISBG8VQ8+IDQxpfQA==}
@@ -4335,8 +3970,8 @@ packages:
     peerDependencies:
       vite: '>=2.0.0'
 
-  vite@5.4.2:
-    resolution: {integrity: sha512-dDrQTRHp5C1fTFzcSaMxjk6vdpKvT+2/mIdE07Gw2ykehT49O0z/VHS3zZ8iV/Gh8BJJKHWOe5RjaNrW5xf/GA==}
+  vite@5.4.7:
+    resolution: {integrity: sha512-5l2zxqMEPVENgvzTuBpHer2awaetimj2BGkhBPdnwKbPNOlHsODU+oiazEZzLK7KhAnOrO+XGYJYn4ZlUhDtDQ==}
     engines: {node: ^18.0.0 || >=20.0.0}
     hasBin: true
     peerDependencies:
@@ -4366,8 +4001,8 @@ packages:
       terser:
         optional: true
 
-  vite@5.4.7:
-    resolution: {integrity: sha512-5l2zxqMEPVENgvzTuBpHer2awaetimj2BGkhBPdnwKbPNOlHsODU+oiazEZzLK7KhAnOrO+XGYJYn4ZlUhDtDQ==}
+  vite@5.4.8:
+    resolution: {integrity: sha512-FqrItQ4DT1NC4zCUqMB4c4AZORMKIa0m8/URVCZ77OZ/QSNeJ54bU1vrFADbDsuwfIPcgknRkmqakQcgnL4GiQ==}
     engines: {node: ^18.0.0 || >=20.0.0}
     hasBin: true
     peerDependencies:
@@ -7765,8 +7400,6 @@ snapshots:
     dependencies:
       through: 2.3.8
 
-  picocolors@1.0.1: {}
-
   picocolors@1.1.0: {}
 
   picomatch@2.3.1: {}
@@ -7795,12 +7428,6 @@ snapshots:
   posix-character-classes@0.1.1: {}
 
   possible-typed-array-names@1.0.0: {}
-
-  postcss@8.4.42:
-    dependencies:
-      nanoid: 3.3.7
-      picocolors: 1.0.1
-      source-map-js: 1.2.0
 
   postcss@8.4.47:
     dependencies:
@@ -8252,8 +7879,6 @@ snapshots:
       - supports-color
       - utf-8-validate
 
-  source-map-js@1.2.0: {}
-
   source-map-js@1.2.1: {}
 
   source-map-resolve@0.5.3:
@@ -8596,7 +8221,7 @@ snapshots:
       debug: 4.3.6
       pathe: 1.1.2
       tinyrainbow: 1.2.0
-      vite: 5.4.2(@types/node@20.16.2)(terser@5.33.0)
+      vite: 5.4.8(@types/node@20.16.2)(terser@5.33.0)
     transitivePeerDependencies:
       - '@types/node'
       - less
@@ -8613,7 +8238,7 @@ snapshots:
       cac: 6.7.14
       debug: 4.3.7
       pathe: 1.1.2
-      vite: 5.4.7(@types/node@20.16.6)(terser@5.33.0)
+      vite: 5.4.8(@types/node@20.16.6)(terser@5.33.0)
     transitivePeerDependencies:
       - '@types/node'
       - less
@@ -8625,7 +8250,7 @@ snapshots:
       - supports-color
       - terser
 
-  vite-plugin-html@3.2.2(vite@5.4.2(@types/node@20.16.2)(terser@5.33.0)):
+  vite-plugin-html@3.2.2(vite@5.4.8(@types/node@20.16.2)(terser@5.33.0)):
     dependencies:
       '@rollup/pluginutils': 4.2.1
       colorette: 2.0.20
@@ -8639,19 +8264,29 @@ snapshots:
       html-minifier-terser: 6.1.0
       node-html-parser: 5.4.2
       pathe: 0.2.0
-      vite: 5.4.2(@types/node@20.16.2)(terser@5.33.0)
+      vite: 5.4.8(@types/node@20.16.2)(terser@5.33.0)
 
-  vite@5.4.2(@types/node@20.16.2)(terser@5.33.0):
+  vite@5.4.7(@types/node@20.16.6)(terser@5.33.0):
     dependencies:
       esbuild: 0.21.5
-      postcss: 8.4.42
-      rollup: 4.21.2
+      postcss: 8.4.47
+      rollup: 4.22.4
+    optionalDependencies:
+      '@types/node': 20.16.6
+      fsevents: 2.3.3
+      terser: 5.33.0
+
+  vite@5.4.8(@types/node@20.16.2)(terser@5.33.0):
+    dependencies:
+      esbuild: 0.21.5
+      postcss: 8.4.47
+      rollup: 4.22.4
     optionalDependencies:
       '@types/node': 20.16.2
       fsevents: 2.3.3
       terser: 5.33.0
 
-  vite@5.4.7(@types/node@20.16.6)(terser@5.33.0):
+  vite@5.4.8(@types/node@20.16.6)(terser@5.33.0):
     dependencies:
       esbuild: 0.21.5
       postcss: 8.4.47
@@ -8679,7 +8314,7 @@ snapshots:
       tinybench: 2.9.0
       tinypool: 1.0.1
       tinyrainbow: 1.2.0
-      vite: 5.4.2(@types/node@20.16.2)(terser@5.33.0)
+      vite: 5.4.8(@types/node@20.16.2)(terser@5.33.0)
       vite-node: 2.0.5(@types/node@20.16.2)(terser@5.33.0)
       why-is-node-running: 2.3.0
     optionalDependencies:

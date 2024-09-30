@@ -142,7 +142,7 @@ describe('Dev: Display', () => {
     expect(await runner.page.evaluate(() => { return window['foo'](); })).toEqual(fnResponse);
   });
 
-  describe.only('Trailing slashes', () => {
+  describe('Trailing slashes', () => {
     test('it works without a trailing slash', async () => {
       const content = 'foobar';
       const markdownContent = 'foobarbaz';
