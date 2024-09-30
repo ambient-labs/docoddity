@@ -24,5 +24,12 @@
         "ariaLabel": "Docoddity Github package"
       }
     ]
+  },
+  "config": {
+    "algolia": {
+      "apiKey": "your_api_key",
+      "indexName": "your_index_name",
+      "appId": "your_app_id"
+    }
   }
 }

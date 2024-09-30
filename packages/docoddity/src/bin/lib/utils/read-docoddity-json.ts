@@ -68,6 +68,26 @@ export const readDocoddityJSON = async (inputDir: string): Promise<DocoddityCont
         throw new Error(`Invalid docoddity.json at ${docoddityPath}: expected nav.right to be array, got ${typeof parsedContents.nav.right}`);
       }
     }
+    if (!!parsedContents.config) {
+      if (typeof parsedContents.config !== 'object') {
+        throw new Error(`Invalid docoddity.json at ${docoddityPath}: expected config to be object, got ${typeof parsedContents}`);
+      }
+      if (!!parsedContents.config.algolia) {
+        if (typeof parsedContents.config.algolia !== 'object') {
+          throw new Error(`Invalid docoddity.json at ${docoddityPath}: expected config.algolia to be object, got ${typeof parsedContents.config.algolia}`);
+        }
+        if (typeof parsedContents.config.algolia.appId !== 'string') {
+          throw new Error(`Invalid docoddity.json at ${docoddityPath}: expected config.algolia.appId to be string, got ${typeof parsedContents.config.algolia.appId}`);
+        }
+        if (typeof parsedContents.config.algolia.indexName !== 'string') {
+          throw new Error(`Invalid docoddity.json at ${docoddityPath}: expected config.algolia.indexName to be string, got ${typeof parsedContents.config.algolia.indexName}`);
+        }
+        if (typeof parsedContents.config.algolia.apiKey !== 'string') {
+          throw new Error(`Invalid docoddity.json at ${docoddityPath}: expected config.algolia.apiKey to be string, got ${typeof parsedContents.config.algolia.apiKey}`);
+        }
+      }
+      throw new Error(`Invalid docoddity.json at ${docoddityPath} for config, but don't know why: ${JSON.stringify(parsedContents.config)}`);
+    }
     throw new Error(`Invalid docoddity.json at ${docoddityPath}, but don't know why: ${JSON.stringify(parsedContents)}`);
   }
   return parsedContents;

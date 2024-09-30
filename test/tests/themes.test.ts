@@ -417,4 +417,52 @@ describe('Themes', () => {
       expect((await getElementTransformStyle(runner, '#hamburger-contents main')).x).toEqual(498);
     });
   });
+
+  describe('Config', () => {
+    test('it should not render algolia if omitted', async () => {
+      const content = 'foobar';
+      const { runner, printURL } = await configureDocodditySite([
+        {
+          filepath: `index.html`,
+          content: `
+              <p>${content}</p>
+    `,
+        },
+        {
+          filepath: 'docoddity.json',
+          content: {
+            config: {
+            },
+          },
+        }
+      ]);
+      expect(await runner.page.evaluate(() => !!window.document.querySelector('#docsearch'))).toBe(false);
+    });
+
+    test('it should render algolia if included', async () => {
+      const content = 'foobar';
+      const { runner, printURL } = await configureDocodditySite([
+        {
+          filepath: `index.html`,
+          content: `
+              <p>${content}</p>
+    `,
+        },
+        {
+          filepath: 'docoddity.json',
+          content: {
+            config: {
+              algolia: {
+                appId: '123',
+                indexName: 'some-index-name',
+                apiKey: '123',
+              },
+            },
+          },
+        }
+      ]);
+      expect(await runner.page.evaluate(() => !!window.document.querySelector('#docsearch'))).toBe(true);
+    });
+
+  });
 });
