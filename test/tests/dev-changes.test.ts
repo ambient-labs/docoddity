@@ -6,8 +6,8 @@ import { getMarkdownContent } from '../setup/getMarkdownContent.js';
 describe('Dev: Listens for changes', () => {
   const configureDevDocodditySite = setupDev({
     std: {
-      // stdout: chunk => console.log('[Docoddity]', chunk),
-      // stderr: chunk => console.error('[Docoddity]', chunk),
+      stdout: chunk => console.log('[Docoddity]', chunk),
+      stderr: chunk => console.error('[Docoddity]', chunk),
     }
   });
   test('it changes an html file', async () => {
@@ -120,7 +120,7 @@ describe('Dev: Listens for changes', () => {
 
   test('it changes markdown frontmatter across all pages', async () => {
     const content = 'foobar';
-    const { runner, printURL, waitForSelector, updateFiles, waitFor } = await configureDevDocodditySite([
+    const { runner, printURL, waitForSelector, updateFiles, waitFor, waitForDocoddityFileToBeWritten } = await configureDevDocodditySite([
       {
         filepath: `docs/one.md`,
         content: getMarkdownContent('one', { title: 'one', order: 1 }),
@@ -134,6 +134,12 @@ describe('Dev: Listens for changes', () => {
         content: getMarkdownContent('three', { title: 'three', order: 3 }),
       },
     ]);
+
+    await Promise.all([
+      waitForDocoddityFileToBeWritten('docs/one.md'),
+      waitForDocoddityFileToBeWritten('docs/two.md'),
+      waitForDocoddityFileToBeWritten('docs/three.md'),
+    ])
 
     await runner.goto('/docs/two');
 
@@ -196,7 +202,7 @@ describe('Dev: Listens for changes', () => {
   });
 
   test('it changes a markdown file name, and that gets reflected in the <title>, page title, sidebar, and pagination', async () => {
-    const { runner, printURL, renameFiles, waitFor } = await configureDevDocodditySite([
+    const { runner, printURL, renameFiles, waitFor, waitForDocoddityFileToBeWritten } = await configureDevDocodditySite([
       {
         filepath: `docs/one.md`,
         content: getMarkdownContent('one body', { title: 'One Title', order: 0, }),
@@ -210,6 +216,10 @@ describe('Dev: Listens for changes', () => {
     // await printURL(1000, '/docs/one');
 
     const click = getClick(runner);
+    await Promise.all([
+      waitForDocoddityFileToBeWritten('docs/one.md'),
+      waitForDocoddityFileToBeWritten('docs/two.md'),
+    ]);
 
     await runner.goto('/docs/two');
     await expect(runner).toMatchPage({
