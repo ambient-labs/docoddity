@@ -947,7 +947,7 @@ describe('Themes', () => {
         ])).rejects.toThrow();
       });
 
-      test.only('it should not crash if provided a badly formatted docoddity in dev mode', async () => {
+      test('it should not crash if provided a badly formatted docoddity in dev mode', async () => {
         const configureDevDocodditySite = setupDev({
           std: {
             stdout: chunk => console.log('[Docoddity]', chunk),
