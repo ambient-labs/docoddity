@@ -140,7 +140,7 @@ class Node {
       });
       return {
         order,
-        url: this.url,
+        // url: this.url,
         title,
         children: sortedChildren,
         open: open || openPath.includes(this.url),

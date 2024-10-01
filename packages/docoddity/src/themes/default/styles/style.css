@@ -188,7 +188,7 @@ nav#left-nav {
   margin-left: calc(var(--padding) * -2);
   --transition-duration: 0.2s;
 
-  & a {
+  & .label {
     color: var(--color-nav-anchor);
     line-height: 1.25;
     padding: 0.5rem .75rem;
@@ -197,6 +197,10 @@ nav#left-nav {
     font-weight: 400;
     display: block;
     flex: 1;
+
+  }
+
+  & a {
 
     &:hover,
     &.active {
@@ -240,10 +244,10 @@ nav#left-nav {
       flex: 1;
       border-radius: calc(var(--border-radius) / 2);
 
-      &:hover,
+      /* &:hover,
       &.active {
         background-color: var(--color-anchor-active-bg);
-      }
+      } */
 
       button.toggle {
         padding: calc(var(--padding) * 1);

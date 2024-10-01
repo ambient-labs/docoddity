@@ -18,8 +18,8 @@ const ROOT = path.resolve(__dirname, '../..')
 describe('Themes', () => {
   const configureDocodditySite = setupBuild({
     std: {
-      stdout: chunk => console.log('[Docoddity]', chunk),
-      stderr: chunk => console.error('[Docoddity]', chunk),
+      // stdout: chunk => console.log('[Docoddity]', chunk),
+      // stderr: chunk => console.error('[Docoddity]', chunk),
     }
   });
 
@@ -739,6 +739,43 @@ describe('Themes', () => {
         await expect(runner).toMatchPage({
           leftNav: [
             { href: '/docs/', text: 'Docs' },
+          ]
+        });
+      });
+
+      test('it should not show an anchor link for a missing page', async () => {
+        const { runner, printURL } = await configureDocodditySite([
+          {
+            filepath: `index.html`,
+            content: '<p>Home page</p>',
+          },
+          {
+            filepath: `root/foo/bar/baz/page-two.md`,
+            content: getMarkdownContent('section one page two', { title: 'Section One Page Two', order: 1 }),
+          },
+          {
+            filepath: `root/foo/bar/baz/page-three.md`,
+            content: getMarkdownContent('section one page three', { title: 'Section One Page Three', order: 2 }),
+          },
+          {
+            filepath: `api/index.md`,
+            content: getMarkdownContent('api', { title: 'API', order: 0 }),
+          },
+          {
+            filepath: `api/page-two.md`,
+            content: getMarkdownContent('page two', { title: 'Page Two', order: 1 }),
+          },
+        ]);
+        await runner.goto('/root/foo/bar/baz/page-two');
+
+        // await printURL();
+        await expect(runner).toMatchPage({
+          leftNav: [
+            { tagName: 'label', href: null, text: 'Foo', },
+            { tagName: 'label', href: null, text: 'Bar', },
+            { tagName: 'label', href: null, text: 'Baz', },
+            { tagName: 'a', href: '/root/foo/bar/baz/page-two', text: 'Section One Page Two', class: ['active', 'label'] },
+            { tagName: 'a', href: '/root/foo/bar/baz/page-three', text: 'Section One Page Three', },
           ]
         });
       });
