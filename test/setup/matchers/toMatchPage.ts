@@ -33,7 +33,7 @@ expect.extend({
       return [
         window.document.title,
         window.document.querySelector('article#page-article p')?.innerHTML,
-        Array.from(window.document.querySelectorAll('nav#left-nav a')).map(el => el.outerHTML.trim()),
+        Array.from(window.document.querySelectorAll('nav#left-nav .label')).map(el => el.outerHTML.trim()),
         prev ? prev.innerHTML : undefined,
         next ? next.innerHTML : undefined,
         window.document.querySelector('article#page-article h1')?.innerHTML,
@@ -51,20 +51,52 @@ expect.extend({
       } else {
         for (let i = 0; i < leftNav.length; i++) {
           const outerHTML = results[2][i];
-          const expectation = leftNav[i];
+          const expectation = Object.entries(leftNav[i]).reduce((obj, [key, value]) => {
+            if (key === 'class') {
+              if (Array.isArray(value)) {
+                return {
+                  ...obj,
+                  [key]: value.sort(),
+                }
+              }
+
+              return {
+                ...obj,
+                [key]: [value],
+              }
+            }
+            return {
+              ...obj,
+              [key]: Array.isArray(value) ? value.sort() : value,
+            };
+          }, {});
 
           const actualValues = await runner.page.evaluate(({ attrs, outerHTML }) => {
             const tempEl = document.createElement('div');
             tempEl.innerHTML = outerHTML;
             const anchorEl = tempEl.firstChild as HTMLAnchorElement;
-            const result = attrs.reduce((obj, attr) => ({
-              ...obj,
-              [attr]: anchorEl.getAttribute(attr),
-            }), {});
+            const result = attrs.reduce((obj, [attrKey, attrValue]) => {
+              if (attrKey === 'class') {
+                return {
+                  ...obj,
+                  'class': Array.from(anchorEl.classList).sort().filter(cls => attrValue.includes(cls)),
+                };
+              }
+              if (attrKey === 'tagName') {
+                return {
+                  ...obj,
+                  'tagName': anchorEl.tagName.toLowerCase(),
+                };
+              }
+              return {
+                ...obj,
+                [attrKey]: anchorEl.getAttribute(attrKey),
+              };
+            }, {});
 
             result.text = anchorEl.innerHTML;
             return result;
-          }, { attrs: Object.keys(expectation), outerHTML });
+          }, { attrs: Object.entries(expectation), outerHTML });
           try {
             expect(actualValues).toEqual(expectation);
           } catch (err) {

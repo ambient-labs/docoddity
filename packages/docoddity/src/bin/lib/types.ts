@@ -94,13 +94,17 @@ export type ValidTagForTemplateRendering = (TagDefinitionWithStringContent | { t
 // export const isTagDefinitionWithStringOrUndefinedContent = (tag: TagDefinition): tag is ValidTagForTemplateRendering => ('content' in tag && typeof tag.content === 'string') || !('content' in tag);
 
 export interface PageDefinition {
-  url: string;
+  url?: string;
   title: string;
   children: PageDefinition[];
   current?: boolean;
   order?: number;
   open?: boolean;
 }
+export interface PageDefinitionWithURL extends PageDefinition {
+  url: string;
+}
+export const isPageDefinitionWithURL = (page: PageDefinition): page is PageDefinitionWithURL => 'url' in page;
 
 export interface DocoddityRenderedArgs {
   page: {

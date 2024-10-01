@@ -2,7 +2,9 @@ export const getIsActive = (url: string, pageUrl: string = '') => {
   if (url === '/') {
     return pageUrl === url;
   }
-  return parseURL(pageUrl) === parseURL(url);
+  const parsedPageURL = parseURL(pageUrl);
+  const parsedURL = parseURL(url);
+  return parsedPageURL === parsedURL;
 }
 
 const parseURL = (url: string) => {
