@@ -58,7 +58,7 @@ describe('Listens for new files', () => {
     await waitForSelector(`text=${content2}`);
   });
 
-  test.only('it adds a markdown file', async () => {
+  test('it adds a markdown file', async () => {
     const content = 'foobar';
     const { runner, printURL, waitForSelector, updateFiles, waitFor } = await configureDevDocodditySite([
       {
