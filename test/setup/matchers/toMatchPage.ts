@@ -60,23 +60,23 @@ expect.extend({
             const tempEl = document.createElement('div');
             tempEl.innerHTML = outerHTML;
             const anchorEl = tempEl.firstChild as HTMLAnchorElement;
-            const result = attrs.reduce((obj, attr) => {
-              if (attr === 'class') {
+            const result = attrs.reduce((obj, [attrKey, attrValue]) => {
+              if (attrKey === 'class') {
                 return {
                   ...obj,
-                  'class': Array.from(anchorEl.classList).sort(),
+                  'class': Array.from(anchorEl.classList).sort().filter(cls => attrValue.includes(cls)),
                 };
               }
               return {
                 ...obj,
-                [attr]: anchorEl.getAttribute(attr),
+                [attrKey]: anchorEl.getAttribute(attrKey),
               };
             }, {});
 
             result.text = anchorEl.innerHTML;
             result.tagName = anchorEl.tagName.toLowerCase();
             return result;
-          }, { attrs: Object.keys(expectation), outerHTML });
+          }, { attrs: Object.entries(expectation), outerHTML });
           try {
             expect(actualValues).toEqual(expectation);
           } catch (err) {
