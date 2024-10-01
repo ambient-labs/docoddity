@@ -44,6 +44,11 @@ export const dev = async ({
     sourceDir,
     targetDir,
   });
+  try {
+    await docoddity.applyMarkdownEnhancer();
+  } catch (err) {
+    console.error('[Docoddity] Failed to apply markdown enhancer');
+  }
 
   const relativeToSource = makeRelative(sourceDir);
 

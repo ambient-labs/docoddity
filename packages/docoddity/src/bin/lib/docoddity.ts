@@ -20,8 +20,9 @@ export class Docoddity {
   sitemap: Sitemap;
   constructor(public folders: Folders) {
     this.sitemap = new Sitemap(folders.sourceDir);
-    applyMarkdownEnhancer(folders.sourceDir);
   }
+
+  applyMarkdownEnhancer = () => applyMarkdownEnhancer(this.folders.sourceDir);
 
   writeFiles = async () => Promise.all((await gatherAllSiteFiles(this.folders, this.sitemap)).map(this.writeFile));
   writeFile = (file: DocoddityFilepath) => writeContentPage(this.folders, file, this.sitemap);
