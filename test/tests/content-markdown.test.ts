@@ -327,32 +327,4 @@ describe('Markdown page', () => {
       ],
     })
   });
-
-  // test.only('it should render nested active pages in left nav', async () => {
-  //   const { runner, printURL } = await configureDocodditySite([
-  //     {
-  //       filepath: `docs/index.md`,
-  //       content: getMarkdownContent('one body', { title: 'One Title', order: 0, }),
-  //     },
-  //     {
-  //       filepath: `docs/two/index.md`,
-  //       content: getMarkdownContent('two body', { title: 'Two Index Title', order: 1, }),
-  //     },
-  //     {
-  //       filepath: `docs/two/a.md`,
-  //       content: getMarkdownContent('two a body', { title: 'Two A Title', order: 1, }),
-  //     },
-  //     {
-  //       filepath: `docs/three.md`,
-  //       content: getMarkdownContent('three body', { title: 'Three Title', order: 2, }),
-  //     },
-  //   ]);
-  //   await printURL(1000, '/docs/');
-  //   await runner.goto(`/docs/two`);
-  //   await expect(runner).toMatchQuerySelectorAll('#left-nav a', [
-  //     '<a href="/docs/index" class="active">One Title</a>',
-  //     '<a href="/docs/two">Two Title</a>',
-  //     '<a href="/docs/three">Three Title</a>',
-  //   ]);
-  // });
 });
