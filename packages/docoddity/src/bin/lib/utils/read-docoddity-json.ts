@@ -88,6 +88,11 @@ export const readDocoddityJSON = async (inputDir: string): Promise<DocoddityCont
       }
       throw new Error(`Invalid docoddity.json at ${docoddityPath} for config, but don't know why: ${JSON.stringify(parsedContents.config)}`);
     }
+    if (!!parsedContents.markdown) {
+      if (typeof parsedContents.markdown !== 'string') {
+        throw new Error(`Invalid docoddity.json at ${docoddityPath}: expected markdown to be string, got ${typeof parsedContents.markdown}`);
+      }
+    }
     throw new Error(`Invalid docoddity.json at ${docoddityPath}, but don't know why: ${JSON.stringify(parsedContents)}`);
   }
   return parsedContents;

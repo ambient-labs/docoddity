@@ -31,5 +31,6 @@
       "indexName": "your_index_name",
       "appId": "your_app_id"
     }
-  }
+  },
+  "markdown": "./markdown-enhancer.js"
 }

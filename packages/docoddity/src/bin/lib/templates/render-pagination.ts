@@ -1,13 +1,13 @@
 import type {
   PageDefinition,
 } from '../types.js';
-import { getMarkdownWithCodeElement } from '../utils/get-markdown.js';
+import { getTitleWithOptionalMarkdownCode } from '../utils/get-title-with-optional-markdown-code.js';
 import { html } from '../utils/html.js';
 
 export const renderPaginationButton = (label: string, ariaRole: string, page?: PageDefinition) => page ? html`
   <a class="button" href="${page.url}" aria-role="${ariaRole}">
     <label>${label}</label>
-    <span>${getMarkdownWithCodeElement(page.title)}</span>
+    <span>${getTitleWithOptionalMarkdownCode(page.title)}</span>
   </a>
 ` : ``;
 

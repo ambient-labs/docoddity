@@ -1,7 +1,7 @@
 import { html } from '../utils/html.js';
-import { getMarkdownWithCodeElement } from "../utils/get-markdown.js";
 import { getIsActive } from '../utils/get-is-active.js';
 import type { PageDefinition } from '../types.js';
+import { getTitleWithOptionalMarkdownCode } from '../utils/get-title-with-optional-markdown-code.js';
 
 export const renderNavList = async (name: string, navList: PageDefinition[], pageURL: string) => html`
   <nav id="${name}">
@@ -25,7 +25,7 @@ const renderNavListItem = (entry: PageDefinition, pageURL: string): Promise<stri
   <li x-data="{ open: ${JSON.stringify(entry.open ?? false)} }" :class="{ open: open }">
     <div class="inner">
     <div class="menu-list ${entry.url === pageURL ? 'active' : ''}">
-      <a ${buildMenuListAnchorAttributes(entry, pageURL)}>${getMarkdownWithCodeElement(entry.title)}</a>
+      <a ${buildMenuListAnchorAttributes(entry, pageURL)}>${getTitleWithOptionalMarkdownCode(entry.title)}</a>
       ${when(entry.children.length > 0, html`
         <button @click="open = ! open" class="toggle" aria-label="Toggle the category" type="button"></button>
       `)}

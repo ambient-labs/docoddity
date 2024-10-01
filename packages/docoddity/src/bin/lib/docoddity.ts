@@ -2,6 +2,7 @@ import type {
   Folders,
   WatchCallback,
   DocoddityFilepath,
+  MarkdownEnhancerFn,
 } from './types.js';
 import path from 'path';
 import { _INCLUDES } from './constants.js';
@@ -13,10 +14,14 @@ import { removeFile } from './utils/remove-file.js';
 import { writeContentPage } from './utils/write-content-page.js';
 import { watch } from './watch.js';
 import { Files } from './files.js';
+import { applyMarkdownEnhancer } from './utils/get-markdown.js';
 
 export class Docoddity {
   sitemap: Sitemap;
-  constructor(public folders: Folders) { this.sitemap = new Sitemap(folders.sourceDir); }
+  constructor(public folders: Folders) {
+    this.sitemap = new Sitemap(folders.sourceDir);
+    applyMarkdownEnhancer(folders.sourceDir);
+  }
 
   writeFiles = async () => Promise.all((await gatherAllSiteFiles(this.folders, this.sitemap)).map(this.writeFile));
   writeFile = (file: DocoddityFilepath) => writeContentPage(this.folders, file, this.sitemap);
