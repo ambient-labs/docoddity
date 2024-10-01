@@ -105,8 +105,8 @@ describe('Listens for new files', () => {
     ]);
 
     await runner.goto('/docs');
+    // await printURL();
 
-    // await printURL(1000);
     await waitForSelector(`text=${content}`);
     const content2 = 'foobarbaz';
 
@@ -117,7 +117,7 @@ describe('Listens for new files', () => {
     await updateFiles([
       {
         filepath: `docs/one.md`,
-        content: '',
+        content: 'temp',
       },
     ]);
 
@@ -127,10 +127,11 @@ describe('Listens for new files', () => {
       button.click();
     });
     await runner.waitForUrl();
+    await waitForSelector(`text=temp`);
 
     await updateFiles([
       {
-        filepath: `one.md`,
+        filepath: `docs/one.md`,
         content: getMarkdownContent(content2, { title: 'bar', order: 1 }),
       },
     ]);
