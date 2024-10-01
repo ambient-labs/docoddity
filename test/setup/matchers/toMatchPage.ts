@@ -67,6 +67,12 @@ expect.extend({
                   'class': Array.from(anchorEl.classList).sort().filter(cls => attrValue.includes(cls)),
                 };
               }
+              if (attrKey === 'tagName') {
+                return {
+                  ...obj,
+                  'tagName': anchorEl.tagName.toLowerCase(),
+                };
+              }
               return {
                 ...obj,
                 [attrKey]: anchorEl.getAttribute(attrKey),
@@ -74,7 +80,6 @@ expect.extend({
             }, {});
 
             result.text = anchorEl.innerHTML;
-            result.tagName = anchorEl.tagName.toLowerCase();
             return result;
           }, { attrs: Object.entries(expectation), outerHTML });
           try {
