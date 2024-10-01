@@ -120,33 +120,40 @@ describe('Dev: Listens for changes', () => {
 
   test('it changes markdown frontmatter across all pages', async () => {
     const content = 'foobar';
-    const { runner, printURL, waitForSelector, updateFiles, waitFor } = await configureDevDocodditySite([
+    const { runner, printURL, waitForSelector, updateFiles, waitFor, waitForDocoddityFileToBeWritten } = await configureDevDocodditySite([
       {
-        filepath: `one.md`,
+        filepath: `docs/one.md`,
         content: getMarkdownContent('one', { title: 'one', order: 1 }),
       },
       {
-        filepath: `two.md`,
+        filepath: `docs/two.md`,
         content: getMarkdownContent('two', { title: 'two', order: 2 }),
       },
       {
-        filepath: `three.md`,
+        filepath: `docs/three.md`,
         content: getMarkdownContent('three', { title: 'three', order: 3 }),
       },
     ]);
 
-    await runner.goto('/two');
+    await Promise.all([
+      waitForDocoddityFileToBeWritten('docs/one.md'),
+      waitForDocoddityFileToBeWritten('docs/two.md'),
+      waitForDocoddityFileToBeWritten('docs/three.md'),
+    ])
+
+    await runner.goto('/docs/two');
 
     await updateFiles([
       {
-        filepath: `one.md`,
+        filepath: `docs/one.md`,
         content: getMarkdownContent('one', { title: 'one2', order: 1 }),
       },
       {
-        filepath: `three.md`,
+        filepath: `docs/three.md`,
         content: getMarkdownContent('three', { title: 'three2', order: 3 }),
       },
     ]);
+    // await printURL();
 
     await waitFor(async () => {
       const anchor = await runner.page.evaluate(() => {
@@ -155,12 +162,11 @@ describe('Dev: Listens for changes', () => {
       });
       expect(anchor).toEqual(true);
     });
-    console.log('-----')
     await expect(runner).toMatchPage({
       leftNav: [
-        { href: '/one', text: 'one2', },
-        { href: '/two', text: 'two', },
-        { href: '/three', text: 'three2', },
+        { href: '/docs/one', text: 'one2', },
+        { href: '/docs/two', text: 'two', },
+        { href: '/docs/three', text: 'three2', },
       ],
       prevHTML: 'one2',
       nextHTML: 'three2',
@@ -196,7 +202,7 @@ describe('Dev: Listens for changes', () => {
   });
 
   test('it changes a markdown file name, and that gets reflected in the <title>, page title, sidebar, and pagination', async () => {
-    const { runner, printURL, renameFiles, waitFor } = await configureDevDocodditySite([
+    const { runner, printURL, renameFiles, waitFor, waitForDocoddityFileToBeWritten } = await configureDevDocodditySite([
       {
         filepath: `docs/one.md`,
         content: getMarkdownContent('one body', { title: 'One Title', order: 0, }),
@@ -210,6 +216,10 @@ describe('Dev: Listens for changes', () => {
     // await printURL(1000, '/docs/one');
 
     const click = getClick(runner);
+    await Promise.all([
+      waitForDocoddityFileToBeWritten('docs/one.md'),
+      waitForDocoddityFileToBeWritten('docs/two.md'),
+    ]);
 
     await runner.goto('/docs/two');
     await expect(runner).toMatchPage({

@@ -3,17 +3,15 @@ import { getMarkdownWithCodeElement } from "../utils/get-markdown.js";
 import { getIsActive } from '../utils/get-is-active.js';
 import type { PageDefinition } from '../types.js';
 
-export const renderNavList = async (name: string, navList: PageDefinition[], pageURL: string) => {
-  return html`
+export const renderNavList = async (name: string, navList: PageDefinition[], pageURL: string) => html`
   <nav id="${name}">
     <ul>
       ${navList.map(entry => renderNavListItem(entry, pageURL))}
     </ul>
   </nav>
 `;
-};
 
-const buildMenuListAnchorAttributes = (entry: PageDefinition, pageURL?: string) => {
+const buildMenuListAnchorAttributes = (entry: PageDefinition, pageURL: string) => {
   const isActive = getIsActive(entry.url, pageURL);
   const attbs = [
     `href="${entry.url}"`,
@@ -23,8 +21,7 @@ const buildMenuListAnchorAttributes = (entry: PageDefinition, pageURL?: string) 
   return attbs;
 };
 
-const renderNavListItem = (entry: PageDefinition, pageURL?: string): Promise<string> => {
-  return html`
+const renderNavListItem = (entry: PageDefinition, pageURL: string): Promise<string> => html`
   <li x-data="{ open: ${JSON.stringify(entry.open ?? false)} }" :class="{ open: open }">
     <div class="inner">
     <div class="menu-list ${entry.url === pageURL ? 'active' : ''}">
@@ -35,12 +32,10 @@ const renderNavListItem = (entry: PageDefinition, pageURL?: string): Promise<str
     </div>
     ${when(entry.children.length > 0, html`
     <ul>
-      ${entry.children.map(child => renderNavListItem(child))}
+      ${entry.children.map(child => renderNavListItem(child, pageURL))}
     </ul>`)}
     </div>
   </li>
-
 `;
-}
 
 const when = (condition: boolean, value: Promise<string>) => condition ? value : '';

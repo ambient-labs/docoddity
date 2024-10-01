@@ -97,7 +97,7 @@ class Node {
   }
 
   private getTitleFromURL() {
-    const pageName = this.url.split('/').pop() ?? '';
+    const pageName = this.url.split('/').filter(Boolean).pop() ?? '';
     return pageName.split(/[-_]/).map(word => word?.[0]?.toUpperCase() + word.slice(1)).join(' ');
   }
 
@@ -112,7 +112,7 @@ class Node {
     return this.getTitleFromURL();
   };
 
-  async getPage(): Promise<PageDefinition> {
+  async getPage(openPath: string[] = []): Promise<PageDefinition> {
     if (this.leaf) {
       const { title, order } = await this.getFrontmatter();
       return {
@@ -120,11 +120,11 @@ class Node {
         title: title !== '' ? title : this.getTitleFromURL(),
         children: [],
         order,
+        open: openPath.includes(this.url),
       };
     } else {
       const title = await this.getCategory();
-      console.log('title', title);
-      const children = await Promise.all([...this.children.values()].map(child => child.getPage()));
+      const children = await Promise.all([...this.children.values()].map(child => child.getPage(openPath)));
       const { order, open } = await this.getFrontmatter();
       const sortedChildren = children.sort(({ order: a }, { order: b }) => {
         if (a === undefined && b === undefined) {
@@ -143,7 +143,7 @@ class Node {
         url: this.url,
         title,
         children: sortedChildren,
-        open,
+        open: open || openPath.includes(this.url),
       };
     }
   }
@@ -196,6 +196,19 @@ export class Sitemap {
     yield* this.root.traverse();
   }
 
+  public getSectionRoot(filepath: string): Node {
+    const parts = split(filepath);
+    let part = parts.shift();
+    if (!part) {
+      throw new Error(`No parts for ${filepath}`);
+    }
+    const child = this.root.children.get(part);
+    if (child === undefined) {
+      throw new Error(`Node not found for ${part} (${filepath})`);
+    }
+    return child;
+  }
+
   public getNode(filepath: string): Node {
     const parts = split(filepath);
     let node = this.root;
@@ -212,15 +225,19 @@ export class Sitemap {
   }
 
   async getPages(filepath: string): Promise<PageDefinition[]> {
+    const parent = this.getSectionRoot(filepath);
     const page = this.getNode(filepath);
-    const parent = page.parent;
-    if (!parent) {
-      throw new Error(`No parent for ${filepath}`);
-    }
     const url = page.url;
-    const { children } = await parent.getPage();
+    const openPath = [];
+    let currentNode = page;
+    while (currentNode.parent) {
+      openPath.push(currentNode.parent.url);
+      currentNode = currentNode.parent;
+    }
+    const { children } = await parent.getPage(openPath);
     return children.map(child => ({
       ...child,
+      children: child.children,
       current: child.url === url,
     }));
   }
