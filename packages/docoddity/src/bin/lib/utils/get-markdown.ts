@@ -44,6 +44,9 @@ const loadMarkdownEnhancer = async (sourceDir: string): Promise<MarkdownEnhancer
   if (markdown) {
     try {
       const enhancerPath = path.resolve(sourceDir, markdown);
+      if (enhancerPath.endsWith('.ts')) {
+        throw new Error(`Only JavaScript markdown enhancers are supported, ${markdown} is a TypeScript file. Please compile it first.`)
+      }
 
       // For JavaScript files, use dynamic import
       const enhancerModule = await import(enhancerPath);
