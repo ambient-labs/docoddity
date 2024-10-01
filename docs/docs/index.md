@@ -11,4 +11,6 @@ npm install docoddity
 
 ## Quick Start
 
-Coming soon
+```bash
+npx docoddity init
+```

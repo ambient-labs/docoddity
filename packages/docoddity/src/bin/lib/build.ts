@@ -27,6 +27,7 @@ export const build = async ({
     sourceDir: sourceDir,
     targetDir: buildDir,
   });
+  await docoddity.applyMarkdownEnhancer();
   const writtenFiles = await docoddity.writeFiles();
   const htmlFiles = writtenFiles.filter((file) => file.endsWith('.html'));
 

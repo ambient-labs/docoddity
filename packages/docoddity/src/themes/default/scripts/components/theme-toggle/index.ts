@@ -1,4 +1,4 @@
-import './theme-toggle.js';
+import { define } from '../../utils/define.js';
 import { TAG_NAME, ThemeToggle } from './theme-toggle.js';
 
 declare global {
@@ -7,4 +7,4 @@ declare global {
   }
 }
 
-customElements.get(TAG_NAME) || customElements.define(TAG_NAME, ThemeToggle);
+define(ThemeToggle);

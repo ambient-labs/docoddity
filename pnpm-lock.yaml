@@ -119,6 +119,9 @@ importers:
       parser-front-matter:
         specifier: ^1.6.4
         version: 1.6.4
+      ts-node:
+        specifier: ^10.9.2
+        version: 10.9.2(@types/node@20.16.2)(typescript@5.5.4)
     devDependencies:
       '@rollup/plugin-commonjs':
         specifier: ^25.0.7
@@ -202,6 +205,54 @@ importers:
         specifier: ^0.14.4
         version: 0.14.8
 
+  test/.sites/00058e5e3b13d1c4d08b3fb5296ca3e6:
+    devDependencies:
+      docoddity:
+        specifier: workspace:*
+        version: link:../../../packages/docoddity
+
+  test/.sites/0ac8579f839f4d472374b49b37306a6b:
+    devDependencies:
+      docoddity:
+        specifier: workspace:*
+        version: link:../../../packages/docoddity
+
+  test/.sites/0cad6d7124d1855f6e3827d431f673b0:
+    devDependencies:
+      docoddity:
+        specifier: workspace:*
+        version: link:../../../packages/docoddity
+
+  test/.sites/0fd7e2d0793562698a1714ca397582ab:
+    devDependencies:
+      docoddity:
+        specifier: workspace:*
+        version: link:../../../packages/docoddity
+
+  test/.sites/159ac7920fafdd27fcca207fb56740d2:
+    devDependencies:
+      docoddity:
+        specifier: workspace:*
+        version: link:../../../packages/docoddity
+
+  test/.sites/17366926bb4491f36c7ef66ce2fb3103:
+    devDependencies:
+      docoddity:
+        specifier: workspace:*
+        version: link:../../../packages/docoddity
+
+  test/.sites/1a75d93711413c4c239e67c2c278e9c5:
+    devDependencies:
+      docoddity:
+        specifier: workspace:*
+        version: link:../../../packages/docoddity
+
+  test/.sites/1b6720bfc72049b792d380a86ca3b445:
+    devDependencies:
+      docoddity:
+        specifier: workspace:*
+        version: link:../../../packages/docoddity
+
   test/.sites/203c0dae6f8a2a5c8c1a31eb5592bda0:
     devDependencies:
       docoddity:
@@ -214,7 +265,19 @@ importers:
         specifier: workspace:*
         version: link:../../../packages/docoddity
 
+  test/.sites/21770999b43b77f52bb2e06eccb7166f:
+    devDependencies:
+      docoddity:
+        specifier: workspace:*
+        version: link:../../../packages/docoddity
+
   test/.sites/23ea7c5aad50361eb9743704aa2b2a1f:
+    devDependencies:
+      docoddity:
+        specifier: workspace:*
+        version: link:../../../packages/docoddity
+
+  test/.sites/24eca9f7eab0fd88e4536d88daa6fbb0:
     devDependencies:
       docoddity:
         specifier: workspace:*
@@ -238,7 +301,151 @@ importers:
         specifier: workspace:*
         version: link:../../../packages/docoddity
 
+  test/.sites/3246c2140323b70b9d81af546739673d:
+    devDependencies:
+      docoddity:
+        specifier: workspace:*
+        version: link:../../../packages/docoddity
+
+  test/.sites/391e847a6cd0b8a846015b356d6230bb:
+    devDependencies:
+      docoddity:
+        specifier: workspace:*
+        version: link:../../../packages/docoddity
+
+  test/.sites/424b6aed29fefe013446e10a5910a711:
+    devDependencies:
+      docoddity:
+        specifier: workspace:*
+        version: link:../../../packages/docoddity
+
+  test/.sites/4c6e965f8ca3025bf12619b89af4396d:
+    devDependencies:
+      docoddity:
+        specifier: workspace:*
+        version: link:../../../packages/docoddity
+
   test/.sites/4fbf70b4dd83d07160ea109805aa9938:
+    devDependencies:
+      docoddity:
+        specifier: workspace:*
+        version: link:../../../packages/docoddity
+
+  test/.sites/53216ccdaf51d97dc8b0d1b1ededa907:
+    devDependencies:
+      docoddity:
+        specifier: workspace:*
+        version: link:../../../packages/docoddity
+
+  test/.sites/5a8960f3ae64a42a231abe7d09f0fa67:
+    devDependencies:
+      docoddity:
+        specifier: workspace:*
+        version: link:../../../packages/docoddity
+
+  test/.sites/5b880a04070e94c9a055d6f32ef72213:
+    devDependencies:
+      docoddity:
+        specifier: workspace:*
+        version: link:../../../packages/docoddity
+
+  test/.sites/5cc79f225d422625b130d5cd61c59309:
+    devDependencies:
+      docoddity:
+        specifier: workspace:*
+        version: link:../../../packages/docoddity
+
+  test/.sites/5ed7fe2d7ac707993bf584393b9e3c4d:
+    devDependencies:
+      docoddity:
+        specifier: workspace:*
+        version: link:../../../packages/docoddity
+
+  test/.sites/628064ca9f33074b5f578ccd4534870a:
+    devDependencies:
+      docoddity:
+        specifier: workspace:*
+        version: link:../../../packages/docoddity
+
+  test/.sites/6410b99997789fdbeeea6e45467f3f93:
+    devDependencies:
+      docoddity:
+        specifier: workspace:*
+        version: link:../../../packages/docoddity
+
+  test/.sites/6638c9d3d5b458da1c4229502ef3499c:
+    devDependencies:
+      docoddity:
+        specifier: workspace:*
+        version: link:../../../packages/docoddity
+
+  test/.sites/670d8cacafc1ae3cce1ea52969fcc4f8:
+    devDependencies:
+      docoddity:
+        specifier: workspace:*
+        version: link:../../../packages/docoddity
+
+  test/.sites/67fd288b5d5588ffd1cc96b2ec1fa11d:
+    devDependencies:
+      docoddity:
+        specifier: workspace:*
+        version: link:../../../packages/docoddity
+
+  test/.sites/68328c9d47b861e72a0d99491c71ecda:
+    devDependencies:
+      docoddity:
+        specifier: workspace:*
+        version: link:../../../packages/docoddity
+
+  test/.sites/68fdb16e66f6da5c1782189a34907e7e:
+    devDependencies:
+      docoddity:
+        specifier: workspace:*
+        version: link:../../../packages/docoddity
+
+  test/.sites/6a8a6382b9308eb47387c1c6a9812d3d:
+    devDependencies:
+      docoddity:
+        specifier: workspace:*
+        version: link:../../../packages/docoddity
+
+  test/.sites/6d0df1771d4d4532d2d3eb2d905eec95:
+    devDependencies:
+      docoddity:
+        specifier: workspace:*
+        version: link:../../../packages/docoddity
+
+  test/.sites/6d6aa508ccf86e49c6d37428debd5429:
+    devDependencies:
+      docoddity:
+        specifier: workspace:*
+        version: link:../../../packages/docoddity
+
+  test/.sites/6ef2d2f0c9d9b3bff444e3ba374abe71:
+    devDependencies:
+      docoddity:
+        specifier: workspace:*
+        version: link:../../../packages/docoddity
+
+  test/.sites/7670ee369ff015e15a0f8e08aba93256:
+    devDependencies:
+      docoddity:
+        specifier: workspace:*
+        version: link:../../../packages/docoddity
+
+  test/.sites/79bc07b01d0790dc3daddaff2d5415d0:
+    devDependencies:
+      docoddity:
+        specifier: workspace:*
+        version: link:../../../packages/docoddity
+
+  test/.sites/7a4592479f1ad0b5b254ad4d5faa21bd:
+    devDependencies:
+      docoddity:
+        specifier: workspace:*
+        version: link:../../../packages/docoddity
+
+  test/.sites/7a7e8fd398e0b475310e55a8f9fdbfa0:
     devDependencies:
       docoddity:
         specifier: workspace:*
@@ -262,7 +469,49 @@ importers:
         specifier: workspace:*
         version: link:../../../packages/docoddity
 
+  test/.sites/82eed7f8bb707a8c430e0d6e5e12e5a8:
+    devDependencies:
+      docoddity:
+        specifier: workspace:*
+        version: link:../../../packages/docoddity
+
+  test/.sites/830d7d252579931c3c0f87ddc4692663:
+    devDependencies:
+      docoddity:
+        specifier: workspace:*
+        version: link:../../../packages/docoddity
+
+  test/.sites/84ecf238e5385041c6c5a262aadf4d7b:
+    devDependencies:
+      docoddity:
+        specifier: workspace:*
+        version: link:../../../packages/docoddity
+
+  test/.sites/87d0047515d1e2bd4049907981c7994d:
+    devDependencies:
+      docoddity:
+        specifier: workspace:*
+        version: link:../../../packages/docoddity
+
+  test/.sites/889c5160d84b75dc66de5423dd30aba7:
+    devDependencies:
+      docoddity:
+        specifier: workspace:*
+        version: link:../../../packages/docoddity
+
+  test/.sites/891ab786cd624cd918493522b3f3b12b:
+    devDependencies:
+      docoddity:
+        specifier: workspace:*
+        version: link:../../../packages/docoddity
+
   test/.sites/8a705497c683f1b44d68c0bdab672143:
+    devDependencies:
+      docoddity:
+        specifier: workspace:*
+        version: link:../../../packages/docoddity
+
+  test/.sites/8c525bd6f5ce7eb3f50d3006156fb02d:
     devDependencies:
       docoddity:
         specifier: workspace:*
@@ -274,7 +523,97 @@ importers:
         specifier: workspace:*
         version: link:../../../packages/docoddity
 
+  test/.sites/923da509e8435528b6787b2f19c3456c:
+    devDependencies:
+      docoddity:
+        specifier: workspace:*
+        version: link:../../../packages/docoddity
+
+  test/.sites/9450ae543cfec9bacee85a520b34057a:
+    devDependencies:
+      docoddity:
+        specifier: workspace:*
+        version: link:../../../packages/docoddity
+
+  test/.sites/9548c83e852ef7ae18c2610f19b43f7d:
+    devDependencies:
+      docoddity:
+        specifier: workspace:*
+        version: link:../../../packages/docoddity
+
+  test/.sites/95d810cc0a00533fa8f21548cb8f87b1:
+    devDependencies:
+      docoddity:
+        specifier: workspace:*
+        version: link:../../../packages/docoddity
+
   test/.sites/98ccd200b175b8d7c482197e16eea537:
+    devDependencies:
+      docoddity:
+        specifier: workspace:*
+        version: link:../../../packages/docoddity
+
+  test/.sites/98eaa753a43f87aa67fa42ff73100ec5:
+    devDependencies:
+      docoddity:
+        specifier: workspace:*
+        version: link:../../../packages/docoddity
+
+  test/.sites/9c8d3257b55ddc2388a83fa853862d77:
+    devDependencies:
+      docoddity:
+        specifier: workspace:*
+        version: link:../../../packages/docoddity
+
+  test/.sites/9fa497efb5dbb857fdadbe5600e1d086:
+    devDependencies:
+      docoddity:
+        specifier: workspace:*
+        version: link:../../../packages/docoddity
+
+  test/.sites/a118d84c85e5f0483ad46a6c6d2ab87d:
+    devDependencies:
+      docoddity:
+        specifier: workspace:*
+        version: link:../../../packages/docoddity
+
+  test/.sites/a3363f35e951c1604bcff6b58eef1809:
+    devDependencies:
+      docoddity:
+        specifier: workspace:*
+        version: link:../../../packages/docoddity
+
+  test/.sites/a3533d9a7f9b7f61812b436e306fa596:
+    devDependencies:
+      docoddity:
+        specifier: workspace:*
+        version: link:../../../packages/docoddity
+
+  test/.sites/a5b6aef02b1c469a70128abb98b16576:
+    devDependencies:
+      docoddity:
+        specifier: workspace:*
+        version: link:../../../packages/docoddity
+
+  test/.sites/a74cde5613cb5cefdecd75a63f42d148:
+    devDependencies:
+      docoddity:
+        specifier: workspace:*
+        version: link:../../../packages/docoddity
+
+  test/.sites/a9bdee5d1826c69043ee0adc7e6699c3:
+    devDependencies:
+      docoddity:
+        specifier: workspace:*
+        version: link:../../../packages/docoddity
+
+  test/.sites/b00473d2bd94add6cfc82d11a30e2849:
+    devDependencies:
+      docoddity:
+        specifier: workspace:*
+        version: link:../../../packages/docoddity
+
+  test/.sites/b007ae876dad39a902800ea3e588b6e3:
     devDependencies:
       docoddity:
         specifier: workspace:*
@@ -287,6 +626,12 @@ importers:
         version: link:../../../packages/docoddity
 
   test/.sites/b8558ab2f9e1af7852cfda733bf90453:
+    devDependencies:
+      docoddity:
+        specifier: workspace:*
+        version: link:../../../packages/docoddity
+
+  test/.sites/b96e61581484c9cd9d832acb3d80be1c:
     devDependencies:
       docoddity:
         specifier: workspace:*
@@ -310,13 +655,127 @@ importers:
         specifier: workspace:*
         version: link:../../../packages/docoddity
 
+  test/.sites/c120252887e91a5eba7aa96dde717759:
+    devDependencies:
+      docoddity:
+        specifier: workspace:*
+        version: link:../../../packages/docoddity
+
+  test/.sites/c27e5217330de57fd0d59d178368c86f:
+    devDependencies:
+      docoddity:
+        specifier: workspace:*
+        version: link:../../../packages/docoddity
+
+  test/.sites/ca474f1bb6573c218aa7fb90ed9c1fb6:
+    devDependencies:
+      docoddity:
+        specifier: workspace:*
+        version: link:../../../packages/docoddity
+
+  test/.sites/cbb617dc49de479bd3ac9287f0635d89:
+    devDependencies:
+      docoddity:
+        specifier: workspace:*
+        version: link:../../../packages/docoddity
+
+  test/.sites/db4fc6a50674b0a0f118e6ccb42bd841:
+    devDependencies:
+      docoddity:
+        specifier: workspace:*
+        version: link:../../../packages/docoddity
+
   test/.sites/e209ba85b0ccf71bad11a625f2040450:
     devDependencies:
       docoddity:
         specifier: workspace:*
         version: link:../../../packages/docoddity
 
+  test/.sites/e38068c866663547976aefad190b84ee:
+    devDependencies:
+      docoddity:
+        specifier: workspace:*
+        version: link:../../../packages/docoddity
+
+  test/.sites/e519fe8a07e529c88ee8f43fd5165868:
+    devDependencies:
+      docoddity:
+        specifier: workspace:*
+        version: link:../../../packages/docoddity
+
+  test/.sites/e5fecc0bbcba2caf5f9487e996248b2f:
+    devDependencies:
+      docoddity:
+        specifier: workspace:*
+        version: link:../../../packages/docoddity
+
+  test/.sites/e6c1ae470fa78e0d4b589d844e0513e3:
+    devDependencies:
+      docoddity:
+        specifier: workspace:*
+        version: link:../../../packages/docoddity
+
+  test/.sites/ec22e97e1eae879f233a01d94c6adba2:
+    devDependencies:
+      docoddity:
+        specifier: workspace:*
+        version: link:../../../packages/docoddity
+
+  test/.sites/ecca835c4545fc2e6e79daadd3a9f79f:
+    devDependencies:
+      docoddity:
+        specifier: workspace:*
+        version: link:../../../packages/docoddity
+
+  test/.sites/ed6bdc1158abc017c69171dda82ccd53:
+    devDependencies:
+      docoddity:
+        specifier: workspace:*
+        version: link:../../../packages/docoddity
+
+  test/.sites/edc060db5b68922cec60f16d737c0c30:
+    devDependencies:
+      docoddity:
+        specifier: workspace:*
+        version: link:../../../packages/docoddity
+
+  test/.sites/ee302d4eb588d5aabf56e3133ef88b4f:
+    devDependencies:
+      docoddity:
+        specifier: workspace:*
+        version: link:../../../packages/docoddity
+
+  test/.sites/eea3039610a784deb0a852941e4a231d:
+    devDependencies:
+      docoddity:
+        specifier: workspace:*
+        version: link:../../../packages/docoddity
+
+  test/.sites/eed58997fcf49c54d5d59cbac8109905:
+    devDependencies:
+      docoddity:
+        specifier: workspace:*
+        version: link:../../../packages/docoddity
+
+  test/.sites/f094c469322c01431274f533646d16ae:
+    devDependencies:
+      docoddity:
+        specifier: workspace:*
+        version: link:../../../packages/docoddity
+
   test/.sites/f0ecb72920158f464cff933e8b7b7232:
+    devDependencies:
+      docoddity:
+        specifier: workspace:*
+        version: link:../../../packages/docoddity
+
+  test/.sites/f5ef38998b28639d47f6da2c26f3c8b3:
+    devDependencies:
+      docoddity:
+        specifier: workspace:*
+        version: link:../../../packages/docoddity
+
+  test/.sites/fa5ec632c5ca97ff6fc62bdfaf12b700:
     devDependencies:
       docoddity:
         specifier: workspace:*
@@ -413,6 +872,10 @@ packages:
   '@babel/runtime@7.25.6':
     resolution: {integrity: sha512-VBj9MYyDb9tuLq7yzqjgzt6Q+IBQLrGZfdjOekyEirZPHxXWoTSGUTMrpsfi58Up73d13NfYLv8HT9vmznjzhQ==}
     engines: {node: '>=6.9.0'}
+
+  '@cspotcode/source-map-support@0.8.1':
+    resolution: {integrity: sha512-IchNf6dN4tHoMFIn/7OE8LWZ19Y6q/67Bmf6vnGREv8RSbBVb9LPJxEcnwrcwX6ixSvaiGoomAUvu4YSxXrVgw==}
+    engines: {node: '>=12'}
 
   '@ctrl/tinycolor@4.1.0':
     resolution: {integrity: sha512-WyOx8cJQ+FQus4Mm4uPIZA64gbk3Wxh0so5Lcii0aJifqwoVOlfFtorjLE0Hen4OYyHZMXDWqMmaQemBhgxFRQ==}
@@ -798,6 +1261,9 @@ packages:
   '@jridgewell/trace-mapping@0.3.25':
     resolution: {integrity: sha512-vNk6aEwybGtawWmy/PzwnGDOjCkLWSD2wqvjGGAgOAwCGWySYXfYoxt00IJkTF+8Lb57DwOb3Aa0o9CApepiYQ==}
 
+  '@jridgewell/trace-mapping@0.3.9':
+    resolution: {integrity: sha512-3Belt6tdc8bPgAtbcmdtNJlirVoTmEb5e2gC94PnkwEW9jI6CAHUeoG85tjWP5WquqfavoMtMwiG4P926ZKKuQ==}
+
   '@lit-labs/ssr-dom-shim@1.2.1':
     resolution: {integrity: sha512-wx4aBmgeGvFmOKucFKY+8VFJSYZxs9poN3SDNQFF6lT6NrQUnHiPB2PWz2sc4ieEcAaYYzN+1uWahEeTq2aRIQ==}
 
@@ -1060,6 +1526,18 @@ packages:
 
   '@socket.io/component-emitter@3.1.2':
     resolution: {integrity: sha512-9BCxFwvbGg/RsZK9tjXd8s4UcwR0MWeFQ1XEKIQVVvAGJyINdrqKMcTRyLoK8Rse1GjzLV9cwjWV1olXRWEXVA==}
+
+  '@tsconfig/node10@1.0.11':
+    resolution: {integrity: sha512-DcRjDCujK/kCk/cUe8Xz8ZSpm8mS3mNNpta+jGCA6USEDfktlNvm1+IuZ9eTcDbNk41BHwpHHeW+N1lKCz4zOw==}
+
+  '@tsconfig/node12@1.0.11':
+    resolution: {integrity: sha512-cqefuRsh12pWyGsIoBKJA9luFu3mRxCA+ORZvA4ktLSzIuCUtWVxGIuXigEwO5/ywWFMZ2QEGKWvkZG1zDMTag==}
+
+  '@tsconfig/node14@1.0.3':
+    resolution: {integrity: sha512-ysT8mhdixWK6Hw3i1V2AeRqZ5WfXg1G43mqoYlM2nc6388Fq5jcXyr5mRsqViLx/GJYdoL0bfXD8nmF+Zn/Iow==}
+
+  '@tsconfig/node16@1.0.4':
+    resolution: {integrity: sha512-vxhUy4J8lyeyinH7Azl1pdd43GJhZH/tP2weN8TntQblOY+A0XbT8DJk1/oCPuOOyg/Ja757rG0CgHcWC8OfMA==}
 
   '@types/browser-sync@2.29.0':
     resolution: {integrity: sha512-d2V8FDX/LbDCSm343N2VChzDxvll0h76I8oSigYpdLgPDmcdcR6fywTggKBkUiDM3qAbHOq7NZvepj/HJM5e2g==}
@@ -1377,6 +1855,10 @@ packages:
     peerDependencies:
       acorn: ^6.0.0 || ^7.0.0 || ^8.0.0
 
+  acorn-walk@8.3.4:
+    resolution: {integrity: sha512-ueEepnujpqee2o5aIYnvHU6C0A42MNdsIDeqy5BydrkuC5R1ZuUFnm27EeFJGoEHJQgn3uleRvmTXaJgfXbt4g==}
+    engines: {node: '>=0.4.0'}
+
   acorn@8.12.1:
     resolution: {integrity: sha512-tcpGyI9zbizT9JbV6oYE477V6mTlXvvi0T0G3SNIYE2apm/G5huBa1+K89VGeovbg+jycCrfhl3ADxErOuO6Jg==}
     engines: {node: '>=0.4.0'}
@@ -1426,6 +1908,9 @@ packages:
 
   append-field@1.0.0:
     resolution: {integrity: sha512-klpgFSWLW1ZEs8svjfb7g4qWY0YS5imI82dTg+QahUvJ8YqAY0P10Uk8tTyh9ZGuYEZEMaeJYCF5BFuX552hsw==}
+
+  arg@4.1.3:
+    resolution: {integrity: sha512-58S9QDqG0Xx27YwPSt9fJxivjYl432YCwfDMfZ+71RAqUrZef7LrKQZ3LHLOwCS4FLNBplP533Zx895SeOCHvA==}
 
   argparse@1.0.10:
     resolution: {integrity: sha512-o5Roy6tNG4SL/FOkCAN6RzjiakZS25RLYFrcMttJqbdd8BWrnA+fGz57iN5Pb06pvBGvl5gQ0B48dJlslXvoTg==}
@@ -1790,6 +2275,9 @@ packages:
     resolution: {integrity: sha512-jHTjZhsbg9xWgsP2vuNW2jnnzBX+p4T+vNI9Lbjzs1n4KhOfa22bQppiFYLsWQKd8TzmL5aSP/Me3yfsCwXbDA==}
     hasBin: true
 
+  create-require@1.1.1:
+    resolution: {integrity: sha512-dcKFX3jn0MpIaXjisoRvexIJVEKzaq7z2rZKxf+MSr9TkdmHmsU4m2lcLojrj/FHl8mk5VxMmYA+ftRkP/3oKQ==}
+
   cross-spawn@7.0.3:
     resolution: {integrity: sha512-iRDPJKUPVEND7dHPO8rkbOnPpyDygcDFtWjpeWNCgy8WP2rXcxXL8TskReQl6OrB2G7+UJrags1q15Fudc7G6w==}
     engines: {node: '>= 8'}
@@ -1908,6 +2396,10 @@ packages:
   diff-sequences@29.6.3:
     resolution: {integrity: sha512-EjePK1srD3P08o2j4f0ExnylqRs5B9tJjcp9t1krH2qRi8CCdsYfwe9JgSLurFBWwq4uOlipzfk5fHNvwFKr8Q==}
     engines: {node: ^14.15.0 || ^16.10.0 || >=18.0.0}
+
+  diff@4.0.2:
+    resolution: {integrity: sha512-58lmxKSA4BNyLz+HHMUzlOEpg09FV+ev6ZMe3vJihgdxzgcwZ8VoEEPmALCZG9LmqfVoNMMKpttIYTVG6uDY7A==}
+    engines: {node: '>=0.3.1'}
 
   dir-glob@3.0.1:
     resolution: {integrity: sha512-WkrWp9GR4KXfKGYzOLmTuGVi1UWFfws377n9cc55/tb6DuqyF6pcQ5AbiHEshaDpY9v6oaSr2XCDidGmMwdzIA==}
@@ -2896,6 +3388,9 @@ packages:
 
   magic-string@0.30.11:
     resolution: {integrity: sha512-+Wri9p0QHMy+545hKww7YAu5NyzF8iomPL/RQazugQ9+Ez4Ic3mERMd8ZTX5rfK944j+560ZJi8iAwgak1Ac7A==}
+
+  make-error@1.3.6:
+    resolution: {integrity: sha512-s8UhlNe7vPKomQhC1qFelMokr/Sc3AgNbso3n74mVPA5LTZwkB9NlXf4XPamLxJE8h0gh73rM94xvwRT2CVInw==}
 
   map-cache@0.2.2:
     resolution: {integrity: sha512-8y/eV9QQZCiyn1SprXSrCmqJN0yNRATe+PO8ztwqrvrbdRLA3eYJF0yaR0YayLWkMbsQSKWS9N2gPcGEc4UsZg==}
@@ -3916,6 +4411,20 @@ packages:
     peerDependencies:
       typescript: '>=4.2.0'
 
+  ts-node@10.9.2:
+    resolution: {integrity: sha512-f0FFpIdcHgn8zcPSbf1dRevwt047YMnaiJM3u2w2RewrB+fob/zePZcrOyQoLMMO7aBIddLcQIEK5dYjkLnGrQ==}
+    hasBin: true
+    peerDependencies:
+      '@swc/core': '>=1.2.50'
+      '@swc/wasm': '>=1.2.50'
+      '@types/node': '*'
+      typescript: '>=2.7'
+    peerDependenciesMeta:
+      '@swc/core':
+        optional: true
+      '@swc/wasm':
+        optional: true
+
   tslib@2.7.0:
     resolution: {integrity: sha512-gLXCKdN1/j47AiHiOkJN69hJmcbGTHI0ImLmbYLHykhgeN0jVGola9yVjFgzCUklsZQMW55o+dW7IXv3RCXDzA==}
 
@@ -4015,6 +4524,9 @@ packages:
   utils-merge@1.0.1:
     resolution: {integrity: sha512-pMZTvIkT1d+TFGvDOqodOclx0QWkkgi6Tdoa8gC8ffGAAqz9pzPTZWAybbsHHoED/ztMtkv/VoYTYyShUn81hA==}
     engines: {node: '>= 0.4.0'}
+
+  v8-compile-cache-lib@3.0.1:
+    resolution: {integrity: sha512-wa7YjyUGfNZngI/vtK0UHAN+lgDCxBPCylVXGp0zu59Fz5aiGtNXaq3DhIov063MorB+VfufLh3JlF2KdTK3xg==}
 
   validate-npm-package-license@3.0.4:
     resolution: {integrity: sha512-DpKm2Ui/xN7/HQKCtpZxoRWBhZ9Z0kqtygG8XCgNQ8ZlDnxuQmWhj566j8fN4Cu3/JmbhsDo7fcAJq4s9h27Ew==}
@@ -4278,6 +4790,10 @@ packages:
     resolution: {integrity: sha512-7dSzzRQ++CKnNI/krKnYRV7JKKPUXMEh61soaHKg9mrWEhzFWhFnxPxGl+69cD1Ou63C13NUPCnmIcrvqCuM6w==}
     engines: {node: '>=12'}
 
+  yn@3.1.1:
+    resolution: {integrity: sha512-Ux4ygGWsu2c7isFWe8Yu1YluJmqVhxqK2cLXNQA5AcC3QfbGNpM7fu0Y8b/z16pXLnFxZYvWhd3fhBY9DLmC6Q==}
+    engines: {node: '>=6'}
+
   yocto-queue@0.1.0:
     resolution: {integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==}
     engines: {node: '>=10'}
@@ -4434,6 +4950,10 @@ snapshots:
   '@babel/runtime@7.25.6':
     dependencies:
       regenerator-runtime: 0.14.1
+
+  '@cspotcode/source-map-support@0.8.1':
+    dependencies:
+      '@jridgewell/trace-mapping': 0.3.9
 
   '@ctrl/tinycolor@4.1.0': {}
 
@@ -4696,6 +5216,11 @@ snapshots:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.5.0
 
+  '@jridgewell/trace-mapping@0.3.9':
+    dependencies:
+      '@jridgewell/resolve-uri': 3.1.2
+      '@jridgewell/sourcemap-codec': 1.5.0
+
   '@lit-labs/ssr-dom-shim@1.2.1': {}
 
   '@lit/react@1.0.5(@types/react@18.3.8)':
@@ -4893,6 +5418,14 @@ snapshots:
   '@sinclair/typebox@0.27.8': {}
 
   '@socket.io/component-emitter@3.1.2': {}
+
+  '@tsconfig/node10@1.0.11': {}
+
+  '@tsconfig/node12@1.0.11': {}
+
+  '@tsconfig/node14@1.0.3': {}
+
+  '@tsconfig/node16@1.0.4': {}
 
   '@types/browser-sync@2.29.0':
     dependencies:
@@ -5362,6 +5895,10 @@ snapshots:
     dependencies:
       acorn: 8.12.1
 
+  acorn-walk@8.3.4:
+    dependencies:
+      acorn: 8.12.1
+
   acorn@8.12.1: {}
 
   ajv-keywords@3.5.2(ajv@6.12.6):
@@ -5420,6 +5957,8 @@ snapshots:
       picomatch: 2.3.1
 
   append-field@1.0.0: {}
+
+  arg@4.1.3: {}
 
   argparse@1.0.10:
     dependencies:
@@ -5855,6 +6394,8 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
+  create-require@1.1.1: {}
+
   cross-spawn@7.0.3:
     dependencies:
       path-key: 3.1.1
@@ -5963,6 +6504,8 @@ snapshots:
   dev-ip@1.0.1: {}
 
   diff-sequences@29.6.3: {}
+
+  diff@4.0.2: {}
 
   dir-glob@3.0.1:
     dependencies:
@@ -7071,6 +7614,8 @@ snapshots:
     dependencies:
       '@jridgewell/sourcemap-codec': 1.5.0
 
+  make-error@1.3.6: {}
+
   map-cache@0.2.2: {}
 
   map-obj@1.0.1: {}
@@ -8178,6 +8723,24 @@ snapshots:
     dependencies:
       typescript: 5.6.2
 
+  ts-node@10.9.2(@types/node@20.16.2)(typescript@5.5.4):
+    dependencies:
+      '@cspotcode/source-map-support': 0.8.1
+      '@tsconfig/node10': 1.0.11
+      '@tsconfig/node12': 1.0.11
+      '@tsconfig/node14': 1.0.3
+      '@tsconfig/node16': 1.0.4
+      '@types/node': 20.16.2
+      acorn: 8.12.1
+      acorn-walk: 8.3.4
+      arg: 4.1.3
+      create-require: 1.1.1
+      diff: 4.0.2
+      make-error: 1.3.6
+      typescript: 5.5.4
+      v8-compile-cache-lib: 3.0.1
+      yn: 3.1.1
+
   tslib@2.7.0: {}
 
   tunnelmole@2.2.14:
@@ -8277,6 +8840,8 @@ snapshots:
   utila@0.4.0: {}
 
   utils-merge@1.0.1: {}
+
+  v8-compile-cache-lib@3.0.1: {}
 
   validate-npm-package-license@3.0.4:
     dependencies:
@@ -8574,5 +9139,7 @@ snapshots:
       string-width: 4.2.3
       y18n: 5.0.8
       yargs-parser: 21.1.1
+
+  yn@3.1.1: {}
 
   yocto-queue@0.1.0: {}

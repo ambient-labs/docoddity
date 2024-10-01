@@ -81,7 +81,8 @@
     "markdown-it-front-matter": "^0.2.4",
     "mustache": "^4.2.0",
     "nunjucks": "^3.2.4",
-    "parser-front-matter": "^1.6.4"
+    "parser-front-matter": "^1.6.4",
+    "ts-node": "^10.9.2"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^25.0.7",

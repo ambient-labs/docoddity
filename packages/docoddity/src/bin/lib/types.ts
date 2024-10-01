@@ -1,4 +1,27 @@
+import type MarkdownIt from "markdown-it";
 import type { Sitemap } from "./sitemap.js";
+
+export interface DocoddityContents {
+  theme?: string;
+  title?: string;
+  head?: (string | DocoddityFileDefinition)[];
+  body?: (string | DocoddityFileDefinition)[];
+  nav?: DocoddityNav;
+  config?: {
+    algolia?: AlgoliaConfig;
+  };
+  markdown?: string;
+}
+
+export type MarkdownEnhancerFn = (md: MarkdownIt) => void;
+
+export interface AlgoliaConfig {
+
+  appId: string;
+  indexName: string;
+  apiKey: string;
+}
+
 
 export interface Folders {
   sourceDir: string;
@@ -55,25 +78,6 @@ export interface DocoddityNav {
   left?: DocoddityNavItem[];
   right?: DocoddityNavItem[];
 }
-
-export interface AlgoliaConfig {
-
-  appId: string;
-  indexName: string;
-  apiKey: string;
-}
-
-export interface DocoddityContents {
-  theme?: string;
-  title?: string;
-  head?: (string | DocoddityFileDefinition)[];
-  body?: (string | DocoddityFileDefinition)[];
-  nav?: DocoddityNav;
-  config?: {
-    algolia?: AlgoliaConfig;
-  }
-}
-
 export interface TagDefinitionFilepathContent {
   filename: string;
 }
@@ -150,4 +154,5 @@ export const isDocoddityContents = (contents: unknown): contents is DocoddityCon
   && (('nav' in contents && isDocoddityNav(contents.nav)) || !('nav' in contents))
   && (('head' in contents && isDocoddityContentsHeadOrBody(contents.head)) || !('head' in contents))
   && (('body' in contents && isDocoddityContentsHeadOrBody(contents.body)) || !('body' in contents))
-  && (('config' in contents && isDocoddityContentsConfig(contents.config)) || !('config' in contents));
+  && (('config' in contents && isDocoddityContentsConfig(contents.config)) || !('config' in contents))
+  && (('markdown' in contents && typeof contents.markdown === 'string') || !('markdown' in contents));
