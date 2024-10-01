@@ -51,10 +51,25 @@ expect.extend({
       } else {
         for (let i = 0; i < leftNav.length; i++) {
           const outerHTML = results[2][i];
-          const expectation = Object.entries(leftNav[i]).reduce((obj, [key, value]) => ({
-            ...obj,
-            [key]: Array.isArray(value) ? value.sort() : value,
-          }), {});
+          const expectation = Object.entries(leftNav[i]).reduce((obj, [key, value]) => {
+            if (key === 'class') {
+              if (Array.isArray(value)) {
+                return {
+                  ...obj,
+                  [key]: value.sort(),
+                }
+              }
+
+              return {
+                ...obj,
+                [key]: [value],
+              }
+            }
+            return {
+              ...obj,
+              [key]: Array.isArray(value) ? value.sort() : value,
+            };
+          }, {});
 
           const actualValues = await runner.page.evaluate(({ attrs, outerHTML }) => {
             const tempEl = document.createElement('div');
