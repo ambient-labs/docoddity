@@ -318,8 +318,8 @@ describe('Themes', () => {
         await click('#hamburger');
         expect((await getElementTransformStyle(runner, '#hamburger-menu')).x).toEqual(0);
         await expect(runner.page).toMatchQuerySelectorAll('#hamburger-contents main section:first-child a', [
-          '<a href="/docs/" class="active">One</a>',
-          '<a href="/docs/two">Two</a>',
+          '<a href="/docs/" class="label active">One</a>',
+          '<a href="/docs/two" class="label">Two</a>',
         ]);
         await expect(runner.page).toMatchQuerySelectorAll('#hamburger-contents main section:last-child a', [
           '<a href="/zero">Zero</a>',
@@ -540,16 +540,16 @@ describe('Themes', () => {
         await expect(runner).toMatchPage({
           leftNav: [
             { href: '/docs/', text: 'Getting Started', class: 'active' },
-            { href: '/docs/section-one', text: 'Section One', },
+            { href: null, text: 'Section One', },
             { href: '/docs/section-one/', text: 'Section One Index', },
             { href: '/docs/section-one/page-two', text: 'Section One Page Two', },
             { href: '/docs/section-one/page-three', text: 'Section One Page Three', },
             { href: '/docs/page-two', text: 'Page Two', },
-            { href: '/docs/section-three', text: 'Section Three', },
+            { href: null, text: 'Section Three', },
             { href: '/docs/section-three/', text: 'Section Three Index', },
             { href: '/docs/section-three/page-two', text: 'Section Three Page Two', },
             { href: '/docs/section-three/page-three', text: 'Section Three Page Three', },
-            { href: '/docs/section-three/nested', text: 'Nested', },
+            { href: null, text: 'Nested', },
             { href: '/docs/section-three/nested/', text: 'Nested Index', },
             { href: '/docs/section-three/nested/page-one', text: 'Nested Page One', },
             { href: '/docs/page-five', text: 'Page Five', },
@@ -628,11 +628,11 @@ describe('Themes', () => {
         await expect(runner).toMatchPage({
           leftNav: [
             { href: '/docs/', text: 'Getting Started' },
-            { href: '/docs/section-one', text: 'Section One', },
+            { href: null, text: 'Section One', },
             { href: '/docs/section-one/', text: 'Section One Index', },
-            { href: '/docs/section-one/section-two', text: 'Section Two', },
+            { href: null, text: 'Section Two', },
             { href: '/docs/section-one/section-two/page-a', text: 'Page A', },
-            { href: '/docs/section-one/section-two/section-three', text: 'Section Three', },
+            { href: null, text: 'Section Three', },
             { href: '/docs/section-one/section-two/section-three/page-b', text: 'Page B', },
             { href: '/docs/section-one/section-two/section-three/page-c', text: 'Page C', class: 'active' },
             { href: '/docs/section-one/page-three', text: 'Section One Page Three', },
@@ -819,7 +819,7 @@ describe('Themes', () => {
           await expect(runner).toMatchPage({
             leftNav: [
               { href: '/docs/', text: 'Getting Started', class: 'active' },
-              { href: '/docs/section-one', text: 'Section One', },
+              { href: null, text: 'Section One', },
               { href: '/docs/section-one/', text: 'Section One Index', },
               { href: '/docs/section-one/page-two', text: 'Section One Page Two', },
               { href: '/docs/section-one/page-three', text: 'Section One Page Three', },
@@ -870,7 +870,7 @@ describe('Themes', () => {
           await expect(runner).toMatchPage({
             leftNav: [
               { href: '/docs/', text: 'Getting Started', class: 'active' },
-              { href: '/docs/section-one', text: 'Section One', },
+              { href: null, text: 'Section One', },
               { href: '/docs/section-one/', text: 'Section One Index', },
               { href: '/docs/section-one/page-two', text: 'Section One Page Two', },
               { href: '/docs/section-one/page-three', text: 'Section One Page Three', },
