@@ -18,15 +18,15 @@ const ROOT = path.resolve(__dirname, '../..')
 describe('Docoddity', () => {
   const configureDocodditySite = setupBuild({
     std: {
-      stdout: chunk => console.log('[Docoddity]', chunk),
-      stderr: chunk => console.error('[Docoddity]', chunk),
+      // stdout: chunk => console.log('[Docoddity]', chunk),
+      // stderr: chunk => console.error('[Docoddity]', chunk),
     }
   });
 
   const configureDevDocodditySite = setupDev({
     std: {
-      stdout: chunk => console.log('[Docoddity]', chunk),
-      stderr: chunk => console.error('[Docoddity]', chunk),
+      // stdout: chunk => console.log('[Docoddity]', chunk),
+      // stderr: chunk => console.error('[Docoddity]', chunk),
     }
   });
 
