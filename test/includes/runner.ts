@@ -47,7 +47,7 @@ export class Runner {
           return await this.server.close();
         }
       } catch (err) {
-        console.error('Error closing server:', err);
+        console.warn('Error closing server, but it was started:', err);
       }
     }
     const closePage = async () => {

@@ -18,6 +18,7 @@ import { inlineCSSContent } from './inline-css-content.js';
 import { THEMES } from './constants.js';
 import { getBuildDir } from './utils/get-build-dir.js';
 import { forwardToTrailingSlashPlugin } from './forward-to-trailing-slash-plugin.js';
+import { readDocoddityJSON } from './utils/read-docoddity-json.js';
 
 
 export const isIncluded = (filepath?: string) => {
@@ -45,7 +46,7 @@ export const dev = async ({
     targetDir,
   });
   try {
-    await docoddity.applyMarkdownEnhancer();
+    await docoddity.initialize();
   } catch (err) {
     console.error('[Docoddity] Failed to apply markdown enhancer');
   }
@@ -57,32 +58,35 @@ export const dev = async ({
       if (isWatchAddEvent(event) || isWatchChangeEvent(event)) {
         const {
           data: sourceFilepath,
-          sitemap,
+          args,
         } = event;
         const relativeFilepath = relativeToSource(sourceFilepath);
-        if (relativeFilepath === 'docoddity.json') {
+        if (relativeFilepath === 'docoddity.json' || args?.markdown) {
+          // console.log('reloading docoddity.json', args?.markdown);
+          await docoddity.initialize();
         } else {
-          sitemap.add(sourceFilepath);
+          docoddity.sitemap.add(sourceFilepath);
           const filepath = Files.getFilepath(relativeFilepath, {
             sourceDir,
             targetDir,
           });
         }
-        await Promise.all([...sitemap].map(file => docoddity.writeFile(docoddity.getFilepath(file))))
+        await Promise.all([...docoddity.sitemap].map(file => docoddity.writeFile(docoddity.getFilepath(file))))
       } else if (isWatchDeleteEvent(event)) {
         const {
           data: sourceFilepath,
-          sitemap,
+          args,
         } = event;
 
         const relativeFilepath = relativeToSource(sourceFilepath);
 
-        if (relativeFilepath === 'docoddity.json') {
+        if (relativeFilepath === 'docoddity.json' || args?.markdown) {
+          await docoddity.initialize();
         } else {
-          sitemap.remove(sourceFilepath);
+          docoddity.sitemap.remove(sourceFilepath);
           await docoddity.removeFile(relativeFilepath);
         }
-        await Promise.all([...sitemap].map(file => docoddity.writeFile(docoddity.getFilepath(file))))
+        await Promise.all([...docoddity.sitemap].map(file => docoddity.writeFile(docoddity.getFilepath(file))))
       }
     } catch (err) {
       console.error(err);
