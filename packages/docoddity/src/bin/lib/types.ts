@@ -13,7 +13,7 @@ export interface DocoddityContents {
   markdown?: string;
 }
 
-export type MarkdownEnhancerFn = (md: MarkdownIt) => void;
+export type MarkdownEnhancerFn = (md: MarkdownIt) => (void | Promise<void>);
 
 export interface AlgoliaConfig {
 
@@ -33,20 +33,21 @@ export interface DevCLIOpts extends Omit<Folders, 'targetDir'> {
   open?: boolean;
 }
 
-interface AddEvent {
+interface GenericWatchEvent {
+  data: string;
+  args?: {
+    markdown?: boolean;
+  };
+}
+
+interface AddEvent extends GenericWatchEvent {
   type: 'add';
-  data: string;
-  sitemap: Sitemap;
 }
-interface ChangeEvent {
+interface ChangeEvent extends GenericWatchEvent {
   type: 'change';
-  data: string;
-  sitemap: Sitemap;
 }
-interface DeleteEvent {
+interface DeleteEvent extends GenericWatchEvent {
   type: 'unlink';
-  data: string;
-  sitemap: Sitemap;
 }
 interface ReadyEvent {
   type: 'ready';

@@ -23,7 +23,8 @@ export const watch = (docoddity: Docoddity, callback: WatchCallback) => {
   } = docoddity;
   // const getRelativeFile = makeRelative(sourceDir);
   const docoddityPath = `${path.resolve(sourceDir)}/docoddity.json`;
-  let docoddityContents: DocoddityContents;
+  let docoddityContents: DocoddityContents | undefined;
+  const markdownEnhancers = new Set<string>();
   const watcher = chokidar.watch([
     `${path.resolve(sourceDir)}/**/*.md`,
     `${path.resolve(sourceDir)}/**/*.html`,
@@ -48,21 +49,42 @@ export const watch = (docoddity: Docoddity, callback: WatchCallback) => {
     .on('all', async (event, sourceFilepath) => {
       try {
         if (event === 'add' || event === 'change' || event === 'unlink') {
-          // console.log('sourceFilepath', sourceFilepath)
-          callback({ type: event, data: sourceFilepath, sitemap });
-          // if (sourceFilepath === docoddityPath) {
-          //   // const prevDocoddityContents = docoddityContents;
-          //   // docoddityContents = await readDocoddityJSON(sourceDir);
-          //   // for await (const file of getDocoddityContents(sourceDir, docoddityContents)) {
-          //   //   if (!isWatched(watcher, file)) {
-          //   //     watcher.add(file);
-          //   //   }
-          //   // }
-          //   // for (const file of getRemovedDocoddityContents(docoddityContents, prevDocoddityContents)) {
-          //   //   watcher.unwatch(file);
-          //   //   callback({ type: 'unlink', data: file, sitemap });
-          //   // }
-          // }
+          // console.log('event', event, sourceFilepath);
+          if (sourceFilepath === docoddityPath) {
+            // emit event for docoddity.json change
+            callback({ type: event, data: sourceFilepath });
+            const prevDocoddityContents = docoddityContents;
+            docoddityContents = await readDocoddityJSON(sourceDir);
+            if (docoddityContents?.markdown) {
+              const markdownFilepath = path.resolve(docoddity.folders.sourceDir, docoddityContents.markdown);
+              if (!isWatched(watcher, markdownFilepath)) {
+                // console.log('watching', markdownFilepath);
+                watcher.add(markdownFilepath);
+                markdownEnhancers.add(markdownFilepath);
+              }
+            } else if (prevDocoddityContents?.markdown) {
+              const markdownFilepath = path.resolve(docoddity.folders.sourceDir, prevDocoddityContents.markdown);
+              console.log('unwatching', markdownFilepath);
+              watcher.unwatch(markdownFilepath);
+              markdownEnhancers.delete(markdownFilepath);
+            }
+            // for await (const file of getDocoddityContents(sourceDir, docoddityContents || {})) {
+            //   if (!isWatched(watcher, file)) {
+            //     watcher.add(file);
+            //   }
+            // }
+
+            // for (const file of getRemovedDocoddityContents(docoddityContents || {}, prevDocoddityContents)) {
+            //   watcher.unwatch(file);
+            //   callback({ type: 'unlink', data: file });
+            // }
+          } else {
+            if (markdownEnhancers.has(sourceFilepath)) {
+              callback({ type: event, data: sourceFilepath, args: { markdown: true } });
+            } else {
+              callback({ type: event, data: sourceFilepath, });
+            }
+          }
         } else if (!IGNORED_EVENTS.includes(event)) {
           console.warn(`Unhandled event: ${event}`);
         }
