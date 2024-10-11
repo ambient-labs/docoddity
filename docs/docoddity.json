@@ -1,6 +1,8 @@
 {
   "title": "Docoddity",
-  "head": [],
+  "head": [
+    "<link rel='icon' href='https://fav.farm/🇩' />"
+  ],
   "nav": {
     "left": [
       {

@@ -38,8 +38,9 @@ export class Markdown {
         const loadedFunction = await loadUserScript(enhancerPath);
         try {
           // Execute the enhancer in a separate context with limited access
-          const safeExecutor = new Function('md', `return (${loadedFunction.toString()})(md);`);
-          await safeExecutor(this.md);
+          // const safeExecutor = new Function('md', `return (${loadedFunction.toString()})(md);`);
+          // await safeExecutor(this.md);
+          await loadedFunction(this.md);
         } catch (error) {
           console.error(`Error executing markdown enhancer: ${error}`);
         }
@@ -51,5 +52,7 @@ export class Markdown {
     }
   }
 
-  render = (content: string) => this.md.render(content);
+  render = (content: string, filepath?: string) => this.md.render(content, {
+    filepath,
+  });
 }

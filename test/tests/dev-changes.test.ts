@@ -6,8 +6,8 @@ import { getMarkdownContent } from '../setup/getMarkdownContent.js';
 describe('Dev: Listens for changes', () => {
   const configureDevDocodditySite = setupDev({
     std: {
-      stdout: chunk => console.log('[Docoddity]', chunk),
-      stderr: chunk => console.error('[Docoddity]', chunk),
+      // stdout: chunk => console.log('[Docoddity]', chunk),
+      // stderr: chunk => console.error('[Docoddity]', chunk),
     }
   });
   test('it changes an html file', async () => {

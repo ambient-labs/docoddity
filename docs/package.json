@@ -26,7 +26,8 @@
   "author": "Ambient Labs",
   "license": "MIT",
   "dependencies": {
-    "docoddity": "workspace:*"
+    "docoddity": "workspace:*",
+    "shiki": "^1.22.0"
   },
   "devDependencies": {
     "wireit": "^0.14.9"
