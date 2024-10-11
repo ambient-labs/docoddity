@@ -6,7 +6,7 @@ export default defineConfig({
     maxConcurrency: 15,
     // it works without a trailing slash
     sequence: {
-      concurrent: process.env.CI === 'true',
+      concurrent: process.env.CI === 'true' && false,
     },
     testTimeout: process.env.CI === 'true' ? 120000 : 10000,
     hookTimeout: 1000,

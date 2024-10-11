@@ -7,7 +7,7 @@ const getRandomString = () => `${new Date().getTime()}${Math.random()}`;
 
 const getTestName = () => {
   const isConcurrent = process.env.CI === 'true';
-  if (isConcurrent) {
+  if (isConcurrent && false) {
     return getRandomString();
   }
   return expect.getState().currentTestName;
