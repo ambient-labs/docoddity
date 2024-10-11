@@ -32,15 +32,17 @@ export class Markdown {
     this.ready = this.initialize(enhancerPath);
   }
 
+  unload?: () => void;
+
   initialize = async (enhancerPath?: string) => {
     if (enhancerPath) {
+      if (this.unload) {
+        this.unload();
+      }
       try {
         const loadedFunction = await loadUserScript(enhancerPath);
         try {
-          // Execute the enhancer in a separate context with limited access
-          // const safeExecutor = new Function('md', `return (${loadedFunction.toString()})(md);`);
-          // await safeExecutor(this.md);
-          await loadedFunction(this.md);
+          this.unload = await loadedFunction(this.md);
         } catch (error) {
           console.error(`Error executing markdown enhancer: ${error}`);
         }
