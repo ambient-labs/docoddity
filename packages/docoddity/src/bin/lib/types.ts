@@ -57,7 +57,7 @@ interface ErrorEvent {
   data: Error;
 }
 type WatchCallbackEvent = ErrorEvent | AddEvent | ChangeEvent | DeleteEvent | ReadyEvent;
-export type katchCallback = (event: WatchCallbackEvent) => (void | Promise<void>);
+export type WatchCallback = (event: WatchCallbackEvent) => (void | Promise<void>);
 export const isWatchAddEvent = (event: WatchCallbackEvent): event is AddEvent => event.type === 'add';
 export const isWatchChangeEvent = (event: WatchCallbackEvent): event is ChangeEvent => event.type === 'change';
 export const isWatchDeleteEvent = (event: WatchCallbackEvent): event is DeleteEvent => event.type === 'unlink';

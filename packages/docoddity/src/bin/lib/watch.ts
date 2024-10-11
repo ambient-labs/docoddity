@@ -80,7 +80,7 @@ export const watch = (docoddity: Docoddity, callback: WatchCallback) => {
             // }
           } else {
             if (markdownEnhancers.has(sourceFilepath)) {
-              callback({ type: event, data: sourceFilepath, args: { markdown: true } });
+              callback({ type: event, data: sourceFilepath, args: { siteFile: true } });
             } else {
               callback({ type: event, data: sourceFilepath, });
             }
