@@ -52,5 +52,7 @@ export class Markdown {
     }
   }
 
-  render = (content: string) => this.md.render(content);
+  render = (content: string, filepath?: string) => this.md.render(content, {
+    filepath,
+  });
 }

@@ -72,7 +72,7 @@ export class Docoddity {
     }
     if (targetFilepath.endsWith('.md')) {
       const { title, ...fileFrontmatter } = await parseFrontmatter(content);
-      const htmlContents = this.markdown.render(content);
+      const htmlContents = this.markdown.render(content, sourceFilepath);
 
       if (typeof htmlContents !== 'string') {
         throw new Error(`Error translating ${sourceFilepath}: ${htmlContents}`);
