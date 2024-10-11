@@ -40,6 +40,8 @@ const markdownEnhancer = async (md) => {
     })
     return `<copy-to-clipboard>${html}</copy-to-clipboard>`;
   };
+
+  return () => { };
 }
 
 export default markdownEnhancer;
