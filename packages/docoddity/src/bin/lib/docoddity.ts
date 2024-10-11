@@ -27,15 +27,17 @@ import path from 'path';
 export class Docoddity {
   sitemap: Sitemap;
   #markdown?: Markdown;
+  #theme?: Theme;
   constructor(public folders: Folders) {
     this.sitemap = new Sitemap(folders.sourceDir);
   }
 
   initialize = async () => {
-    const { markdown } = await readDocoddityJSON(this.folders.sourceDir) || {};
+    const { markdown, theme } = await readDocoddityJSON(this.folders.sourceDir) || {};
     const enhancerPath = markdown ? path.resolve(this.folders.sourceDir, markdown) : undefined;
     this.#markdown = new Markdown(enhancerPath);
     await this.#markdown.ready;
+    this.#theme = new Theme(theme);
   };
 
   get markdown() {
@@ -43,6 +45,13 @@ export class Docoddity {
       throw new Error('Markdown not initialized; call initialize() first');
     }
     return this.#markdown;
+  }
+
+  get theme() {
+    if (!this.#theme) {
+      throw new Error('Theme not initialized; call initialize() first');
+    }
+    return this.#theme;
   }
 
   writeFiles = async () => Promise.all((await gatherAllSiteFiles(this.folders, this.sitemap)).map(this.writeFile));
@@ -56,7 +65,7 @@ export class Docoddity {
 
     const relativeFilepath = makeRelative(targetDir)(targetFilepath);
 
-    const theme = new Theme(docoddityContents);
+    const theme = this.theme;
     const pageURL = relativeFilepath.split('.').slice(0, -1).join('.');
     const pages = await this.sitemap.getPages(relativeFilepath);
     const args: DocoddityRenderedArgs = {

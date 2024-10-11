@@ -12,7 +12,7 @@ export class Theme {
   theme: string;
   #json?: Promise<DocoddityContents>;
 
-  constructor({ theme = 'default' }: DocoddityContents = {}) {
+  constructor(theme = 'default') {
     this.theme = theme;
   }
 

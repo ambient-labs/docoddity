@@ -61,7 +61,7 @@ export const dev = async ({
           args,
         } = event;
         const relativeFilepath = relativeToSource(sourceFilepath);
-        if (relativeFilepath === 'docoddity.json' || args?.markdown) {
+        if (relativeFilepath === 'docoddity.json' || args?.siteFile) {
           // console.log('reloading docoddity.json', args?.markdown);
           await docoddity.initialize();
         } else {
@@ -80,7 +80,7 @@ export const dev = async ({
 
         const relativeFilepath = relativeToSource(sourceFilepath);
 
-        if (relativeFilepath === 'docoddity.json' || args?.markdown) {
+        if (relativeFilepath === 'docoddity.json' || args?.siteFile) {
           await docoddity.initialize();
         } else {
           docoddity.sitemap.remove(sourceFilepath);
