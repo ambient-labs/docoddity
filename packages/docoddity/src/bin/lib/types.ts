@@ -1,8 +1,7 @@
 import type MarkdownIt from "markdown-it";
-import type { Sitemap } from "./sitemap.js";
 
 export interface DocoddityContents {
-  theme?: string;
+  // TODO: Move all this under theme
   title?: string;
   head?: (string | DocoddityFileDefinition)[];
   body?: (string | DocoddityFileDefinition)[];
@@ -10,6 +9,7 @@ export interface DocoddityContents {
   config?: {
     algolia?: AlgoliaConfig;
   };
+  theme?: string;
   markdown?: string;
 }
 
@@ -36,7 +36,7 @@ export interface DevCLIOpts extends Omit<Folders, 'targetDir'> {
 interface GenericWatchEvent {
   data: string;
   args?: {
-    markdown?: boolean;
+    siteFile?: boolean;
   };
 }
 
@@ -57,7 +57,7 @@ interface ErrorEvent {
   data: Error;
 }
 type WatchCallbackEvent = ErrorEvent | AddEvent | ChangeEvent | DeleteEvent | ReadyEvent;
-export type WatchCallback = (event: WatchCallbackEvent) => (void | Promise<void>);
+export type katchCallback = (event: WatchCallbackEvent) => (void | Promise<void>);
 export const isWatchAddEvent = (event: WatchCallbackEvent): event is AddEvent => event.type === 'add';
 export const isWatchChangeEvent = (event: WatchCallbackEvent): event is ChangeEvent => event.type === 'change';
 export const isWatchDeleteEvent = (event: WatchCallbackEvent): event is DeleteEvent => event.type === 'unlink';
