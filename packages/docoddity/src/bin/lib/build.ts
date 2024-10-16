@@ -39,6 +39,9 @@ export const build = async ({
     optimizeDeps: {
       include: [],
     },
+    worker: {
+      format: 'es',
+    },
     build: {
       outDir: targetDir,
       emptyOutDir: true,
