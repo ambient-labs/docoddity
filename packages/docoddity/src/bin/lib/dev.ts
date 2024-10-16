@@ -95,9 +95,8 @@ export const dev = async ({
 
   const stopWatching = docoddity.watch(callback);
 
-  const additionalConfig = viteConfig ? await import(path.resolve(viteConfig)) : {};
-
-  const vite = await createServer(mergeConfig({
+  const additionalConfig = viteConfig ? (await import(path.resolve(viteConfig))).default : {};
+  const config = mergeConfig({
     root: targetDir,
     plugins: [
       inlineCSSContent(),
@@ -118,7 +117,12 @@ export const dev = async ({
       include: [],
       exclude: ['@shoelace-style/shoelace/dist/utilities/base-path.js'],
     },
-  }, additionalConfig));
+  }, typeof additionalConfig === 'function' ? additionalConfig({
+    port,
+    sourceDir,
+    targetDir,
+  }) : additionalConfig);
+  const vite = await createServer(config);
 
   await vite.listen();
 
