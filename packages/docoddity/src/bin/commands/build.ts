@@ -8,4 +8,5 @@ export const registerScript = (program: Command) => program.command('build')
   .option('-s, --sourceDir <string>', 'Input directory', './')
   .option('-b, --buildDir <string>', 'Internal build directory')
   .option('-t, --targetDir <string>', 'Output directory', './build')
+  .option('-v, --viteConfig <string>', 'Optional vite config')
   .action(build);

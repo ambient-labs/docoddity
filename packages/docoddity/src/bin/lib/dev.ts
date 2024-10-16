@@ -2,7 +2,10 @@ import path from 'path';
 import {
   mkdirp,
 } from './utils/fs.js';
-import { createServer } from 'vite';
+import {
+  createServer,
+  mergeConfig
+} from 'vite';
 
 import {
   isWatchAddEvent,
@@ -18,15 +21,11 @@ import { inlineCSSContent } from './inline-css-content.js';
 import { THEMES } from './constants.js';
 import { getBuildDir } from './utils/get-build-dir.js';
 import { forwardToTrailingSlashPlugin } from './forward-to-trailing-slash-plugin.js';
-import { readDocoddityJSON } from './utils/read-docoddity-json.js';
 
-
-export const isIncluded = (filepath?: string) => {
-  return !!filepath
-    && !filepath.startsWith('node_modules')
-    && !filepath.startsWith('.')
-    && filepath.length <= 200;
-};
+export const isIncluded = (filepath?: string) => !!filepath
+  && !filepath.startsWith('node_modules')
+  && !filepath.startsWith('.')
+  && filepath.length <= 200;
 
 
 export const dev = async ({
@@ -34,6 +33,7 @@ export const dev = async ({
   sourceDir: _sourceDir,
   buildDir: _buildDir,
   open = false,
+  viteConfig,
 }: DevCLIOpts) => {
   const sourceDir = path.resolve(_sourceDir);
   const targetDir = _buildDir || getBuildDir();
@@ -95,7 +95,9 @@ export const dev = async ({
 
   const stopWatching = docoddity.watch(callback);
 
-  const vite = await createServer({
+  const additionalConfig = viteConfig ? await import(viteConfig) : {};
+
+  const vite = await createServer(mergeConfig({
     root: targetDir,
     plugins: [
       inlineCSSContent(),
@@ -116,7 +118,7 @@ export const dev = async ({
       include: [],
       exclude: ['@shoelace-style/shoelace/dist/utilities/base-path.js'],
     },
-  });
+  }, additionalConfig));
 
   await vite.listen();
 

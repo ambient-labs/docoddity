@@ -22,13 +22,16 @@ export interface AlgoliaConfig {
   apiKey: string;
 }
 
+export type SharedCLIArgs = Folders & {
+  viteConfig?: string;
+}
 
 export interface Folders {
   sourceDir: string;
   targetDir: string;
   buildDir?: string;
 }
-export interface DevCLIOpts extends Omit<Folders, 'targetDir'> {
+export interface DevCLIOpts extends Omit<SharedCLIArgs, 'targetDir'> {
   port: number;
   open?: boolean;
 }

@@ -1,12 +1,12 @@
 import type {
-  Folders,
+  SharedCLIArgs,
 } from './types.js';
 import {
   mkdirp,
 } from './utils/fs.js';
 import { Docoddity } from './docoddity.js';
 import path from 'node:path';
-import { build as viteBuild } from 'vite';
+import { mergeConfig, build as viteBuild } from 'vite';
 import { inlineCSSContent } from './inline-css-content.js';
 import { getBuildDir } from './utils/get-build-dir.js';
 
@@ -14,7 +14,8 @@ export const build = async ({
   sourceDir: _sourceDir,
   targetDir: _targetDir,
   buildDir: _buildDir,
-}: Folders) => {
+  viteConfig,
+}: SharedCLIArgs) => {
   const sourceDir = path.resolve(_sourceDir);
   const targetDir = path.resolve(_targetDir);
   const buildDir = _buildDir || getBuildDir();
@@ -31,7 +32,9 @@ export const build = async ({
   const writtenFiles = await docoddity.writeFiles();
   const htmlFiles = writtenFiles.filter((file) => file.endsWith('.html'));
 
-  await viteBuild({
+  const additionalConfig = viteConfig ? await import(viteConfig) : {};
+
+  await viteBuild(mergeConfig({
     root: buildDir,
     plugins: [
       inlineCSSContent(),
@@ -52,5 +55,5 @@ export const build = async ({
         ],
       },
     },
-  });
+  }, additionalConfig));
 };
