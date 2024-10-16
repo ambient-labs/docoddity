@@ -95,7 +95,7 @@ export const dev = async ({
 
   const stopWatching = docoddity.watch(callback);
 
-  const additionalConfig = viteConfig ? await import(viteConfig) : {};
+  const additionalConfig = viteConfig ? await import(path.resolve(viteConfig)) : {};
 
   const vite = await createServer(mergeConfig({
     root: targetDir,

@@ -32,7 +32,7 @@ export const build = async ({
   const writtenFiles = await docoddity.writeFiles();
   const htmlFiles = writtenFiles.filter((file) => file.endsWith('.html'));
 
-  const additionalConfig = viteConfig ? await import(viteConfig) : {};
+  const additionalConfig = viteConfig ? await import(path.resolve(viteConfig)) : {};
 
   await viteBuild(mergeConfig({
     root: buildDir,
