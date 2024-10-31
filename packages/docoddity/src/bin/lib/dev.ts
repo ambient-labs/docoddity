@@ -22,6 +22,7 @@ import { THEMES } from './constants.js';
 import { getBuildDir } from './utils/get-build-dir.js';
 import { forwardToTrailingSlashPlugin } from './forward-to-trailing-slash-plugin.js';
 import { parseDocoddityViteConfig } from './parse-docoddity-vite-config.js';
+import { symlink } from 'fs/promises';
 
 export const isIncluded = (filepath?: string) => !!filepath
   && !filepath.startsWith('node_modules')
@@ -51,6 +52,12 @@ export const dev = async ({
   } catch (err) {
     console.error('[Docoddity] Failed to apply markdown enhancer');
   }
+
+  // TODO: Make this configurable via vite.config
+  // add a symlink to public
+  const publicDir = path.resolve(targetDir, 'public');
+  await mkdirp(publicDir);
+  await symlink(path.join(sourceDir, 'public'), path.resolve(publicDir, 'public'));
 
   const relativeToSource = makeRelative(sourceDir);
 
