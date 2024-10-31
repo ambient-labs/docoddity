@@ -22,7 +22,7 @@ import { THEMES } from './constants.js';
 import { getBuildDir } from './utils/get-build-dir.js';
 import { forwardToTrailingSlashPlugin } from './forward-to-trailing-slash-plugin.js';
 import { parseDocoddityViteConfig } from './parse-docoddity-vite-config.js';
-import { symlink } from 'fs/promises';
+import { symlink, unlink } from 'fs/promises';
 
 export const isIncluded = (filepath?: string) => !!filepath
   && !filepath.startsWith('node_modules')
