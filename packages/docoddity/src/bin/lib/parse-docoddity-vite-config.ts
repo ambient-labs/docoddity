@@ -1,13 +1,9 @@
 import path from 'path';
-
-interface ParseDocoddityViteConfigArgs {
-  sourceDir: string;
-  targetDir: string;
-}
+import { DocoddityViteConfigArgs } from './types.js';
 
 export const parseDocoddityViteConfig = async (
   viteConfig: string | undefined,
-  args: ParseDocoddityViteConfigArgs & Record<string, unknown>
+  args: DocoddityViteConfigArgs & Record<string, unknown>
 ) => {
   if (!viteConfig) {
     return {};

@@ -164,3 +164,8 @@ export const isDocoddityContents = (contents: unknown): contents is DocoddityCon
   && (('body' in contents && isDocoddityContentsHeadOrBody(contents.body)) || !('body' in contents))
   && (('config' in contents && isDocoddityContentsConfig(contents.config)) || !('config' in contents))
   && (('markdown' in contents && typeof contents.markdown === 'string') || !('markdown' in contents));
+
+export interface DocoddityViteConfigArgs {
+  sourceDir: string;
+  targetDir: string;
+}
