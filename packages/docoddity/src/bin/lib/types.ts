@@ -166,6 +166,7 @@ export const isDocoddityContents = (contents: unknown): contents is DocoddityCon
   && (('markdown' in contents && typeof contents.markdown === 'string') || !('markdown' in contents));
 
 export interface DocoddityViteConfigArgs {
+  docoddityMode: 'build' | 'dev';
   sourceDir: string;
   targetDir: string;
 }
