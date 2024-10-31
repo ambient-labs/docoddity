@@ -55,9 +55,7 @@ export const dev = async ({
 
   // TODO: Make this configurable via vite.config
   // add a symlink to public
-  const publicDir = path.resolve(targetDir, 'public');
-  await mkdirp(publicDir);
-  await symlink(path.join(sourceDir, 'public'), path.resolve(publicDir, 'public'));
+  await symlink(path.join(sourceDir, 'public'), path.join(targetDir, 'public'));
 
   const relativeToSource = makeRelative(sourceDir);
 
