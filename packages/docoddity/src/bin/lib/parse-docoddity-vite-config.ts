@@ -13,5 +13,5 @@ export const parseDocoddityViteConfig = async (
     return {};
   }
   const additionalConfig = (await import(path.resolve(viteConfig))).default;
-  return typeof additionalConfig === 'function' ? additionalConfig(args) : additionalConfig;
+  return typeof additionalConfig === 'function' ? await additionalConfig(args) : additionalConfig;
 };
