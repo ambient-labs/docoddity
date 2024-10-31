@@ -21,6 +21,7 @@ import { inlineCSSContent } from './inline-css-content.js';
 import { THEMES } from './constants.js';
 import { getBuildDir } from './utils/get-build-dir.js';
 import { forwardToTrailingSlashPlugin } from './forward-to-trailing-slash-plugin.js';
+import { parseDocoddityViteConfig } from './parse-docoddity-vite-config.js';
 
 export const isIncluded = (filepath?: string) => !!filepath
   && !filepath.startsWith('node_modules')
@@ -95,7 +96,6 @@ export const dev = async ({
 
   const stopWatching = docoddity.watch(callback);
 
-  const additionalConfig = viteConfig ? (await import(path.resolve(viteConfig))).default : {};
   const config = mergeConfig({
     root: targetDir,
     plugins: [
@@ -117,11 +117,11 @@ export const dev = async ({
       include: [],
       exclude: ['@shoelace-style/shoelace/dist/utilities/base-path.js'],
     },
-  }, typeof additionalConfig === 'function' ? additionalConfig({
+  }, await parseDocoddityViteConfig(viteConfig, {
     port,
     sourceDir,
     targetDir,
-  }) : additionalConfig);
+  }));
   const vite = await createServer(config);
 
   await vite.listen();
