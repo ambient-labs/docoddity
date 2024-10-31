@@ -9,6 +9,7 @@ import path from 'node:path';
 import { mergeConfig, build as viteBuild } from 'vite';
 import { inlineCSSContent } from './inline-css-content.js';
 import { getBuildDir } from './utils/get-build-dir.js';
+import { parseDocoddityViteConfig } from './parse-docoddity-vite-config.js';
 
 export const build = async ({
   sourceDir: _sourceDir,
@@ -32,8 +33,6 @@ export const build = async ({
   const writtenFiles = await docoddity.writeFiles();
   const htmlFiles = writtenFiles.filter((file) => file.endsWith('.html'));
 
-  const additionalConfig = viteConfig ? (await import(path.resolve(viteConfig))).default : {};
-
   const config = mergeConfig({
     root: buildDir,
     plugins: [
@@ -55,10 +54,9 @@ export const build = async ({
         ],
       },
     },
-  }, typeof additionalConfig === 'function' ? additionalConfig({
+  }, await parseDocoddityViteConfig(viteConfig, {
     sourceDir,
-    buildDir,
     targetDir,
-  }) : additionalConfig);
+  }));
   await viteBuild(config);
 };
