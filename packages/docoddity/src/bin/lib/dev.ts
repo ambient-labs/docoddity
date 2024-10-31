@@ -130,6 +130,7 @@ export const dev = async ({
       exclude: ['@shoelace-style/shoelace/dist/utilities/base-path.js'],
     },
   }, await parseDocoddityViteConfig(viteConfig, {
+    docoddityMode: 'dev',
     port,
     sourceDir,
     targetDir,

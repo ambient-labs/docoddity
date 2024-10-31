@@ -55,6 +55,7 @@ export const build = async ({
       },
     },
   }, await parseDocoddityViteConfig(viteConfig, {
+    docoddityMode: 'build',
     sourceDir,
     targetDir,
   }));
